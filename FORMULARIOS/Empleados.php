@@ -74,7 +74,7 @@ h1{
 <body>
 <form class="from"  id="form1" action="#" method="POST">
 <center>
-<h1>Formulario General</h1>
+<h1>Formulario Empleado</h1>
 
 
 <div class="form-group">
@@ -151,7 +151,7 @@ h1{
 <br/>
 <center>
 <a href="bd/Menu_Admin.php" class="btn btn-default">Regresar</a>
-<a onClick="Windows.location='Actualizar.php'" class="btn btn-default">listar</a>
+
 <span class="icon-floppy-disk"></span>
 <input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
 
