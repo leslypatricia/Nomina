@@ -156,10 +156,8 @@ COLLATE= UTF8_UNICODE_CI;
 
 create table privilegios(                                           /*COMMENT 'CREAR LA TABLA PRIVILEGIOS EN LA BBDD NOMINAS' */
 Cod_privilegios integer primary key                                 COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
-Lectura varchar(20)                                                 COMMENT 'SE USA PARA DAR PERMISOS DE LECTURA A CIERTOS USUSARIOS',
-Escritura varchar(20)                                               COMMENT 'SE USA PARA DAR PERMISOS DE ESCRITURA A CIERTOS USUARIOS',
-Modificacion varchar(20)                                            COMMENT 'SE USA PARA DAR PERMISOS DE MODIFICACIÓN A CIERTOS EMPLEADOS'
-
+Descripcion varchar(20)                                             COMMENT 'SE USA PARA DAR PERMISOS DE LECTURA A CIERTOS USUSARIOS'
+                                                                    
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                  COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;
@@ -196,3 +194,10 @@ alter table rolPrivilegios add  foreign key (Cod_rol) references rol(Cod_rol);
 #Crear llave foranea de Cod_Privilegios en la tabla rol_Privilegios con referencia de la tabla privilegios
 alter table rolPrivilegios add  foreign key (Cod_privilegios) references privilegios(Cod_Privilegios);
 
+INSERT INTO `rol` (`Cod_rol`, `Descripcion`) VALUES ('1000', 'Administrador'), ('2000', 'Empleado_Normal');
+INSERT INTO `privilegios` (`Cod_privilegios`, `Descripcion`) VALUES ('1', 'Modificacion'), ('2', 'Lectura');
+INSERT INTO `rolprivilegios` (`Cod_privilegios`, `Cod_rol`) VALUES ('1', '1000'), ('2', '2000');
+INSERT INTO `formapago` (`Cod_FormaPago`, `Descripcion`) VALUES ('1', 'Mensual'), ('2', 'Quincenal');
+INSERT INTO `departamento` (`Cod_Depto`, `Descripcion`, `Cod_Jefe`) VALUES ('1', 'Administración', '1'), ('2', 'Contabilidad', '2'),('3', 'Tecnologia', '3');
+INSERT INTO `empleados` (`Cod_empleados`, `Identidad`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `Fecha_nacimiento`, `Correo`, `Direccion`, `Telefono`, `Sexo`, `Cuenta_Bancaria`, `Fecha_ingreso`, `Nacionalidad`, `Fecha_Deduccion`, `Sueldo_base`, `Cod_FormaPago`, `Cod_Depto`) VALUES ('1', '0819199000066', 'José', 'Mario', 'Gómez', 'López', '1990-11-08 14:08:22', 'josemario123_123@outlook.es', 'Prados Universitarios', '97217988', 'M', '20068043', '2020-10-01 14:08:22', 'Hondureña', '2020-10-30 14:08:22', '20000', '1', '3');
+INSERT INTO `usuario` (`Cod_Usuario`, `Usuario`, `Password`, `Correo`, `Cod_rol`, `Cod_empleados`) VALUES ('1', 'Administrador', '1234', 'josemario123_123@outlook.es', '1000', '1');
