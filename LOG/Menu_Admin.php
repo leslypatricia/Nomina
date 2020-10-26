@@ -46,7 +46,7 @@ li:hover{
 }
 .contenido{
 	width:100%;
-	height:100$;
+	height:100%;
 	background:#ide;
 	position:absolute;
 	transition:all .3s;
@@ -77,7 +77,7 @@ li:hover{
 <ul>
 
 
-><li><a href="../FORMULARIOS/Estructura.php">Estructura</a></li>
+<li><a href="../FORMULARIOS/Estructura.php">Estructura</a></li>
 <li><a href="Generar_Planilla.php">Generar_Planilla</a></li>
 
 
