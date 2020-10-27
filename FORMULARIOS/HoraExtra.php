@@ -85,6 +85,10 @@ h1{
 <br/><br/>
 <label>Numero de Hora Extra:</label>
 <input type="text" name="NHE" value="" size="20" maxlength="20"/>
+<br/><br/>
+
+<label>Codigo Empleado:</label>
+<input type="text" name="NHE" value="" size="20" maxlength="20"/>
 
 <label>Codigo de Tipo de Hora Extra:</label>
 <input type="text" name="CTHE" value="" size="20" maxlength="20" />

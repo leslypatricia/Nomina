@@ -78,13 +78,10 @@ h1{
 <label>Codigo Privilegios:</label>
 <input type="text" name="CP" value="" size="5" maxlength="5" />
 <br/><br/>
-<label>Lectura</label>
-<input type="checkbox" name="L" value="" size="25" maxlength="25" />
+<label>Descripcion</label>
+<input type="checkbox" name="D" value="" size="25" maxlength="25" />
 
-<label>Escritura</label>
-<input type="checkbox" name="E" value="" size="20" maxlength="20"/>
-<label>Modificacion</label>
-<input type="checkbox" name="M" value="" size="20" maxlength="20"/>
+
 <br/><br/>
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>

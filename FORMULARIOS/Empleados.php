@@ -103,7 +103,12 @@ $FD=$_POST['FD'];
 $SB=$_POST['SB'];
 $FP=$_POST['FP'];
 $CD=$_POST['CD'];
-
+/*if($CE=="" || $id=="" || $PN=="" || $SN==""|| $PA=="" 
+|| $SA=="" || $FN=="" || $CORRE=="" || $DIR=="" || $TELE=="" 
+|| $S=="" || $CB=="" || $FI=="" || $NAC=="" || $FD=="" 
+|| $SB=="" || $FP=="" || $CD==""){
+	echo "los campos son obligatorio";
+}else{*/
 $consulta="INSERT into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Fecha_Deduccion,Sueldo_base,Cod_FormaPago,Cod_Depto)
  VALUES('$CE','$id','$PN','$SN','$PA','$SA','$FN','$CORRE','$DIR','$TELE','$S','$CB','$FI','$NAC','$FD','$SB','$FP','$CD')";
  if (mysqli_query($conexion, $consulta)) {
@@ -111,6 +116,7 @@ $consulta="INSERT into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }
+/*}*/
 mysqli_close($conexion);
 }
 ?>
