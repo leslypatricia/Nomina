@@ -11,7 +11,7 @@ $('#formLogin').submit(function(e){
       return false; 
     }else{
         $.ajax({
-           url:"bd/login.php",
+           url:"login.php",
            type:"POST",
            datatype: "json",
            data: {usuario:usuario, password:password}, 

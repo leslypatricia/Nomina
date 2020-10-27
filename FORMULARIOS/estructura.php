@@ -25,7 +25,7 @@
 	text-align:center;
 	text-decoration:none;
 	display:block;
-	padding:15px;
+	padding:05px;
 	color:white;
 	font-size:20px;
 }
@@ -74,23 +74,23 @@ li:hover{
 <div class="barra">
 <h2>Menu</h2>
 <ul>
-<li><a href="">Rol</a></li>
-<li><a href="">Privilegios</a></li>
-<li><a href="">Rol_Privilegios</a></li>
-<li><a href="">Departamentos</a></li>
-<li><a href="">Formas de Pago</a></li>
+<li><a href="../FORMULARIOS/rol.php">Rol</a></li>
+<li><a href="../FORMULARIOS/Privilegios.php">Privilegios</a></li>
+<li><a href="../FORMULARIOS/RolPrivilegios.php">Rol_Privilegios</a></li>
+<li><a href="../FORMULARIOS/Departamento.php">Departamentos</a></li>
+<li><a href="../FORMULARIOS/FormaPago.php">Formas de Pago</a></li>
 <li><a href="../FORMULARIOS/Empleados.php">Empleados</a></li>
-<li><a href="">Usuarios</a></li>
-<li><a href="">Jornada</a></li>
-<li><a href="">Tipo de Hora Extra</a></li>
-<li><a href="">Horas Extras</a></li>
-<li><a href="">Deducciones</a></li>
-<li><a href="">Nomina Deducciones</a></li>
-<li><a href="">Pagos Complementarios</a></li>
-<li><a href="">Nomina Pagos Complementarios</a></li>
-<li><a href="">Aumento</a></li>
-<li><a href="">Nomina General</a></li>
-<p><a href="Index.php">Cerrar sesion</a></p>
+<li><a href="../FORMULARIOS/Usuario.php">Usuarios</a></li>
+<li><a href="../FORMULARIOS/Jornada.php">Jornada</a></li>
+<li><a href="../FORMULARIOS/TipoHE.php">Tipo de Hora Extra</a></li>
+<li><a href="../FORMULARIOS/HoraExtra.php">Horas Extras</a></li>
+<li><a href="../FORMULARIOS/Deducciones.php">Deducciones</a></li>
+<li><a href="../FORMULARIOS/NominaDeduccion.php">Nomina Deducciones</a></li>
+<li><a href="../FORMULARIOS/PagosComplementarios.php">Pagos Complementarios</a></li>
+<li><a href="../FORMULARIOS/NominaPagComplementarios.php">Nomina Pagos Complementarios</a></li>
+<li><a href="../FORMULARIOS/Aumento.php">Aumento</a></li>
+<li><a href="../FORMULARIOS/NominaGeneral.php">Nomina General</a></li>
+<p><a href="../Index.php">Cerrar sesion</a></p>
 </ul>
 
 <ul class="nav nav-pills">

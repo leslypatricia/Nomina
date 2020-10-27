@@ -34,12 +34,14 @@ echo "Error , Contraseña y Usuario incorrectos";
 	
 }else
     if($_SESSION["s_idRol"]!=1000){
-	 header("Location: /Nomina/LOG/Menu_usuario.php");
+        echo "Error , Contraseña y Usuario incorrectos";
+	 header("Location:../LOG/Menu_usuario.php");
     }
 	
 	else{
 	  if($_SESSION["s_idRol"]=1000){
-	header("Location: /Nomina/LOG/Menu_Admin.php");
+        echo "Error , Contraseña y Usuario incorrectos";
+	header("Location: ../LOG/Menu_Admin.php");
 	}
 }
 print json_encode($data);

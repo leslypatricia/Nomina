@@ -73,7 +73,7 @@ h1{
 <body>
 <form class="from"  id="form1" action="#" method="POST">
 <center>
-<h1>Formulario Departamento</h1>
+<h1>Formulario Tipo de Hora Extra</h1>
 <div class="form-group">
 <label>Codigo Tipo Hora Extra:</label>
 <input type="text" name="CTHE" value="" size="5" maxlength="5" />
