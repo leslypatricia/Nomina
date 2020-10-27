@@ -72,6 +72,50 @@ h1{
 </head>
 
 <body>
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+if (!$conexion) {
+      die("Connection failed: " . mysqli_connect_error());
+}
+ 
+if (isset($_POST["crs"])){
+$CE=$_POST['CE'];
+$id=$_POST['id'];
+$PN=$_POST['PN'];
+$SN=$_POST['SN'];
+$PA=$_POST['PA'];
+$SA=$_POST['SA'];
+$FN=$_POST['FN'];
+$CORRE=$_POST['correo'];
+$DIR=$_POST['Dire'];
+$TELE=$_POST['tele'];
+$S=$_POST['sexo'];
+$CB=$_POST['CB'];
+$FI=$_POST['FI'];
+$NAC=$_POST['Nac'];
+$FD=$_POST['FD'];
+$SB=$_POST['SB'];
+$FP=$_POST['FP'];
+$CD=$_POST['CD'];
+
+$consulta="INSERT into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Fecha_Deduccion,Sueldo_base,Cod_FormaPago,Cod_Depto)
+ VALUES('$CE','$id','$PN','$SN','$PA','$SA','$FN','$CORRE','$DIR','$TELE','$S','$CB','$FI','$NAC','$FD','$SB','$FP','$CD')";
+ if (mysqli_query($conexion, $consulta)) {
+      echo "Registro Ingresado Correctamente";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+mysqli_close($conexion);
+}
+?>
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Empleado</h1>
