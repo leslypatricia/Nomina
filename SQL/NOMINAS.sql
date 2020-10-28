@@ -8,15 +8,15 @@ Primer_Nombre varchar(25) not null                                        COMMEN
 Segundo_Nombre varchar(25) not null                                       COMMENT 'CAMPO INGRESAR SEGUNDO NOMBRE DEL EMPLEADO',                                             
 Primer_Apellido varchar(25) not null                                      COMMENT 'CAMPO INGRESAR PRIMER APELLIDO EMPLEADO',
 Segundo_Apellido varchar(25) not null                                     COMMENT 'CAMPO INGRESAR SEGUNDO APELLIDO EMPLEADO',
-Fecha_nacimiento datetime not null                                        COMMENT 'FECHA DE NACIMIENTO LA CUAL DEBE SER MENOR O IGUAL A LA FECHA DEL SERVIDOR',
+Fecha_nacimiento date not null                                        COMMENT 'FECHA DE NACIMIENTO LA CUAL DEBE SER MENOR O IGUAL A LA FECHA DEL SERVIDOR',
 Correo Varchar(30) Unique not null                                        COMMENT 'CORREO ELECTRONICO DEL EMPLEADO',
 Direccion varchar(25)                                                     COMMENT 'DIRECCION DEL EMPLEADO',
 Telefono varchar(8)                                                       COMMENT 'TELEFONO DEL EMPLEADO',
 Sexo varchar(2) not null                                                  COMMENT 'ojo debe ser char con restriccion',
 Cuenta_Bancaria varchar(20)                                               COMMENT 'CUENTA BANCARIA DEL EMPLEADO',
-Fecha_ingreso datetime not null                                           COMMENT 'FECHA DE INGRESO DEL EMPLEADO',
+Fecha_ingreso date not null                                           COMMENT 'FECHA DE INGRESO DEL EMPLEADO',
 Nacionalidad varchar(20)                                                  COMMENT 'NACIONALIDAD DEL EMPLEADO',
-Fecha_Deduccion datetime                                                  COMMENT 'SE ELIGE LA FECHA EN LA QUE SE APLICA LA DEDUCCIÓN', 
+Fecha_Deduccion date                                                  COMMENT 'SE ELIGE LA FECHA EN LA QUE SE APLICA LA DEDUCCIÓN', 
 Sueldo_base int                                                           COMMENT 'SUELDO BASE QUE ENDRÁ EL EMPLEADO',
 Cod_FormaPago integer                                                     COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA FORMA_PAGO',
 Cod_Depto integer                                                         COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA DEPARTAMENTO'
@@ -107,7 +107,7 @@ Cod_Jornada integer                                                   COMMENT 'C
 Numero_horaextra integer                                              COMMENT 'CANTIDAD DE HORAS EXTRAS DEL EMPLEADO',
 Cod_empleados integer                                                 COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA EMPLEADOS',
 Cod_Tipo_HE integer                                                   COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA TIPOHORAEXTRA', 
-fecha datetime                                                        COMMENT 'LA FECHA EN QUE SE REALIZÓ LA HORA EXTRA'
+fecha date                                                       COMMENT 'LA FECHA EN QUE SE REALIZÓ LA HORA EXTRA'
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                    COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;

@@ -372,9 +372,9 @@ mysqli_close($conexion);
 <br/>
 <br/>
 <label>Fecha Nacimiento:</label>
-<input id="date" type="date" name="FN" value="<?php echo $FN?>" size="20" DOMString="<?php echo $FN?>" maxlength="30" />
+<input id="date" type="date" name="FN" value="<?php echo $fechan?>" size="20"  maxlength="30" />
 <label>Fecha Ingreso:</label>
-<input id="date" type="date" name="FI" value="<?php echo $FI?>" size="20" DOMString="<?php echo $FI?>" maxlength="30" />
+<input id="date" type="date" name="FI" value="<?php echo $ingreso?>" size="20" maxlength="30" />
 <br/>
 <br/>
 <label>Correo:</label>
@@ -402,7 +402,7 @@ mysqli_close($conexion);
 <input type="text" name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" />
 <br/><br/>
 <label>Fecha Deduccion:</label>
-<input id="date" type="date" name="FD" value="<?php echo $FD?>" size="20" DOMString="<?php echo $FD?>" maxlength="30"  />
+<input id="date" type="date" name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  />
 <label>Codigo Forma Pago:</label>
 <select name="FP">
 <option value="<?php echo $formapago?>">1</option>
