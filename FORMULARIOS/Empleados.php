@@ -112,10 +112,7 @@ $db_contra="";
 $db_nombre="nominas";
 
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-if (!$conexion) {
-      die("Connection failed: " . mysqli_connect_error());
-}
- 
+
 if (isset($_POST["crs"])){
 $CE=$_POST['CE'];
 $id=$_POST['id'];
@@ -138,6 +135,7 @@ $CD=$_POST['CD'];
 
 $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Fecha_Deduccion,Sueldo_base,Cod_FormaPago,Cod_Depto)
  VALUES('$CE','$id','$PN','$SN','$PA','$SA','$FN','$CORRE','$DIR','$TELE','$S','$CB','$FI','$NAC','$FD','$SB','$FP','$CD')";
+ 
  if (mysqli_query($conexion, $consulta)) {
      echo "<script>
      
@@ -147,9 +145,12 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }
+ mysqli_close($conexion);
+
+
 
 }
-mysqli_close($conexion);
+
 ?>
 
 <?php
@@ -282,17 +283,18 @@ $codigod="";
 
 ?>
 <?php
-/*
+
 $db_host="localhost";
 $db_usuario="root";
 $db_contra="";
 $db_nombre="nominas";
 
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-if (!$conexion) {
-      die("Connection failed: " . mysqli_connect_error());
-}
-if(isset($_POST['Actualizar'])){
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+
 $CE=$_POST['CE'];
 $id=$_POST['id'];
 $PN=$_POST['PN'];
@@ -312,24 +314,32 @@ $SB=$_POST['SB'];
 $FP=$_POST['FP'];
 $CD=$_POST['CD'];
 
-$consulta=mysqli_query($conexion,"update  empleados Set Cod_empleados='$CE',Identidad='$id',PrimerNombre='$PN',SegundoNombre='$SN',PrimerApellido='$PA',SegundoApellido='$SA',FechaNacimiento='$FN',Correo='$CORRE',Direccion='$DIR',Telefono='$TELE',Sexo='$S',CuentaBancaria='$CB',Fechaingreso='$FI',Nacionalidad='$NAC',FechaDeduccion='$FD',Sueldobase='$SB',CodFormaPago='$FP', Cod_Depto='$CD' WHERE Cod_empleados='$CE'");
 
-if (mysqli_query($conexion, $consulta)) {
-      echo "Registro Ingresado Correctamente";
+$registro=mysqli_query($conexion,"update empleados set Identidad='$id', Primer_Nombre='$PN' ,Segundo_Nombre='$SN',Primer_Apellido='$PA',Segundo_Apellido='$SA',
+Fecha_nacimiento='$FN',Correo='$CORRE',Direccion='$DIR',Telefono='$TELE',Sexo='$S',Cuenta_Bancaria='$CB',Fecha_ingreso='$FI',
+Nacionalidad='$NAC',Fecha_Deduccion='$FD',Sueldo_base='$SB',Cod_FormaPago='$FP',Cod_Depto='$CD'    
+where Cod_empleados='$CE'")
+or die ("error al actualizar");
+
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='Empleados.php';
+	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='Empleados.php';
+	  </script>";
+}
 }
 mysqli_close($conexion);
-}
-*/
+
+
 ?>
-
-
-
-
-
-
-
 
 <div class="form-group">
 <label>Cod_Empleado:</label>
@@ -362,9 +372,9 @@ mysqli_close($conexion);
 <br/>
 <br/>
 <label>Fecha Nacimiento:</label>
-<input type="date" name="FN" value="" checkdate= "<?php echo $fechan?>" size="20" maxlength="30" />
+<input id="date" type="date" name="FN" value="<?php echo $FN?>" size="20" DOMString="<?php echo $FN?>" maxlength="30" />
 <label>Fecha Ingreso:</label>
-<input type="date" name="FI" value="<?php echo $ingreso?>" size="20" maxlength="30" />
+<input id="date" type="date" name="FI" value="<?php echo $FI?>" size="20" DOMString="<?php echo $FI?>" maxlength="30" />
 <br/>
 <br/>
 <label>Correo:</label>
@@ -381,7 +391,7 @@ mysqli_close($conexion);
 
 <label>Nacionalidad:</label>
 <select name="Nac">
-   <option value="<?php echo $nacionalidad?>">Hondureña</option>
+   <option value="<?php echo $nacionalidad?>">Hondure?a</option>
    <option value="<?php echo $nacionalidad?>">Extrajero</option>
 </select>
 <br/>
@@ -392,7 +402,7 @@ mysqli_close($conexion);
 <input type="text" name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" />
 <br/><br/>
 <label>Fecha Deduccion:</label>
-<input id="date" type="date" name="FD" value="<?php echo $fechad?>" size="20" DOMString="<?php echo $fechad?>" maxlength="30"  />
+<input id="date" type="date" name="FD" value="<?php echo $FD?>" size="20" DOMString="<?php echo $FD?>" maxlength="30"  />
 <label>Codigo Forma Pago:</label>
 <select name="FP">
 <option value="<?php echo $formapago?>">1</option>
