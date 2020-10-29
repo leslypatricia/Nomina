@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <link rel="shortcut icon" href="#" />
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Login con  PHP - Bootstrap 4</title>
+        <title>Login con  PHP</title>
 
         <link rel="stylesheet" hsref="bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="estilos.css">

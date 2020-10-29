@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
@@ -72,197 +72,43 @@ h1{
 
 <body>
 <?php
-$CPR="";
-$CRO="";
 
+$conexion=mysqli_connect('localhost','root','','nominas')
 ?>
-
-<?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-if (isset($_POST["crs"])){
-$CP=$_POST['CP'];
-$CR=$_POST['CR'];
-
-
-
-$consulta="insert into rolprivilegios(Cod_privilegios,Cod_rol)
- VALUES('$CP','$CR')";
- 
- if (mysqli_query($conexion, $consulta)) {
-     echo "<script>
-     
-	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='RolPrivilegios.php';
-	  </script>";
-} else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
-}
- mysqli_close($conexion);
-
-}
-
-?>
-
-<?php
-
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
- 
-if (isset($_POST["Eliminar"])){
-$CP=$_POST["CP"];
-
-$registros=mysqli_query($conexion,"delete FROM rolprivilegios WHERE Cod_privilegios='$CP'");
-
-if ($registro){
-
-echo"
-  alert ('Registro NO Eliminado ERROR!!!');
-	  window.location='RolProvolegios.php';
-	  </script>";
-} else {
-echo "<script>
-     
-	     alert ('Registro Eliminado Correctamente!!!');
-	  window.location='RolProvolegios.php';
-	  </script>";
-}
-$CPR="";
-$CRO="";
-}
-
-?>
-
-
-<?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
- 
-if (isset($_POST["buscar"])){
-
-$CP=$_POST["CP"];
-
-$registros=mysqli_query($conexion,"SELECT * FROM  rolprivilegios WHERE Cod_privilegios='$CP'");
-
-
-while ($registro= mysqli_fetch_array($registros)){
-
-
-$CPR=$registro['Cod_privilegios'];
-$CRO=$registro['Cod_rol'];
-
-
-
-
-mysqli_close($conexion);
-}
-}
- ?>
-
-
-<form class="from"  id="form1" action= "" method="POST" >
-<center>
-
-<?php
-if (isset($_POST["limpiar"])){
-$CPR="";
-$CRO="";
-
-
-
-}
-
-?>
-<?php
-
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-if (isset($_POST["buscar"])){
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
-or die ("erro en la conexion");
-
-mysqli_set_charset($conexion,"utf8");
-
-$CP=$_POST['CP'];
-$CR=$_POST['CR'];
-
-
-$registro=mysqli_query($conexion,"update tipohoraextra set Cod_rol='$CR'
-where Cod_privilegios='$CP'")
-or die ("error al actualizar");
-
-
-if ($registro){
-
-echo"
-  alert ('Registro NO Actualizado ERROR!!!');
-	  window.location='RolPrivilegios.php';
-	  </script>";
-} else {
-echo "<script>
-     
-	     alert ('Registro Actualizado Correctamente!!!');
-	  window.location='RolPrivilegios.php';
-	  </script>";
-}
-}
-mysqli_close($conexion);
-
-
-?>
-
+<br/>
 
 <form class="from"  id="form1" action="#" method="POST">
 <center>
-<h1>Formulario Rol Privilegio</h1>
+<section>
 <div class="form-group">
-<label>Codigo Privilegio:</label>
-<input type="text" name="CP" value="<?php echo $CPR?>" size="5" maxlength="5" />
-<left>
-<label>Codifo Rol:</label>
-<input type="text" name="CR" value="<?php echo $CRO?>" size="15" maxlength="15" />
-</left>
-<br/><br/>
+<h1>Tabla Rol_Privilegio</h1>
+	<table border="1" cellpading="3" cellspacing="3" >
+		<tr>
+<th>Codigo Privilegio:</th>
+<th> Rol:</th>
+	</tr>
+	<?php
+$sql="SELECT cod.Cod_rol,pri.Cod_privilegios,RP.Cod_privilegios from rol as cod 
+JOIN rolprivilegios as RP on Cod.Cod_rol=RP.Cod_rol
+JOIN privilegios as pri on pri.Cod_privilegios=RP.Cod_privilegios" ;
 
-<center>
-<a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
+	$res=mysqli_query($conexion,$sql);
+	while($mostrar=mysqli_fetch_array($res)){
+		echo'
+		<tr>
+		<td>'.$mostrar['Cod_privilegios'].'</td>
+		<td>'.$mostrar['Cod_rol'].'</td>
+		</tr>
+';
+	?>
 
-<span class="icon-floppy-disk"></span>
-<input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
-<span class="icon-floppy-disk"></span>
-<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" >
-<span class="icon-floppy-disk"></span>
-<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" >
-<span class="icon-floppy-disk"></span>
-<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" >
-<br>
-<br>
-</CENTER>
-<span class="icon-search">
-<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
-<br/>
-
-</div>
+<?php
+}
+?>
+	</table>
+</section>
 </center>
+</div>
 </form>
 </body>
 </html>

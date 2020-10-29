@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
@@ -266,8 +266,7 @@ mysqli_close($conexion);
 <input type="date" name="FG" value="<?php echo $fecha ?>" size="20" maxlength="20"/>
 <br/><br/>
 <center>
-<a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
-
+<a href="estructura.php" class="btn btn-default">Regresar</a>
 
 <span class="icon-floppy-disk"></span>
 <input type="submit" name="crs" value="Guardar" class="btn-btn-success" >

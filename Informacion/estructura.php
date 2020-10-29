@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <title>Menu de navegacion</title>
@@ -96,7 +96,7 @@ li:hover{
 </ul>
 
 <ul class="nav nav-pills">
-								<li role="presentation"><a href="../Informacion/quienes_somos.html">¿Quiénes Somos?</a></li>
+								<li role="presentation"><a href="../Informacion/quienes_somos.html">ï¿½Quiï¿½nes Somos?</a></li>
 		
 							</ul>
 </div>

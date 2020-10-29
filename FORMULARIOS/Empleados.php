@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
@@ -34,7 +34,7 @@ h1{
 	}
 	
 .form-group{
-	width:750px;
+	width:850px;
 	background:#00ced1;
 	padding:20px;
 	border-radius:4px;
@@ -71,7 +71,7 @@ h1{
 		font-size:10px;}
 .form-group1 {	width:750px;
 	background:#00ced1;
-	padding:20px;
+	padding:10px;
 	border-radius:4px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
@@ -373,8 +373,6 @@ echo "<script>
 </select>
 <br/><br/>
 <left>
-
-<br/><br/>
 <left>
 <label>N Identidad:</label>
 <input type="text" name="id" value="<?php echo $Identidad?>" size="15" maxlength="15" />
@@ -405,10 +403,9 @@ echo "<script>
 
 <label>Direccion:</label>
 <input type="text" name="Dire" value="<?php echo $direccion?>" size="20" maxlength="30" />
-<br/>
-<br/>
+
 <label>Telefono:</label>
-<input type="text" name="tele" value="<?php echo $tel?>" size="20" maxlength="30" />
+<input type="text" name="tele" value="<?php echo $tel?>" size="15" maxlength="15" />
 <br/>
 <br/>
 
@@ -443,7 +440,7 @@ echo "<script>
 <br/>
 <br/>
 <center>
-
+<a href="estructura.php" class="btn btn-default">Regresar</a>
 <span class="icon-floppy-disk"><span/>
 <input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
 <span class="icon-floppy-disk"><span/>

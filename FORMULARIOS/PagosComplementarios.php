@@ -260,8 +260,7 @@ mysqli_close($conexion);
 <input type="text" name="V" value="<?php echo $valor?>" size="20" maxlength="20"/>
 <br/><br/>
 <center>
-<a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
-
+<a href="estructura.php" class="btn btn-default">Regresar</a>
 <span class="icon-floppy-disk"></span>
 <input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
 <span class="icon-floppy-disk"></span>
