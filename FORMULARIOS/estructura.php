@@ -60,6 +60,7 @@ li:hover{
 	color:#069;
 }
 .texto{
+	
 	width:1024px;
 	margin:100px auto;
 	background:white;

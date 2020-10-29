@@ -243,6 +243,7 @@ mysqli_close($conexion);
 
 
 
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Deducciones</h1>

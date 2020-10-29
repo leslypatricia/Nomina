@@ -168,7 +168,6 @@ $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
  
 if (isset($_POST["buscar"])){
-
 $HE=$_POST["HE"];
 
 $registros=mysqli_query($conexion,"SELECT * FROM  horaextra WHERE Cod_HExtra='$HE'");

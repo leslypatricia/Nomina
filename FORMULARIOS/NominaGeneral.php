@@ -90,6 +90,7 @@ $db_nombre="nominas";
 
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
+
 if (isset($_POST["crs"])){
 	$CN=$_POST['CN'];
 	$CE=$_POST['CE'];

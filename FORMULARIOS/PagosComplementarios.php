@@ -216,7 +216,6 @@ $P=$_POST['P'];
 $F=$_POST['F'];
 $V=$_POST['V'];
 
-
 $registro=mysqli_query($conexion,"update pagocomplementario set Descripcion='$D', 
 Porcentaje='$P' ,fijo='$F',Valor='$V'
 where Cod_Complementario='$CC'")

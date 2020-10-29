@@ -100,6 +100,7 @@ $PHE=$_POST['PHE'];
 $CE=$_POST['CE'];
 
 
+
 $consulta="insert into jornada(Cod_Jornada,Tipo_Jornada,Numero_horas,Sueldo_Base,Sueldo_Hora,Porce_Hora_Extra,Cod_empleados)
  VALUES('$CJ','$TJ','$NH','$SB','$SH','$PHE','$CE')";
  

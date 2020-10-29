@@ -253,7 +253,6 @@ mysqli_close($conexion);
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
-
 <span class="icon-floppy-disk"></span>
 <input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
 <span class="icon-floppy-disk"></span>

@@ -257,6 +257,7 @@ mysqli_close($conexion);
 <input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" >
 <br>
 <br>
+
 </CENTER>
 <span class="icon-search">
 <input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>

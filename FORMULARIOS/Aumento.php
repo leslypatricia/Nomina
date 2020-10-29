@@ -77,6 +77,7 @@ $Porcentaje="";
 $año="";
 $Descripcion="";
 $Aplicado="";
+
 ?>
 
 

@@ -283,6 +283,7 @@ mysqli_close($conexion);
 <input type="text" name="CE" value="<?php echo $empleado?>" size="20" maxlength="20"/>
 <br/><br/>
 <center>
+	
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
 <span class="icon-floppy-disk"><span/>

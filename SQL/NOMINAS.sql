@@ -75,7 +75,7 @@ Cod_Nomina integer primary key not null                                  COMMENT
 Cod_empleados integer                                                    COMMENT 'CAMPO UTILIZADO COMO LLAVE FORANEA',
 Cod_Aumento integer                                                      COMMENT 'CAMPO UTILIZADO COMO LLAVE FORANEA',
 Total int                                                                COMMENT 'IMPRIME EL TOTAL DE TODA LA NOMINA',     
-Fecha_Generada date                                                  COMMENT 'IMPRIME LA FECHA EXACTA EN LA QUE SE IMPRIME'
+Fecha_Generada DATE                                                   COMMENT 'IMPRIME LA FECHA EXACTA EN LA QUE SE IMPRIME'
 )ENGINE=INNODB  
 CHARACTER SET UTF8                                                       COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;

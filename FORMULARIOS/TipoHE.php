@@ -221,7 +221,6 @@ $registro=mysqli_query($conexion,"update tipohoraextra set Descripcion='$D', Sue
 where Cod_Tipo_HE='$CTHE'")
 or die ("error al actualizar");
 
-
 if ($registro){
 
 echo"

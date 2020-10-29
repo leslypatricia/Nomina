@@ -407,6 +407,7 @@ mysqli_close($conexion);
 <option value="<?php echo $formapago?>">2</option>
 </select>
 
+
 <br/>
 <br/>
 <center>

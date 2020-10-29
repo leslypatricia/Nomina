@@ -71,6 +71,7 @@ h1{
 </head>
 
 <body>
+	
 <?php
 $codigo="";
 $Descripcion="";
