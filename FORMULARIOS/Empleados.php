@@ -158,10 +158,6 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 
- 
-
-	
-
 
         }
 
@@ -234,10 +230,6 @@ $registros=mysqli_query($conexion,"SELECT * FROM  empleados WHERE Cod_empleados=
 
 while ($registro= mysqli_fetch_array($registros)){
 
-
-
-
-
 $codigo=$registro['Cod_empleados'];
 $Identidad=$registro['Identidad'];
 $PrimerN=$registro['Primer_Nombre'];
@@ -248,9 +240,6 @@ $fechan=$registro['Fecha_nacimiento'];
 $correo=$registro['Correo'];
 $direccion=$registro['Direccion'];
 $tel=$registro['Telefono'];
-
-
-
 $sexo=$registro['Sexo'];
 $Cuenta=$registro['Cuenta_Bancaria'];
 $ingreso=$registro['Fecha_ingreso'];
@@ -263,8 +252,15 @@ $codigod=$registro['Cod_Depto'];
 
 
 }
+
+
 }
+
+
+
 mysqli_close($conexion);
+
+
 //----------------------finanlización de código botón buscar
  ?>
 
@@ -369,8 +365,7 @@ echo "<script>
 
 
 <label>Cod_Departamento:</label>
-<select name="CD">
-<option value="0"></option>
+<select name="CD" value="1">
    <option value="1">1</option>
    <option value="2">2</option>
    <option value="3">3</option>
@@ -406,9 +401,12 @@ echo "<script>
 <br/>
 <br/>
 <label>Correo:</label>
-<input type="text" name="correo" value="<?php echo $correo?>" size="20" maxlength="30" />
+<input type="text" name="correo" value="<?php echo $correo?>" size="20" maxlength="30" /> 
+
 <label>Direccion:</label>
 <input type="text" name="Dire" value="<?php echo $direccion?>" size="20" maxlength="30" />
+<br/>
+<br/>
 <label>Telefono:</label>
 <input type="text" name="tele" value="<?php echo $tel?>" size="20" maxlength="30" />
 <br/>
@@ -417,9 +415,7 @@ echo "<script>
 <label>Sexo:</label>
 
 <input type="radio" name="sexo"value="F" id="mujer">F</>
-   <input type="radio"  name="sexo" value="M" id="hombre">M</>
-
-
+   <input type="radio"  name="sexo" value="M" checked="checked" id="hombre">M</>
 <label>Nacionalidad:</label>
 <select name="Nac">
    <option value="Hondureña">Hondureña</option>

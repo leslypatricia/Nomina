@@ -5,108 +5,212 @@
 <title>Menu de navegacion</title>
 <link rel="stylesheet" type="text/css" href="">
 <script src="../Informacion/bd/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="../codigo.js"></script>
 <style>
 *{
-	box-sizing:border-box;
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	font-family: 'Open sans';
+	background: #E8E8E8;
+	background-image: url("../IMG/nominas.jpg");
+		/*background-repeat: no-repeat;
+		background-size:1300px;
+		background-position:200px 20px;
+		width: 1000px;*/
+}
+
+header{
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+
+	padding: 20px;
+	background: #34495E;
+}
+
+header #button-menu{
+	font-size: 30px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.navegacion{
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 0%;
+	height: 100vh;
+	background: rgba(0,0,0,.0);
+
+}
+
+.navegacion ul{
+	width: 320px;
+	height: 100%;
+	background: #fff;
+	list-style: none;
+
+	position: absolute;
+	top: 0;
+	left: -320px;
+
+	transition: left .3s;
+}
+
+.navegacion .menu li.title-menu{
+	padding: 20px;
+	background: #5F6F81;
+	color: #fff;
+	text-align: center;
+	font-size: 22px;
+}
+
+.navegacion .menu a{
+	display: block;
+	padding: 20px;
+	border-bottom: 1px solid #C6D0DA;
+
+	font-size: 22px;
+	font-weight: 200;
+	text-decoration: none;
+	color: #575D69;
+}
+
+.navegacion .menu a:hover{
+	background: #798DA3;
+	color: #fff;
+}
+
+.navegacion .menu li span.icon-menu{
+	margin-right: 12px;
+}
+
+.navegacion .menu .item-submenu > a::after{
+	font: normal normal normal 14px/1 FontAwesome;
+  	font-size: inherit;
+  	text-rendering: auto;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+	content: '\f105';
+
+	float: right;
+	color: #C5C5C5;
+}
+
+/* Submenu ============*/
+
+.navegacion .submenu li.title-menu{
+	background: #fff;
+	color: #575D69;
+}
+
+.navegacion .submenu li.go-back{
+	padding: 10px 20px;
+	background: #5F6F81;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.navegacion .submenu li.go-back::before{
+	font: normal normal normal 14px/1 FontAwesome;
+  	font-size: inherit;
+  	text-rendering: auto;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+	content: '\f0d9';
+	margin-right: 10px;
+}
+
+@media screen and (max-width: 320px){
+	.navegacion ul{
+		width: 100%;
 	}
-	body{
-		overflow:hidden;
-		
-	}
-.barra{
-	position:absolute;
-	width:300px;
-	height:100vh;
-	background:#069;
-	z-index:1;
 }
-.barra a{
-	text-align:center;
-	text-decoration:none;
-	display:block;
-	padding:05px;
-	color:white;
-	font-size:20px;
-}
-h2{
-	text-align:center;
-	background:#059;
-	color:white;
-	padding:10px;
-}
-li{
-	outline:1px solid #059;
-	transition:all .3s;
-}
-li:hover{
-	background:#059;
-	border-left:3px solid white;
-}
-.contenido{
-	width:100%;
-	height:100$;
-	background:#ide;
-	position:absolute;
-	transition:all .3s;
-}
-.abrir{
-	position:absolute;
-	top:30px;
-	left:30px;
-	font-size:40px;
-	cursor:pointer;
-	color:#069;
-}
-.texto{
-	
-	width:1024px;
-	margin:100px auto;
-	background:white;
-}
-.mostrar{
-	transform:translateX(300px);
-}
+
+
 </style>
 
 
 </head>
 <body>
-	<legth>
-<!--<img src="../IMG/nominas.jpg"  width="350px" height="350"  />-->
-</legth>
-<div class="barra">
-<h2>Menu</h2>
-<ul>
-<li><a href="../FORMULARIOS/rol.php">Rol</a></li>
-<li><a href="../FORMULARIOS/Privilegios.php">Privilegios</a></li>
-<li><a href="../FORMULARIOS/RolPrivilegios.php">Rol_Privilegios</a></li>
-<li><a href="../FORMULARIOS/Departamento.php">Departamentos</a></li>
-<li><a href="../FORMULARIOS/FormaPago.php">Formas de Pago</a></li>
-<li><a href="../FORMULARIOS/Empleados.php">Empleados</a></li>
-<li><a href="../FORMULARIOS/Usuario.php">Usuarios</a></li>
-<li><a href="../FORMULARIOS/Jornada.php">Jornada</a></li>
-<li><a href="../FORMULARIOS/TipoHE.php">Tipo de Hora Extra</a></li>
-<li><a href="../FORMULARIOS/HoraExtra.php">Horas Extras</a></li>
-<li><a href="../FORMULARIOS/Deducciones.php">Deducciones</a></li>
-<li><a href="../FORMULARIOS/NominaDeduccion.php">Nomina Deducciones</a></li>
-<li><a href="../FORMULARIOS/PagosComplementarios.php">Pagos Complementarios</a></li>
-<li><a href="../FORMULARIOS/NominaPagComplementarios.php">Nomina Pagos Complementarios</a></li>
-<li><a href="../FORMULARIOS/Aumento.php">Aumento</a></li>
-<li><a href="../FORMULARIOS/NominaGeneral.php">Nomina General</a></li>
-<p><a href="../Index.php">Cerrar sesion</a></p>
-</ul>
 
-<ul class="nav nav-pills">
-								<li role="presentation"><a href="../Informacion/quienes_somos.html">�Qui�nes Somos?</a></li>
-		
-							</ul>
-</div>
-<div class="contenido">
-<span class="icon-menu abri"></span>
-</div>
-<script src="../Informacion/bd/main.js"></script>
+<header>
+		<span id="button-menu" class="fa fa-bars"></span>
 
+		<nav class="navegacion">
+			<ul class="menu">
+				<!-- TITULAR -->
+				<li class="title-menu">Menu</li>
+				<!-- TITULAR -->
+				<li class="item-submenu" menu="1">
+					<a href="#"><span class=" icon-menu"></span>Seguridad</a>
+					<ul class="submenu">
+						<li class="title-menu"><span class="icon-menu"></span>Seguridad</li>
+						<li class="go-back">Atras</li>
+						<li><a href="../FORMULARIOS/Usuario.php">Usuarios</a></li>
+                       <li><a href="../FORMULARIOS/rol.php">Rol</a></li>
+                       <li><a href="../FORMULARIOS/Privilegios.php">Privilegios</a></li>
+                       <li><a href="../FORMULARIOS/RolPrivilegios.php">Rol_Privilegios</a></li>
+					</ul>
+				</li>
+
+				<li class="item-submenu" menu="2">
+					<a href="#"><span class=" icon-menu"></span>Personal</a>
+					<ul class="submenu">
+						<li class="title-menu"><span class=" icon-menu"></span>Personal</li>
+						<li class="go-back">Atras</li>
+						<li><a href="../FORMULARIOS/Empleados.php">Empleados</a></li>
+                        <li><a href="../FORMULARIOS/Departamento.php">Departamentos</a></li>
+                        <li><a href="../FORMULARIOS/FormaPago.php">Formas de Pago</a></li>
+
+					</ul>
+				</li>
+				<li class="item-submenu" menu="3">
+					<a href="#"><span class=" icon-menu"></span>Nomina</a>
+					<ul class="submenu">
+						<li class="title-menu"><span class=" icon-menu"></span>Nomina</li>
+						<li class="go-back">Atras</li>
+
+						<li><a href="../FORMULARIOS/NominaGeneral.php">Nomina General</a></li>
+						<li><a href="../FORMULARIOS/Deducciones.php">Deducciones</a></li>
+						<li><a href="../FORMULARIOS/NominaDeduccion.php">Nomina Deducciones</a></li>
+					</ul>
+				</li>
+				<li class="item-submenu" menu="4">
+					<a href="#"><span class=" icon-menu"></span>Horas Laborales</a>
+					<ul class="submenu">
+						<li class="title-menu"><span class=" icon-menu"></span>Horas Laborales</li>
+						<li class="go-back">Atras</li>
+						<li><a href="../FORMULARIOS/Jornada.php">Jornada</a></li>
+						<li><a href="../FORMULARIOS/HoraExtra.php">Horas Extras</a></li>
+                        <li><a href="../FORMULARIOS/TipoHE.php">Tipo Hora Extra</a></li>
+					</ul>
+				</li>
+				<li class="item-submenu" menu="5">
+					<a href="#"><span class=" icon-menu"></span>Otos Pagos</a>
+					<ul class="submenu">
+						<li class="title-menu"><span class=" icon-menu"></span>Otos Pagos</li>
+						<li class="go-back">Atras</li>
+
+                     <li><a href="../FORMULARIOS/Aumento.php">Aumento</a></li>
+                    <li><a href="../FORMULARIOS/PagosComplementarios.php">Pagos Complementarios</a></li>
+                     <li><a href="../FORMULARIOS/NominaPagComplementarios.php">Nomina Pagos Complementarios</a></li>
+					</ul>
+				</li>
+				<li><a href="../LOG/Menu_Admin.php">ATRAS</a></li>
+				<li><a href="../Index.php"><i class="icono izquierda"></i>Cerrar sesion</a></li>
+				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>Quienes Somos?</a></li>
+			</ul>
+		</nav>
+	</header>
 </body>
 </html>

@@ -29,21 +29,35 @@ if($resultado->rowCount() >= 1){
 }
 
 if ($_SESSION["s_usuario"] === null){
-echo "Error , Contraseña y Usuario incorrectos";
-	header("Location: ../index.php");
+echo "<script>
+     
+	     alert ('Usuario y Contraseña Incorrectos!!!');
+	 	  window.location='../index.php';
+	  </script>";
+
 	
 }else
     if($_SESSION["s_idRol"]!=1000){
-        echo "Error , Contraseña y Usuario incorrectos";
-	 header("Location:../LOG/Menu_usuario.php");
+       
+	echo "<script>
+     
+	     alert ('Bienvenido!!!');
+	 	  window.location='../LOG/Menu_Usuario.php';
+	  </script>";
+
     }
 	
 	else{
 	  if($_SESSION["s_idRol"]=1000){
-        echo "Error , Contraseña y Usuario incorrectos";
-	header("Location: ../LOG/Menu_Admin.php");
+  echo "<script>
+     
+	     alert ('Bienvenido!!!');
+	 	  window.location='../LOG/Menu_Admin.php';
+	  </script>";
+
+    }
 	}
-}
+
 print json_encode($data);
 $conexion=null;
 ?>
