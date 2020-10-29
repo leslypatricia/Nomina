@@ -71,7 +71,10 @@ li:hover{
 
 
 </head>
-<body>
+
+
+<body  background="nominas.jpg">
+
 <div class="barra">
 <h2>Menu</h2>
 <ul>

@@ -124,24 +124,23 @@ if (isset($_POST["Eliminar"])){
 $CR=$_POST["CR"];
 
 $registros=mysqli_query($conexion,"delete FROM rol WHERE Cod_rol='$CR'");
-
-if ($registro){
-
-echo"
-  alert ('Registro NO Eliminado ERROR!!!');
+if ($registros){ 
+	echo"<script>
+  alert ('Registro Eliminado Correctamente!!!');
 	  window.location='rol.php';
 	  </script>";
 } else {
 echo "<script>
      
-	     alert ('Registro Eliminado Correctamente!!!');
+	     alert ('Registro NO Eliminado ERROR!!!');
 	  window.location='rol.php';
 	  </script>";
 }
-$CRO="";
-$Descripcion="";
-}
 
+
+
+
+}
 
 ?>
 
@@ -178,9 +177,6 @@ mysqli_close($conexion);
  ?>
 
 
-<form class="from"  id="form1" action= "" method="POST" >
-<center>
-
 <?php
 if (isset($_POST["limpiar"])){
 $CRO="";
@@ -192,15 +188,16 @@ $Descripcion="";
 
 ?>
 <?php
+//-----------------Código del bontón actualizar-----------
 
 $db_host="localhost";
 $db_usuario="root";
 $db_contra="";
 $db_nombre="nominas";
 
-if (isset($_POST["buscar"])){
+if (isset($_POST["Actualizar"])){
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
-or die ("erro en la conexion");
+or die ("error en la conexion");
 
 mysqli_set_charset($conexion,"utf8");
 
@@ -215,22 +212,22 @@ or die ("error al actualizar");
 
 if ($registro){
 
-echo"
-  alert ('Registro NO Actualizado ERROR!!!');
-	  window.location='rol.php';
-	  </script>";
-} else {
-echo "<script>
-     
-	     alert ('Registro Actualizado Correctamente!!!');
-	  window.location='rol.php';
-	  </script>";
-}
-}
-mysqli_close($conexion);
+	echo" <script>
+	  alert ('Registro Actualizado Correctamente!!!');
+		  window.location='Empleados.php';
+		  </script>";
+	} else {
+	echo "<script>
+		 
+			 alert ('Registro NO Actualizado ERROR!!!');
+		  window.location='Empleados.php';
+		  </script>";
+	}
+	}
 
 
 ?>
+
 
 
 <form class="from"  id="form1" action="#" method="POST">

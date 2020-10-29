@@ -1,11 +1,12 @@
 <!DOCTYPE html >
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <style>
+//-----------------------------------código_css-------------------------------------------------------------------------------/
 body{
 	margin:0;
 	padding:0;
@@ -82,6 +83,8 @@ h1{
 
 <body>
 <?php
+//---------------------------------------------Código para limpiar -------------------------------------------------------------//
+
 $codigo="";
 $Identidad="";
 $PrimerN="";
@@ -106,6 +109,8 @@ $codigod="";
 
 
 <?php
+//--------------------------------Bontón de Insertar----------------------------------------------------------//
+//--conexion base de datos--/
 $db_host="localhost";
 $db_usuario="root";
 $db_contra="";
@@ -114,25 +119,33 @@ $db_nombre="nominas";
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
 if (isset($_POST["crs"])){
-$CE=$_POST['CE'];
-$id=$_POST['id'];
-$PN=$_POST['PN'];
-$SN=$_POST['SN'];
-$PA=$_POST['PA'];
-$SA=$_POST['SA'];
-$FN=$_POST['FN'];
-$CORRE=$_POST['correo'];
-$DIR=$_POST['Dire'];
-$TELE=$_POST['tele'];
-$S=$_POST['sexo'];
-$CB=$_POST['CB'];
-$FI=$_POST['FI'];
-$NAC=$_POST['Nac'];
-$FD=$_POST['FD'];
-$SB=$_POST['SB'];
-$FP=$_POST['FP'];
-$CD=$_POST['CD'];
+$CE=$_POST['CE'];//código de empleado
+$id=$_POST['id'];//Identidad
+$PN=$_POST['PN'];//Primer nombre
+$SN=$_POST['SN'];//Segundo NOmbre
+$PA=$_POST['PA'];//Primer Apellido 
+$SA=$_POST['SA'];//Segundo Apellido
+$FN=$_POST['FN'];//Fecha de nacimiento
+$CORRE=$_POST['correo'];//correo
+$DIR=$_POST['Dire'];//Dirrección
+$TELE=$_POST['tele'];//Teléfono
 
+$S=$_POST['sexo'];//Sexo
+$CB=$_POST['CB'];//Cuenta Bancaria
+$FI=$_POST['FI'];//Fecha de Ingreso
+$NAC=$_POST['Nac'];//Nacionalidad
+$FD=$_POST['FD'];//Fecha de Deducción
+$SB=$_POST['SB'];//Sueldo base 
+$FP=$_POST['FP'];//forma de pago
+$CD=$_POST['CD'];//código de depto
+
+
+
+
+
+
+
+//------------consulta para insetar-----//
 $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Fecha_Deduccion,Sueldo_base,Cod_FormaPago,Cod_Depto)
  VALUES('$CE','$id','$PN','$SN','$PA','$SA','$FN','$CORRE','$DIR','$TELE','$S','$CB','$FI','$NAC','$FD','$SB','$FP','$CD')";
  
@@ -144,14 +157,26 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
 	  </script>";
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
-}
- mysqli_close($conexion);
 
-}
+ 
+
+	
+
+
+        }
+
+		mysqli_close($conexion);
+	
+	
+	}
+
+	
+
 
 ?>
 
 <?php
+//-----------Código para Eliminar-------------------------------------------------------------------------//
 
 $db_host="localhost";
 $db_usuario="root";
@@ -166,37 +191,20 @@ $CE=$_POST["CE"];
 
 $registros=mysqli_query($conexion,"delete FROM  empleados WHERE Cod_empleados='$CE'");
 
-if ($registro){
-
-echo"
-  alert ('Registro NO Eliminado ERROR!!!');
+if ($registros){ 
+	echo"<script>
+  alert ('Registro Eliminado Correctamente!!!');
 	  window.location='Empleados.php';
 	  </script>";
 } else {
 echo "<script>
      
-	     alert ('Registro Eliminado Correctamente!!!');
+	     alert ('Registro NO Eliminado ERROR!!!');
 	  window.location='Empleados.php';
 	  </script>";
 }
-$codigo="";
-$Identidad="";
-$PrimerN="";
-$SegundoN="";
-$PrimerA="";
-$SegundoA="";
-$fechan="";
-$correo="";
-$direccion="";
-$tel="";
-$sexo="";
-$Cuenta="";
-$ingreso="";
-$nacionalidad="";
-$fechad="";
-$sueldob="";
-$formapago="";
-$codigod="";
+
+
 
 
 }
@@ -207,6 +215,7 @@ $codigod="";
 
 
 <?php
+//---------------------código del botón buscar -------------------------------------------------------------------------
 $db_host="localhost";
 $db_usuario="root";
 $db_contra="";
@@ -226,6 +235,9 @@ $registros=mysqli_query($conexion,"SELECT * FROM  empleados WHERE Cod_empleados=
 while ($registro= mysqli_fetch_array($registros)){
 
 
+
+
+
 $codigo=$registro['Cod_empleados'];
 $Identidad=$registro['Identidad'];
 $PrimerN=$registro['Primer_Nombre'];
@@ -236,6 +248,9 @@ $fechan=$registro['Fecha_nacimiento'];
 $correo=$registro['Correo'];
 $direccion=$registro['Direccion'];
 $tel=$registro['Telefono'];
+
+
+
 $sexo=$registro['Sexo'];
 $Cuenta=$registro['Cuenta_Bancaria'];
 $ingreso=$registro['Fecha_ingreso'];
@@ -246,17 +261,19 @@ $formapago=$registro['Cod_FormaPago'];
 $codigod=$registro['Cod_Depto'];
 
 
+
+}
+}
 mysqli_close($conexion);
-}
-}
+//----------------------finanlización de código botón buscar
  ?>
 
 
-<form class="from"  id="form1" action= "" method="POST" >
-<center>
-<h1>Formulario Empleado</h1>
+
 
 <?php
+
+//------Código para el botón Limpiar------//
 if (isset($_POST["limpiar"])){
 $codigo="";
 $Identidad="";
@@ -281,15 +298,16 @@ $codigod="";
 
 ?>
 <?php
+//-----------------Código del bontón actualizar-----------
 
 $db_host="localhost";
 $db_usuario="root";
 $db_contra="";
 $db_nombre="nominas";
 
-if (isset($_POST["buscar"])){
+if (isset($_POST["Actualizar"])){
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
-or die ("erro en la conexion");
+or die ("error en la conexion");
 
 mysqli_set_charset($conexion,"utf8");
 
@@ -322,33 +340,45 @@ or die ("error al actualizar");
 
 if ($registro){
 
-echo"
-  alert ('Registro NO Actualizado ERROR!!!');
+echo" <script>
+  alert ('Registro Actualizado Correctamente!!!');
 	  window.location='Empleados.php';
 	  </script>";
 } else {
 echo "<script>
      
-	     alert ('Registro Actualizado Correctamente!!!');
+	     alert ('Registro NO Actualizado ERROR!!!');
 	  window.location='Empleados.php';
 	  </script>";
 }
 }
-mysqli_close($conexion);
+
 
 
 ?>
 
+<form class="from"  id="form1" action= "" method="POST" >
+
+
+<center>
+<h1>Formulario Empleado</h1>
+
 <div class="form-group">
 <label>Cod_Empleado:</label>
 <input type="text" name="CE" value="<?php echo $codigo?>" size="5" maxlength="5" />
+
+
 <label>Cod_Departamento:</label>
 <select name="CD">
-   <option value="<?php echo  $codigod?>">1</option>
-   <option value="<?php echo  $codigod?>">2</option>
-   <option value="<?php echo  $codigod?>">3</option>
-   <option  value="<?php echo  $codigod?>">4</option>
+<option value="0"></option>
+   <option value="1">1</option>
+   <option value="2">2</option>
+   <option value="3">3</option>
+  
 </select>
+<br/><br/>
+<left>
+
 <br/><br/>
 <left>
 <label>N Identidad:</label>
@@ -383,14 +413,17 @@ mysqli_close($conexion);
 <input type="text" name="tele" value="<?php echo $tel?>" size="20" maxlength="30" />
 <br/>
 <br/>
+
 <label>Sexo:</label>
- <input type="radio" name="sexo" value="" checkec="checked"  id="mujer">F</>
-   <input type="radio"  name="sexo" value="" checked="checked" id="hombre">M</>
+
+<input type="radio" name="sexo"value="F" id="mujer">F</>
+   <input type="radio"  name="sexo" value="M" id="hombre">M</>
+
 
 <label>Nacionalidad:</label>
 <select name="Nac">
-   <option value="<?php echo $nacionalidad?>">Hondure?a</option>
-   <option value="<?php echo $nacionalidad?>">Extrajero</option>
+   <option value="Hondureña">Hondureña</option>
+   <option value="Extrajero">Extrajero</option>
 </select>
 <br/>
 <br/>
@@ -401,10 +434,13 @@ mysqli_close($conexion);
 <br/><br/>
 <label>Fecha Deduccion:</label>
 <input id="date" type="date" name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  />
+
 <label>Codigo Forma Pago:</label>
 <select name="FP">
-<option value="<?php echo $formapago?>">1</option>
-<option value="<?php echo $formapago?>">2</option>
+
+   <option value="1">1</option>
+   <option value="2">2</option>
+ 
 </select>
 
 
@@ -437,3 +473,4 @@ mysqli_close($conexion);
 
 </body>
 </html>
+

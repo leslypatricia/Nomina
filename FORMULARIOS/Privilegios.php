@@ -125,21 +125,20 @@ $CP=$_POST["CP"];
 
 $registros=mysqli_query($conexion,"delete FROM privilegios WHERE Cod_privilegios='$CP'");
 
-if ($registro){
+if ($registros){
 
-echo"
-  alert ('Registro NO Eliminado ERROR!!!');
+echo" <script>
+  alert ('Registro Eliminado Correctamente!!!');
 	  window.location='Privilegios.php';
 	  </script>";
 } else {
 echo "<script>
      
-	     alert ('Registro Eliminado Correctamente!!!');
+	     alert ('Registro NO Eliminado ERROR!!!');
 	  window.location='Privilegios.php';
 	  </script>";
 }
-$CPR="";
-$Descripcion="";
+
 }
 
 ?>
@@ -197,7 +196,7 @@ $db_usuario="root";
 $db_contra="";
 $db_nombre="nominas";
 
-if (isset($_POST["buscar"])){
+if (isset($_POST["Actualizar"])){
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
 or die ("erro en la conexion");
 
@@ -214,14 +213,14 @@ or die ("error al actualizar");
 
 if ($registro){
 
-echo"
-  alert ('Registro NO Actualizado ERROR!!!');
+echo"<script>
+  alert ('Registro Actualizado Correctamente!!!');
 	  window.location='privilegios.php';
 	  </script>";
 } else {
 echo "<script>
      
-	     alert ('Registro Actualizado Correctamente!!!');
+	     alert ('Registro NO Actualizado ERROR!!!');
 	  window.location='privilegios.php';
 	  </script>";
 }
