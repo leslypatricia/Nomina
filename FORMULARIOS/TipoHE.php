@@ -71,36 +71,207 @@ h1{
 </head>
 
 <body>
+
+<?php
+$codigo="";
+$Descripcion="";
+$sueldo="";
+
+
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$CTHE=$_POST['CTHE'];
+$D=$_POST['D'];
+$SH=$_POST['SH'];
+
+
+$consulta="insert into tipohoraextra(Cod_Tipo_HE,Descripcion,SueldoHora)
+ VALUES('$CTHE','$D','$SH')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script>
+     
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='TipoHE.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$CTHE=$_POST["CTHE"];
+
+$registros=mysqli_query($conexion,"delete FROM  tipohoraextra WHERE Cod_Tipo_HE='$CTHE'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='TipoHE.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='TipoHE.php';
+	  </script>";
+}
+$codigo="";
+$Descripcion="";
+$sueldo="";
+
+
+
+}
+
+?>
+
+
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CTHE=$_POST["CTHE"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  tipohoraextra WHERE Cod_Tipo_HE='$CTHE'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+
+$codigo=$registro['Cod_Tipo_HE'];
+$Descripcion=$registro['Descripcion'];
+$sueldo=$registro['SueldoHora'];
+
+
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+
+<?php
+if (isset($_POST["limpiar"])){
+	$codigo="";
+$Descripcion="";
+$sueldo="";
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+
+$CTHE=$_POST['CTHE'];
+$D=$_POST['D'];
+$SH=$_POST['SH'];
+
+$registro=mysqli_query($conexion,"update tipohoraextra set Descripcion='$D', SueldoHora='$SH'
+where Cod_Tipo_HE='$CTHE'")
+or die ("error al actualizar");
+
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='TipoHE.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='TipoHE.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Tipo de Hora Extra</h1>
 <div class="form-group">
 <label>Codigo Tipo Hora Extra:</label>
-<input type="text" name="CTHE" value="" size="5" maxlength="5" />
+<input type="text" name="CTHE" value="<?php echo $codigo?>" size="5" maxlength="5" />
 <left>
 <label>Descripcion:</label>
-<input type="text" name="D" value="" size="15" maxlength="15" />
+<input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 <label>Sueldo Hora:</label>
-<input type="text" name="SH" value="" size="20" maxlength="20"/>
+<input type="text" name="SH" value="<?php echo $sueldo?>" size="20" maxlength="20"/>
 <br/><br/>
 <center>
-<a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
-
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
-
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
-
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-
-<span class="icon-search"></span>
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
-<br/><br/>
-</center>
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" >
+<br>
+<br>
+</CENTER>
+<span class="icon-search">
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
+<br/>
 
 </div>
 </center>

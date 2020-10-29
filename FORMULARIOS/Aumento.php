@@ -71,48 +71,227 @@ h1{
 </head>
 
 <body>
+<?php
+$codigo="";
+$Porcentaje="";
+$año="";
+$Descripcion="";
+$Aplicado="";
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$CA=$_POST['CA'];
+$PA=$_POST['PA'];
+$ANNO=$_POST['ANNO'];
+$D=$_POST['D'];
+$A=$_POST['A'];
+
+
+$consulta="INSERT INTO aumento (Cod_Aumento,Porcentaje_aumento,Año,Descripcion,aplicado)
+ VALUES($CA,'$PA','$ANNO','$D','$A')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script>
+     
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='Aumento.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$CA=$_POST["CA"];
+
+$registros=mysqli_query($conexion,"delete FROM  aumento WHERE Cod_Aumento='$CA'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='Aumento.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='Aumento.php';
+	  </script>";
+}
+$codigo="";
+$Porcentaje="";
+$año="";
+$Descripcion="";
+$Aplicado="";
+
+
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CA=$_POST["CA"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  aumento WHERE Cod_Aumento='$CA'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+$codigo=$registro['Cod_Aumento'];
+$Porcentaje=$registro['Porcentaje_aumento'];
+$año=$registro['Año'];
+$Descripcion=$registro['Descripcion'];
+$Aplicado=$registro['aplicado'];
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+<?php
+if (isset($_POST["limpiar"])){
+$codigo="";
+$Porcentaje="";
+$año="";
+$Descripcion="";
+$Aplicado="";
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+$CA=$_POST['CA'];
+$PA=$_POST['PA'];
+$ANNO=$_POST['ANNO'];
+$D=$_POST['D'];
+$A=$_POST['A'];
+
+
+$registro=mysqli_query($conexion,"update aumento set Porcentaje_aumento='$PA', 
+Año='$ANNO' ,Descripcion='$D',aplicado='$A'
+where Cod_Aumento='$CA'")
+or die ("error al actualizar");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='Empleados.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='Empleados.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
+
+
+
+
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Aumentol</h1>
 <div class="form-group">
 <label>Codigo Aumento:</label>
-<input type="text" name="CA" value="" size="5" maxlength="5" />
+<input type="text" name="CA" value="<?php echo $codigo?>" size="5" maxlength="5" />
 <left>
 <label>Porcentage Aumento:</label>
-<input type="text" name="PA" value="" size="15" maxlength="15" />
+<input type="text" name="PA" value="<?php echo $Porcentaje?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 <label>Año:</label>
-<input type="text" name="ANNO" value="" size="20" maxlength="20"/>
+<input type="date" name="ANNO" value="<?php echo $ANNO?>" size="20" maxlength="20"/>
 
 <label>Descripcion:</label>
-<input type="text" name="PA" value="" size="20" maxlength="20" />
+<input type="text" name="D" value="<?php echo $Descripcion?>" size="20" maxlength="20" />
 <br/>
 <br/>
 <label>Aplicado:</label>
-<input type="text" name="FN" value="" size="20" maxlength="30" />
+<input type="text" name="A" value="<?php echo $Aplicado?>" size="20" maxlength="30" />
 <br/>
 <br/>
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" / >
 
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" />
 
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-<br/><br/>
-</center>
-<label>Codigo Aumento:</label>
-<input type="text" name="CA" value="" size="5" maxlength="5" />
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" />
+
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" / >
+<br/><br/></center>
 <span class="icon-search">
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
+
+
 
 </div>
-</center>
 </form>
 </body>
 </html>

@@ -71,15 +71,175 @@ h1{
 </head>
 
 <body>
+<?php
+$codigo="";
+$Descripcion="";
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$FP=$_POST['FP'];
+$D=$_POST['D'];
+
+
+
+
+$consulta="insert into formapago(Cod_FormaPago,Descripcion)
+ VALUES('$FP','$D')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script> 
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='FormaPago.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$FP=$_POST["FP"];
+
+$registros=mysqli_query($conexion,"DELETE FROM  formapago WHERE Cod_FormaPago='$FP'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='FormaPago.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='FormaPago.php';
+	  </script>";
+}
+$codigo="";
+$Descripcion="";
+
+
+
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$FP=$_POST["FP"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  formapago WHERE Cod_FormaPago='$FP'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+$codigo=$registro['Cod_FormaPago'];
+$Descripcion=$registro['Descripcion'];
+
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+<?php
+if (isset($_POST["limpiar"])){
+$codigo="";
+$Descripcion="";
+
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+$FP=$_POST['FP'];
+$D=$_POST['D'];
+
+
+
+$registro=mysqli_query($conexion,"update formapago set Descripcion='$D' 
+where Cod_FormaPago='$FP'")
+or die ("error al actualizar");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='FormaPago.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='FormaPago.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+<!-- NO ME DA EL BOTON BUSCAR NI ACTUALIZAR-->
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Forma de Pago</h1>
 <div class="form-group">
 <label>Codigo Forma de Pago:</label>
-<input type="text" name="FP" value="" size="5" maxlength="5" />
+<input type="text" name="FP" value="<?php echo $codigo?>" size="5" maxlength="5" />
 <left>
 <label>Descripcion:</label>
-<input type="text" name="Des" value="" size="15" maxlength="15" />
+<input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 
@@ -87,19 +247,19 @@ h1{
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" / >
 
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" />
 
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-<br/><br/>
-</center>
-<label>Codigo Forma Pago:</label>
-<input type="text" name="FP" value="" size="5" maxlength="5" />
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" />
+
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" / >
+<br/><br/></center>
 <span class="icon-search">
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
 
 </div>
 </center>

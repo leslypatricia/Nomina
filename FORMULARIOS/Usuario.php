@@ -71,45 +71,236 @@ h1{
 </head>
 
 <body>
+<?php
+$codigo="";
+$usuario="";
+$pass="";
+$correo="";
+$rol="";
+$empleado="";
+
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$CU=$_POST['CU'];
+$U=$_POST['usuario'];
+$P=$_POST['Password'];
+$C=$_POST['correo'];
+$crol=$_POST['CR'];
+$empleado=$_POST['CE'];
+
+
+
+$consulta="insert into usuario(Cod_Usuario,Usuario,Password,Correo,Cod_rol,Cod_empleados)
+ VALUES('$CU','$U','$P','$C','$crol','$empleado')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script>
+     
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='Usuario.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$CU=$_POST["CU"];
+
+$registros=mysqli_query($conexion,"delete FROM  usuario WHERE Cod_Usuario='$CU'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='Usuario.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='Usuario.php';
+	  </script>";
+}
+$codigo="";
+$usuario="";
+$pass="";
+$correo="";
+$rol="";
+$empleado="";
+
+
+}
+
+?>
+
+
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CU=$_POST["CUU"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  usuario WHERE Cod_Usuario='$CU'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+
+$codigo=$registro['Cod_Usuario'];
+$usuario=$registro['Usuario'];
+$pass=$registro['Password'];
+$correo=$registro['Correo'];
+$rol=$registro['Cod_rol'];
+$empleado=$registro['Cod_empleados'];
+
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+
+<?php
+if (isset($_POST["limpiar"])){
+	$codigo="";
+	$usuario="";
+	$pass="";
+	$correo="";
+	$rol="";
+	$empleado="";
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+
+$CU=$_POST['CU'];
+$U=$_POST['usuario'];
+$P=$_POST['Password'];
+$C=$_POST['correo'];
+$crol=$_POST['CR'];
+$empleado=$_POST['CE'];
+
+
+$registro=mysqli_query($conexion,"update usuario set Usuario='$U', Password='$P' ,Correo='$C',
+Cod_rol='$crol',Cod_empleados='$empleado'
+where Cod_Usuario='$CU'")
+or die ("error al actualizar");
+
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='usuario.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='usuario.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Usuario</h1>
 <div class="form-group">
 <label>Codigo Usuario:</label>
-<input type="text" name="CU" value="" size="5" maxlength="5" />
+<input type="text" name="CU" value="<?php echo $codigo?>" size="5" maxlength="5" />
 <left>
 <label>Usuario:</label>
-<input type="text" name="usuario" value="" size="15" maxlength="15" />
+<input type="text" name="usuario" value="<?php echo $usuario?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 <label>Password:</label>
-<input type="Password" id="Password" name="CJ" value="" size="20" maxlength="20"/>
+<input type="Password" id="Password" name="CJ" value="<?php echo $pass?>" size="20" maxlength="20"/>
 <label>Correo:</label>
-<input type="text"  name="CJ" value="" size="20" maxlength="20"/>
+<input type="text"  name="correo" value="<?php echo $correo?>" size="20" maxlength="20"/>
 
 <br/><br/>
 <label>Codigo Rol:</label>
-<input type="text"  name="CR" value="" size="20" maxlength="20"/>
+<input type="text"  name="CR" value="<?php echo $rol?>" size="20" maxlength="20"/>
 
 <label>Codigo Empleado:</label>
-<input type="text" name="CE" value="" size="20" maxlength="20"/>
+<input type="text" name="CE" value="<?php echo $empleado?>" size="20" maxlength="20"/>
 <br/><br/>
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
+<span class="icon-floppy-disk"><span/>
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
+<span class="icon-floppy-disk"><span/>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" >
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
-
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
-
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-
-<span class="icon-search"></span>
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
-<br/><br/>
-</center>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" >
+<br>
+<br>
+</CENTER>
+<label>Cod_Usuario:</label>
+<input type="text" name="CUU" value="" size="5" maxlength="5" />
+<span class="icon-search">
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
+<br/>
 
 </div>
 </center>

@@ -71,34 +71,196 @@ h1{
 </head>
 
 <body>
+<?php
+$CPR="";
+$Descripcion="";
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$CP=$_POST['CP'];
+$D=$_POST['D'];
+
+
+
+$consulta="insert into privilegios(Cod_privilegios,Descripcion)
+ VALUES('$CP','$D')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script>
+     
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='Privilegios.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$CP=$_POST["CP"];
+
+$registros=mysqli_query($conexion,"delete FROM privilegios WHERE Cod_privilegios='$CP'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='Privilegios.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='Privilegios.php';
+	  </script>";
+}
+$CPR="";
+$Descripcion="";
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CP=$_POST["CP"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  privilegios WHERE Cod_privilegios='$CP'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+
+$CPR=$registro['Cod_privilegios'];
+$Descripcion=$registro['Descripcion'];
+
+
+
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+
+<?php
+if (isset($_POST["limpiar"])){
+$CPR="";
+$Descripcion="";
+
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+
+$CP=$_POST['CP'];
+$D=$_POST['D'];
+
+
+$registro=mysqli_query($conexion,"update privilegios set Descripcion='$D'
+where Cod_privilegios='$CP'")
+or die ("error al actualizar");
+
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='privilegios.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='privilegios.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Privilegio</h1>
 <div class="form-group">
 <label>Codigo Privilegios:</label>
-<input type="text" name="CP" value="" size="5" maxlength="5" />
+<input type="text" name="CP" value="<?php echo $CPR?>" size="5" maxlength="5" />
 <br/><br/>
 <label>Descripcion</label>
-<input type="checkbox" name="D" value="" size="25" maxlength="25" />
+<input type="text" name="D" value="<?php echo $Descripcion?>" size="25" maxlength="25" />
 
 
 <br/><br/>
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
-
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
-
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
-
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-
-<span class="icon-search"></span>
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
-<br/><br/>
-</center>
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" >
+<br>
+<br>
+</CENTER>
+<span class="icon-search">
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
+<br/>
 </div>
 </center>
 </form>

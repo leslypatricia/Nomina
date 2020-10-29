@@ -46,7 +46,7 @@ COLLATE= UTF8_UNICODE_CI;
 create table Aumento(                                                     /*COMMENT 'CREAR LA TABLA AUMENTO EN LA BBDD NOMINAS'*/
 Cod_Aumento integer primary key not null                                  COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
 Porcentaje_aumento double(10,2)                                           COMMENT 'PORCENTAJE DE AUMENTO AL CUAL EL EMPLEADO A SIDO SUJETO',                                          
-Año datetime                                                              COMMENT 'AÑO EN EL CUAL SE ESTA EJECUTANDO EL AUMENTO',
+Año date                                                             COMMENT 'AÑO EN EL CUAL SE ESTA EJECUTANDO EL AUMENTO',
 Descripcion varchar(20) not null                                          COMMENT 'DESCRIPCION DEL TIPO DE AUMENTO DEL EMPLEADO ',
 aplicado varchar(20)                                                      COMMENT 'SE DESCRIBE SI SE APLICÓ O NO EL AUMENTO'
 )ENGINE=INNODB
@@ -75,7 +75,7 @@ Cod_Nomina integer primary key not null                                  COMMENT
 Cod_empleados integer                                                    COMMENT 'CAMPO UTILIZADO COMO LLAVE FORANEA',
 Cod_Aumento integer                                                      COMMENT 'CAMPO UTILIZADO COMO LLAVE FORANEA',
 Total int                                                                COMMENT 'IMPRIME EL TOTAL DE TODA LA NOMINA',     
-Fecha_Generada datetime                                                  COMMENT 'IMPRIME LA FECHA EXACTA EN LA QUE SE IMPRIME'
+Fecha_Generada date                                                  COMMENT 'IMPRIME LA FECHA EXACTA EN LA QUE SE IMPRIME'
 )ENGINE=INNODB  
 CHARACTER SET UTF8                                                       COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;

@@ -71,41 +71,217 @@ h1{
 </head>
 
 <body>
+
+<?php
+$codigo="";
+$empleado="";
+$aumento="";
+$tot="";
+$fecha="";
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+	$CN=$_POST['CN'];
+	$CE=$_POST['CE'];
+	$CA=$_POST['CA'];
+	$T=$_POST['T'];
+	$FG=$_POST['FG'];
+
+
+
+$consulta="insert into nominageneral(Cod_Nomina,Cod_empleados,Cod_Aumento,Total,Fecha_Generada)
+ VALUES($CN,'$CE','$CA','$T','$FG')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script> 
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='NominaGeneral.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$CN=$_POST["CN"];
+
+$registros=mysqli_query($conexion,"DELETE FROM  nominageneral; WHERE Cod_Nomina='$CN'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='NominaGeneral.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='NominaGeneral.php';
+	  </script>";
+}
+$codigo="";
+$empleado="";
+$aumento="";
+$tot="";
+$fecha="";
+
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CN=$_POST["CN"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  nominageneral WHERE Cod_Nomina='$CN'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+$codigo=$registro['Cod_Nomina'];
+$empleado=$registro['Cod_empleados'];
+$aumento=$registro['Cod_Aumento'];
+$tot=$registro['Total'];
+$fecha=$registro['Fecha_Generada'];
+
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+<?php
+if (isset($_POST["limpiar"])){
+	$codigo="";
+	$empleado="";
+	$aumento="";
+	$tot="";
+	$fecha="";
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+$CN=$_POST['CN'];
+$CE=$_POST['CE'];
+$CA=$_POST['CA'];
+$T=$_POST['T'];
+$FG=$_POST['FG'];
+
+
+$registro=mysqli_query($conexion,"update nominageneral set Cod_empleados='$CE',Cod_Aumento='$CA',
+Total='$T',Fecha_Generada='$FG' 
+where CCod_Nomina='$CN'")
+or die ("error al actualizar");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='NominaGeneral.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='NominaGenerada.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Nomina General</h1>
 <div class="form-group">
 <label>Codigo Nomina:</label>
-<input type="text" name="CN" value="" size="5" maxlength="5" />
+<input type="text" name="CN" value="<?php echo $codigo ?>" size="5" maxlength="5" />
 <left>
 <label>Codigo Empleado:</label>
-<input type="text" name="CE" value="" size="15" maxlength="15" />
+<input type="text" name="CE" value="<?php echo $empleado ?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 <label>Codigo Aumento:</label>
-<input type="text" name="CA" value="" size="20" maxlength="20"/>
+<input type="text" name="CA" value="<?php echo $aumento ?>" size="20" maxlength="20"/>
 <label>Total:</label>
-<input type="text" name="T" value="" size="20" maxlength="20"/>
+<input type="text" name="T" value="<?php echo $tot ?>" size="20" maxlength="20"/>
 <br/><br/>
 <label>Fecha Generada:</label>
-<input type="text" name="FG" value="" size="20" maxlength="20"/>
+<input type="date" name="FG" value="<?php echo $fecha ?>" size="20" maxlength="20"/>
 <br/><br/>
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
+
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
-
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
-
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" >
+<br>
+<br>
+</CENTER>
 <span class="icon-search">
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
-<br/><br/>
-</center>
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
+<br/>
 </div>
 </center>
 </form>

@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
@@ -146,8 +146,6 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }
  mysqli_close($conexion);
-
-
 
 }
 

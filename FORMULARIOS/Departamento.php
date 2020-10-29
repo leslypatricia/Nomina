@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
@@ -71,37 +71,202 @@ h1{
 </head>
 
 <body>
+<?php
+$codigo="";
+$Descripcion="";
+$jefe="";
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$CD=$_POST['CD'];
+$D=$_POST['D'];
+$CF=$_POST['CJ'];
+
+
+
+$consulta="insert into departamento(Cod_Depto,Descripcion,Cod_Jefe)
+ VALUES($CD,'$D','$CF')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script> 
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='Departamento.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$CD=$_POST["CD"];
+
+$registros=mysqli_query($conexion,"DELETE FROM  departamento WHERE Cod_Depto='$CD'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='Departamento.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='Departamento.php';
+	  </script>";
+}
+$codigo="";
+$Descripcion="";
+$Porcentaje="";
+$valor="";
+$fijo="";
+
+
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CD=$_POST["CD"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  departamento WHERE Cod_Depto='$CD'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+$codigo=$registro['Cod_Depto'];
+$Descripcion=$registro['Descripcion'];
+$Porcentaje=$registro['Cod_Jefe'];
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+<?php
+if (isset($_POST["limpiar"])){
+$codigo="";
+$Descripcion="";
+$jefe="";
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+$CD=$_POST['CD'];
+$D=$_POST['D'];
+$CF=$_POST['CF'];
+
+
+$registro=mysqli_query($conexion,"update departamento set Descripcion='$D', 
+Cod_Jefe='$CF'
+where Cod_Depto='$CD'")
+or die ("error al actualizar");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='Departamento.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='Departamento.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
+
+
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Departamento</h1>
 <div class="form-group">
 <label>Codigo Departamentos:</label>
-<input type="text" name="CD" value="" size="5" maxlength="5" />
+<input type="text" name="CD" value="<?php echo $codigo?>" size="5" maxlength="5" />
 <left>
 <label>Descripcion:</label>
-<input type="text" name="D" value="" size="15" maxlength="15" />
+<input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 <label>Codigo Jefe:</label>
-<input type="text" name="CJ" value="" size="20" maxlength="20"/>
+<input type="text" name="CJ" value="<?php echo $jefe?>" size="20" maxlength="20"/>
 <br/><br/>
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" / >
 
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" />
 
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" />
 
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-<br/><br/>
-</center>
-<label>Codigo Departamento:</label>
-<input type="text" name="CD" value="" size="5" maxlength="5" />
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" / >
+<br/><br/></center>
 <span class="icon-search">
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
 
 </div>
 </center>

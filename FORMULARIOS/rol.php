@@ -71,34 +71,194 @@ h1{
 </head>
 
 <body>
+<?php
+$CRO="";
+$Descripcion="";
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$CR=$_POST['CR'];
+$D=$_POST['D'];
+
+
+
+$consulta="insert into rol(Cod_rol,Descripcion)
+ VALUES('$CR','$D')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script>
+     
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='rol.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$CR=$_POST["CR"];
+
+$registros=mysqli_query($conexion,"delete FROM rol WHERE Cod_rol='$CR'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='rol.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='rol.php';
+	  </script>";
+}
+$CRO="";
+$Descripcion="";
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CR=$_POST["CR"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  rol WHERE Cod_rol='$CR'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+
+$CRO=$registro['Cod_rol'];
+$Descripcion=$registro['Descripcion'];
+
+
+
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+
+<?php
+if (isset($_POST["limpiar"])){
+$CRO="";
+$Descripcion="";
+
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+
+$CR=$_POST['CR'];
+$D=$_POST['D'];
+
+
+$registro=mysqli_query($conexion,"update rol set Descripcion='$D'
+where Cod_rol='$CR'")
+or die ("error al actualizar");
+
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='rol.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='rol.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Rol</h1>
 <div class="form-group">
 <label>Codigo Rol:</label>
-<input type="text" name="CR" value="" size="5" maxlength="5" />
+<input type="text" name="CR" value="<?php echo $CRO?>" size="5" maxlength="5" />
 <left>
 <label>Descripcion:</label>
-<input type="text" name="D" value="" size="15" maxlength="15" />
+<input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 
 <center>
-<a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
-
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
-
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
-
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-
-<span class="icon-search"></span>
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary">
-<br/><br/>
-</center>
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" >
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" >
+<br>
+<br>
+</CENTER>
+<span class="icon-search">
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
+<br/>
 </div>
 </center>
 </form>

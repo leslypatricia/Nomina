@@ -72,30 +72,209 @@ h1{
 </head>
 
 <body>
+<?php
+$codigo="";
+$jornada="";
+$extra="";
+$empleado="";
+$tipo="";
+$fecha="";
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$HE=$_POST['HE'];
+$CJ=$_POST['CJ'];
+$NHE=$_POST['NHE'];
+$CE=$_POST['CE'];
+$THE=$_POST['CTHE'];
+$F=$_POST['F'];
+
+$consulta="insert into horaextra(Cod_HExtra,Cod_Jornada,Numero_horaextra,Cod_empleados,Cod_Tipo_HE,fecha)
+ VALUES('$HE','$CJ','$NHE','$CE','$CTHE','$F')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script> 
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='HoraExtra.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$HE=$_POST["HE"];
+
+$registros=mysqli_query($conexion,"DELETE FROM  horaextra WHERE Cod_HExtra='$HE'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='HoraExtra.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='HoraExtra.php';
+	  </script>";
+}
+$codigo="";
+$jornada="";
+$extra="";
+$empleado="";
+$tipo="";
+$fecha="";
+
+
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$HE=$_POST["HE"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  horaextra WHERE Cod_HExtra='$HE'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+$codigo=$registro['Cod_HExtra'];
+$jornada=$registro['Cod_Jornada'];
+$extra=$registro['Numero_horaextra'];
+$empleado=$registro['Cod_empleados'];
+$tipo=$registro['Cod_Tipo_HE'];
+$fecha=$registro['fecha'];
+
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+<?php
+if (isset($_POST["limpiar"])){
+	$codigo="";
+	$jornada="";
+	$extra="";
+	$empleado="";
+	$tipo="";
+	$fecha="";
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+$HE=$_POST['HE'];
+$CJ=$_POST['CJ'];
+$NHE=$_POST['NHE'];
+$CE=$_POST['CE'];
+$THE=$_POST['CTHE'];
+$F=$_POST['F'];
+
+
+$registro=mysqli_query($conexion,"update horaextra set Cod_Jornada='$CJ', 
+Numero_horaextra='$NHE',Cod_empleados='$CE',Cod_Tipo_HE='$CTHE',fecha='$F'
+where Cod_HExtra='$HE'")
+or die ("error al actualizar");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='HoraExtra.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='HoraExtra.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Hora Extra</h1>
 <div class="form-group">
 <label>Codigo Hora Extra:</label>
-<input type="text" name="HE" value="" size="5" maxlength="5" />
+<input type="text" name="HE" value="<?php echo $codigo?>" size="5" maxlength="5" />
 <left>
 <label>Codigo Jornada:</label>
-<input type="text" name="CJ" value="" size="15" maxlength="15" />
+<input type="text" name="CJ" value="<?php echo $jornada?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 <label>Numero de Hora Extra:</label>
-<input type="text" name="NHE" value="" size="20" maxlength="20"/>
+<input type="text" name="NHE" value="<?php echo $extra?>" size="20" maxlength="20"/>
 <br/><br/>
 
 <label>Codigo Empleado:</label>
-<input type="text" name="NHE" value="" size="20" maxlength="20"/>
+<input type="text" name="CE" value="<?php echo $empleado?>" size="20" maxlength="20"/>
 
 <label>Codigo de Tipo de Hora Extra:</label>
-<input type="text" name="CTHE" value="" size="20" maxlength="20" />
+<input type="text" name="CTHE" value="<?php echo $tipo?>" size="20" maxlength="20" />
 <br/>
 <br/>
 <label>Fecha:</label>
-<input type="date" name="F" value="" size="20" maxlength="30" />
+<input type="date" name="F" value="<?php echo $fecha?>" size="20" maxlength="30" />
 <br/>
 <br/>
 <br/>
@@ -103,20 +282,21 @@ h1{
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
+
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" / >
 
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" />
 
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-<br/><br/>
-</center>
-<label>Codigo Hora Extra:</label>
-<input type="text" name="HE" value="" size="5" maxlength="5" />
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" />
+
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" / >
+<br/><br/></center>
 <span class="icon-search">
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
 
 </div>
 </center>

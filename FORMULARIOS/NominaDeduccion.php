@@ -71,33 +71,188 @@ h1{
 </head>
 
 <body>
+<?php
+$nomina="";
+$dedu="";
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+	$CN=$_POST['CN'];
+	$CD=$_POST['CD'];
+
+
+$consulta="insert into nominadeducciones(Cod_Nomina,cod_Deducciones)
+ VALUES('$CN','$CD')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script> 
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='NominaDeduccion.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+	$CN=$_POST['CN'];
+
+
+$registros=mysqli_query($conexion,"DELETE FROM nominadeducciones WHERE Cod_Nomina='$CN'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='NominaDeduccion.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='NominaDeduccion.php';
+	  </script>";
+}
+$nomina="";
+$dedu="";
+
+
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CN=$_POST["CN"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  nominadeducciones WHERE Cod_Nomina='$CN'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+$nomina=$registro['Cod_Nomina'];
+$dedu=$registro['cod_Deducciones'];
+
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+<?php
+if (isset($_POST["limpiar"])){
+$nomina="";
+$dedu="";
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+$CN=$_POST['CN'];
+$CD=$_POST['CD'];
+
+$registro=mysqli_query($conexion,"update nominadeducciones set cod_Deducciones='$CD'
+where Cod_Nomina='$CN'")
+or die ("error al actualizar");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='NominaDeduccion.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='NominaDeduccion.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario ND</h1>
 <div class="form-group">
 <label>Codigo Nominas:</label>
-<input type="text" name="CN" value="" size="5" maxlength="5" />
+<input type="text" name="CN" value="<?php echo $nomina ?>" size="5" maxlength="5" />
 <left>
 <label>Codigo Deducciones:</label>
-<input type="text" name="CD" value="" size="15" maxlength="15" />
+<input type="text" name="CD" value="<?php echo $dedu?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" / >
 
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" />
 
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" />
 
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" / >
+<br/><br/></center>
 <span class="icon-search">
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
-<br/><br/>
-</center>
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
+
 </div>
 </center>
 </form>

@@ -13,6 +13,7 @@
 	}
 	body{
 		overflow:hidden;
+		
 	}
 .barra{
 	position:absolute;
@@ -71,6 +72,9 @@ li:hover{
 
 </head>
 <body>
+	<legth>
+<!--<img src="../IMG/nominas.jpg"  width="350px" height="350"  />-->
+</legth>
 <div class="barra">
 <h2>Menu</h2>
 <ul>

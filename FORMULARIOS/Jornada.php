@@ -71,49 +71,236 @@ h1{
 </head>
 
 <body>
+<?php
+$codigo="";
+$tipo="";
+$horas="";
+$sueldo="";
+$SHo="";
+$Porcentaje="";
+$emple="";
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if (isset($_POST["crs"])){
+$CJ=$_POST['CJ'];
+$TJ=$_POST['TJ'];
+$NH=$_POST['NH'];
+$SB=$_POST['SB'];
+$SH=$_POST['SH'];
+$PHE=$_POST['PHE'];
+$CE=$_POST['CE'];
+
+
+$consulta="insert into jornada(Cod_Jornada,Tipo_Jornada,Numero_horas,Sueldo_Base,Sueldo_Hora,Porce_Hora_Extra,Cod_empleados)
+ VALUES('$CJ','$TJ','$NH','$SB','$SH','$PHE','$CE')";
+ 
+ if (mysqli_query($conexion, $consulta)) {
+     echo "<script> 
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='Jornada.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+ mysqli_close($conexion);
+
+}
+
+?>
+
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["Eliminar"])){
+$CJ=$_POST["CJ"];
+
+$registros=mysqli_query($conexion,"DELETE FROM  jornada WHERE Cod_Jornada='$CJ'");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Eliminado ERROR!!!');
+	  window.location='Jornada.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Eliminado Correctamente!!!');
+	  window.location='Jornada.php';
+	  </script>";
+}
+$codigo="";
+$tipo="";
+$horas="";
+$sueldo="";
+$SHo="";
+$Porcentaje="";
+$emple="";
+
+
+}
+
+?>
+
+
+<?php
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+
+ 
+if (isset($_POST["buscar"])){
+
+$CJ=$_POST["CJ"];
+
+$registros=mysqli_query($conexion,"SELECT * FROM  jornada WHERE Cod_Jornada='$CJ'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+
+
+$codigo=$registro['Cod_Jornada'];
+$tipo=$registro['Tipo_Jornada'];
+$horas=$registro['Numero_horas'];
+$sueldo=$registro['Sueldo_Base'];
+$SHo=$registro['Sueldo_Hora'];
+$Porcentaje=$registro['Porce_Hora_Extra'];
+$emple=$registro['Cod_empleados'];
+
+mysqli_close($conexion);
+}
+}
+ ?>
+
+
+<form class="from"  id="form1" action= "" method="POST" >
+<center>
+<?php
+if (isset($_POST["limpiar"])){
+	$codigo="";
+	$tipo="";
+	$horas="";
+	$sueldo="";
+	$SHo="";
+	$Porcentaje="";
+	$emple="";
+
+
+}
+
+?>
+<?php
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+if (isset($_POST["buscar"])){
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
+or die ("erro en la conexion");
+
+mysqli_set_charset($conexion,"utf8");
+$CJ=$_POST['CJ'];
+$TJ=$_POST['TJ'];
+$NH=$_POST['NH'];
+$SB=$_POST['SB'];
+$SH=$_POST['SH'];
+$PHE=$_POST['PHE'];
+$CE=$_POST['CE'];
+
+
+$registro=mysqli_query($conexion,"UPDATE jornada set Tipo_Jornada='$TJ',Numero_horas='$NH', 
+Sueldo_Base='$SB',Sueldo_Hora='$SH',Porce_Hora_Extra='$PHE',Cod_empleados='$CE'
+where Cod_Jornada='$CJ'")
+or die ("error al actualizar");
+
+if ($registro){
+
+echo"
+  alert ('Registro NO Actualizado ERROR!!!');
+	  window.location='Jornada.php';
+	  </script>";
+} else {
+echo "<script>
+     
+	     alert ('Registro Actualizado Correctamente!!!');
+	  window.location='Jornada.php';
+	  </script>";
+}
+}
+mysqli_close($conexion);
+
+
+?>
+
+
+
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Jornada</h1>
 <div class="form-group">
 <label>Codigo Jornada:</label>
-<input type="text" name="CJ" value="" size="5" maxlength="5" />
+<input type="text" name="CJ" value="<?php echo $codigo ?>" size="5" maxlength="5" />
 <left>
 <label>Tipo Jornada:</label>
-<input type="text" name="TJ" value="" size="15" maxlength="15" />
+<input type="text" name="TJ" value="<?php echo $tipo?>" size="15" maxlength="15" />
 </left>
 <br/><br/>
 <label>Numero Horas:</label>
-<input type="text" name="NH" value="" size="20" maxlength="20"/>
+<input type="text" name="NH" value="<?php echo $horas ?>" size="20" maxlength="20"/>
 
 <label>Sueldo Base:</label>
-<input type="text" name="SB" value="" size="20" maxlength="20" />
+<input type="text" name="SB" value="<?php echo $sueldo ?>" size="20" maxlength="20" />
 <br/>
 <br/>
 <label>Sueldo Hora:</label>
-<input type="text" name="SH" value="" size="20" maxlength="30" />
+<input type="text" name="SH" value="<?php echo $SHo ?>" size="20" maxlength="30" />
 <label>Porcentaje por Hora Extra:</label>
-<input type="text" name="PHE" value="" size="20" maxlength="30" />
+<input type="text" name="PHE" value="<?php echo $Porcentaje ?>" size="20" maxlength="30" />
 <br/>
 <br/>
+<label>Codigo Empleados:</label>
+<input type="text" name="CE" value="<?php echo $emple ?>" size="20" maxlength="30" />
 <br/>
 <br/>
 <center>
 <a href="LOG/Menu_Admin.php" class="btn btn-default">Regresar</a>
 
 <span class="icon-floppy-disk"></span>
-<input type="submit" name="btn-guardar" value="Guardar" class="btn-btn-success" >
+<input type="submit" name="crs" value="Guardar" class="btn-btn-success" / >
 
-<span class="icon-spinner11"></span>
-<input type="submit" name="btn-actualizar" value="Actualizar" class="btn-btn-info">
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" />
 
-<span class="icon-bin"></span>
-<input type="submit" name="btn-eliminar" value="Eliminar" class="btn-btn-danger">
-<br/><br/>
-</center>
-<label>Codigo Empleado:</label>
-<input type="text" name="CE" value="" size="5" maxlength="5" />
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" />
+
+<span class="icon-floppy-disk"></span>
+<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" / >
+<br/><br/></center>
 <span class="icon-search">
-<input type="submit" name="btn-buscar" value="Buscar" class="btn-btn-primary"></span>
+<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
 
 </div>
 </center>
