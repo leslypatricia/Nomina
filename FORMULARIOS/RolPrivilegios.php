@@ -5,6 +5,7 @@
 <title>Menu</title>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <style>
 body{
 	margin:0;
@@ -67,26 +68,45 @@ h1{
 		padding:10px;
 		color:white;
 		font-size:10px;}
+.btn-btn-default{
+	width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;
+		}
 </style>
 </head>
 
 <body>
+
+<?php
+if (isset($_POST["Regresar"])){
+header("location:estructura.php");
+}
+?>
+<?php
+if (isset($_POST["Insertar"])){
+header("location:empleados.php");
+}
+?>
 <?php
 
 $conexion=mysqli_connect('localhost','root','','nominas')
 ?>
 <br/>
-
+<button name="Regresar"><i class="fas fa-reply"></i></button>
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <section>
 <div class="form-group">
 <h1>Tabla Rol_Privilegio</h1>
-	<table border="1" cellpading="3" cellspacing="3" >
+	<table border="1" >
 		<tr>
 <th>Codigo Privilegio:</th>
 <th> Rol:</th>
 	</tr>
+	<button name="Insertar"><i class="fas fa-plus"></i></button>
 	<?php
 $sql="SELECT cod.Cod_rol,pri.Cod_privilegios,RP.Cod_privilegios from rol as cod 
 JOIN rolprivilegios as RP on Cod.Cod_rol=RP.Cod_rol
@@ -98,7 +118,9 @@ JOIN privilegios as pri on pri.Cod_privilegios=RP.Cod_privilegios" ;
 		<tr>
 		<td>'.$mostrar['Cod_privilegios'].'</td>
 		<td>'.$mostrar['Cod_rol'].'</td>
-		</tr>
+		
+		<td><button name="Eliminar" class=""><i class="far fa-trash-alt"></i></button></td>
+		
 ';
 	?>
 

@@ -149,7 +149,7 @@ header #button-menu{
 				<a href="../FORMULARIOS/Estructura.php">Formularios</a></li>
 				<li><a href="Generar_Planilla.php">Generar_Planilla</a></li>
                <li><a href="">Derechos Reservados</a></li>
-                <li><p><a href="bd/Administrador.php">Cerrar sesion</a></p></li>
+                <li><p><a href="../index.php">Cerrar sesion</a></p></li>
 				<!--<li class="item-submenu" menu="1">
 					<a href="#"><span class="fa fa-suitcase icon-menu"></span>Estrucrura</a>
 					<ul class="submenu">

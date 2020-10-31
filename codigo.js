@@ -36,8 +36,32 @@ $(document).ready(function(){
 	});
 
 });
+/*
+$(buscar());
+function buscar(consulta){
+$.ajaz({
+    url:'../Formularios/Empleados1.php',
+    type:'POST',
+    dataType:'php',
+    data:{consulta:consulta},
+})
+.done(function(){
+    $("#datos").php(respuesta);
+})
+.fail(function(){
+    console.log("erro");
+})
 
+}
+$(document).on('keyup','caja',function(){
+var valor=$(this).val();
+if(valor!=""){
+    buscar(valor);
+}esle{
+buscar();
+}
 
+});*/
 
 
 

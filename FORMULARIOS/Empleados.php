@@ -5,8 +5,9 @@
 <title>Menu</title>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <style>
-//-----------------------------------código_css-------------------------------------------------------------------------------/
+/*-----------------------------------código_css-------------------------------------------------------------------------------*/
 body{
 	margin:0;
 	padding:0;
@@ -34,7 +35,7 @@ h1{
 	}
 	
 .form-group{
-	width:850px;
+	width:750px;
 	background:#00ced1;
 	padding:20px;
 	border-radius:4px;
@@ -44,31 +45,6 @@ h1{
 	font-size:18px;
 	
 	}
-.btn-btn-primary {
-		width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;
-}
-.btn-btn-success{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
-.btn-btn-info{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
-.btn-btn-danger{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
 .form-group1 {	width:750px;
 	background:#00ced1;
 	padding:10px;
@@ -78,6 +54,23 @@ h1{
 	font-family:"Arial Black", Gadget, sans-serif;
 	font-size:18px;
 }
+ .form-group .form{
+	background: rgb(red, green, blue);
+	border: none;
+	outline: none;
+border-bottom: 2px solid #ff851b;
+width: 250%;
+padding: 05px;
+margin-bottom: 08px;
+border-radius: 2px;
+font-size: 12px;
+color: black;
+font-family:"Arial Black", Gadget, sans-serif;
+width: 100%;
+/*style="width: 100%;*/
+}
+
+/*Estilos paginador*/
 </style>
 </head>
 
@@ -139,12 +132,6 @@ $SB=$_POST['SB'];//Sueldo base
 $FP=$_POST['FP'];//forma de pago
 $CD=$_POST['CD'];//código de depto
 
-
-
-
-
-
-
 //------------consulta para insetar-----//
 $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Fecha_Deduccion,Sueldo_base,Cod_FormaPago,Cod_Depto)
  VALUES('$CE','$id','$PN','$SN','$PA','$SA','$FN','$CORRE','$DIR','$TELE','$S','$CB','$FI','$NAC','$FD','$SB','$FP','$CD')";
@@ -156,8 +143,12 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
 	  window.location='Empleados.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
-
+    /*  echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
+	echo "<script>
+     
+	alert ('ERROR AL Ingresar un Usuario!!!');
+ window.location='Empleados.php';
+ </script>";
 
         }
 
@@ -165,50 +156,7 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
 	
 	
 	}
-
-	
-
-
 ?>
-
-<?php
-//-----------Código para Eliminar-------------------------------------------------------------------------//
-
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
- 
-if (isset($_POST["Eliminar"])){
-$CE=$_POST["CE"];
-
-$registros=mysqli_query($conexion,"delete FROM  empleados WHERE Cod_empleados='$CE'");
-
-if ($registros){ 
-	echo"<script>
-  alert ('Registro Eliminado Correctamente!!!');
-	  window.location='Empleados.php';
-	  </script>";
-} else {
-echo "<script>
-     
-	     alert ('Registro NO Eliminado ERROR!!!');
-	  window.location='Empleados.php';
-	  </script>";
-}
-
-
-
-
-}
-
-?>
-
-
-
 
 <?php
 //---------------------código del botón buscar -------------------------------------------------------------------------
@@ -219,8 +167,6 @@ $db_nombre="nominas";
 
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-
- 
 if (isset($_POST["buscar"])){
 
 $CE=$_POST["CEE"];
@@ -250,22 +196,14 @@ $formapago=$registro['Cod_FormaPago'];
 $codigod=$registro['Cod_Depto'];
 
 
-
 }
 
-
 }
-
-
 
 mysqli_close($conexion);
 
-
 //----------------------finanlización de código botón buscar
  ?>
-
-
-
 
 <?php
 
@@ -294,176 +232,99 @@ $codigod="";
 
 ?>
 <?php
-//-----------------Código del bontón actualizar-----------
-
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-if (isset($_POST["Actualizar"])){
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre)
-or die ("error en la conexion");
-
-mysqli_set_charset($conexion,"utf8");
-
-$CE=$_POST['CE'];
-$id=$_POST['id'];
-$PN=$_POST['PN'];
-$SN=$_POST['SN'];
-$PA=$_POST['PA'];
-$SA=$_POST['SA'];
-$FN=$_POST['FN'];
-$CORRE=$_POST['correo'];
-$DIR=$_POST['Dire'];
-$TELE=$_POST['tele'];
-$S=$_POST['sexo'];
-$CB=$_POST['CB'];
-$FI=$_POST['FI'];
-$NAC=$_POST['Nac'];
-$FD=$_POST['FD'];
-$SB=$_POST['SB'];
-$FP=$_POST['FP'];
-$CD=$_POST['CD'];
-
-
-$registro=mysqli_query($conexion,"update empleados set Identidad='$id', Primer_Nombre='$PN' ,Segundo_Nombre='$SN',Primer_Apellido='$PA',Segundo_Apellido='$SA',
-Fecha_nacimiento='$FN',Correo='$CORRE',Direccion='$DIR',Telefono='$TELE',Sexo='$S',Cuenta_Bancaria='$CB',Fecha_ingreso='$FI',
-Nacionalidad='$NAC',Fecha_Deduccion='$FD',Sueldo_base='$SB',Cod_FormaPago='$FP',Cod_Depto='$CD'    
-where Cod_empleados='$CE'")
-or die ("error al actualizar");
-
-
-if ($registro){
-
-echo" <script>
-  alert ('Registro Actualizado Correctamente!!!');
-	  window.location='Empleados.php';
-	  </script>";
-} else {
-echo "<script>
-     
-	     alert ('Registro NO Actualizado ERROR!!!');
-	  window.location='Empleados.php';
-	  </script>";
+if (isset($_POST["Regresar"])){
+header("location:Empleados1.php");
 }
+?>
+<?php
+if (isset($_POST["BD"])){
+header("location:http://localhost:801/phpmyadmin/");
 }
-
-
-
 ?>
 
 <form class="from"  id="form1" action= "" method="POST" >
-
-
 <center>
 <h1>Formulario Empleado</h1>
-
 <div class="form-group">
-<label>Cod_Empleado:</label>
-<input type="text" name="CE" value="<?php echo $codigo?>" size="5" maxlength="5" />
+<table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
 
-<label>Cod_Departamento:</label>
-<select name="CD" value="1">
-   <option value="1">1</option>
-   <option value="2">2</option>
-   <option value="3">3</option>
-  
-</select>
-<br/><br/>
-<left>
-<left>
-<label>N Identidad:</label>
-<input type="text" name="id" value="<?php echo $Identidad?>" size="15" maxlength="15" />
-</left>
-<br/><br/>
-<label>Primer Nombre:</label>
-<input type="text" name="PN" value="<?php echo $PrimerN?>" size="20" maxlength="20"/>
-<label>Segundo Nombre:</label>
-<input type="text" name="SN" value="<?php echo $SegundoN?>"/>
-<br/>
-<br/>
+	<tr><td><label>Codigo Empleado<br/></label> </td>
+	<td><input type="text" class="form" name="CE" value="<?php echo $codigo?>" /><br/></td></tr>
+	<tr><td>Codigo_Depto<br/> </td>
+	<td><select name="CD" value="" class="form" >
+   <option value="1" class="form" >1</option>
+   <option value="2" class="form" >2</option>
+   <option value="3" class="form" >3</option>
+</select> </td></tr>
+<tr><td>Identidad<br/> </td>
+<td> <input type="text" class="form"  name="id" value="<?php echo $Identidad?>" size="15" maxlength="15" /><br/>
+</td></tr>
+	<tr><td>Primer Nombre<br/> </td>
+	<td><input type="text" class="form"  name="PN" value="<?php echo $PrimerN?>" size="20" maxlength="20"/><br/>
+ </td></tr>
+	<tr><td>Segundo Nombre<br/> </td>
+	<td><input type="text" class="form"  name="SN" value="<?php echo $SegundoN?>"/></td></tr>
+	<tr><td>Pirmer Apellido<br/> </td>
+	<td> <input type="text" class="form"  name="PA" value="<?php echo $PrimerA?>" size="20" maxlength="20"/><br/>
+</td></tr>
+	<tr><td>Segundo Apellido<br/> </td>
+	<td> <input type="text" class="form"  name="SA" value="<?php echo $SegundoA?>" size="20" maxlength="30"/><br/>
+</td></tr>
+	<tr><td>Fecha Nacimiento<br/> </td>
+	<td> <input id="date" class="form"  type="date" name="FN" value="<?php echo $fechan?>" size="20"  maxlength="30" /><br/>
+</td></tr>
+<tr><td>Fecha_Ingreso<br/> </td>
+	<td> <input id="date" class="form"  type="date" name="FI" value="<?php echo $ingreso?>" size="20" maxlength="30" /><br/>
+</td></tr>
+	<tr><td>Correo<br/> </td>
+	<td><input type="email" class="form"  name="correo" value="<?php echo $correo?>" size="20" maxlength="30" /><br/> 
+ </td></tr>
+	<tr><td>Direccion<br/> </td>
+	<td><input type="text" class="form"  name="Dire" value="<?php echo $direccion?>" size="20" maxlength="30" /><br/>
+ </td></tr>
+	<tr><td>Telefono<br/> </td>
+	<td> <input type="number" class="form"  name="tele" value="<?php echo $tel?>" size="15" maxlength="15" /><br/></td></tr>
+	<tr><td>Sexo<br/> </td>
+	<td> <input type="radio"   name="sexo"value="F" id="mujer">F</>
+<input type="radio"  name="sexo"   value="M" checked="checked" id="hombre">M</><br/></td></tr>
 
-<label>Primer Apellido:</label>
-<input type="text" name="PA" value="<?php echo $PrimerA?>" size="20" maxlength="20"/>
+	<tr><td>Nacionalidad<br/> </td>
+	<td> <select name="Nac" class="form" ><br/>
+   <option value="Hondureña" class="form"  >Hondureña</option>
+   <option value="Extrajero" class="form" >Extrajero</option>
+</select><br/></td></tr>
 
-<label>Segundo  Apellido:</label>
-<input type="text" name="SA" value="<?php echo $SegundoA?>" size="20" maxlength="30"/>
-<br/>
-<br/>
-<label>Fecha Nacimiento:</label>
-<input id="date" type="date" name="FN" value="<?php echo $fechan?>" size="20"  maxlength="30" />
-<label>Fecha Ingreso:</label>
-<input id="date" type="date" name="FI" value="<?php echo $ingreso?>" size="20" maxlength="30" />
-<br/>
-<br/>
-<label>Correo:</label>
-<input type="text" name="correo" value="<?php echo $correo?>" size="20" maxlength="30" /> 
+	<tr><td>Sueldo_Base<br/> </td>
+	<td>
+<input type="text" name="SB" class="form"  value="<?php echo $sueldob?>" size="15" maxlength="15" /><br/>
+ </td></tr>
+	<tr><td>Cuenta Bancaria<br/> </td>
+	<td> <input type="text" class="form"  name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" /><br/>
+</td></tr>
+	<tr><td>Fecha Deducciones<br/> </td>
+	<td> <input id="date" class="form"  type="date" name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  /><br/>
+</td></tr>
+	<tr><td>CodFormaPago<br/> </td>
+	<td><select name="FP" class="form" >
+   <option value="1" class="form" >1</option>
+   <option value="2" class="form" >2</option>
+</select><br/> </td></tr>
+</table>
 
-<label>Direccion:</label>
-<input type="text" name="Dire" value="<?php echo $direccion?>" size="20" maxlength="30" />
-
-<label>Telefono:</label>
-<input type="text" name="tele" value="<?php echo $tel?>" size="15" maxlength="15" />
-<br/>
-<br/>
-
-<label>Sexo:</label>
-
-<input type="radio" name="sexo"value="F" id="mujer">F</>
-   <input type="radio"  name="sexo" value="M" checked="checked" id="hombre">M</>
-<label>Nacionalidad:</label>
-<select name="Nac">
-   <option value="Hondureña">Hondureña</option>
-   <option value="Extrajero">Extrajero</option>
-</select>
-<br/>
-<br/>
-<label>Sueldo Base:</label>
-<input type="text" name="SB" value="<?php echo $sueldob?>" size="15" maxlength="15" />
-<label>Cuenta Bancaria</label>
-<input type="text" name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" />
-<br/><br/>
-<label>Fecha Deduccion:</label>
-<input id="date" type="date" name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  />
-
-<label>Codigo Forma Pago:</label>
-<select name="FP">
-
-   <option value="1">1</option>
-   <option value="2">2</option>
- 
-</select>
-
-
-<br/>
-<br/>
-<center>
-<a href="estructura.php" class="btn btn-default">Regresar</a>
-<span class="icon-floppy-disk"><span/>
-<input type="submit" name="crs" value="Guardar" class="btn-btn-success" >
-<span class="icon-floppy-disk"><span/>
-<input type="submit" name="Actualizar" value="Actualizar" class="btn-btn-success" >
-<span class="icon-floppy-disk"></span>
-<input type="submit" name="Eliminar" value="Eliminar" class="btn-btn-success" >
-<span class="icon-floppy-disk"></span>
-<input type="submit" name="limpiar" value="Limpiar" class="btn-btn-success" >
-<br>
+<button name="Regresar"><i class="fas fa-reply"></i></button>
+<button name="crs"><i class="fas fa-save"></i></button>
+<button name="limpiar"><i class="fas fa-times"></i></button>
+<button name="BD"><i class="fas fa-database"></i></button>
 <br>
 <label>Cod_Empleado:</label>
 <input type="text" name="CEE" value="" size="5" maxlength="5" />
-<span class="icon-search">
-<input type="submit" name="buscar" value="Buscar" class="btn-btn-primary"></span>
+<button name="buscar"><i class="fas fa-search"></i></button>
+
+
 <br/>
-
-</center>
 </div>
-
 </form>
-
-
-
 </body>
 </html>
 

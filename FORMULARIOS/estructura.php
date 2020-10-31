@@ -156,10 +156,10 @@ header #button-menu{
 					<ul class="submenu">
 						<li class="title-menu"><span class="icon-menu"></span>Seguridad</li>
 						<li class="go-back">Atras</li>
-						<li><a href="../FORMULARIOS/Usuario.php">Usuarios</a></li>
-                       <li><a href="../FORMULARIOS/rol.php">Rol</a></li>
-                       <li><a href="../FORMULARIOS/Privilegios.php">Privilegios</a></li>
-                       <li><a href="../FORMULARIOS/RolPrivilegios.php">Rol_Privilegios</a></li>
+						<li><a href="../FORMULARIOS/Usuario1.php">Usuarios</a></li>
+                       <li><a href="../FORMULARIOS/rol1.php">Rol</a></li>
+                       <li><a href="../FORMULARIOS/Privilegios1.php">Privilegios</a></li>
+                       <li><a href="../FORMULARIOS/RolPrivilegios1.php">Rol_Privilegios</a></li>
 					</ul>
 				</li>
 
@@ -168,9 +168,9 @@ header #button-menu{
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Personal</li>
 						<li class="go-back">Atras</li>
-						<li><a href="../FORMULARIOS/Empleados.php">Empleados</a></li>
-                        <li><a href="../FORMULARIOS/Departamento.php">Departamentos</a></li>
-                        <li><a href="../FORMULARIOS/FormaPago.php">Formas de Pago</a></li>
+						<li><a href="../FORMULARIOS/Empleados1.php">Empleados</a></li>
+                        <li><a href="../FORMULARIOS/Departamento1.php">Departamentos</a></li>
+                        <li><a href="../FORMULARIOS/FormaPago1.php">Formas de Pago</a></li>
 
 					</ul>
 				</li>
@@ -180,9 +180,9 @@ header #button-menu{
 						<li class="title-menu"><span class=" icon-menu"></span>Nomina</li>
 						<li class="go-back">Atras</li>
 
-						<li><a href="../FORMULARIOS/NominaGeneral.php">Nomina General</a></li>
-						<li><a href="../FORMULARIOS/Deducciones.php">Deducciones</a></li>
-						<li><a href="../FORMULARIOS/NominaDeduccion.php">Nomina Deducciones</a></li>
+						<li><a href="../FORMULARIOS/NominaGeneral1.php">Nomina General</a></li>
+						<li><a href="../FORMULARIOS/Deducciones1.php">Deducciones</a></li>
+						<li><a href="../FORMULARIOS/NominaDeduccion1.php">Nomina Deducciones</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="4">
@@ -190,9 +190,9 @@ header #button-menu{
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Horas Laborales</li>
 						<li class="go-back">Atras</li>
-						<li><a href="../FORMULARIOS/Jornada.php">Jornada</a></li>
-						<li><a href="../FORMULARIOS/HoraExtra.php">Horas Extras</a></li>
-                        <li><a href="../FORMULARIOS/TipoHE.php">Tipo Hora Extra</a></li>
+						<li><a href="../FORMULARIOS/Jornada1.php">Jornada</a></li>
+						<li><a href="../FORMULARIOS/HoraExtra1.php">Horas Extras</a></li>
+                        <li><a href="../FORMULARIOS/TipoHE1.php">Tipo Hora Extra</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="5">
@@ -201,9 +201,9 @@ header #button-menu{
 						<li class="title-menu"><span class=" icon-menu"></span>Otos Pagos</li>
 						<li class="go-back">Atras</li>
 
-                     <li><a href="../FORMULARIOS/Aumento.php">Aumento</a></li>
-                    <li><a href="../FORMULARIOS/PagosComplementarios.php">Pagos Complementarios</a></li>
-                     <li><a href="../FORMULARIOS/NominaPagComplementarios.php">Nomina Pagos Complementarios</a></li>
+                     <li><a href="../FORMULARIOS/Aumento1.php">Aumento</a></li>
+                    <li><a href="../FORMULARIOS/PagosComplementarios1.php">Pagos Complementarios</a></li>
+                     <li><a href="../FORMULARIOS/NominaPagComplementarios1.php">Nomina Pagos Complementarios</a></li>
 					</ul>
 				</li>
 				<li><a href="../LOG/Menu_Admin.php">ATRAS</a></li>
