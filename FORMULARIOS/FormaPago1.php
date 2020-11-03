@@ -6,13 +6,8 @@
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/bootstrap-theme.css" rel="stylesheet">
-		<script src="js/jquery-3.1.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>	
 <style>
-/*-----------------------------------código_css-------------------------------------------------------------------------------*/
+//-----------------------------------código_css-------------------------------------------------------------------------------/
 body{
 	margin:0;
 	padding:0;
@@ -94,17 +89,6 @@ h1{
 </head>
 
 <body>
-	<?php 
-	/*$db_host="localhost";
-	$db_usuario="root";
-	$db_contra="";
-	$db_nombre="nominas";
-	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-	$sql="SELECT * FROM empleados";
-	$res=$mysqli->query($sql);
-	*/
-	?>
 <?php
 
 $conexion=mysqli_connect('localhost','root','','nominas')
@@ -123,10 +107,8 @@ $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 if (isset($_POST["Eliminar"])){
 $CE=$_POST["CE"];
 
-$registros="DELETE FROM  empleados WHERE Cod_empleados='$CE'";
-$resultado=mysqli_query($conexion,$registros);
-				
-/*$row=mysqli_fetch_array($registros);
+$registros=mysqli_query($conexion,"SELECT FROM  empleados WHERE Cod_empleados='$CE'");
+$row=mysqli_fetch_array($registros);
 if ($row){ 
 	echo "desea eliminar";
 	echo "";echo $row['Cod_empleados'];
@@ -142,13 +124,13 @@ if ($row){
  alert ('Registro Eliminado Correctamente!!!');
 	  window.location='Empleados1.php';
 	  </script>";*/
-/*} else {
+} else {
 /*echo "<script>
      
 	     alert ('Registro NO Eliminado ERROR!!!');
 	  window.location='Empleados1.php';
 	  </script>";*/
-/*}*/
+}
 
 }
 ?>
@@ -217,7 +199,7 @@ header("location:estructura.php");
 ?>
 <?php
 if (isset($_POST["Insertar"])){
-header("location:empleados.php");
+header("location:FormaPago.php");
 }
 ?>
 <form class="from"  id="form1" action= "" method="POST" >
@@ -225,7 +207,7 @@ header("location:empleados.php");
 	<center>
 <div class="form-group">
 	<center>
-	<h1>Tabla Empleados</h1>
+	<h1>Tabla Forma Pago</h1>
 
 	<button name="Insertar"><i class="fas fa-plus"></i></button>
 	<div class="form">
@@ -236,21 +218,12 @@ header("location:empleados.php");
 	</center><br/><br/>
 <table border="1">
     <tr>
-       <td>Codigo_Empleado</td> 
-       <td>Primer_Nombre</td>
-       <td>Segundo_Apellido</td>
-       <td>Telefono</td>
-       <td>Fecha_Ingreso</td>
-       <td>Sueldo_Base</td>
-       <td>CodFormaPago</td>
-       <td>Codigo_Depto</td>
+       <td>Codigo_FormaPago</td> 
+       <td>Descripcion</td>
 	</tr>
 	
 	<?php
-$sql="SELECT ep.Cod_empleados,ep.Primer_Nombre,ep.Segundo_Apellido,ep.Telefono,
-ep.Fecha_ingreso,ep.Sueldo_base,fp.Cod_FormaPago,dep.Cod_Depto from empleados as ep 
-JOIN formapago as fp on ep.Cod_FormaPago=fp.Cod_FormaPago
-JOIN departamento as dep on ep.Cod_Depto=dep.Cod_Depto" ;
+$sql="SELECT * from formapago" ;
 
 /*if(isset($_POST['consulta'])){
 	$q=$mysqli->real_escape_string($_POST['consulta']);
@@ -262,14 +235,8 @@ JOIN departamento as dep on ep.Cod_Depto=dep.Cod_Depto" ;
 	while($mostrar=mysqli_fetch_array($res)){
 		echo'
 		<tr>
-		<td>'.$mostrar['Cod_empleados'].'</td>
-		<td>'.$mostrar['Primer_Nombre'].'</td>
-		<td>'.$mostrar['Segundo_Apellido'].'</td>
-		<td>'.$mostrar['Telefono'].'</td>
-		<td>'.$mostrar['Fecha_ingreso'].'</td>
-		<td>'.$mostrar['Sueldo_base'].'</td>
 		<td>'.$mostrar['Cod_FormaPago'].'</td>
-		<td>'.$mostrar['Cod_Depto'].'</td>
+		<td>'.$mostrar['Descripcion'].'</td>
 		<td><button name="Eliminar" class=""><i class="far fa-trash-alt"></i></button></td>
 		<td><button name="Actualizar"><i class="fas fa-edit"></i></button></td>
 		</tr>
@@ -282,45 +249,7 @@ JOIN departamento as dep on ep.Cod_Depto=dep.Cod_Depto" ;
 ?>
    </table>
 </div>
-<div class="container">
-			<div class="row">
-				<div class="row" style="text-align:center">
-				<?php if($resultado) { ?>
-				<h3>REGISTRO ELIMINADO</h3>
-				<?php } else { ?>
-				<h3>ERROR AL ELIMINAR</h3>
-				<?php } ?>
-				</div></div></div>
 	</center>
-<!-- Modal -->
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">Eliminar Registro</h4>
-					</div>
-					
-					<div class="modal-body">
-						¿Desea eliminar este registro?
-					</div>
-					
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-						<a class="btn btn-danger btn-ok">Delete</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script>
-			$('#confirm-delete').on('show.bs.modal', function(e) {
-				$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-				
-				$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
-			});
-		</script>
-
 </form>
 
     </body>

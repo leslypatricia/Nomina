@@ -142,6 +142,18 @@ header #button-menu{
 		<span id="button-menu" class="fa fa-bars"></span>
 
 		<nav class="navegacion">
+		<?php  
+		$db_host="localhost";
+		$db_usuario="root";
+		$db_contra="";
+		$db_nombre="nominas";
+		
+		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+		
+		$sql=mysqli_query($conexion,"SELECT COUNT(*) as Usuario FROM usuario" );
+			$resul=mysqli_fetch_array($sql);
+			$total=$resul['Usuario'];	
+		?>
 			<ul class="menu">
 				<!-- TITULAR -->
 				<li class="title-menu">Menu  de Administrador</li>

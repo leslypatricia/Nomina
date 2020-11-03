@@ -123,14 +123,14 @@ $CORRE=$_POST['correo'];//correo
 $DIR=$_POST['Dire'];//Dirrección
 $TELE=$_POST['tele'];//Teléfono
 
-$S=$_POST['sexo'];//Sexo
+$S=isset($_POST['sexo'])?$_POST['sexo']:0;//Sexo
 $CB=$_POST['CB'];//Cuenta Bancaria
 $FI=$_POST['FI'];//Fecha de Ingreso
-$NAC=$_POST['Nac'];//Nacionalidad
+$NAC=isset($_POST['Nac'])? $_POST['Nac']:0;//Nacionalidad
 $FD=$_POST['FD'];//Fecha de Deducción
 $SB=$_POST['SB'];//Sueldo base 
 $FP=$_POST['FP'];//forma de pago
-$CD=$_POST['CD'];//código de depto
+$CD=isset($_POST['CD'])?$_POST['CD']:0;//código de depto
 
 //------------consulta para insetar-----//
 $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Fecha_Deduccion,Sueldo_base,Cod_FormaPago,Cod_Depto)
@@ -253,9 +253,9 @@ header("location:http://localhost:801/phpmyadmin/");
 	<td><input type="text" class="form" name="CE" value="<?php echo $codigo?>" /><br/></td></tr>
 	<tr><td>Codigo_Depto<br/> </td>
 	<td><select name="CD" value="" class="form" >
-   <option value="1" class="form" >1</option>
-   <option value="2" class="form" >2</option>
-   <option value="3" class="form" >3</option>
+   <option  class="form"value="1" <?php echo '$codigod';?>>1</option>
+   <option  class="form" value="2"<?php echo '$codigod';?>>2</option>
+   <option  class="form" value="3" <?php echo '$codigod';?>>3</option>
 </select> </td></tr>
 <tr><td>Identidad<br/> </td>
 <td> <input type="text" class="form"  name="id" value="<?php echo $Identidad?>" size="15" maxlength="15" /><br/>
@@ -285,14 +285,14 @@ header("location:http://localhost:801/phpmyadmin/");
  </td></tr>
 	<tr><td>Telefono<br/> </td>
 	<td> <input type="number" class="form"  name="tele" value="<?php echo $tel?>" size="15" maxlength="15" /><br/></td></tr>
-	<tr><td>Sexo<br/> </td>
-	<td> <input type="radio"   name="sexo"value="F" id="mujer">F</>
-<input type="radio"  name="sexo"   value="M" checked="checked" id="hombre">M</><br/></td></tr>
+	<tr><td>Sexo<br/> </td><td> 
+	<input type="radio" checked name="sexo" value="1" id="sexo" <?php echo '$sexo';?>>F</>
+    <input type="radio" checked   name="sexo" value="0"  id="sexo"<?php echo '$sexo';?>>M</><br/></td></tr>
 
 	<tr><td>Nacionalidad<br/> </td>
 	<td> <select name="Nac" class="form" ><br/>
-   <option value="Hondureña" class="form"  >Hondureña</option>
-   <option value="Extrajero" class="form" >Extrajero</option>
+   <option value="1" class="form" <?php echo '$nacionalidad';?> >Hondureña</option>
+   <option value="2" class="form" <?php echo '$nacionalidad';?>>Extrajero</option>
 </select><br/></td></tr>
 
 	<tr><td>Sueldo_Base<br/> </td>
@@ -307,8 +307,8 @@ header("location:http://localhost:801/phpmyadmin/");
 </td></tr>
 	<tr><td>CodFormaPago<br/> </td>
 	<td><select name="FP" class="form" >
-   <option value="1" class="form" >1</option>
-   <option value="2" class="form" >2</option>
+   <option value="1" class="form"  <?php echo '$formapago';?>>1</option>
+   <option value="2" class="form"  <?php echo '$formapago';?>>2</option>
 </select><br/> </td></tr>
 </table>
 
