@@ -12,11 +12,15 @@ body{
 	margin:0;
 	padding:0;
 	box-sizing:border-box;
+	background-image: url("../IMG/Fondo10.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
 }
 .from{
 	/*width:1000px;
 		padding:40px;*/
-		background:black;
+		/*background:black;
 	/*  background: -webkit-linear-gradient(right, #000000, #ffffff, #000000, #ffffff);
   background: -o-linear-gradient(right, #ffffff, #000000, #ffffff, #000000);
   background: -moz-linear-gradient(right,#ffffff, #ffffff,#000000, #000000);
