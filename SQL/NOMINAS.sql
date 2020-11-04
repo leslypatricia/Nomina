@@ -91,12 +91,7 @@ COLLATE= UTF8_UNICODE_CI;
 
 create table Jornada(                                                  /*COMMENT 'CREAR LA TABLA JORNADA EN LA BBDD NOMINAS'*/
 Cod_Jornada integer primary key not null                               COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
-Tipo_Jornada varchar(20) not null                                      COMMENT 'CAMPO TIPO DE JORNADA',
-Numero_horas integer not null                                          COMMENT 'CAMPO NUMERO DE HORAS TRABAJADAS',
-Sueldo_Base double not null                                            COMMENT 'SUELDO BASE DE EMPLEADO',
-Sueldo_Hora double not null                                            COMMENT 'SUELDO POR HORA DEL EMPLEADO',
-Porce_Hora_Extra double not null                                       COMMENT 'PORCENTAJE HORA EXTRA',
-Cod_empleados integer                                                  COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA EMPLEADOS'
+Tipo_Jornada varchar(20) not null                                      COMMENT 'CAMPO TIPO DE JORNADA'
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                     COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;
@@ -104,9 +99,14 @@ COLLATE= UTF8_UNICODE_CI;
 create table HoraExtra(                                             /*COMMENT 'CREAR LA TABLA HORA_EXTRA EN LA BBDD NOMINAS'*/
 Cod_HExtra integer primary key NOT NULL                               COMMENT 'COMMENT CAMPO QUE SE USA COMO LLAVE PRIMARIA',
 Cod_Jornada integer                                                   COMMENT 'CAMPO UTILIZADO COMO LLAVE FORANEA',
-Numero_horaextra integer                                              COMMENT 'CANTIDAD DE HORAS EXTRAS DEL EMPLEADO',
 Cod_empleados integer                                                 COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA EMPLEADOS',
-Cod_Tipo_HE integer                                                   COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA TIPOHORAEXTRA', 
+Sueldo_Ordinario integer                                              COMMENT 'SUELDO ORDINARIO DEL EMPLEADO',
+Sueldo_Diario integer                                                 COMMENT 'SUELDO DIARIO DEL  EMPLEADOS',
+Sueldo_Hora integer                                                   COMMENT 'SUELDO HOARA DEL EMPLEADO', 
+Porce_Hora_Extra double not null                                       COMMENT 'PORCENTAJE HORA EXTRA',
+Pago_Hora       double not null                                       COMMENT 'PAGO HORA EXTRA',
+Numero_horas integer not null                                          COMMENT 'CAMPO NUMERO DE HORAS TRABAJADAS',
+Total_HE    integer not null                                          COMMENT 'CAMPO TOTAL DE HE',
 fecha date                                                       COMMENT 'LA FECHA EN QUE SE REALIZÓ LA HORA EXTRA'
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                    COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
@@ -167,8 +167,6 @@ COLLATE= UTF8_UNICODE_CI;
 alter table Empleados ADD FOREIGN KEY (Cod_FormaPago) REFERENCES FormaPago(Cod_FormaPago);
 #Crear llave foranea de Cod_empleados en la tabla HoraExtra con referencia de la tabla Empleados
 alter table HoraExtra ADD FOREIGN KEY (Cod_empleados) REFERENCES Empleados(Cod_empleados);
-#Crear llave foranea de Cod_empleados en la tabla Jornada con referencia de la tabla Empleados
-alter table Jornada add foreign key (Cod_empleados) references Empleados(Cod_empleados);
 #Crear llave foranea de Cod_empleados en la tabla nominaGeneral con referencia de la tabla empleados
 alter table NominaGeneral add  foreign key (Cod_empleados) references Empleados(Cod_empleados);
 #Crear llave foranea de Cod_Aumento en la tabla NominaGeneral con referencia de la tabla Aumento
@@ -183,8 +181,6 @@ alter table NominasPagosComplementarios add  foreign key (Cod_Nomina) references
 alter table NominasPagosComplementarios add  foreign key (Cod_Complementario) references PagoComplementario(Cod_Complementario);
 #Crear llave foranea de Cod_Depto en la tabla Empleados con referencia de la tabla Departamento
 alter table Empleados add  foreign key (Cod_Depto) references Departamento(Cod_Depto);
-#Crear llave foranea de Cod_Tipo_HE en la tabla HoraExtra con referencia de la tabla TipoHoraExtra
-alter table HoraExtra add  foreign key (Cod_Tipo_HE) references TipoHoraExtra(Cod_Tipo_HE);
 #Crear llave foranea de Cod_Empleados en la tabla Usuario con referencia de la tabla Empleados
 alter table Usuario add  foreign key (Cod_empleados) references Empleados(Cod_empleados);
 #Crear llave foranea de Dod_rol en la tabla Usuario con referencia de l atabla rol
@@ -193,6 +189,7 @@ alter table Usuario add  foreign key (Cod_rol) references rol(Cod_rol);
 alter table rolPrivilegios add  foreign key (Cod_rol) references rol(Cod_rol);
 #Crear llave foranea de Cod_Privilegios en la tabla rol_Privilegios con referencia de la tabla privilegios
 alter table rolPrivilegios add  foreign key (Cod_privilegios) references privilegios(Cod_Privilegios);
+alter table HoraExtra ADD FOREIGN KEY (Cod_Jornada) REFERENCES Jornada(Cod_Jornada);
 
 INSERT INTO `rol` (`Cod_rol`, `Descripcion`) VALUES ('1000', 'Administrador'), ('2000', 'Empleado_Normal');
 INSERT INTO `privilegios` (`Cod_privilegios`, `Descripcion`) VALUES ('1', 'Modificacion'), ('2', 'Lectura');

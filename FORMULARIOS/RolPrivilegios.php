@@ -15,10 +15,6 @@ body{
 .from{
 padding:110px;
 background:black;
-	/*  background: -webkit-linear-gradient(right, #000000, #ffffff, #000000, #ffffff);
-  background: -o-linear-gradient(right, #ffffff, #000000, #ffffff, #000000);
-  background: -moz-linear-gradient(right,#ffffff, #ffffff,#000000, #000000);
-  background: linear-gradient(right,  #ffffff, #000000,  #ffffff, #000000);*/
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
@@ -43,38 +39,7 @@ h1{
 	font-size:18px;
 	
 	}
-.btn-btn-primary {
-		width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;
-}
-.btn-btn-success{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
-.btn-btn-info{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
-.btn-btn-danger{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
-.btn-btn-default{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;
-		}
+
 </style>
 </head>
 
@@ -95,7 +60,6 @@ header("location:empleados.php");
 $conexion=mysqli_connect('localhost','root','','nominas')
 ?>
 <br/>
-<button name="Regresar"><i class="fas fa-reply"></i></button>
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <section>
@@ -131,6 +95,7 @@ JOIN privilegios as pri on pri.Cod_privilegios=RP.Cod_privilegios" ;
 </section>
 </center>
 </div>
+<button name="Regresar"><i class="fas fa-reply"></i></button>
 </form>
 </body>
 </html>
