@@ -19,7 +19,10 @@
 body{
 	font-family: 'Open sans';
 	background: #E8E8E8;
-	background-image: url("../IMG/nominas.jpg");
+	background-image: url("../IMG/Fondo10.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
 		/*background-repeat: no-repeat;
 		background-size:1300px;
 		background-position:200px 20px;
@@ -119,6 +122,12 @@ header #button-menu{
 	font-size: 18px;
 	cursor: pointer;
 }
+li{
+	font-size:40px;
+	margin-bottom:35px;	
+	color: blanchedalmond;
+	font-family:Times New Roman;
+	}
 
 .navegacion .submenu li.go-back::before{
 	font: normal normal normal 14px/1 FontAwesome;
@@ -143,23 +152,24 @@ header #button-menu{
 </head>
 <body>
 
+
 <header>
 		<span id="button-menu" class="fa fa-bars"></span>
 
 		<nav class="navegacion">
 			<ul class="menu">
 				<!-- TITULAR -->
-				<li class="title-menu">Menu</li>
+				<li class="title-menu">Menú</li>
 				<!-- TITULAR -->
 				<li class="item-submenu" menu="1">
 					<a href="#"><span class=" icon-menu"></span>Seguridad</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class="icon-menu"></span>Seguridad</li>
-						<li class="go-back">Atras</li>
+						<li class="go-back">Atrás</li>
 						<li><a href="../FORMULARIOS/Usuario1.php">Usuarios</a></li>
                        <li><a href="../FORMULARIOS/rol1.php">Rol</a></li>
                        <li><a href="../FORMULARIOS/Privilegios1.php">Privilegios</a></li>
-                       <li><a href="../FORMULARIOS/RolPrivilegios1.php">Rol_Privilegios</a></li>
+                       <li><a href="../FORMULARIOS/RolPrivilegios1.php">Rol Privilegios</a></li>
 					</ul>
 				</li>
 
@@ -167,7 +177,7 @@ header #button-menu{
 					<a href="#"><span class=" icon-menu"></span>Personal</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Personal</li>
-						<li class="go-back">Atras</li>
+						<li class="go-back">Atrás</li>
 						<li><a href="../FORMULARIOS/Empleados1.php">Empleados</a></li>
                         <li><a href="../FORMULARIOS/Departamento1.php">Departamentos</a></li>
                         <li><a href="../FORMULARIOS/FormaPago1.php">Formas de Pago</a></li>
@@ -175,40 +185,40 @@ header #button-menu{
 					</ul>
 				</li>
 				<li class="item-submenu" menu="3">
-					<a href="#"><span class=" icon-menu"></span>Nomina</a>
+					<a href="#"><span class=" icon-menu"></span>Nómina</a>
 					<ul class="submenu">
-						<li class="title-menu"><span class=" icon-menu"></span>Nomina</li>
+						<li class="title-menu"><span class=" icon-menu"></span>Nómina</li>
 						<li class="go-back">Atras</li>
 
-						<li><a href="../FORMULARIOS/NominaGeneral1.php">Nomina General</a></li>
+						<li><a href="../FORMULARIOS/NominaGeneral1.php">Nómina General</a></li>
 						<li><a href="../FORMULARIOS/Deducciones1.php">Deducciones</a></li>
-						<li><a href="../FORMULARIOS/NominaDeduccion1.php">Nomina Deducciones</a></li>
+						<li><a href="../FORMULARIOS/NominaDeduccion1.php">Nómina Deducciones</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="4">
-					<a href="#"><span class=" icon-menu"></span>Horas Laborales</a>
+					<a href="#"><span class=" icon-menu"></span>Horas laborales</a>
 					<ul class="submenu">
-						<li class="title-menu"><span class=" icon-menu"></span>Horas Laborales</li>
+						<li class="title-menu"><span class=" icon-menu"></span>Horas laborales</li>
 						<li class="go-back">Atras</li>
 						<li><a href="../FORMULARIOS/Jornada1.php">Jornada</a></li>
-						<li><a href="../FORMULARIOS/HoraExtra1.php">Horas Extras</a></li>
-                        <li><a href="../FORMULARIOS/TipoHE1.php">Tipo Hora Extra</a></li>
+						<li><a href="../FORMULARIOS/HoraExtra1.php">Horas extras</a></li>
+                        <li><a href="../FORMULARIOS/TipoHE1.php">Tipo Hora extra</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="5">
-					<a href="#"><span class=" icon-menu"></span>Otos Pagos</a>
+					<a href="#"><span class=" icon-menu"></span>Otros Pagos</a>
 					<ul class="submenu">
-						<li class="title-menu"><span class=" icon-menu"></span>Otos Pagos</li>
-						<li class="go-back">Atras</li>
+						<li class="title-menu"><span class=" icon-menu"></span>Otros Pagos</li>
+						<li class="go-back">Atrás</li>
 
                      <li><a href="../FORMULARIOS/Aumento1.php">Aumento</a></li>
                     <li><a href="../FORMULARIOS/PagosComplementarios1.php">Pagos Complementarios</a></li>
-                     <li><a href="../FORMULARIOS/NominaPagComplementarios1.php">Nomina Pagos Complementarios</a></li>
+                     <li><a href="../FORMULARIOS/NominaPagComplementarios1.php">Nómina Pagos Complementarios</a></li>
 					</ul>
 				</li>
-				<li><a href="../LOG/Menu_Admin.php">ATRAS</a></li>
-				<li><a href="../Index.php"><i class="icono izquierda"></i>Cerrar sesion</a></li>
-				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>Quienes Somos?</a></li>
+				<li><a href="../LOG/Menu_Admin.php">Atrás</a></li>
+				<li><a href="../Index.php"><i class="icono izquierda"></i>Cerrar sesión</a></li>
+				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>¿Quiénes Somos?</a></li>
 			</ul>
 		</nav>
 	</header>

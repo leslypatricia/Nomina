@@ -8,15 +8,15 @@
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <style>
 //-----------------------------------código_css-------------------------------------------------------------------------------/
-body{
-	margin:0;
-	padding:0;
-	box-sizing:border-box;
-}
+
+
+
+
+
 .from{
 	/*width:1000px;
 		padding:40px;*/
-		background:black;
+		
 	/*  background: -webkit-linear-gradient(right, #000000, #ffffff, #000000, #ffffff);
   background: -o-linear-gradient(right, #ffffff, #000000, #ffffff, #000000);
   background: -moz-linear-gradient(right,#ffffff, #ffffff,#000000, #000000);
@@ -24,19 +24,31 @@ body{
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
+	/*font-family:"Arial Black", Gadget, sans-serif;*/
 	color:black;
-	box-shadow:7px 13px 37px #000;
+	/*box-shadow:7px 13px 37px #000;*/
 }
 h1{
 	font-size:50px;
 	margin-bottom:35px;	
 	color: blanchedalmond;
+	font-family:Times New Roman;
 	}
 	
+	th, td {
+	border:none;
+	padding:10px;
+	text-align:center;
+	
+}
+tr:nth-child(even){
+
+background:#F5F5F5;
+}
 .form-group{
 	width:1350px;
-	background:#00ced1;
+	/*background:#00ced1;*/
 	padding:50px;
 	border-radius:6px;
 	margin-bottom:16px
@@ -64,6 +76,21 @@ h1{
 		padding:10px;
 		color:white;
 		font-size:10px;}
+
+.body {
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+
+background-image: url("../IMG/Fondo10.jpg");
+background-repeat: no-repeat;
+background-size:cover;
+background-attachment: fixed;
+}
+
+
 .button{
 	width:80PX;
 		background:#1f53c5;
@@ -85,10 +112,115 @@ h1{
 	font-family:"Arial Black", Gadget, sans-serif;
 	font-size:18px;
 }
+.color-Tabla {
+	background:#ffffff;
+	border-collapse:collapse;
+	/*border-top-left-radius:100px !important;*/
+	/*border-spacing: 0.5rem;  rem unidad de medida*/
+	font-family:Times New Roman ;
+
+
+}
+
+/*iconos*/
+.fa-trash-alt{
+color:red;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-search-plus
+{
+color:#009999;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.boton-eliminar{
+
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.boton-actualizar{
+
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.fa-edit{
+color:green;
+
+
+}
+.boton_Añadir{
+	margin-left:10%;
+	margin-right:36.5%;
+	
+	margin-bottom:1.5%;
+	color: white;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	background:#346BFB;
+	border:solid 1px #346BFB ;
+	text-transform:uppercase;
+	font-weight:bold;
+	letter-spacing:0.06em;
+
+}
+.boton_Añadir:hover{
+	margin-left:10%;
+	margin-right:36.5%;
+	margin-bottom:1.5%;
+	color: white;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	background:#173687;
+	border:solid 1px #346BFB ;
+	text-transform:uppercase;
+	font-weight:bold;
+	letter-spacing:0.06em;
+	cursor:pointer;
+
+}
+
+.Boton-Regresar
+{
+	margin-left:90%;
+	margin-bottom:1.5%;
+	color: white;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	align:center;
+    background:#346BFB;
+	/* */
+	border:solid 1px #346BFB ;
+	text-transform:uppercase;
+	font-weight:bold;
+	letter-spacing:0.06em;
+
+}
+.Estilo-tabla{
+   background:#346BFB;
+   color:white;
+}
 </style>
 </head>
 
-<body>
+<body  class="body">
 <?php
 
 $conexion=mysqli_connect('localhost','root','','nominas')
@@ -203,24 +335,29 @@ header("location:empleados.php");
 }
 ?>
 <form class="from"  id="form1" action= "" method="POST" >
-<button name="Regresar"><i class="fas fa-reply"></i></button>
+
 	<center>
 <div class="form-group">
 	<center>
-	<h1>Tabla Departamentos</h1>
-
-	<button name="Insertar"><i class="fas fa-plus"></i></button>
+	<h1>Departamentos</h1>
 	<div class="form">
-		<label for="caja">Buscar</label>
-		<input type="text" name="caja" id="caja"></input>
+		<center>
+		<input type="text" name="caja" id="caja"> <i class="fas fa-search-plus" class="boton-Buscar"> </i></input>
 	</div>
-	
+
 	</center><br/><br/>
-<table border="1">
-    <tr>
-       <td>Codigo_Departamento</td> 
-       <td>Descripcion</td>
-       <td>Codigo_Jefe</td>
+	<button name="Insertar"  class="boton_Añadir">Añadir Departamento <i class="fas fa-plus"></i></button>
+	<div class="container-table">
+	<center>
+	
+	</center>
+<table border="1"  class="color-Tabla"> 
+    <tr   class="Estilo-tabla">
+       <td>Código Departamento</td> 
+       <td>Descripción</td>
+       <td>Código Jefe</td>
+	   <td>Eliminar</td>
+	   <td>Actualizar</td>
 	</tr>
 	
 	<?php
@@ -252,6 +389,7 @@ $sql="SELECT * from departamento" ;
    </table>
 </div>
 	</center>
+	<button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 </form>
 
     </body>

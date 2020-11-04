@@ -21,7 +21,10 @@
 body{
 	font-family: 'Open sans';
 	background: #E8E8E8;
-	background-image: url("../IMG/nominas.jpg");
+	background-image: url("../IMG/Fondo10.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
 }
 
 header{
@@ -156,12 +159,12 @@ header #button-menu{
 		?>
 			<ul class="menu">
 				<!-- TITULAR -->
-				<li class="title-menu">Menu  de Administrador</li>
+				<li class="title-menu">Menú  de Administrador</li>
 				<!-- TITULAR -->
 				<a href="../FORMULARIOS/Estructura.php">Formularios</a></li>
-				<li><a href="Generar_Planilla.php">Generar_Planilla</a></li>
+				<li><a href="Generar_Planilla.php">Generar Planilla</a></li>
                <li><a href="">Derechos Reservados</a></li>
-                <li><p><a href="../index.php">Cerrar sesion</a></p></li>
+                <li><p><a href="../index.php">Cerrar sesión</a></p></li>
 				<!--<li class="item-submenu" menu="1">
 					<a href="#"><span class="fa fa-suitcase icon-menu"></span>Estrucrura</a>
 					<ul class="submenu">
@@ -202,9 +205,12 @@ header #button-menu{
 				</li>
 				<li><a href="../Index.php"><i class="icono izquierda"></i>Cerrar sesion</a></li>
 				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>Quienes Somos?</a></li>-->
+			
 			</ul>
 		</nav>
 	</header>
+
+	
 
 </body>
 </html>

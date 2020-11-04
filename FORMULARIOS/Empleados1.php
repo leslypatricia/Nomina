@@ -52,7 +52,7 @@ tr:nth-child(even){
 	border-radius:4px;
 	font-family:"Arial Black", Gadget, sans-serif;
 	color:black;
-	box-shadow:7px 13px 37px #000;
+	/*box-shadow:7px 13px 37px #000;*/
 }
 h1{
 	font-size:40px;

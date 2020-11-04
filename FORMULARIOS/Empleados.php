@@ -29,23 +29,27 @@ body{
 	margin-top:-10PX;
 	border-radius:4px;
 	font-family:"Arial Black", Gadget, sans-serif;
-	color:black;
+	color:white;
 	box-shadow:7px 13px 37px #000;
 }
 h1{
 	font-size:50px;
 	margin-bottom:35px;	
 	color: blanchedalmond;
+	font-family:Times New Roman;
+
+
 	}
 	
 .form-group{
 	width:750px;
-	background:#00ced1;
+	/*background:#00ced1;*/
 	padding:20px;
 	border-radius:4px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	/*font-family:"Arial Black", Gadget, sans-serif;*/
+	font-family:Times New Roman;
 	font-size:18px;
 	
 	}
@@ -73,7 +77,46 @@ font-family:"Arial Black", Gadget, sans-serif;
 width: 100%;
 /*style="width: 100%;*/
 }
+/*iconos*/
+.fa-search{
+color:blue;
+background:white;
+border:none;
+font-weight:bold;
 
+}
+.fa-times
+{
+color:red;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-save
+{
+color:purple;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-database{
+color:green;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.Boton-Regresar
+{
+	
+    color:#346BFB;
+	/* */
+	
+
+}
 /*Estilos paginador*/
 </style>
 </head>
@@ -253,9 +296,9 @@ header("location:http://localhost:801/phpmyadmin/");
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
 
-	<tr><td><label>Codigo Empleado<br/></label> </td>
+	<tr><td><label>Código Empleado<br/></label> </td>
 	<td><input type="text" class="form" name="CE" value="<?php echo $codigo?>" /><br/></td></tr>
-	<tr><td>Codigo_Depto<br/> </td>
+	<tr><td>Código Departamento<br/> </td>
 	<td><select name="CD" value="" class="form" >
    <option  class="form"value="1" <?php echo '$codigod';?>>1</option>
    <option  class="form" value="2"<?php echo '$codigod';?>>2</option>
@@ -269,25 +312,25 @@ header("location:http://localhost:801/phpmyadmin/");
  </td></tr>
 	<tr><td>Segundo Nombre<br/> </td>
 	<td><input type="text" class="form"  name="SN" value="<?php echo $SegundoN?>"/></td></tr>
-	<tr><td>Pirmer Apellido<br/> </td>
+	<tr><td>Primer Apellido<br/> </td>
 	<td> <input type="text" class="form"  name="PA" value="<?php echo $PrimerA?>" size="20" maxlength="20"/><br/>
 </td></tr>
 	<tr><td>Segundo Apellido<br/> </td>
 	<td> <input type="text" class="form"  name="SA" value="<?php echo $SegundoA?>" size="20" maxlength="30"/><br/>
 </td></tr>
-	<tr><td>Fecha Nacimiento<br/> </td>
+	<tr><td>Fecha de  Nacimiento<br/> </td>
 	<td> <input id="date" class="form"  type="date" name="FN" value="<?php echo $fechan?>" size="20"  maxlength="30" /><br/>
 </td></tr>
-<tr><td>Fecha_Ingreso<br/> </td>
+<tr><td>Fecha de  Ingreso<br/> </td>
 	<td> <input id="date" class="form"  type="date" name="FI" value="<?php echo $ingreso?>" size="20" maxlength="30" /><br/>
 </td></tr>
-	<tr><td>Correo<br/> </td>
+	<tr><td>Correo Electrónico <br/> </td>
 	<td><input type="email" class="form"  name="correo" value="<?php echo $correo?>" size="20" maxlength="30" /><br/> 
  </td></tr>
-	<tr><td>Direccion<br/> </td>
+	<tr><td>Dirección<br/> </td>
 	<td><input type="text" class="form"  name="Dire" value="<?php echo $direccion?>" size="20" maxlength="30" /><br/>
  </td></tr>
-	<tr><td>Telefono<br/> </td>
+	<tr><td>Teléfono<br/> </td>
 	<td> <input type="number" class="form"  name="tele" value="<?php echo $tel?>" size="15" maxlength="15" /><br/></td></tr>
 	<tr><td>Sexo<br/> </td><td> 
 	<input type="radio" checked name="sexo" value="1" id="sexo" <?php echo '$sexo';?>>F</>
@@ -296,32 +339,34 @@ header("location:http://localhost:801/phpmyadmin/");
 	<tr><td>Nacionalidad<br/> </td>
 	<td> <select name="Nac" class="form" ><br/>
    <option value="1" class="form" <?php echo '$nacionalidad';?> >Hondureña</option>
-   <option value="2" class="form" <?php echo '$nacionalidad';?>>Extrajero</option>
+   <option value="2" class="form" <?php echo '$nacionalidad';?>>Extranjero</option>
 </select><br/></td></tr>
 
-	<tr><td>Sueldo_Base<br/> </td>
+	<tr><td>Sueldo Base<br/> </td>
 	<td>
 <input type="text" name="SB" class="form"  value="<?php echo $sueldob?>" size="15" maxlength="15" /><br/>
  </td></tr>
-	<tr><td>Cuenta Bancaria<br/> </td>
+	<tr><td> Número de cuenta Bancaria<br/> </td>
 	<td> <input type="text" class="form"  name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" /><br/>
 </td></tr>
-	<tr><td>Fecha Deducciones<br/> </td>
+	<tr><td>Fecha de Deducciones<br/> </td>
 	<td> <input id="date" class="form"  type="date" name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  /><br/>
 </td></tr>
-	<tr><td>CodFormaPago<br/> </td>
+	<tr><td>Código Forma de Pago<br/> </td>
 	<td><select name="FP" class="form" >
    <option value="1" class="form"  <?php echo '$formapago';?>>1</option>
    <option value="2" class="form"  <?php echo '$formapago';?>>2</option>
 </select><br/> </td></tr>
 </table>
-
-<button name="Regresar"><i class="fas fa-reply"></i></button>
+<br>
+<button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
 <button name="BD"><i class="fas fa-database"></i></button>
 <br>
-<label>Cod_Empleado:</label>
+
+<br>
+<label>Código de Empleado:</label>
 <input type="text" name="CEE" value="" size="5" maxlength="5" />
 <button name="buscar"><i class="fas fa-search"></i></button>
 
