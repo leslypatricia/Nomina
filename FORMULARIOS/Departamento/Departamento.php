@@ -68,7 +68,7 @@ $consulta="insert into departamento(Cod_Depto,Descripcion,Cod_Jefe)
  if (mysqli_query($conexion, $consulta)) {
      echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='Departamento.php';
+	  window.location='Departamento1.php';
 	  </script>";
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);

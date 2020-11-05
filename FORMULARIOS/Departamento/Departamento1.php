@@ -46,26 +46,6 @@ background:#F5F5F5;
 	font-size:18px;
 	
 	}
-.btn-btn-primary {
-		width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;
-}
-.btn-btn-success{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
-.btn-btn-info{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
-
 .body {
 
 margin:0;
@@ -208,7 +188,6 @@ $conexion=mysqli_connect('localhost','root','','nominas')
 
 <input type="hidden" id="CE" value="<?php echo $codigo;?>">
 
-
 <?php
 if (isset($_POST["Regresar"])){
 header("location:../estructura.php");
@@ -219,25 +198,26 @@ if (isset($_POST["Insertar"])){
 header("location:Departamento.php");
 }
 ?>
-<form class="from"  id="form1" action= "" method="POST" >
 
+<div class="Container">
 	<center>
-<div class="form-group">
-	<center>
-	<h1>Departamentos</h1>
-	<div class="form">
-		<center>
-		<input type="text" name="caja" id="caja"> <i class="fas fa-search-plus" class="boton-Buscar"> </i></input>
-	</div>
-
+  <div class="form-group">
+	 <center>
+	 <h1>Aumento</h1>
+	  <div class="form">
+	  <form class="from"  id="form1" action= "" method="POST" >
+		   <label for="caja"> </label>
+		  <input type="text" name="caja" id="caja" aling="center" >   <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>
+		</div>
+	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Departamento <i class="fas fa-plus"></i></button>
+	<button name="Insertar"  class="boton_Añadir">Añadir Departamento  <i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
 	
-	</center>
-<table border="1"  class="color-Tabla"> 
-    <tr   class="Estilo-tabla">
+<table border="1" class="color-Tabla">
+
+    <tr class="Estilo-tabla">
        <td>Código Departamento</td> 
        <td>Descripción</td>
        <td>Código Jefe</td>
@@ -250,25 +230,28 @@ $sql="SELECT * from departamento" ;
 
 	$res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
-		echo'
-		<tr>
-		<td>'.$mostrar['Cod_Depto'].'</td>
-		<td>'.$mostrar['Descripcion'].'</td>
-		<td>'.$mostrar['Cod_Jefe'].'</td>
-		<td><button name="Eliminar" class=""><i class="far fa-trash-alt"></i></button></td>
-		<td><button name="Actualizar"><i class="fas fa-edit"></i></button></td>
-		</tr>	
-';
+		echo "<tr>";
+		echo "<td>";echo $mostrar['Cod_Depto']; echo"</td>";
+		echo "<td>";echo $mostrar['Descripcion']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_Jefe']; echo"</td>";
+		echo "<td><a href='Eliminar.php?CD=".$mostrar['Cod_Depto']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
+		echo "<td><a href='Actualizar.php?CD=".$mostrar['Cod_Depto']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+		echo "</td>";
 	?>
 
 <?php
 }
 ?>
-   </table>
-</div>
-	</center>
-	<button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
-</form>
+ </div class="color-Tabla">
+</center>
+   </table> 
 
+	</center>
+	<td><button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
+	</div>
+	</div>
+    </form>
+</div>
+<br>
     </body>
     </html>

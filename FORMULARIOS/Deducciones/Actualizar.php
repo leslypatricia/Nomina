@@ -1,6 +1,6 @@
 <?php
-$con=consulta($_GET['CE']);
-function consulta($cod){
+$con=consulta($_GET['CD']);
+function consulta($CD){
 		$db_host="localhost";
 		$db_usuario="root";
 		$db_contra="";
@@ -8,32 +8,18 @@ function consulta($cod){
 		
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-	/*	$sentencia="SELECT * FROM empleados where Cod_empleados='".$cod."'";*/
-		$sentencia="SELECT Primer_Nombre,Segundo_Apellido,Telefono,
-        Fecha_ingreso,Sueldo_base,Cod_FormaPago,Cod_Depto
-        FROM empleados WHERE Cod_empleados='".$cod."' " ;
+		$sentencia="SELECT * FROM deducciones where Cod_Deducciones='".$CD."'";
+	
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
 $mostrar=$res->fetch_assoc();
 		return[	
-			$mostrar['Cod_empleados'],
-			/*$mostrar['Identidad'],*/
-			$mostrar['Primer_Nombre'],
-			/*$mostrar['Segundo_Nombre'],*/
-			/*$mostrar ['Primer_Apellido'],*/
-			$mostrar['Segundo_Apellido'],
-			/*$mostrar['Fecha_nacimiento'],*/
-			/*$mostrar['Correo'],*/
-			/*$mostrar['Direccion'],*/
-			$mostrar['Telefono'],
-			/*$mostrar['Sexo'],*/
-			/*$mostrar['Cuenta_Bancaria'],*/
-			$mostrar['Fecha_ingreso'],
-			/*$mostrar['Nacionalidad'],*/
-			/*$mostrar['Fecha_Deduccion'],*/
-			$mostrar['Sueldo_base'],
-			$mostrar['Cod_FormaPago'],
-			$mostrar['Cod_Depto']
+			$mostrar['Cod_Deducciones'],
+			$mostrar['Descripcion'],
+			$mostrar['Porcentaje'],
+			$mostrar['Valor'],
+			$mostrar['fijo']
+		
 
 		];
 	}
@@ -118,23 +104,12 @@ width: 100%;
 //---------------------------------------------Código para limpiar -------------------------------------------------------------//
 
 $codigo="";
-$Identidad="";
-$PrimerN="";
-$SegundoN="";
-$PrimerA="";
-$SegundoA="";
-$fechan="";
-$correo="";
-$direccion="";
-$tel="";
-$sexo="";
-$Cuenta="";
-$ingreso="";
-$nacionalidad="";
-$fechad="";
-$sueldob="";
-$formapago="";
-$codigod="";
+$Descripcion="";
+$Porcentaje="";
+$valor="";
+$fijo="";
+
+
 
 
 ?>
@@ -142,31 +117,18 @@ $codigod="";
 
 //------Código para el botón Limpiar------//
 if (isset($_POST["limpiar"])){	
-$codigo="";
-$Identidad="";
-$PrimerN="";
-$SegundoN="";
-$PrimerA="";
-$SegundoA="";
-$fechan="";
-$correo="";
-$direccion="";
-$tel="";
-$sexo="";
-$Cuenta="";
-$ingreso="";
-$nacionalidad="";
-$fechad="";
-$sueldob="";
-$formapago="";
-$codigod="";
-
+	$codigo="";
+	$Descripcion="";
+	$Porcentaje="";
+	$valor="";
+	$fijo="";
+	
 }
 
 ?>
 <?php
 if (isset($_POST["Regresar"])){
-header("location:Empleado/Empleados1.php");
+header("location:../Deducciones/Deducciones1.php");
 }
 ?>
 <?php
@@ -175,69 +137,29 @@ header("location:http://localhost:801/phpmyadmin/");
 }
 ?>
 
-
-<form class="from"  id="form1" action= "Actualizar2.php" method="POST" >
+<form class="from"  id="form1" action="Actualizar2.php" method="POST">
 <center>
-<h1>Formulario Empleado</h1>
+<h1>Formulario Deducciones</h1>
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
-	<tr><td><label>Codigo Empleado<br/></label> </td>
-	<td><input type="text" class="form" name="CE" value="<?php echo $con[0]; echo $codigo?>"><br/></td></tr>
-	<tr><td>Codigo_Depto<br/> </td>
-	<td><select name="CD" value="" class="form" >
-   <option  class="form"value="<?php echo $con[7]; echo '$codigod';?>">1</option>
-   <option  class="form" value="<?php echo $con[7]; echo '$codigod';?>">2</option>
-   <option  class="form" value="<?php echo $con[7]; echo '$codigod';?>">3</option>
-</select> </td></tr>
-<!--<tr><td>Identidad<br/> </td>
-<td> <input type="text" class="form"  name="id" value="<?php /*echo $consulta[1];*/ echo $Identidad?>" size="15" maxlength="15" /><br/></td></tr>-->
-	<tr><td>Primer Nombre<br/> </td>
-<td><input type="text" class="form"  name="PN" value="<?php echo $con[1]; echo $PrimerN?>" size="20" maxlength="20"/><br/></td></tr>
-<!--<tr><td>Segundo Nombre<br/> </td>
-<td><input type="text" class="form"  name="SN" value="<?php /*echo $consulta[3];*/ echo $SegundoN?>"/></td></tr>
-	<tr><td>Pirmer Apellido<br/> </td>
-<td> <input type="text" class="form"  name="PA" value="<?php /*echo $consulta[4];*/ echo $PrimerA?>" size="20" maxlength="20"/><br/></td></tr>-->
-	<tr><td>Segundo Apellido<br/> </td>
-<td> <input type="text" class="form"  name="SA" value="<?php echo $con[2]; echo $SegundoA?>" size="20" maxlength="30"/><br/></td></tr>
-<!--
-	<tr><td>Fecha Nacimiento<br/> </td>
-	<td> <input id="date" class="form"  type="date" name="FN" size="20"  maxlength="30" value="<?php  /*echo $consulta[6];*/ echo $fechan?>"><br/>
-</td></tr>-->
-<tr><td>Fecha_Ingreso<br/> </td>
-	<td> <input id="date" class="form"  type="date" name="FI" size="20" maxlength="30"  value="<?php echo $con[4]; echo $ingreso?>"><br/>
-</td></tr>
-	<!--<tr><td>Correo<br/> </td>
-	<td><input type="email" class="form"  name="correo" value="<?php /*echo $consulta[7];*/ echo $correo?>" size="20" maxlength="30" /><br/> 
- </td></tr>
-	<tr><td>Direccion<br/> </td>
-	<td><input type="text" class="form"  name="Dire" value="<?php /*echo $consulta[8];*/ echo $direccion?>" size="20" maxlength="30" /><br/>
- </td></tr>-->
-	<tr><td>Telefono<br/> </td>
-	<td> <input type="number" class="form"  name="tele" size="15" maxlength="15" value="<?php echo $con[3]; echo $tel?>"><br/></td></tr>
-	<!--<tr><td>Sexo<br/> </td><td> 
-	<input type="radio" checked name="sexo" value="1" id="sexo" <?php /*echo $consulta[10];*/ echo '$sexo';?>>F</>
-    <input type="radio" checked   name="sexo" value="0"  id="sexo"<?php /*echo $consulta[10];*/ echo '$sexo';?>>M</><br/></td></tr>
 
-	<tr><td>Nacionalidad<br/> </td>
-	<td> <select name="Nac" class="form" ><br/>
-   <option value="1" class="form" <?php /*echo $consulta[13];*/ echo '$nacionalidad';?> >Hondureña</option>
-   <option value="2" class="form" <?php /*echo $consulta[13];*/ echo '$nacionalidad';?>>Extrajero</option>
-</select><br/></td></tr>-->
+<tr><td><label>Codigo Deducciones:</label></td>
+<td><input type="text" name="CD" value="<?php echo $con[0]; echo $codigo;?>" size="5" maxlength="5" /></td></tr>
 
-	<tr><td>Sueldo_Base<br/> </td>
-<td><input type="text" name="SB" class="form" size="15" maxlength="15"  value="<?php echo $con[5]; echo $sueldob?>"><br/></td></tr>
-	<!--<tr><td>Cuenta Bancaria<br/> </td>
-	<td> <input type="text" class="form"  name="CB" value="<?php /*echo $consulta[11];*/ echo  $Cuenta?>" size="20" maxlength="30" /><br/>
-</td></tr>
-	<tr><td>Fecha Deducciones<br/> </td>
-	<td> <input id="date" class="form"  type="date" name="FD" value="<?php /*echo $consulta[14];*/ echo $fechad?>" size="20"  maxlength="30"  /><br/>
-</td></tr>-->
-	<tr><td>CodFormaPago<br/> </td>
-	<td><select name="FP" class="form" >
-   <option  class="form" value="1 <?php echo $con[6]; echo '$formapago';?>">1</option>
-   <option  class="form"  value="1 <?php echo $con[6]; echo '$formapago';?>">2</option>
-</select><br/> </td></tr>
+<tr><td><label>Descripcion:</label></td>
+<td><input type="text" name="D" value="<?php echo $con[1]; echo $Descripcion;?>" size="15" maxlength="15" /></td></tr>
+
+<tr><td><label>Porcentaje:</label></td>
+<td><input type="text" name="P" value="<?php echo $con[2]; echo $Porcentaje;?>" size="20" maxlength="20"/></td></tr>
+
+<tr><td><label>Valor:</label></td>
+<td><input type="text" name="V" value="<?php echo $con[3]; echo $valor;?>" size="20" maxlength="20" /></td></tr>
+
+<tr><td><label>Fijo:</label></td>
+<td><input type="text" name="F" value="<?php echo $con[4]; echo $fijo;?>" size="20" maxlength="30" /></td></tr>
+<br/>
+
 </table>
 
 <button name="Regresar"><i class="fas fa-reply"></i></button>

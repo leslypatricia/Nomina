@@ -76,7 +76,7 @@ $consulta="INSERT INTO aumento (Cod_Aumento,Porcentaje_aumento,Año,Descripcion,
      echo "<script>
      
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='Aumento.php';
+	  window.location='Aumento1.php';
 	  </script>";
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
@@ -87,7 +87,6 @@ $consulta="INSERT INTO aumento (Cod_Aumento,Porcentaje_aumento,Año,Descripcion,
 
 ?>
 
-
 <?php
 $db_host="localhost";
 $db_usuario="root";
@@ -95,8 +94,6 @@ $db_contra="";
 $db_nombre="nominas";
 
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
  
 if (isset($_POST["buscar"])){
 
@@ -144,26 +141,26 @@ header("location:http://localhost:801/phpmyadmin/");
 }
 ?>
 
-<form class="from"  id="form1" action="#" method="POST">
+<form class="from"  id="form1" action="" method="POST">
 <center>
 <h1>Formulario Aumento</h1>
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
 <tr><td><label>Codigo Aumento:</label></td>
-<td><input type="text" name="CA" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
+<td><input type="text" name="CA" size="5" maxlength="5" value="<?php echo $codigo?>"></td></tr>
 
 <tr><td><label>Porcentage Aumento:</label></td>
-<td><input type="text" name="PA" value="<?php echo $Porcentaje?>" size="15" maxlength="15" /></td></tr>
+<td><input type="text" name="PA" size="15" maxlength="15" value="<?php echo $Porcentaje?>"></td></tr>
 
 <tr><td><label>Año:</label></td>
-<td><input type="date" name="ANNO" value="<?php echo $ANNO?>" size="20" maxlength="20"/></td></tr>
+<td><input type="date" id="date" name="ANNO" size="20" maxlength="20" value="<?php echo $año?>"></td></tr>
 
 <tr><td><label>Descripcion:</label></td>
-<td><input type="text" name="D" value="<?php echo $Descripcion?>" size="20" maxlength="20" /></td></tr>
+<td><input type="text" name="D" size="20" maxlength="20"  value="<?php echo $Descripcion?>"></td></tr>
 
 <tr><td><label>Aplicado:</label></td>
-<td><input type="text" name="A" value="<?php echo $Aplicado?>" size="20" maxlength="30" /></td></tr>
+<td><input type="text" name="A" size="20" maxlength="30" value="<?php echo $Aplicado?>"></td></tr>
 <br/>
 <br/>
 </table>

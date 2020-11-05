@@ -9,7 +9,7 @@ function consulta($CE){
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
 	/*	$sentencia="SELECT * FROM empleados where Cod_empleados='".$cod."'";*/
-		$sentencia="SELECT Primer_Nombre,Segundo_Apellido,Telefono,
+		$sentencia="SELECT Cod_empleados,Primer_Nombre,Segundo_Apellido,Telefono,
         Fecha_ingreso,Sueldo_base,Cod_FormaPago,Cod_Depto
         FROM empleados WHERE Cod_empleados='".$CE."' " ;
 

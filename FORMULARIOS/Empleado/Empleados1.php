@@ -37,21 +37,11 @@ tr:nth-child(even){
 }
  
 .from{
-	/*width:1000px;
-		padding:40px;*/
-		/*background:black;*/
-	
-	
-	/*  background: -webkit-linear-gradient(right, #000000, #ffffff, #000000, #ffffff);
-  background: -o-linear-gradient(right, #ffffff, #000000, #ffffff, #000000);
-  background: -moz-linear-gradient(right,#ffffff, #ffffff,#000000, #000000);
-  background: linear-gradient(right,  #ffffff, #000000,  #ffffff, #000000);*/
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
 	font-family:"Arial Black", Gadget, sans-serif;
 	color:black;
-	/*box-shadow:7px 13px 37px #000;*/
 }
 h1{
 	font-size:40px;
@@ -61,7 +51,6 @@ h1{
 	}
 	
 .form-group{
-	/*background:#00ced1;*/
 	padding:50px;
 	border-radius:6px;
 	margin-bottom:16px;
@@ -208,9 +197,7 @@ header("location:Empleados.php");
 	
 <table border="1" class="color-Tabla">
 
-
     <tr class="Estilo-tabla">
-
        <td>Código Empleado</td> 
        <td>Primer Nombre</td>
        <td>Segundo Apellido</td>
@@ -243,7 +230,7 @@ JOIN departamento as dep on ep.Cod_Depto=dep.Cod_Depto" ;
 		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_empleados']."'><button name='Eliminar' class='boton-eliminar' ><i class='far fa-trash-alt'></a></i></button></td>";
 		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_empleados']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 		echo "</tr>";
-			?>
+			
 	?>
 
 <?php

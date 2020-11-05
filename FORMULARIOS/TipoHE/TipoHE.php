@@ -169,9 +169,6 @@ header("location:http://localhost:801/phpmyadmin/");
 ?>
 
 
-
-
-
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Formulario Tipo de Hora Extra</h1>

@@ -180,7 +180,7 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
      echo "<script>
      
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='Empleados.php';
+	  window.location='Empleados1.php';
 	  </script>";
 } else {
     /*  echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/

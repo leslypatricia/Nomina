@@ -94,7 +94,7 @@ $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 if (isset($_POST["crs"])){
 $CU=$_POST['CU'];
 $U=$_POST['usuario'];
-$P=$_POST['Password'];
+$P=$_POST['P'];
 $C=$_POST['correo'];
 $crol=$_POST['CR'];
 $empleado=$_POST['CE'];
@@ -199,7 +199,7 @@ header("location:http://localhost:801/phpmyadmin/");
 <td><input type="text" name="usuario" value="<?php echo $usuario?>" size="15" maxlength="15" /></td></tr>
 
 <tr><td><label>Password:</label></td>
-<td><input type="Password" id="Password" name="CJ" value="<?php echo $pass?>" size="20" maxlength="20"/></td></tr>
+<td><input type="Password" id="Password" name="P" value="<?php echo $pass?>" size="20" maxlength="20"/></td></tr>
 
 <tr><td><label>Correo:</label></td>
 <td><input type="text"  name="correo" value="<?php echo $correo?>" size="20" maxlength="20"/></td></tr>

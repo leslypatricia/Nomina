@@ -9,51 +9,150 @@
 <style>
 /*-----------------------------------código_css-------------------------------------------------------------------------------*/
 body{
-	margin:0;
-	padding:0;
+    margin:0;
+    padding:0;
 	box-sizing:border-box;
+   /* background:black;*/
+    height:100%;
+	width:100%;
+	background-image: url("../../IMG/Fondo10.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
 }
+
+th, td {
+	border:none;
+	padding:10px;
+	text-align:center;
+}
+tr:nth-child(even){
+
+	background:#F5F5F5;
+}
+ 
 .from{
-	background:black;
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
 	font-family:"Arial Black", Gadget, sans-serif;
 	color:black;
-	box-shadow:7px 13px 37px #000;
 }
 h1{
-	font-size:50px;
+	font-size:40px;
 	margin-bottom:35px;	
 	color: blanchedalmond;
+	font-family:Times New Roman;
 	}
 	
 .form-group{
-	width:1350px;
-	background:#00ced1;
 	padding:50px;
 	border-radius:6px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
 	font-family:"Arial Black", Gadget, sans-serif;
 	font-size:18px;
-	
 	}
-.button{
-	width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;}
+.color-Tabla {
+	background:#ffffff;
+	border-collapse:collapse;
+	/*border-top-left-radius:100px !important;*/
+	/*border-spacing: 0.5rem;  rem unidad de medida*/
+	font-family:Times New Roman ;
 
-.form-group1 {	width:750px;
-	background:#00ced1;
-	padding:10px;
-	border-radius:4px;
-	margin-bottom:16px;
-	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
-	font-size:18px;
+
+}
+/*iconos*/
+.fa-trash-alt{
+color:red;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-search-plus
+{
+color:#009999;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.boton-eliminar{
+
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.boton-actualizar{
+
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.fa-edit{
+color:green;
+
+
+}
+.boton_Añadir{
+	margin-left:10%;
+	margin-bottom:1.5%;
+	color: white;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	background:#346BFB;
+	border:solid 1px #346BFB ;
+	text-transform:uppercase;
+	font-weight:bold;
+	letter-spacing:0.06em;
+
+}
+.Boton-Regresar
+{
+	margin-left:90%;
+	margin-bottom:1.5%;
+	color: white;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	align:center;
+    background:#346BFB;
+	/* */
+	border:solid 1px #346BFB ;
+	text-transform:uppercase;
+	font-weight:bold;
+	letter-spacing:0.06em;
+
+}
+.Estilo-tabla{
+   background:#346BFB;
+   color:white;
+}
+
+.boton_Añadir:hover{
+	margin-left:10%;
+	margin-bottom:1.5%;
+	color: white;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	background:#173687;
+	border:solid 1px #346BFB ;
+	text-transform:uppercase;
+	font-weight:bold;
+	letter-spacing:0.06em;
+	cursor:pointer;
+
 }
 </style>
 </head>
@@ -76,26 +175,32 @@ if (isset($_POST["Insertar"])){
 header("location:NominaGeneral.php");
 }
 ?>
-<form class="from"  id="form1" action= "" method="POST" >
+<div class="Container">
 	<center>
-<div class="form-group">
-	<center>
-	<h1>Tabla Nomina General</h1>
-
-	<button name="Insertar"><i class="fas fa-plus"></i></button>
-	<div class="form">
-		<label for="caja">Buscar</label>
-		<input type="text" name="caja" id="caja"></input>
-	</div>
+  <div class="form-group">
+	 <center>
+	 <h1>Aumento</h1>
+	  <div class="form">
+	  <form class="from"  id="form1" action= "" method="POST" >
+		   <label for="caja"> </label>
+		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>
+		</div>
 	
 	</center><br/><br/>
-<table border="1">
-    <tr>
+	<button name="Insertar"  class="boton_Añadir">Añadir Hora Extra  <i class="fas fa-plus"></i></button>
+	<div class="container-table">
+	<center>
+	
+<table border="1" class="color-Tabla">
+
+    <tr class="Estilo-tabla">
        <td>Codigo_Nomina</td> 
        <td>Codigo_Empleado</td>
        <td>Codigo_Aumento</td>
        <td>Total</td>
-       <td>Fecha_Generada</td>
+	   <td>Fecha_Generada</td>
+	   <td>Eliminar</td>
+	   <td>Actualizar</td>
 	</tr>
 	
 	<?php
@@ -107,28 +212,32 @@ JOIN aumento as a on ng.Cod_Aumento=a.Cod_Aumento" ;
 
 	$res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
-		echo'
-		<tr>
-		<td>'.$mostrar['Cod_Nomina'].'</td>
-		<td>'.$mostrar['Cod_empleados'].'</td>
-		<td>'.$mostrar['Cod_Aumento'].'</td>
-		<td>'.$mostrar['Total'].'</td>
-		<td>'.$mostrar['Fecha_Generada'].'</td>
-		<td><button name="Eliminar" class=""><i class="far fa-trash-alt"></i></button></td>
-		<td><button name="Actualizar"><i class="fas fa-edit"></i></button></td>
-		</tr>
+		echo "<tr>";
+		echo "<td>";echo $mostrar['Cod_Nomina']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_Aumento']; echo"</td>";
+		echo "<td>";echo $mostrar['Total']; echo"</td>";
+		echo "<td>";echo $mostrar['Fecha_Generada']; echo"</td>";
+		echo "<td><a href='Eliminar.php?CN=".$mostrar['Cod_Nomina']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
+	    echo "<td><a href='Actualizar.php?CN=".$mostrar['Cod_Nomina']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+	   echo "<tr>";
 		
-';
 	?>
 
 <?php
 }
 ?>
-   </table>
-</div>
-	</center>
-	<button name="Regresar"><i class="fas fa-reply"></i></button>
-</form>
+ </div class="color-Tabla">
+</center>
+   </table> 
 
+	</center>
+	<br/>
+	<td><button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
+	</div>
+	</div>
+    </form>
+</div>
+<br>
     </body>
     </html>

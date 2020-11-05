@@ -1,7 +1,7 @@
 
 <?php
-Modificar($_POST['CE'],$_POST['PN'],$_POST['SA'],$_POST['tele'],$_POST['FI'],$_POST['SB'],$_POST['FP'],$_POST['CD']);
-function Modificar($cod,$P,$S,$T,$F,$B,$CP,$D){
+Modificar($_POST['CD'],$_POST['D'],$_POST['P'],$_POST['V'],$_POST['F']);
+function Modificar($CD,$D,$P,$V,$F){
 	$db_host="localhost";
 	$db_usuario="root";
 	$db_contra="";
@@ -9,14 +9,13 @@ function Modificar($cod,$P,$S,$T,$F,$B,$CP,$D){
 	
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-$sentencia="UPDATE empleados SET Primer_Nombre='".$P."',Segundo_Apellido='".$S."',
-Telefono='".$T."',Fecha_ingreso='".$F."',Sueldo_base='".$B."',Cod_FormaPago='".$CP."',
-Cod_Depto='".$D."' WHERE Cod_empleados='".$cod."'";
+$sentencia="UPDATE deducciones SET Descripcion='".$D."',Porcentaje='".$P."',
+Valor='".$V."',fijo='".$F."' WHERE Cod_Deducciones='".$CD."'";
 $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexion));
 }
 
 ?>
 <script type="text/javascript">
 alert("Datos Actualizados del Empleado ");
-window.location="empleados1.php";
+window.location="Deducciones1.php";
 </script>
