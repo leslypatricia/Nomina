@@ -7,20 +7,72 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <style>
-body{
-	margin:0;
-	padding:0;
-	box-sizing:border-box;
+body {
+margin:0;
+padding:0;
+box-sizing:border-box;
+background-image: url("../../IMG/Fondo10.jpg");
+background-repeat: no-repeat;
+background-size:cover;
+background-attachment: fixed;
+}
+
+
+/*iconos*/
+.fa-search{
+color:blue;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-times
+{
+color:red;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-save
+{
+color:purple;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-database{
+color:green;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.Boton-Regresar
+{
+	
+    color:#346BFB;
+	/* */
+	
+
+}
+
+.fa-edit{
+color:green;
+
+
 }
 .from{
 padding:110px;
-background:black;
+/*background:black;*/ /*color negro de fondo 
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
 	font-family:"Arial Black", Gadget, sans-serif;
 	color:black;
-	box-shadow:7px 13px 37px #000;
+	/*box-shadow:7px 13px 37px #000;*/
 }
 h1{
 	font-size:50px;
@@ -30,15 +82,27 @@ h1{
 	
 .form-group{
 	width:900px;
-	background:#00ced1;
+	/*background:#00ced1;*/ /*es del color azul*/
 	padding:20px;
 	border-radius:4px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:"Time New Roman";
 	font-size:18px;
+	color:white;
 	
 	}
+	/*color-tabla ; para la letra*/
+	/*.color-Tabla {
+	background:#ffffff;
+	border-collapse:collapse;
+	/*border-top-left-radius:100px !important;*/
+	/*border-spacing: 0.5rem;  rem unidad de medida*/
+	/*font-family:Times New Roman ;   }*/
+
+
+
+
 </style>
 </head>
 
@@ -135,16 +199,13 @@ header("location:http://localhost:801/phpmyadmin/");
 <h1>Formulario Departamento</h1>
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
+<center>
+<tr><td><label>Código Departamentos:</label></td><td><input type="text"   aling="center"  name="CD" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
 
-<tr><td><label>Codigo Departamentos:</label></td>
-<td><input type="text" name="CD" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
+<tr><td><label>Descripción:</label></td><td><input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" /></td></tr>
 
-<tr><td><label>Descripcion:</label></td>
-<td><input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" /></td></tr>
-
-<tr><td><label>Codigo Jefe:</label></td>
-<td><input type="text" name="CJ" value="<?php echo $jefe?>" size="20" maxlength="20"/></td></tr>
-
+<tr><td><label>Código Jefe:</label></td><td><input type="text" name="CJ" value="<?php echo $jefe?>" size="20" maxlength="20"/></td></tr>
+</center>
 </table>
 <center>
 <br/><br/>

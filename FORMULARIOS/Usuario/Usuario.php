@@ -11,19 +11,18 @@ body{
 	margin:0;
 	padding:0;
 	box-sizing:border-box;
+	background-image: url("../../IMG/Fondo10.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
 }
 .from{
 padding:110px;
-background:black;
-	/*  background: -webkit-linear-gradient(right, #000000, #ffffff, #000000, #ffffff);
-  background: -o-linear-gradient(right, #ffffff, #000000, #ffffff, #000000);
-  background: -moz-linear-gradient(right,#ffffff, #ffffff,#000000, #000000);
-  background: linear-gradient(right,  #ffffff, #000000,  #ffffff, #000000);*/
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
-	font-family:"Arial Black", Gadget, sans-serif;
-	color:black;
+	font-family:"Times New Roman";
+	color:white;
 	box-shadow:7px 13px 37px #000;
 }
 h1{
@@ -34,12 +33,12 @@ h1{
 	
 .form-group{
 	width:900px;
-	background:#00ced1;
+	/*background:#00ced1;*/ /*color azul*/
 	padding:20px;
 	border-radius:4px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:"Times New Roma";
 	font-size:18px;
 	
 	}
@@ -49,6 +48,47 @@ h1{
 		padding:10px;
 		color:white;
 		font-size:10px;
+}
+
+/*iconos*/
+.fa-search{
+color:blue;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-times
+{
+color:red;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-save
+{
+color:purple;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-database{
+color:green;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.Boton-Regresar
+{
+	
+    color:#346BFB;
+	/* */
+	
+
 }
 .btn-btn-success{
 	width:80PX;
@@ -192,7 +232,7 @@ header("location:http://localhost:801/phpmyadmin/");
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
 
-<tr><td><label>Codigo Usuario:</label></td>
+<tr><td><label>Código Usuario:</label></td>
 <td><input type="text" name="CU" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
 
 <tr><td><label>Usuario:</label></td>
@@ -204,10 +244,10 @@ header("location:http://localhost:801/phpmyadmin/");
 <tr><td><label>Correo:</label></td>
 <td><input type="text"  name="correo" value="<?php echo $correo?>" size="20" maxlength="20"/></td></tr>
 
-<tr><td><label>Codigo Rol:</label></td>
+<tr><td><label>Código Rol:</label></td>
 <td><input type="text"  name="CR" value="<?php echo $rol?>" size="20" maxlength="20"/></td></tr>
 
-<tr><td><label>Codigo Empleado:</label></td>
+<tr><td><label>Código Empleado:</label></td>
 <td><input type="text" name="CE" value="<?php echo $empleado?>" size="20" maxlength="20"/></td></tr>
 <br/>
 </table>

@@ -7,6 +7,7 @@
 <script src="bd/jquery-3.5.1.min.js"></script>
 <style>
 *{
+
 	box-sizing:border-box;
 	margin:0;
 	padding:0;
@@ -45,7 +46,7 @@ li:hover{
 }
 .contenido{
 	width:100%;
-	height:100$;
+	height:100%;
 	background:#ide;
 	position:absolute;
 	transition:all .3s;
