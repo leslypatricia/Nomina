@@ -162,7 +162,7 @@ header #button-menu{
 				<li class="title-menu">Menú  de Administrador</li>
 				<!-- TITULAR -->
 				<a href="../FORMULARIOS/Estructura.php">Formularios</a></li>
-				<li><a href="Generar_Planilla.php">Generar Planilla</a></li>
+				<li><a href="../FORMULARIOS/NominaGeneral/Nomina.php">Generar Planilla</a></li>
                <li><a href="">Derechos Reservados</a></li>
                 <li><p><a href="../index.php">Cerrar sesión</a></p></li>
 				<!--<li class="item-submenu" menu="1">

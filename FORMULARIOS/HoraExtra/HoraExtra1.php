@@ -6,6 +6,11 @@
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>	
 <style>
 /*-----------------------------------código_css-------------------------------------------------------------------------------*/
 body{
@@ -176,18 +181,20 @@ if (isset($_POST["Insertar"])){
 header("location:HoraExtra.php");
 }
 ?>
-  <div class="Container">
+
+ <div class="Container">
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Hora Extra</h1>
+	 <h1>Tabla Horas Extras</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
-		   <label for="caja"> </label>
-		  <input type="text" name="caja" id="caja" aling="center" >   <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>
+		<!--   <label for="caja"> </label>
+		  <input type="text" name="caja" id="caja" aling="center" >   <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>-->
 		</div>
+	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Aumento  <i class="fas fa-plus"></i></button>
+	<button name="Insertar"  class="boton_Añadir">Añadir Horas Extras  <i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
 	
@@ -243,11 +250,10 @@ JOIN empleados as ep on ex.Cod_empleados=ep.Cod_empleados " ;
 </div class="color-Tabla">
 </center>
    </table> 
-
+</div>
 	</center>
 	<td><button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
-	</div>
-	</div>
+
     </form>
 </div>
 <br>

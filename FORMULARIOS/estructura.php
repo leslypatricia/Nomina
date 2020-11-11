@@ -166,7 +166,7 @@ li{
 						<li class="title-menu"><span class=" icon-menu"></span>Nomina</li>
 						<li class="go-back">Atras</li>
 
-						<li><a href="../FORMULARIOS/NominaGeneral/NominaGeneral1.php">Nomina General</a></li>
+						<li><a href="../FORMULARIOS/NominaGeneral/Nomina.php">Nomina General</a></li>
 						<li><a href="../FORMULARIOS/Deducciones/Deducciones1.php">Deducciones</a></li>
 						<li><a href="../FORMULARIOS/NominaDeduccion/NominaDeduccion1.php">Nomina Deducciones</a></li>
 					</ul>
@@ -178,11 +178,10 @@ li{
 						<li class="go-back">Atras</li>
 						<li><a href="../FORMULARIOS/Jornada/Jornada1.php">Jornada</a></li>
 						<li><a href="../FORMULARIOS/HoraExtra/HoraExtra1.php">Horas Extras</a></li>
-                        <li><a href="../FORMULARIOS/TipoHE/TipoHE1.php">Tipo Hora Extra</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="5">
-					<a href="#"><span class=" icon-menu"></span>Otos Pagos</a>
+					<a href="#"><span class=" icon-menu"></span>Otros Pagos</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Otos Pagos</li>
 						<li class="go-back">Atras</li>
@@ -192,7 +191,7 @@ li{
                      <li><a href="../FORMULARIOS/NominaPagComplementarios/NominaPagComplementarios1.php">Nomina Pagos Complementarios</a></li>
 					</ul>
 				</li>
-				<li><a href="../../LOG/Menu_Admin.php">ATRAS</a></li>
+				<li><a href="../LOG/Menu_Admin.php">ATRAS</a></li>
 				<li><a href="../../Index.php"><i class="icono izquierda"></i>Cerrar sesion</a></li>
 				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>Quienes Somos?</a></li>
 			</ul>

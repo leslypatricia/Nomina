@@ -182,8 +182,8 @@ header("location:NominaPagComplementarios.php");
 	 <h1>Nomina Pagos Complementarios</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
-		   <label for="caja"> </label>
-		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>
+		<!--   <label for="caja"> </label>
+		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>-->
 		</div>
 	
 	</center><br/><br/>

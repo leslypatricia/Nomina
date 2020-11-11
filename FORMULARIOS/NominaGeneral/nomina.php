@@ -170,63 +170,103 @@ if (isset($_POST["Regresar"])){
 header("location:../estructura.php");
 }
 ?>
-<?php
-if (isset($_POST["Insertar"])){
-header("location:PagosComplementarios.php");
-}
-?>
 <div class="Container">
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Pagos Complementarios</h1>
+	 <h1>Generar Nomina</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
-	<!--	   <label for="caja"> </label>
-		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>-->
+      <table border="1" class="color-Tabla" align="left">
+          <td align="legth"><img src="../../IMG/nominas.jpg" width="150px">
+          </td></table>
+
+          <table border="1" class="color-Tabla" align="rigth">
+          <tr class="Estilo-tabla" align="regth">
+          <td>Periodo de Pago</td> </tr>
+          <tr><td>Noviembre/01/2020-Noviembre/30/2020</td></tr>
+          <tr class="Estilo-tabla"align="regth" ><td>Fecha de Liquidacion</td></tr>
+		    <?php $fcha = date("Y-m-d");?>
+          <tr><td><?php echo $fcha;?></td></tr>
+        </tr>
+        </table>
 		</div>
 	
-	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir PagoComplementario <i class="fas fa-plus"></i></button>
-	<div class="container-table">
+    </center><br/><br/>
+    <table border="1" class="color-Tabla" align="left">
+    <tr class="Estilo-tabla">
+       <td>Codigo Nomina</td> 
+    </tr>
+    <?php 
+	/*
+    $sql="SELECT Cod_Nomina from nominageneral " ;
+    
+        $res=mysqli_query($conexion,$sql);
+        while($mostrar=mysqli_fetch_array($res)){*/
+            echo "<tr>";
+            echo "<td>";echo "1"; /*$mostrar['Cod_Nomina'];*/ echo"</td>";
+            echo "<tr>";
+    ?>
+    <?php //}?>
+     </table><br/><br/>
+	<!--<button name="Insertar"  class="boton_Añadir">Añadir Usuario  <i class="fas fa-plus"></i></button>
+--><div class="container-table">
 	<center>
 	
-<table border="1" class="color-Tabla">
+<table border="1" class="color-Tabla"><br/><br/>
 
-    <tr class="Estilo-tabla">
-       <td>Codigo_Complementario</td> 
-       <td>Descripcion</td>
-       <td>Porcentaje</td>
-       <td>Fijo</td>
-	   <td>Valor</td>
-	   <td>Eliminar</td>
-	   <td>Actualizar</td>
-	</tr>
+    <tr class="Estilo-tabla" >
+       <td rowspan="2">Nº_Empleado</td> <br/><br/>
+       <td rowspan="2">Nombre_Completo</td>
+       <td rowspan="2">Sueldo_Ordinario</td>
+       <td colspan="3">Tiempo_Extra</td>
+       <td rowspan="2">Total_Devengado</td>
+	   <td colspan="2">Deducciones </td>
+	   <td rowspan="2">Total_Deducciones</td>
+	   <td rowspan="2">Neto_a_Pagar</td>
+	   <td rowspan="2">Eliminar</td>
+	   <td rowspan="2">Editar</td>
+    </tr>
+    <tr>   
+        <th># H.EXTRA</th>
+        <th>C.UNITARIO</th>
+        <th>C.TOTAL</th>
+        <th>IHSS</th>
+        <th>RAP</th>
+    </tr>
 	
-	<?php
-$sql="SELECT * from pagocomplementario" ;
-
-
-	$res=mysqli_query($conexion,$sql);
+    <?php
+  $sql="SELECT * FROM nominageneral";
+  $res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
-		echo "<tr>";
-		echo "<td>";echo $mostrar['Cod_Complementario']; echo"</td>";
-		echo "<td>";echo $mostrar['Descripcion']; echo"</td>";
-		echo "<td>";echo $mostrar['Porcentaje']; echo"</td>";
-		echo "<td>";echo $mostrar['fijo']; echo"</td>";
-		echo "<td>";echo $mostrar['valor']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CC=".$mostrar['Cod_Complementario']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?CC=".$mostrar['Cod_Complementario']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
-	   echo "<tr>";
+  
+  echo "<tr>";
+		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
+		echo "<td>";echo $mostrar['Primer_Nombre'];echo"</td>";
+		echo "<td>";echo $mostrar['Sueldo_base']; echo"</td>";
+		echo "<td>";echo $mostrar['Cant_Horas']; echo"</td>";
+		echo "<td>";echo $mostrar['Costo_U']; echo"</td>";
+		echo "<td>";echo $mostrar['TotalP_HE']; echo"</td>";
+		echo "<td>";echo $mostrar['Total_Devengado']; echo"</td>";
+		echo "<td>";echo $mostrar['IHSS']; echo"</td>";
+		echo "<td>";echo $mostrar['RAP']; echo"</td>";
+		echo "<td>";echo $mostrar['Total_Deducciones']; echo"</td>";
+		echo "<td>";echo $mostrar['Total_Pagar']; echo"</td>";
+						
+		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_empleados']."'><button name='Eliminar' class='boton-eliminar' ><i class='far fa-trash-alt'></a></i></button></td>";
+		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_empleados']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+		echo "</tr>";
+			
 	?>
 
 <?php
 }
 ?>
-  </div class="color-Tabla">
-</center>
-   </table> 
 
+
+   </div class="color-Tabla">
+</center>
+   </table> <br/><br/>
 	</center>
 	<br/>
 	<td><button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>

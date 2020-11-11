@@ -119,7 +119,13 @@ $pass="";
 $correo="";
 $rol="";
 $empleado="";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT Cod_Usuario  FROM  usuario");
+while ($registro= mysqli_fetch_array($registros)){
+$codigos=$registro['Cod_Usuario'];
 
+}
+$codigo=$codigos + 1;
 
 ?>
 
@@ -233,7 +239,7 @@ header("location:http://localhost:801/phpmyadmin/");
 
 
 <tr><td><label>Código Usuario:</label></td>
-<td><input type="text" name="CU" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
+<td><input type="text" name="CU" value="<?php echo $codigo?>" size="5" maxlength="5" readonly="readonly" /></td></tr>
 
 <tr><td><label>Usuario:</label></td>
 <td><input type="text" name="usuario" value="<?php echo $usuario?>" size="15" maxlength="15" /></td></tr>
@@ -244,9 +250,22 @@ header("location:http://localhost:801/phpmyadmin/");
 <tr><td><label>Correo:</label></td>
 <td><input type="text"  name="correo" value="<?php echo $correo?>" size="20" maxlength="20"/></td></tr>
 
-<tr><td><label>Código Rol:</label></td>
-<td><input type="text"  name="CR" value="<?php echo $rol?>" size="20" maxlength="20"/></td></tr>
-
+<tr><td><label>Rol:</label></td>
+	<td> <select  name="CR" id="CR"  class="form"   maxlength="20">
+        <?php
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT *  FROM  rol");
+         ?>
+		    <?php
+		
+			 while ($valores = $registros->fetch_assoc()) {
+			 	 //echo '<option value="0" >nombre</option>';
+				 echo  '<option class="form"  value="'.$valores["Cod_rol"].'">'.$valores["Descripcion"].'</option>';
+			 }
+			
+			
+		?>
+	</select></td></tr>
 <tr><td><label>Código Empleado:</label></td>
 <td><input type="text" name="CE" value="<?php echo $empleado?>" size="20" maxlength="20"/></td></tr>
 <br/>

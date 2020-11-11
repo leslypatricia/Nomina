@@ -33,7 +33,6 @@ $mostrar=$res->fetch_assoc();
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <style>
-/*-----------------------------------código_css-------------------------------------------------------------------------------*/
 body{
 	margin:0;
 	padding:0;
@@ -44,11 +43,12 @@ body{
 	background-attachment: fixed;
 }
 .from{
+padding:110px;
 	margin:auto;
-	margin-top:-05PX;
+	margin-top:-10PX;
 	border-radius:4px;
-	font-family:"Arial Black", Gadget, sans-serif;
-	color:black;
+	font-family:"Times New Roman";
+	color:white;
 	box-shadow:7px 13px 37px #000;
 }
 h1{
@@ -58,42 +58,82 @@ h1{
 	}
 	
 .form-group{
-	width:750px;
-	background:#00ced1;
+	width:900px;
+	/*background:#00ced1;*/ /*color azul*/
 	padding:20px;
-	border-radius:1px;
-	margin-bottom:16px;
-	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
-	font-size:18px;
-	
-	}
-.form-group1 {	width:750px;
-	background:#00ced1;
-	padding:10px;
 	border-radius:4px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:"Times New Roma";
 	font-size:18px;
-}
- .form-group .form{
-	background: rgb(red, green, blue);
-	border: none;
-	outline: none;
-border-bottom: 2px solid #ff851b;
-width: 250%;
-padding: 05px;
-margin-bottom: 08px;
-border-radius: 2px;
-font-size: 12px;
-color: black;
-font-family:"Arial Black", Gadget, sans-serif;
-width: 100%;
-/*style="width: 100%;*/
+	
+	}
+.btn-btn-primary {
+		width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;
 }
 
-/*Estilos paginador*/
+/*iconos*/
+.fa-search{
+color:blue;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-times
+{
+color:red;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-save
+{
+color:purple;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+.fa-database{
+color:green;
+background:white;
+border:none;
+font-weight:bold;
+
+}
+
+.Boton-Regresar
+{
+	
+    color:#346BFB;
+	/* */
+	
+
+}
+.btn-btn-success{
+	width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;}
+.btn-btn-info{
+	width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;}
+.btn-btn-danger{
+	width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;}
 </style>
 </head>
 

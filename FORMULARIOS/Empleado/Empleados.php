@@ -117,8 +117,6 @@ font-weight:bold;
 <body>
 <?php
 //---------------------------------------------Código para limpiar -------------------------------------------------------------//
-
-$codigo="";
 $Identidad="";
 $PrimerN="";
 $SegundoN="";
@@ -136,20 +134,21 @@ $fechad="";
 $sueldob="";
 $formapago="";
 $codigod="";
+$codigo="0";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT * FROM  empleados");
+while ($registro= mysqli_fetch_array($registros)){
+$codigos=$registro['Cod_empleados'];
 
-
+}
+$codigo=$codigos + 1;
 ?>
 
 
 <?php
 //--------------------------------Bontón de Insertar----------------------------------------------------------//
 //--conexion base de datos--/
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+include("../conexion.php");
 
 if (isset($_POST["crs"])){
 $CE=$_POST['CE'];//código de empleado
@@ -162,11 +161,10 @@ $FN=$_POST['FN'];//Fecha de nacimiento
 $CORRE=$_POST['correo'];//correo
 $DIR=$_POST['Dire'];//Dirrección
 $TELE=$_POST['tele'];//Teléfono
-
-$S=isset($_POST['sexo'])?$_POST['sexo']:0;//Sexo
+$S=$_POST['SEXO'];//Sexo
 $CB=$_POST['CB'];//Cuenta Bancaria
 $FI=$_POST['FI'];//Fecha de Ingreso
-$NAC=isset($_POST['Nac'])? $_POST['Nac']:0;//Nacionalidad
+$NAC=$_POST['Nac'];//Nacionalidad
 $FD=$_POST['FD'];//Fecha de Deducción
 $SB=$_POST['SB'];//Sueldo base 
 $FP=$_POST['FP'];//forma de pago
@@ -200,12 +198,7 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
 
 <?php
 //---------------------código del botón buscar -------------------------------------------------------------------------
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+include("../conexion.php");
 
 if (isset($_POST["buscar"])){
 
@@ -233,7 +226,7 @@ $nacionalidad=$registro['Nacionalidad'];
 $fechad=$registro['Fecha_Deduccion'];
 $sueldob=$registro['Sueldo_base'];
 $formapago=$registro['Cod_FormaPago'];
-$codigod=$registro['Cod_Depto'];
+$CD=$registro['Cod_Depto'];
 
 
 }
@@ -249,7 +242,6 @@ mysqli_close($conexion);
 
 //------Código para el botón Limpiar------//
 if (isset($_POST["limpiar"])){
-$codigo="";
 $Identidad="";
 $PrimerN="";
 $SegundoN="";
@@ -288,15 +280,35 @@ header("location:http://localhost:801/phpmyadmin/");
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
-
-	<tr><td><label>Código Empleado<br/></label> </td>
-	<td><input type="text" class="form" name="CE" value="<?php echo $codigo?>" /><br/></td></tr>
-	<tr><td>Código Departamento<br/> </td>
-	<td><select name="CD" value="" class="form" >
-   <option  class="form"value="1" <?php echo '$codigod';?>>1</option>
-   <option  class="form" value="2"<?php echo '$codigod';?>>2</option>
-   <option  class="form" value="3" <?php echo '$codigod';?>>3</option>
-</select> </td></tr>
+<tr><td><label>Código Empleado<br/></label> </td>
+	<td><input type="text" class="form" name="CE" value="<?php echo $codigo ?>" /><br/></td></tr>
+	<tr><td>Departamento<br/> </td>
+	<td> <select  name="CD" id="CD"  class="form"   maxlength="20">
+        <?php
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
+         ?>
+		    <?php
+		 	if( $CD==1){
+			
+			   echo '<option value="1" >Administración</option>';
+			}elseif( $CD==2){
+			 echo '<option value="2" >Contabilidad</option>';
+			
+			}elseif( $CD==3){
+			 echo '<option value="3" >Tecnología</option>';
+			
+			}else{
+		
+			 while ($valores = $registros->fetch_assoc()) {
+			 	 //echo '<option value="0" >nombre</option>';
+				 echo  '<option class="form"  value="'.$valores["Cod_Depto"].'">'.$valores["Descripcion"].'</option>';
+			 }
+			}
+			
+		?>
+	</select></td></tr>
+	
 <tr><td>Identidad<br/> </td>
 <td> <input type="text" class="form"  name="id" value="<?php echo $Identidad?>" size="15" maxlength="15" /><br/>
 </td></tr>
@@ -325,15 +337,43 @@ header("location:http://localhost:801/phpmyadmin/");
  </td></tr>
 	<tr><td>Teléfono<br/> </td>
 	<td> <input type="number" class="form"  name="tele" value="<?php echo $tel?>" size="15" maxlength="15" /><br/></td></tr>
-	<tr><td>Sexo<br/> </td><td> 
-	<input type="radio" checked name="sexo" value="1" id="sexo" <?php echo '$sexo';?>>F</>
-    <input type="radio" checked   name="sexo" value="0"  id="sexo"<?php echo '$sexo';?>>M</><br/></td></tr>
+	<tr><td>Sexo<br/> </td>
+	<td><select  name="SEXO" id="SEXO"  class="form"  maxlength="20">
+	
+	    <?php
+
+		 	if( $sexo=='F'){
+			
+			  echo '<option value="F" >Femenino</option>';
+			}elseif( $sexo=='M'){
+			 echo '<option value="M" >Masculino</option>';
+			
+			}else{
+			echo '<option value="" >Seleccione</option>';
+			echo '	<option  class="form"  value="F" maxlength="20" >Femenino</option>';
+            echo ' <option class="form" value="M" maxlength="20" >Masculino</option>';
+			}	
+		?>
+	</select></td></tr>
 
 	<tr><td>Nacionalidad<br/> </td>
-	<td> <select name="Nac" class="form" ><br/>
-   <option value="1" class="form" <?php echo '$nacionalidad';?> >Hondureña</option>
-   <option value="2" class="form" <?php echo '$nacionalidad';?>>Extranjero</option>
-</select><br/></td></tr>
+		<td><select  name="Nac" id="SEXO"  class="form"  maxlength="20">
+	
+	    <?php
+
+		 	if( $nacionalidad=='Hondureña'){
+			
+			  echo '<option value="Hondureña" >Hondureña</option>';
+			}elseif( $nacionalidad=='Extranjero'){
+			 echo '<option value="	Extranjero" >Extranjero</option>';
+			
+			}else{
+			echo '<option value="" >Seleccione</option>';
+			echo '	<option  class="form"  value="Hondureña" maxlength="20" >Hondureña</option>';
+            echo ' <option class="form" value="Extranjero" maxlength="20" >Extranjero</option>';
+			}	
+		?>
+	</select></td></tr>
 
 	<tr><td>Sueldo Base<br/> </td>
 	<td>
@@ -345,11 +385,29 @@ header("location:http://localhost:801/phpmyadmin/");
 	<tr><td>Fecha de Deducciones<br/> </td>
 	<td> <input id="date" class="form"  type="date" name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  /><br/>
 </td></tr>
-	<tr><td>Código Forma de Pago<br/> </td>
-	<td><select name="FP" class="form" >
-   <option value="1" class="form"  <?php echo '$formapago';?>>1</option>
-   <option value="2" class="form"  <?php echo '$formapago';?>>2</option>
-</select><br/> </td></tr>
+	<tr><td>Forma de Pago<br/> </td>
+	<td><select name="FP" class="form"  maxlength="20">
+<?php
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT *  FROM  formapago");
+         ?>
+		    <?php
+		 	if( $formapago==1){
+			
+			   echo '<option value="1" >Mensual</option>';
+			}elseif( $formapago==2){
+			 echo '<option value="2" >Quincenal</option>';
+			
+			}else{
+		
+			 while ($valores = $registros->fetch_assoc()) {
+			 	 //echo '<option value="0" >nombre</option>';
+				 echo  '<option class="form"  value="'.$valores["Cod_FormaPago"].'">'.$valores["Descripcion"].'</option>';
+			 }
+			}
+			
+		?>
+	</select></td></tr>
 </table>
 <br>
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>

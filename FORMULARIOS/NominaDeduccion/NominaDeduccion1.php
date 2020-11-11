@@ -180,40 +180,39 @@ header("location:NominaDeduccion.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Aumento</h1>
+	 <h1>Nomina Deducciones</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
-		   <label for="caja"> </label>
-		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>
+		 <!--  <label for="caja"> </label>
+		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>-->
 		</div>
 	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Hora Extra  <i class="fas fa-plus"></i></button>
+	<button name="Insertar"  class="boton_Añadir">Añadir Deducciones a Empleados <i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
 	
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_Nomina</td> 
 	   <td>Codigo_Deducciones</td>
+	   <td>Codigo_Empleados</td>
+	   <td>Total Deducciones</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>
 	
 	<?php
-$sql="SELECT nd.Cod_Nomina,nd.cod_Deducciones from nominadeducciones as nd 
-JOIN deducciones as d on nd.Cod_Deducciones=d.Cod_Deducciones
-JOIN nominageneral as ng on nd.Cod_Nomina=ng.Cod_Nomina" ;
+$sql="SELECT Cod_NominaD,Cod_Empleados,Total_Deducciones from nominadeducciones";
 
-
-	$res=mysqli_query($conexion,$sql);
+$res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
 		echo "<tr>";
-		echo "<td>";echo $mostrar['Cod_Nomina']; echo"</td>";
-		echo "<td>";echo $mostrar['cod_Deducciones']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CN=".$mostrar['Cod_Nomina']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?CN=".$mostrar['Cod_Nomina']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+		echo "<td>";echo $mostrar['Cod_NominaD']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_Empleados']; echo"</td>";
+		echo "<td>";echo $mostrar['Total_Deducciones']; echo"</td>";
+		echo "<td><a href='Eliminar.php?CN=".$mostrar['Cod_NominaD']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
+	    echo "<td><a href='Actualizar.php?CN=".$mostrar['Cod_NominaD']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";
 	?>
 

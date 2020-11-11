@@ -90,17 +90,18 @@ h1{
 <?php
 $codigo="";
 $tipo="";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT Cod_Jornada  FROM  jornada");
+while ($registro= mysqli_fetch_array($registros)){
+$codigos=$registro['Cod_Jornada'];
 
+}
+$codigo=$codigos + 1;
 ?>
 
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+include("../conexion.php");
 
 if (isset($_POST["crs"])){
 $CJ=$_POST['CJ'];
@@ -126,14 +127,7 @@ $consulta="insert into jornada(Cod_Jornada,Tipo_Jornada)
 
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
+include("../conexion.php");
 if (isset($_POST["buscar"])){
 
 $CJ=$_POST["CJ"];
@@ -142,7 +136,6 @@ $registros=mysqli_query($conexion,"SELECT * FROM  jornada WHERE Cod_Jornada='$CJ
 
 
 while ($registro= mysqli_fetch_array($registros)){
-
 
 $codigo=$registro['Cod_Jornada'];
 $tipo=$registro['Tipo_Jornada'];
@@ -179,7 +172,7 @@ header("location:http://localhost:801/phpmyadmin/");
 
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 <tr><td><label>Código Jornada:</label></td>
-<td><input type="text" name="CJ" value="<?php echo $codigo ?>" size="5" maxlength="5" /></td></tr>
+<td><input type="text" name="CJ" value="<?php echo $codigo ?>" size="5" maxlength="5" readonly="readonly"/></td></tr>
 <tr><td><label>Tipo Jornada:</label></td>
 <td><input type="text" name="TJ" value="<?php echo $tipo?>" size="15" maxlength="15" /></td></tr>
 </table>

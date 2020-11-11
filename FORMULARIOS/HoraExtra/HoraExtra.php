@@ -18,13 +18,36 @@ body{
 }
 .from{
 padding:110px;
-/*background:black;*/
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
 	font-family:"Times New Roman";
-	color:White;
-	/*box-shadow:7px 13px 37px #000;*/
+	color:white;
+	box-shadow:7px 13px 37px #000;
+}
+h1{
+	font-size:50px;
+	margin-bottom:35px;	
+	color: blanchedalmond;
+	}
+	
+.form-group{
+	width:900px;
+	/*background:#00ced1;*/ /*color azul*/
+	padding:20px;
+	border-radius:4px;
+	margin-bottom:16px;
+	border:1px solid #1f53c5;
+	font-family:"Times New Roma";
+	font-size:18px;
+	
+	}
+.btn-btn-primary {
+		width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;
 }
 
 /*iconos*/
@@ -67,203 +90,284 @@ font-weight:bold;
 	
 
 }
-h1{
-	font-size:50px;
-	margin-bottom:35px;	
-	color: blanchedalmond;
-	}
-	
-.form-group{
-	width:900px;
-	/*background:#00ced1;*/
-	padding:20px;
-	border-radius:4px;
-	margin-bottom:16px;
-	border:1px solid #1f53c5;
-	font-family:"Times New Roman";
-	font-size:18px;
-	
-	}
-
+.btn-btn-success{
+	width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;}
+.btn-btn-info{
+	width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;}
+.btn-btn-danger{
+	width:80PX;
+		background:#1f53c5;
+		padding:10px;
+		color:white;
+		font-size:10px;}
 </style>
 </head>
 
 <body>
-<?php
-$codigo="";
-$jornada="";
-$empleado="";
-$sueldoo="";
-$sueldod="";
-$sueldoh="";
-$porcetahe="";
-$pago="";
-$numero="";
-$total="";
-$fecha="";
-
-?>
-
-
-<?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-if (isset($_POST["crs"])){
-$HE=$_POST['HE'];
-$CJ=$_POST['CJ'];
-$CE=$_POST['CE'];
-$SO=$_POST['SO'];
-$SD=$_POST['SD'];
-$SH=$_POST['SH'];
-$PHE=$_POST['PHE'];
-$PH=$_POST['PH'];
-$NH=$_POST['NH'];
-$THE=$_POST['THE'];
-$F=$_POST['F'];
-
-$consulta="INSERT INTO horaextra(Cod_HExtra,Cod_Jornada,Cod_empleados,
-Sueldo_Ordinario, Sueldo_Diario, Sueldo_Hora, Porce_Hora_Extra, 
-Pago_Hora, Numero_horas, Total_HE,fecha)
- VALUES('$HE','$CJ','$CE','$SO','$SD','$SH','$PHE','$PH','$NH','$THE','$F')";
- 
- if (mysqli_query($conexion, $consulta)) {
-     echo "<script> 
-	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='HoraExtra1.php';
-	  </script>";
-} else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
-}
- mysqli_close($conexion);
-
-}
-
-?>
-
-
-<?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
- 
-if (isset($_POST["buscar"])){
-$HE=$_POST["HE"];
-
-$registros=mysqli_query($conexion,"SELECT * FROM  horaextra WHERE Cod_HExtra='$HE'");
-
-
-while ($registro= mysqli_fetch_array($registros)){
-
-$codigo=$registro['Cod_HExtra'];
-$jornada=$registro['Cod_Jornada'];
-$empleado=$registro['Cod_empleados'];
-$sueldoo=$registro['Sueldo_Ordinario'];
-$sueldod=$registro['Sueldo_Diario'];
-$sueldoh=$registro['Sueldo_Hora'];
-$porcetahe=$registro['Porce_Hora_Extra'];
-$pago=$registro['Pago_Hora'];
-$numero=$registro['Numero_horas'];
-$total=$registro['Total_HE'];
-$fecha=$registro['fecha'];
-
-
-mysqli_close($conexion);
-}
-}
- ?>
-
-
-<form class="from"  id="form1" action= "" method="POST" >
-<center>
-<?php
-if (isset($_POST["limpiar"])){
-	$codigo="";
-$jornada="";
-$empleado="";
-$sueldoo="";
-$sueldod="";
-$sueldoh="";
-$porcetahe="";
-$pago="";
-$numero="";
-$total="";
-$fecha="";
-
-
-}
-
-?>
 <?php
 if (isset($_POST["Regresar"])){
 header("location:HoraExtra1.php");
 }
 ?>
 <?php
-if (isset($_POST["BD"])){
-header("location:http://localhost:801/phpmyadmin/");
+$S_O="";
+$D="";
+$N="";
+$CJJ="";
+$S_D="";
+$S_H="";
+$POR="";
+$PH="";
+$TOTAL="";
+$CO="";
+$CH="0";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT Cod_HExtra  FROM  horaextra");
+while ($registro= mysqli_fetch_array($registros)){
+$CH=$registro['Cod_HExtra'];
+
 }
+$CHE=$CH + 1;
+
+$sueldo="";
+
+?>
+<?php
+
+
+if (isset($_POST["calcular"])){
+
+	include("../conexion.php");
+	$CO=$_POST["CEE"];
+$CJJ=$_POST["CJ"];
+
+$sueldo="";
+$S_D="";
+
+$registros=mysqli_query($conexion,"select Sueldo_base  FROM  empleados WHERE Cod_empleados='$CO'");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+$sueldo=$registro['Sueldo_base'];
+
+}
+//$CHE=$_POST["CHE"];
+
+
+
+if($CJJ=="1"){
+$D=$_POST["D"];
+
+$S_D=$sueldo / 30;
+$S_H=$S_D / 8;
+$POR=$S_H * 0.25;
+$PH=$S_H + $POR;
+$TOTAL=$PH * $D;
+
+
+}elseif($CJJ=="2"){
+
+$N=$_POST["N"];
+$S_D=$sueldo /30;
+
+$S_H=$S_D / 6;
+$POR=$S_H * 0.75;
+$PH=$S_H + $POR;
+$TOTAL=$PH * $N;
+}else{
+$D=$_POST["D"];
+$N=$_POST["N"];
+$S_D=$sueldo /30;
+$S_H=$S_D / 7;
+$PORD=$S_H * 0.25;
+$PORN=$S_H * 0.75;
+$POR=$PORD + $PORN;
+$PHD=$S_H + $PORD; 
+$PHN=$S_H + $PORN; 
+$PH=$PHD + $PHN;
+$TOTALD=$PHD * $D;
+$TOTALN=$PHN * $N;
+$TOTAL=$TOTALD + $TOTALN;
+
+
+
+}
+
+
+
+}
+
+
+ ?>
+ <?php
+
+
+if (isset($_POST["crs"])){
+
+
+include("../conexion.php");
+$CHE=$_POST["CHE"];
+$CO=$_POST["CEE"];
+$CJJ=$_POST["CJ"];
+$C=$_POST["CHE"];
+$S=$_POST["S_O"];
+$SD=$_POST["S_D"];
+$SH=$_POST["S_H"];
+$POR=$_POST["Porcentaje"];
+$PH=$_POST["P_H"];
+$D=$_POST["D"];
+$N=$_POST["N"];
+$HORAS=$D + $N;
+$TOTAL=$_POST["TOTAL"];
+$fecha=$_POST["F"];
+$TOTALD=$S + $TOTAL;
+if($CHE="" or $CO="" or $CJJ="" or $C="" or $S="" or $SD="" or $SH="" or $POR="" or $PH="" or $D="" or $N="" or $HORAS="" or $TOTAL="" ){
+
+echo "<script> 
+	     alert ('llene los campos obligatorios');
+	  window.location='HoraExtra.php';
+	  </script>";
+}else{
+$CHE=$_POST["CHE"];
+$CO=$_POST["CEE"];
+$CJJ=$_POST["CJ"];
+$C=$_POST["CHE"];
+$S=$_POST["S_O"];
+$SD=$_POST["S_D"];
+$SH=$_POST["S_H"];
+$POR=$_POST["Porcentaje"];
+$PH=$_POST["P_H"];
+$D=$_POST["D"];
+$N=$_POST["N"];
+$HORAS=$D + $N;
+$TOTAL=$_POST["TOTAL"];
+$fecha=$_POST["F"];
+$TOTALD=$S + $TOTAL;
+$consulta="insert into horaextra(Cod_HExtra,Cod_Jornada,Cod_Empleados,Sueldo_Ordinario,Sueldo_Diario,Sueldo_Hora,Porce_Hora_Extra,pago_Hora,Numero_horas,Total_HE,fecha)
+ VALUES('$CHE','$CJJ','$CO','$S','$SD','$SH','$POR','$PH','$HORAS','$TOTAL','$fecha')";
+ 
+
+ if (mysqli_query($conexion, $consulta)) {
+	$registro=mysqli_query($conexion,"update nominageneral set Cant_Horas='$HORAS', Costo_U='$PH' ,TotalP_HE='$TOTAL',Total_Devengado='$TOTALD'  
+where Cod_empleados='$CO'")
+or die ("error al actualizar");
+	 echo "<script> 
+	     alert ('Registro Ingresado Correctamente!!!');
+	  window.location='HoraExtra1.php';
+	  </script>";
+} else {
+      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
+
+ mysqli_close($conexion);
+}
+}
+
 ?>
 
-<form class="from"  id="form1" action="#" method="POST">
+
+<form class="from"  id="form1" action= "" method="POST" >
 <center>
-<h1>Nueva Hora Extra</h1>
+<h1>Formulario Horas Extras</h1>
 <div class="form-group">
-<table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
-<tr><td><label>Código Hora Extra:</label></td>
-<td><input type="text" name="HE" value="<?php echo $codigo?>" size="5" maxlength="5" />
+<table class="table table-condensed" style="width: 100%" >
 
-<tr><td><label>Código Jornada:</label>
-<td><input type="text" name="CJ" value="<?php echo $jornada?>" size="15" maxlength="15" />
-<tr><td><label>Código Empleado:</label>
-<td><input type="text" name="CE" value="<?php echo $empleado?>" size="20" maxlength="20"/>
 
-<tr><td><label>Sueldo Ordinario:</label>
-<td><input type="text" name="SO" value="<?php echo $sueldoo?>" size="20" maxlength="20"/>
+	<tr><td><label>Codigo Hora Extra<br/></label> </td>
+	<td><input type="text" class="form" name="CHE" value="<?php echo $CHE ?>"size="20" maxlength="20" readonly="readonly"/><br/></td></tr>
+<tr><td>Jornada<br/> </td>
 
-<tr><td><label>Sueldo Diario:</label>
-<td><input type="text" name="SD" value="<?php echo $sueldod?>" size="20" maxlength="20"/>
+<td> <select  name="CJ" id="CJ"  class="form"  selected="selected" maxlength="20">
+        <?php
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT *  FROM  jornada");
+         ?>
+		    <?php
+		 	if( $CJJ==1){
+			
+			   echo '<option value="1" >Diurna </option>';
+			}elseif( $CJJ==2){
+			 echo '<option value="2" >Nocturna</option>';
+			
+			}elseif( $CJJ==3){
+			 echo '<option value="3" >Mixta</option>';
+			
+			}else{
+		
+			 while ($valores = $registros->fetch_assoc()) {
+			 	 //echo '<option value="0" >nombre</option>';
+				 echo  '<option class="form"  value="'.$valores["Cod_Jornada"].'">'.$valores["Tipo_Jornada"].'</option>';
+			 }
+			}
+			
+		 
+		
+		?>
+	
+       
+         </select>
+    
 
-<tr><td><label>Sueldo Hora:</label>
-<td><input type="text" name="SH" value="<?php echo $sueldoh?>" size="20" maxlength="20" />
-
-<tr><td><label>Porcentaje Hora Extra:</label>
-<td><input type="text" name="PHE" value="<?php echo $porcetahe?>" size="20" maxlength="20" />
-
-<tr><td><label>Pago Hora:</label>
-<td><input type="text" name="PH" value="<?php echo $pago?>" size="20" maxlength="20" />
-
-<tr><td><label>Números Hora:</label>
-<td><input type="text" name="NH" value="<?php echo $numero?>" size="20" maxlength="20" />
-
-<tr><td><label>Total Hora Extra:</label>
-<td><input type="text" name="THE" value="<?php echo $total?>" size="20" maxlength="20" />
-
-<tr><td><label>Fecha:</label>
-<td><input type="date" name="F" value="<?php echo $fecha?>" size="20" maxlength="30" />
-
-</table>
-<center>
+</left>
 <br/><br/>
+
+</td></tr>
+	<tr><td>Codigo Empleado<br/> </td>
+	<td><input type="text" class="form"  name="CEE"  value="<?php echo $CO ?>" size="20" maxlength="20"/><br/>
+ </td></tr>
+ 
+
+<tr><td>Cantidad Horas Diurna </td>
+	
+<td><input type="text" class="form"  name="D" value="<?php echo $D ?>"  size="20" maxlength="20"/></td></tr>
+			
+<tr><td>Cantidad Horas Nocturna </td>
+<td><input type="text" class="form"  name="N" value="<?php echo $N ?>"  size="20" maxlength="20"/></td></tr>
+
+	
+	
+	<tr><td>Salario Base<br/> </td>
+	<td> <input type="text" class="form"  name="S_O" value="<?php echo $sueldo ?>"  size="20" maxlength="20" readonly="readonly"/><br/>
+</td></tr>
+	<tr><td>Salario Diario<br/> </td>
+	<td> <input type="text" class="form"  name="S_D" value="<?php echo $S_D ?>" size="20" maxlength="30" readonly="readonly"/><br/>
+</td></tr>
+	<tr><td>Sueldo por Hora<br/> </td>
+	<td> <input type="text" class="form"   name="S_H" value="<?php echo $S_H ?>"   size="20"  maxlength="30" readonly="readonly" /><br/>
+</td></tr>
+<tr><td>Porcentaje<br/> </td>
+	<td> <input type="text" class="form"   name="Porcentaje" value="<?php echo $POR ?>"   size="20" maxlength="30" readonly="readonly" /><br/>
+</td></tr>
+	<tr><td>Pago por Hora<br/> </td>
+	<td><input type="text" class="form"  name="P_H" value="<?php echo $PH ?>"  size="20" maxlength="30" readonly="readonly" /><br/> 
+ </td></tr>
+	<tr><td>Total a Pagar<br/> </td>
+	<td><input type="text" class="form"  name="TOTAL"  size="20" value="<?php echo $TOTAL ?>"  maxlength="30" readonly="readonly"/><br/>
+ </td></tr>
+	</td></tr>
+	<tr><td>Fecha<br/> </td>
+ <?php $fcha = date("Y-m-d");?>
+<td><input type="date" class="form" name="F" value="<?php echo $fcha?>"  size="20"  maxlength="30" readonly="readonly"/><br/>
+</td></tr>
+</table>
+<br>
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
-<button name="limpiar"><i class="fas fa-times"></i></button>
+<button name="calcular"><i class="fas fa-calculator"></i></i></button>
 <button name="BD"><i class="fas fa-database"></i></button>
-<button name="buscar"><i class="fas fa-search"></i></button>
-<br/><br/></center>
+<br>
 
 
+<br/>
 </div>
-</center>
 </form>
 </body>
 </html>

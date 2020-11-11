@@ -163,6 +163,9 @@ color:green;
 </head>
 
 <body>
+
+
+
 <?php
 
 $conexion=mysqli_connect('localhost','root','','nominas')
@@ -179,22 +182,21 @@ if (isset($_POST["Insertar"])){
 header("location:Empleados.php");
 }
 ?>
- <div class="Container">
+<div class="Container">
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Empleados</h1>
+	 <h1>Tabla de Empleadoss</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		   <label for="caja"> </label>
-		  <input type="text" name="caja" id="caja" aling="center" >   <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>
+		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>
 		</div>
-	</div>
+	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Empleado  <i class="fas fa-plus"></i></button>
+	<button name="Insertar"  class="boton_Añadir">Añadir Empleados  <i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
-	
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
@@ -211,6 +213,8 @@ header("location:Empleados.php");
 	</tr>
 	
 	<?php
+	
+	
 $sql="SELECT ep.Cod_empleados,ep.Primer_Nombre,ep.Segundo_Apellido,ep.Telefono,
 ep.Fecha_ingreso,ep.Sueldo_base,fp.Cod_FormaPago,dep.Cod_Depto from empleados as ep 
 JOIN formapago as fp on ep.Cod_FormaPago=fp.Cod_FormaPago
@@ -239,13 +243,14 @@ JOIN departamento as dep on ep.Cod_Depto=dep.Cod_Depto" ;
 </div class="color-Tabla">
 </center>
    </table> 
-</div>
-	</center>
-	<td><button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
 
+	</center>
+	<br/>
+	<td><button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
+	</div>
+	</div>
     </form>
 </div>
 <br>
-
     </body>
     </html>

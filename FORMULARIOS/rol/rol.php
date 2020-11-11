@@ -91,23 +91,22 @@ h1{
 <?php
 $CRO="";
 $Descripcion="";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT Cod_rol  FROM  rol");
+while ($registro= mysqli_fetch_array($registros)){
+$CH=$registro['Cod_rol'];
+
+}
+$CRO=$CH + 1000;
 
 ?>
 
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
+include("../conexion.php");
 if (isset($_POST["crs"])){
 $CR=$_POST['CR'];
 $D=$_POST['D'];
-
-
 
 $consulta="insert into rol(Cod_rol,Descripcion)
  VALUES('$CR','$D')";
@@ -127,26 +126,15 @@ $consulta="insert into rol(Cod_rol,Descripcion)
 
 ?>
 
-
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
- 
+include("../conexion.php");
 if (isset($_POST["buscar"])){
 
 $CR=$_POST["CR"];
 
 $registros=mysqli_query($conexion,"SELECT * FROM  rol WHERE Cod_rol='$CR'");
 
-
 while ($registro= mysqli_fetch_array($registros)){
-
 
 $CRO=$registro['Cod_rol'];
 $Descripcion=$registro['Descripcion'];
@@ -162,8 +150,6 @@ if (isset($_POST["limpiar"])){
 $CRO="";
 $Descripcion="";
 
-
-
 }
 
 ?>
@@ -177,8 +163,6 @@ if (isset($_POST["BD"])){
 header("location:http://localhost:801/phpmyadmin/");
 }
 ?>
-
-
 
 
 <form class="from"  id="form1" action="#" method="POST">

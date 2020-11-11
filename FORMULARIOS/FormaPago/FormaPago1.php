@@ -186,14 +186,14 @@ header("location:FormaPago.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Forma Pago</h1>
+	 <h1>Tabla Forma de Pago</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
-		   <label for="caja"> </label>
-		  <input type="text" name="caja" id="caja" aling="center" >   <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>
+		<!--   <label for="caja"> </label>
+		  <input type="text" name="caja" id="caja" aling="center" >   <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>-->
 		</div>
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Aumento  <i class="fas fa-plus"></i></button>
+	<button name="Insertar"  class="boton_Añadir">Añadir Forma de Pago  <i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
 	
