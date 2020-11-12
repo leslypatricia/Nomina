@@ -97,18 +97,19 @@ font-weight:bold;
 <body>
 	
 <?php
-$codigo="";
+$codigo="0";
 $Descripcion="";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT * FROM  formapago");
+while ($registro= mysqli_fetch_array($registros)){
+$codigos=$registro['Cod_FormaPago'];
 
+}
+$codigo=$codigos + 1;
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+include("../conexion.php");
 
 if (isset($_POST["crs"])){
 $FP=$_POST['FP'];
@@ -123,7 +124,11 @@ $consulta="insert into formapago(Cod_FormaPago,Descripcion)
 	  window.location='FormaPago1.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+	echo "<script>   
+	alert ('Registro NO Ingresado Correctamente!!!');
+     window.location='FormaPago.php';
+ </script>";
+     /* echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 }
  mysqli_close($conexion);
 
@@ -132,15 +137,7 @@ $consulta="insert into formapago(Cod_FormaPago,Descripcion)
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
- 
+include("../conexion.php");
 if (isset($_POST["buscar"])){
 
 $FP=$_POST["FP"];
@@ -164,9 +161,15 @@ mysqli_close($conexion);
 <center>
 <?php
 if (isset($_POST["limpiar"])){
-$codigo="";
+$codigo="0";
 $Descripcion="";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT * FROM  formapago");
+while ($registro= mysqli_fetch_array($registros)){
+$codigos=$registro['Cod_FormaPago'];
 
+}
+$codigo=$codigos + 1;
 
 
 }
@@ -199,8 +202,6 @@ header("location:http://localhost:801/phpmyadmin/");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
-<button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/></center>
 
 

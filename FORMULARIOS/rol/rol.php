@@ -118,7 +118,12 @@ $consulta="insert into rol(Cod_rol,Descripcion)
 	  window.location='rol1.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+	echo "<script>
+     
+	alert ('Registro NO Ingresado Correctamente!!!');
+ window.location='rol.php';
+ </script>";
+     /* echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 }
  mysqli_close($conexion);
 
@@ -178,7 +183,24 @@ header("location:http://localhost:801/phpmyadmin/");
 
 <tr><td><label>Descripción:</label></td>
 <td><input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" />
+<tr><td>Privilegios<br/> </td>
 
+<td> <select  name="CJ" id="CJ"  class="form"  selected="selected" maxlength="20">
+        <?php
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT *  FROM  privilegios");
+         ?>
+		    <?php
+		
+			 while ($valores = $registros->fetch_assoc()) {
+			 	 //echo '<option value="0" >nombre</option>';
+				 echo  '<option class="form"  value="'.$valores["Cod_privilegios"].'">'.$valores["Descripcion"].'</option>';
+			 }
+			
+		?>
+	
+       
+         </select>
 <br/>
 
 </table>
@@ -187,7 +209,7 @@ header("location:http://localhost:801/phpmyadmin/");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
+<!--<button name="BD"><i class="fas fa-database"></i></button>-->
 <button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/></center>
 </div>

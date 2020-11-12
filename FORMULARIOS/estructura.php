@@ -145,7 +145,6 @@ li{
 						<li><a href="../FORMULARIOS/Usuario/Usuario1.php">Usuarios</a></li>
                        <li><a href="../FORMULARIOS/rol/rol1.php">Rol</a></li>
                        <li><a href="../FORMULARIOS/Privilegios/Privilegios1.php">Privilegios</a></li>
-                       <li><a href="../FORMULARIOS/RolPrivilegios.php">Rol_Privilegios</a></li>
 					</ul>
 				</li>
 

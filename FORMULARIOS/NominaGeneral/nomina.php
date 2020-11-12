@@ -223,7 +223,9 @@ header("location:../estructura.php");
        <td rowspan="2">Total_Devengado</td>
 	   <td colspan="2">Deducciones </td>
 	   <td rowspan="2">Total_Deducciones</td>
-	   <td rowspan="2">Neto_a_Pagar</td>
+	   <td rowspan="2">Total_PagosComplementarios</td>
+	   <td rowspan="2">Total Aumento</td>
+	    <td rowspan="2">Sueldo Neto a Pagar</td>
 	   <td rowspan="2">Eliminar</td>
 	   <td rowspan="2">Editar</td>
     </tr>
@@ -251,8 +253,9 @@ header("location:../estructura.php");
 		echo "<td>";echo $mostrar['IHSS']; echo"</td>";
 		echo "<td>";echo $mostrar['RAP']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_Deducciones']; echo"</td>";
-		echo "<td>";echo $mostrar['Total_Pagar']; echo"</td>";
-						
+		echo "<td>";echo $mostrar['Total_PagosComplemetarios']; echo"</td>";
+	    echo "<td>";echo $mostrar['Total_aumento']; echo"</td>";	
+	    echo "<td>";echo $mostrar['SUELDO_NETO_Pagar']; echo"</td>";	
 		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_empleados']."'><button name='Eliminar' class='boton-eliminar' ><i class='far fa-trash-alt'></a></i></button></td>";
 		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_empleados']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 		echo "</tr>";

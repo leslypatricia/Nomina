@@ -109,18 +109,22 @@ h1{
 
 <body>
 <?php
-$codigo="";
+$codigo="0";
 $Descripcion="";
 $jefe="";
+
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT * FROM  departamento");
+while ($registro= mysqli_fetch_array($registros)){
+$codigos=$registro['Cod_Depto'];
+
+}
+$codigo=$codigos + 1;
+
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+include("../conexion.php");
 if (isset($_POST["crs"])){
 $CD=$_POST['CD'];
 $D=$_POST['D'];
@@ -135,7 +139,11 @@ $consulta="insert into departamento(Cod_Depto,Descripcion,Cod_Jefe)
 	  window.location='Departamento1.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+	echo "<script>   
+	alert ('Registro NO Ingresado Correctamente!!!');
+ window.location='Departamento.php';
+ </script>";
+    /*  echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 }
  mysqli_close($conexion);
 
@@ -144,15 +152,7 @@ $consulta="insert into departamento(Cod_Depto,Descripcion,Cod_Jefe)
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
- 
+include("../conexion.php");
 if (isset($_POST["buscar"])){
 
 $CD=$_POST["CD"];
@@ -174,10 +174,17 @@ mysqli_close($conexion);
 <center>
 <?php
 if (isset($_POST["limpiar"])){
-$codigo="";
+$codigo="0";
 $Descripcion="";
 $jefe="";
 
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT * FROM  departamento");
+while ($registro= mysqli_fetch_array($registros)){
+$codigos=$registro['Cod_Depto'];
+
+}
+$codigo=$codigos + 1;
 
 }
 
@@ -212,8 +219,6 @@ header("location:http://localhost:801/phpmyadmin/");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
-<button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/></center>
 
 

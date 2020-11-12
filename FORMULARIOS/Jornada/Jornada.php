@@ -87,6 +87,7 @@ h1{
 </head>
 
 <body>
+
 <?php
 $codigo="";
 $tipo="";
@@ -117,8 +118,11 @@ $consulta="insert into jornada(Cod_Jornada,Tipo_Jornada)
 	  window.location='Jornada1.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
-}
+	echo "<script>  
+	alert ('Registro NO Ingresado Correctamente!!!');
+ window.location='Jornada.php';
+ </script>";
+      /*echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
  mysqli_close($conexion);
 
 }
@@ -182,7 +186,6 @@ header("location:http://localhost:801/phpmyadmin/");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
 <button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/></center>
 

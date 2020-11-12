@@ -157,7 +157,11 @@ $consulta="insert into usuario(Cod_Usuario,Usuario,Password,Correo,Cod_rol,Cod_e
 	  window.location='Usuario1.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+	echo "<script> 
+	alert ('Registro Ingresado Correctamente!!!');
+ window.location='Usuario.php';
+ </script>";
+      /*echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 }
  mysqli_close($conexion);
 
@@ -275,7 +279,7 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  rol");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
+
 <button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/></center>
 <br/>

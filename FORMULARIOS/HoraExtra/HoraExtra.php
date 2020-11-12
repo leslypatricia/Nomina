@@ -51,7 +51,7 @@ h1{
 }
 
 /*iconos*/
-.fa-search{
+.fa-calculator{
 color:blue;
 background:white;
 border:none;
@@ -117,6 +117,13 @@ if (isset($_POST["Regresar"])){
 header("location:HoraExtra1.php");
 }
 ?>
+
+<?php
+if (isset($_POST["Siguiente"])){
+header("location:/FORMULARIOS/NominaDeduccion/NominaDeduccion.php");
+}
+?>
+
 <?php
 $S_O="";
 $D="";
@@ -261,10 +268,14 @@ where Cod_empleados='$CO'")
 or die ("error al actualizar");
 	 echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='HoraExtra1.php';
+	  window.location='HoraExtra.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+	echo "<script>
+	alert ('Registro NO Ingresado Correctamente!!!');
+ window.location='HoraExtra.php';
+ </script>";
+     /* echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 }
 
  mysqli_close($conexion);
@@ -361,8 +372,9 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  jornada");
 <br>
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
-<button name="calcular"><i class="fas fa-calculator"></i></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
+<button name="calcular"><i class="fas fa-calculator"></i></button>
+<button name="Siguiente"><i class="fas fa-share-square"></i></button>
+
 <br>
 
 

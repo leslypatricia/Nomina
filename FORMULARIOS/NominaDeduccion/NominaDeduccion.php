@@ -46,7 +46,7 @@ h1{
 	}
 	
 /*iconos*/
-.fa-search{
+.fa-calculator{
 color:blue;
 background:white;
 border:none;
@@ -102,7 +102,7 @@ $CH=$registro['Cod_NominaD'];
 
 }
 $CD=$CH + 1;
-
+$TOTALD="";
 
 ?>
 <?php
@@ -139,7 +139,7 @@ if(isset($_POST["2"])){
 $RAP=$sueldo * 0.015;
 
 }
-
+$TOTALD=$IHSS + $RAP + $Prestamo;
 }
 
 
@@ -157,8 +157,8 @@ $IHSS=$_POST["IHSS"];
 $RAP=$_POST["RAP"];
 $DE=1;
 $TOTALD=$IHSS + $RAP + $Prestamo;
-$consulta="insert into nominadeducciones (Cod_NominaD,Cod_Empleados,Cod_Deducciones,IHSS,RAP,Total_Deducciones)
- VALUES('$CN','$CE','$DE','$IHSS','$RAP','$TOTALD')";
+$consulta="insert into nominadeducciones (Cod_NominaD,Cod_Empleados,Cod_Deducciones,Total_Deducciones)
+ VALUES('$CN','$CE','$DE','$TOTALD')";
  $registros=mysqli_query($conexion,"SELECT Total_Devengado  FROM  nominageneral WHERE Cod_Empleados='$CE'");
 
 while ($registro= mysqli_fetch_array($registros)){
@@ -168,7 +168,7 @@ $totald=$registro['Total_Devengado'];
 
 $totalpagar=$totald - $TOTALD;
  if (mysqli_query($conexion, $consulta)) {
- 	$registro=mysqli_query($conexion,"update nominageneral set IHSS='$IHSS', RAP='$RAP' ,Total_Deducciones='$TOTALD',Total_Pagar='$totalpagar' 
+ 	$registro=mysqli_query($conexion,"update nominageneral set IHSS='$IHSS', RAP='$RAP' ,Total_Deducciones='$TOTALD',	SUELDO_NETO_Pagar='$totalpagar' 
 where Cod_empleados='$CE'")
 or die ("error al actualizar");
      echo "<script> 
@@ -189,7 +189,11 @@ if (isset($_POST["Regresar"])){
 header("location:NominaDeduccion1.php");
 }
 ?>
-
+<?php
+if (isset($_POST["Siguiente"])){
+header("location:/FORMULARIOS/NominaGeneral/nomina.php");
+}
+?>
 
 <form class="from"  id="form1" action= "" method="POST" >
 <center>
@@ -234,7 +238,8 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  deducciones");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="calcular"><i class="fas fa-calcular"></i></button>
+<button name="calcular"><i class="fas fa-calculator"></i></button>
+<button name="Siguiente"><i class="fas fa-share-square"></i></button>
 <br>
 
 

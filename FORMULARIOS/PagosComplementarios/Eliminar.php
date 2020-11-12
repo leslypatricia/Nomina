@@ -14,7 +14,7 @@ $conexion->query($sentencia) or die("error al eliminar".mysqli_error($conexion))
 
 ?>
 <script type="text/javascript">
-alert("empleado eliminado");
+alert("Datos eliminado");
 window.location="PagosComplementarios1.php";
 </script>
 

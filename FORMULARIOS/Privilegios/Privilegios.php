@@ -90,23 +90,22 @@ font-weight:bold;
 <?php
 $CPR="";
 $Descripcion="";
+$CH="0";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT Cod_privilegios  FROM  privilegios");
+while ($registro= mysqli_fetch_array($registros)){
+$CH=$registro['Cod_privilegios'];
 
+}
+$CHE=$CH + 1;
 ?>
 
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
+include("../conexion.php");
 if (isset($_POST["crs"])){
 $CP=$_POST['CP'];
 $D=$_POST['D'];
-
-
 
 $consulta="insert into privilegios(Cod_privilegios,Descripcion)
  VALUES('$CP','$D')";
@@ -118,7 +117,12 @@ $consulta="insert into privilegios(Cod_privilegios,Descripcion)
 	  window.location='Privilegios1.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+	echo "<script>
+     
+	alert ('Registro NO Ingresado Correctamente!!!');
+ window.location='Privilegios.php';
+ </script>";
+   /*   echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 }
  mysqli_close($conexion);
 
@@ -127,15 +131,7 @@ $consulta="insert into privilegios(Cod_privilegios,Descripcion)
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
- 
+include("../conexion.php");
 if (isset($_POST["buscar"])){
 
 $CP=$_POST["CP"];
@@ -145,10 +141,8 @@ $registros=mysqli_query($conexion,"SELECT * FROM  privilegios WHERE Cod_privileg
 
 while ($registro= mysqli_fetch_array($registros)){
 
-
 $CPR=$registro['Cod_privilegios'];
 $Descripcion=$registro['Descripcion'];
-
 
 mysqli_close($conexion);
 }
@@ -188,7 +182,7 @@ header("location:http://localhost:801/phpmyadmin/");
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
 <tr><td><label>Código Privilegio:</label></td>
-<td><input type="text" name="CP" value="<?php echo $CPR?>" size="5" maxlength="5" /></td></tr>
+<td><input type="text" name="CP" value="<?php echo $CHE?>" size="5" maxlength="5" /></td></tr>
 
 <tr><td><label>Descripción</label></td>
 <td><input type="text" name="D" value="<?php echo $Descripcion?>" size="25" maxlength="25" /></td></tr>
@@ -200,8 +194,6 @@ header("location:http://localhost:801/phpmyadmin/");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
-<button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/></center>
 </div>
 </center>

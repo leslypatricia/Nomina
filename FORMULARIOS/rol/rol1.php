@@ -196,6 +196,7 @@ header("location:rol.php");
     <tr class="Estilo-tabla">
        <td>Codigo_Rol</td> 
 	   <td>Descripcion</td>
+	   <td>Cod_privilegios</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>
@@ -210,6 +211,7 @@ $sql="SELECT * from rol" ;
 		echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_rol']; echo"</td>";
 		echo "<td>";echo $mostrar['Descripcion']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_privilegios']; echo"</td>";
 		echo "<td><a href='Eliminar.php?CR=".$mostrar['Cod_rol']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
 	    echo "<td><a href='Actualizar.php?CR=".$mostrar['Cod_rol']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";

@@ -178,7 +178,7 @@ $consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_
      echo "<script>
      
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='Empleados1.php';
+	  window.location='Empleados.php';
 	  </script>";
 } else {
     /*  echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
@@ -269,8 +269,8 @@ header("location:Empleados1.php");
 }
 ?>
 <?php
-if (isset($_POST["BD"])){
-header("location:http://localhost:801/phpmyadmin/");
+if (isset($_POST["Siguiente"])){
+header("location:/FORMULARIOS/HoraExtra/HoraExtra.php");
 }
 ?>
 
@@ -383,7 +383,7 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
 	<td> <input type="text" class="form"  name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" /><br/>
 </td></tr>
 	<tr><td>Fecha de Deducciones<br/> </td>
-	<td> <input id="date" class="form"  type="date" name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  /><br/>
+	<td> <input type="text"  class="form"   name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  /><br/>
 </td></tr>
 	<tr><td>Forma de Pago<br/> </td>
 	<td><select name="FP" class="form"  maxlength="20">
@@ -413,7 +413,8 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  formapago");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
+<button name="Siguiente"><i class="fas fa-share-square"></i></button>
+
 <br>
 
 <br>

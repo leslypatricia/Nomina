@@ -15,6 +15,6 @@ $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexi
 
 ?>
 <script type="text/javascript">
-alert("Datos Actualizados del Empleado ");
+alert("Datos Actualizados de la Jornada ");
 window.location="Jornada1.php";
 </script>

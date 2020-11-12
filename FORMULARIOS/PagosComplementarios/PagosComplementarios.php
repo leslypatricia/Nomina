@@ -122,7 +122,11 @@ $consulta="insert into pagocomplementario(Cod_Complementario,Descripcion,Porcent
 	  window.location='PagosComplementarios1.php';
 	  </script>";
 } else {
-      echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+	echo "<script> 
+	alert ('Registro  NO Ingresado Correctamente!!!');
+ window.location='PagosComplementarios.php';
+ </script>";
+   /*   echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 }
  mysqli_close($conexion);
 
@@ -215,7 +219,6 @@ header("location:http://localhost:801/phpmyadmin/");
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
-<button name="BD"><i class="fas fa-database"></i></button>
 <button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/></center>
 </div>
