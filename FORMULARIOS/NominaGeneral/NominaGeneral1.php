@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:16.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:16.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -194,11 +196,11 @@ header("location:NominaGeneral.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_Nomina</td> 
-       <td>Codigo_Empleado</td>
-       <td>Codigo_Aumento</td>
+       <td>Cód. Nómina</td> 
+       <td>Cód. Empleado</td>
+       <td>Cód.Aumento</td>
        <td>Total</td>
-	   <td>Fecha_Generada</td>
+	   <td>Fecha Generada</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>

@@ -203,7 +203,7 @@ header("location:Departamento.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Tabla Departamentos</h1>
+	 <h1>Departamentos</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		  <!-- <label for="caja"> </label>

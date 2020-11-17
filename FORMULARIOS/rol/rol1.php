@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:44%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:44%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -179,7 +181,7 @@ header("location:rol.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Tabla Rol</h1>
+	 <h1>Rol</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		<!--   <label for="caja"> </label>
@@ -194,9 +196,9 @@ header("location:rol.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_Rol</td> 
-	   <td>Descripcion</td>
-	   <td>Cod_privilegios</td>
+       <td>Código Rol</td> 
+	   <td>Descripción</td>
+	   <td>Cód. privilegios</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>

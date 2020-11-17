@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:44.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:44.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -194,10 +196,10 @@ header("location:PagosComplementarios.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_Complementario</td> 
-       <td>Descripcion</td>
+       <td>Código Complementario</td> 
+       <td>Descripción</td>
        <td>Porcentaje</td>
-       <td>Fijo</td>
+       <td>Valor Fijo</td>
 	   <td>Valor</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>

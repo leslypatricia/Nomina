@@ -101,7 +101,8 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:10%;
+	margin-left:5%;
+	margin-right:39.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -113,6 +114,23 @@ color:green;
 	text-transform:uppercase;
 	font-weight:bold;
 	letter-spacing:0.06em;
+
+}
+.boton_Añadir:hover{
+	margin-left:5%;
+	margin-right:39.5%;
+	margin-bottom:1.5%;
+	color: white;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	background:#173687;
+	border:solid 1px #346BFB ;
+	text-transform:uppercase;
+	font-weight:bold;
+	letter-spacing:0.06em;
+	cursor:pointer;
 
 }
 .Boton-Regresar
@@ -138,22 +156,7 @@ color:green;
    color:white;
 }
 
-.boton_Añadir:hover{
-	margin-left:10%;
-	margin-bottom:1.5%;
-	color: white;
-	padding-left:1.5%;
-	padding-right:1.5%;
-	padding-top:0.5%;
-	padding-bottom:0.5%;
-	background:#173687;
-	border:solid 1px #346BFB ;
-	text-transform:uppercase;
-	font-weight:bold;
-	letter-spacing:0.06em;
-	cursor:pointer;
 
-}
 </style>
 </head>
 
@@ -194,8 +197,8 @@ header("location:Deducciones.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_Deducciones</td> 
-       <td>Descripcion</td>
+       <td>Código Deducciones</td> 
+       <td>Descripción</td>
        <td>Porcentaje</td>
        <td>Valor</td>
 	   <td>Fijo</td>

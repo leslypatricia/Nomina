@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:72.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:72.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -179,7 +181,7 @@ header("location:Usuario.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Tabla de Usuarios</h1>
+	 <h1>Usuarios</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		<!--   <label for="caja"> </label>
@@ -194,12 +196,12 @@ header("location:Usuario.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_Usuario</td> 
+       <td>Código Usuario</td> 
        <td>Usuario</td>
        <td >Password</td>
        <td>Correo  </td>
-       <td>Codigo_Rol</td>
-	   <td>Codigo_Empleado</td>
+       <td>Código Rol</td>
+	   <td>Código Empleado</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>

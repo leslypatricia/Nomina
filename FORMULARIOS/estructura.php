@@ -135,13 +135,13 @@ li{
 		<nav class="navegacion">
 			<ul class="menu">
 				<!-- TITULAR -->
-				<li class="title-menu">Menu</li>
+				<li class="title-menu">Menú</li>
 				<!-- TITULAR -->
 				<li class="item-submenu" menu="1">
 					<a href="#"><span class=" icon-menu"></span>Seguridad</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class="icon-menu"></span>Seguridad</li>
-						<li class="go-back">Atras</li>
+						<li class="go-back">Atrás</li>
 						<li><a href="../FORMULARIOS/Usuario/Usuario1.php">Usuarios</a></li>
                        <li><a href="../FORMULARIOS/rol/rol1.php">Rol</a></li>
                        <li><a href="../FORMULARIOS/Privilegios/Privilegios1.php">Privilegios</a></li>
@@ -152,7 +152,7 @@ li{
 					<a href="#"><span class=" icon-menu"></span>Personal</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Personal</li>
-						<li class="go-back">Atras</li>
+						<li class="go-back">Atrás</li>
 						<li><a href="../FORMULARIOS/Empleado/Empleados1.php">Empleados</a></li>
                         <li><a href="../FORMULARIOS/Departamento/Departamento1.php">Departamentos</a></li>
                         <li><a href="../FORMULARIOS/FormaPago/FormaPago1.php">Formas de Pago</a></li>
@@ -160,39 +160,39 @@ li{
 					</ul>
 				</li>
 				<li class="item-submenu" menu="3">
-					<a href="#"><span class=" icon-menu"></span>Nomina</a>
+					<a href="#"><span class=" icon-menu"></span>Nómina</a>
 					<ul class="submenu">
-						<li class="title-menu"><span class=" icon-menu"></span>Nomina</li>
-						<li class="go-back">Atras</li>
+						<li class="title-menu"><span class=" icon-menu"></span>Nómina</li>
+						<li class="go-back">Atrás</li>
 
-						<li><a href="../FORMULARIOS/NominaGeneral/Nomina.php">Nomina General</a></li>
+						<li><a href="../FORMULARIOS/NominaGeneral/Nomina.php">Nómina General</a></li>
 						<li><a href="../FORMULARIOS/Deducciones/Deducciones1.php">Deducciones</a></li>
-						<li><a href="../FORMULARIOS/NominaDeduccion/NominaDeduccion1.php">Nomina Deducciones</a></li>
+						<li><a href="../FORMULARIOS/NominaDeduccion/NominaDeduccion1.php">Nómina Deducciones</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="4">
 					<a href="#"><span class=" icon-menu"></span>Horas Laborales</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Horas Laborales</li>
-						<li class="go-back">Atras</li>
+						<li class="go-back">Atrás</li>
 						<li><a href="../FORMULARIOS/Jornada/Jornada1.php">Jornada</a></li>
-						<li><a href="../FORMULARIOS/HoraExtra/HoraExtra1.php">Horas Extras</a></li>
+						<li><a href="../FORMULARIOS/HoraExtra/HoraExtra1.php">Horas Éxtras</a></li>
 					</ul>
 				</li>
 				<li class="item-submenu" menu="5">
 					<a href="#"><span class=" icon-menu"></span>Otros Pagos</a>
 					<ul class="submenu">
-						<li class="title-menu"><span class=" icon-menu"></span>Otos Pagos</li>
+						<li class="title-menu"><span class=" icon-menu"></span>Otros Pagos</li>
 						<li class="go-back">Atras</li>
 
                      <li><a href="../FORMULARIOS/Aumento/Aumento1.php">Aumento</a></li>
                     <li><a href="../FORMULARIOS/PagosComplementarios/PagosComplementarios1.php">Pagos Complementarios</a></li>
-                     <li><a href="../FORMULARIOS/NominaPagComplementarios/NominaPagComplementarios1.php">Nomina Pagos Complementarios</a></li>
+                     <li><a href="../FORMULARIOS/NominaPagComplementarios/NominaPagComplementarios1.php">Nómina Pagos Complementarios</a></li>
 					</ul>
 				</li>
-				<li><a href="../LOG/Menu_Admin.php">ATRAS</a></li>
+				<li><a href="../LOG/Menu_Admin.php">Atrás</a></li>
 				<li><a href="../../Index.php"><i class="icono izquierda"></i>Cerrar sesion</a></li>
-				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>Quienes Somos?</a></li>
+				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>¿Quienés Somos?</a></li>
 			</ul>
 		</nav>
 	</header>

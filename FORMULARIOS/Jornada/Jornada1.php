@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:29%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:29%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -195,8 +197,8 @@ header("location:Jornada.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_Jornada</td> 
-	   <td>Tipo_Jornada</td>
+       <td>Código Jornada</td> 
+	   <td>Tipo Jornada</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>

@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:29%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:29%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -178,7 +180,7 @@ header("location:privilegios.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Tabla Privilegios</h1>
+	 <h1>Privilegios</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		 <!--  <label for="caja"> </label>
@@ -193,8 +195,8 @@ header("location:privilegios.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_Privilegios</td> 
-	   <td>Descripcion</td>
+       <td>Código Privilegios</td> 
+	   <td>Descripción</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>

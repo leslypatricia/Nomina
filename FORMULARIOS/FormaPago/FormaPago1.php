@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:26.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:26.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -186,7 +188,7 @@ header("location:FormaPago.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Tabla Forma de Pago</h1>
+	 <h1>Forma de Pago</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		<!--   <label for="caja"> </label>

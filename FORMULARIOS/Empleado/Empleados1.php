@@ -107,6 +107,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:10%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -118,6 +119,23 @@ color:green;
 	text-transform:uppercase;
 	font-weight:bold;
 	letter-spacing:0.06em;
+
+}
+.boton_Añadir:hover{
+	margin-left:10%;
+	margin-right:10%;
+	margin-bottom:1.5%;
+	color: white;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	padding-top:0.5%;
+	padding-bottom:0.5%;
+	background:#173687;
+	border:solid 1px #346BFB ;
+	text-transform:uppercase;
+	font-weight:bold;
+	letter-spacing:0.06em;
+	cursor:pointer;
 
 }
 .Boton-Regresar
@@ -143,22 +161,7 @@ color:green;
    color:white;
 }
 
-.boton_Añadir:hover{
-	margin-left:10%;
-	margin-bottom:1.5%;
-	color: white;
-	padding-left:1.5%;
-	padding-right:1.5%;
-	padding-top:0.5%;
-	padding-bottom:0.5%;
-	background:#173687;
-	border:solid 1px #346BFB ;
-	text-transform:uppercase;
-	font-weight:bold;
-	letter-spacing:0.06em;
-	cursor:pointer;
 
-}
 </style>
 </head>
 
@@ -186,7 +189,7 @@ header("location:Empleados.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Tabla de Empleadoss</h1>
+	 <h1>Empleados</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		   <label for="caja"> </label>

@@ -21,11 +21,22 @@ body{
 	background-attachment: fixed;
 }
 
-th, td {
+th{
+	border:none;
+	padding:10px;
+	text-align:center;
+	color:#FFFFFF;
+	font-family:Times New Roman;
+	font-size:15px;
+	 background:#346BFB;
+ font-family:Times New Roman ;
+}
+td{
 	border:none;
 	padding:10px;
 	text-align:center;
 }
+
 tr:nth-child(even){
 
 	background:#F5F5F5;
@@ -35,7 +46,7 @@ tr:nth-child(even){
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	color:black;
 }
 h1{
@@ -50,7 +61,7 @@ h1{
 	border-radius:6px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	font-size:18px;
 	}
 .color-Tabla {
@@ -62,6 +73,8 @@ h1{
 
 
 }
+
+
 /*iconos*/
 .fa-trash-alt{
 color:red;
@@ -171,10 +184,13 @@ header("location:../estructura.php");
 }
 ?>
 <div class="Container">
-	<center>
+	
   <div class="form-group">
+	 
 	 <center>
-	 <h1>Generar Nomina</h1>
+	 <h1>Generar Nómina</h1>
+	 </center>
+	 <center>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
       <table border="1" class="color-Tabla" align="left">
@@ -185,17 +201,17 @@ header("location:../estructura.php");
           <tr class="Estilo-tabla" align="regth">
           <td>Periodo de Pago</td> </tr>
           <tr><td>Noviembre/01/2020-Noviembre/30/2020</td></tr>
-          <tr class="Estilo-tabla"align="regth" ><td>Fecha de Liquidacion</td></tr>
+          <tr class="Estilo-tabla"align="regth" ><td>Fecha de Liquidación</td></tr>
 		    <?php $fcha = date("Y-m-d");?>
           <tr><td><?php echo $fcha;?></td></tr>
         </tr>
         </table>
 		</div>
-	
+	</table>
     </center><br/><br/>
     <table border="1" class="color-Tabla" align="left">
     <tr class="Estilo-tabla">
-       <td>Codigo Nomina</td> 
+       <td>Código Nómina</td> 
     </tr>
     <?php 
 	/*
@@ -210,29 +226,30 @@ header("location:../estructura.php");
     <?php //}?>
      </table><br/><br/>
 	<!--<button name="Insertar"  class="boton_Añadir">Añadir Usuario  <i class="fas fa-plus"></i></button>
---><div class="container-table">
-	<center>
+-->
+<div class="container-table">
+<center>
 	
 <table border="1" class="color-Tabla"><br/><br/>
 
     <tr class="Estilo-tabla" >
-       <td rowspan="2">Nº_Empleado</td> <br/><br/>
-       <td rowspan="2">Nombre_Completo</td>
-       <td rowspan="2">Sueldo_Ordinario</td>
-       <td colspan="3">Tiempo_Extra</td>
-       <td rowspan="2">Total_Devengado</td>
+       <td rowspan="2">Código Empleado</td> <br/><br/>
+       <td rowspan="2">Nombre Completo</td>
+       <td rowspan="2">Sueldo Ordinario</td>
+       <td colspan="3">Horas Extra</td>
+       <td rowspan="2">Total Devengado</td>
 	   <td colspan="2">Deducciones </td>
-	   <td rowspan="2">Total_Deducciones</td>
-	   <td rowspan="2">Total_PagosComplementarios</td>
+	   <td rowspan="2">Total Deducciones</td>
+	   <td rowspan="2">Total Complementarios</td>
 	   <td rowspan="2">Total Aumento</td>
-	    <td rowspan="2">Sueldo Neto a Pagar</td>
+	    <td rowspan="2">Sueldo Neto</td>
 	   <td rowspan="2">Eliminar</td>
 	   <td rowspan="2">Editar</td>
-    </tr>
+    </tr >
     <tr>   
-        <th># H.EXTRA</th>
-        <th>C.UNITARIO</th>
-        <th>C.TOTAL</th>
+        <th>Cant. Hr/Extras</th>
+        <th>Valor hora</th>
+        <th>Total</th>
         <th>IHSS</th>
         <th>RAP</th>
     </tr>
@@ -266,8 +283,7 @@ header("location:../estructura.php");
 }
 ?>
 
-
-   </div class="color-Tabla">
+</div class="color-Tabla">
 </center>
    </table> <br/><br/>
 	</center>

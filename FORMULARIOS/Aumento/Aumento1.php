@@ -107,6 +107,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:47.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -145,6 +146,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:47.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -208,11 +210,11 @@ header("location:Eliminar.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td align="center">Codigo_Aumento</td> 
-       <td>Porcentaje_aumento</td>
+       <td align="center">Código Aumento</td> 
+       <td>Porcentaje</td>
        <td align="center"> Año</td>
-       <td>Descripcion</td>
-	   <td>aplicado</td>
+       <td>Descripción</td>
+	   <td>Aplicado</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>

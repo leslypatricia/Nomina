@@ -197,17 +197,17 @@ header("location:/FORMULARIOS/NominaGeneral/nomina.php");
 
 <form class="from"  id="form1" action= "" method="POST" >
 <center>
-<h1>Formulario Nomina Deduciones</h1>
+<h1>Nómina Deduciones</h1>
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" >
 
 
-	<tr><td><label>Codigo<br/></label> </td>
+	<tr><td><label>Código<br/></label> </td>
 	<td><input type="text" class="form" name="CHE" value="<?php echo $CD ?>"size="20" maxlength="20" readonly="readonly" /><br/></td></tr>
 	
 	
 	</td></tr>
-	<tr><td>Codigo Empleado<br/> </td>
+	<tr><td>Código Empleado<br/> </td>
 	<td><input type="text" class="form"  name="CEE"  value="<?php echo $CE ?>" size="20" maxlength="20" /><br/>
  </td></tr>
 

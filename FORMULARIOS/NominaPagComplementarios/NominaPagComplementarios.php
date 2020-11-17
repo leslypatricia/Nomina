@@ -193,18 +193,18 @@ header("location:http://localhost:801/phpmyadmin/");
 
 <form class="from"  id="form1" action="#" method="POST">
 <center>
-<h1>Formulario Nominas,Pagos Y Complementarios</h1>
+<h1>Nóminas,Pagos Y Complementarios</h1>
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
 
-<tr><td><label>Codigo Nomina Pagos Complementarios:</label></td>
+<tr><td><label>Código Nómina Pagos Complementarios:</label></td>
 <td><input type="text" name="CNPC" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
 
-<tr><td><label>Codigo Nomina:</label></td>
+<tr><td><label>Código Nómina:</label></td>
 <td><input type="text" name="CN" value="<?php echo $nomina?>" size="15" maxlength="15" /></td></tr>
 
-<tr><td><label>Codigo Complementario:</label></td>
+<tr><td><label>Código Complementario:</label></td>
 <td><input type="text" name="CC" value="<?php echo $comple?>" size="20" maxlength="20"/></td></tr>
 <br/>
 </table>

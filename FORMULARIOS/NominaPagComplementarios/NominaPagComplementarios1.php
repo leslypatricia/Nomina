@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:56.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:56.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -179,7 +181,7 @@ header("location:NominaPagComplementarios.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Nomina Pagos Complementarios</h1>
+	 <h1>Nómina Pagos-Complementarios</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		<!--   <label for="caja"> </label>
@@ -194,9 +196,9 @@ header("location:NominaPagComplementarios.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Codigo_N_PAGOS_C</td> 
-       <td>Cod_Nomina</td>
-       <td>Cod_Complementario </td>
+       <td>Código N. complementarios</td> 
+       <td>Código Nómina</td>
+       <td>Código Complementario </td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>

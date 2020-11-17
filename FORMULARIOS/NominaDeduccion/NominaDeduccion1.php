@@ -102,6 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:41.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -140,6 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:41.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -180,7 +182,7 @@ header("location:NominaDeduccion.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Nomina Deducciones</h1>
+	 <h1>Nómina Deducciones</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		 <!--  <label for="caja"> </label>
@@ -188,15 +190,15 @@ header("location:NominaDeduccion.php");
 		</div>
 	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Deducciones a Empleados <i class="fas fa-plus"></i></button>
+	<button name="Insertar"  class="boton_Añadir">Añadir Nómina-deducción<i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
 	
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-	   <td>Codigo_Deducciones</td>
-	   <td>Codigo_Empleados</td>
+	   <td>Código Deducciones</td>
+	   <td>Código Empleados</td>
 	   <td>Total Deducciones</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>

@@ -107,6 +107,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
+	margin-right:10%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -145,6 +146,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
+	margin-right:10%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -186,7 +188,7 @@ header("location:HoraExtra.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Tabla Horas Extras</h1>
+	 <h1>Horas Extras</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		<!--   <label for="caja"> </label>
@@ -201,16 +203,16 @@ header("location:HoraExtra.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Cod_HE</td> 
-       <td>Cod_Jornada</td>
-	   <td>Cod_Empleado</td>
-	   <td>Sueldo_Ordinario</td>
-	   <td>Sueldo_Diario</td>
-	   <td>Sueldo_Hora</td>
-	   <td>Porce_HE</td>
-	   <td>Pago_Hora</td>
-	   <td>Numero_Horas</td>
-       <td>Total_HE</td>
+       <td>Código HE</td> 
+       <td>Código Jornada</td>
+	   <td>Código Empleado</td>
+	   <td>Sueldo Ordinario</td>
+	   <td>Sueldo Diario</td>
+	   <td>Sueldo Hora</td>
+	   <td>Porcentaje</td>
+	   <td>Valor Hora</td>
+	   <td>Cant. Horas</td>
+       <td>Total</td>
 	   <td>Fecha</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
