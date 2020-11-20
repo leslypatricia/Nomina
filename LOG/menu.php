@@ -162,8 +162,8 @@ ul{
 <header>
 <div id="header">
 <ul class="nav">
-<li><a href="Informacion/Informacion.php">Informacion Personal</a></li>
- <li><a href="detalle/Detalle.php">Detalle Planilla</a></li>
+<li><a href="../EMPLEADO/Informacion/Informacion.php">Informacion Personal</a></li>
+ <li><a href="../EMPLEADO/detalle/Detalle.php">Detalle Planilla</a></li>
  <li><a href="#">Detalle de Pagos</a></li></br></br></br>
 </ul>
 </div>

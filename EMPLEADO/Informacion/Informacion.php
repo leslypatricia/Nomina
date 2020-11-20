@@ -192,7 +192,7 @@ ul{
 
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../menu.php");
+header("location:../LOG/menu.php");
 }
 ?>
 <td><a href="../menu.php"><img src="../../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
