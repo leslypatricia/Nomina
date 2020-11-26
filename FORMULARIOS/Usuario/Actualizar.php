@@ -23,7 +23,7 @@ $mostrar=$res->fetch_assoc();
 			$mostrar['Password'],
 			$mostrar['Correo'],
 			$mostrar['Cod_rol'],
-			$mostrar['Cod_empleados'],
+			$mostrar['Cod_empleados']
 		];
 	}
 
@@ -139,6 +139,9 @@ font-weight:bold;
 		padding:10px;
 		color:white;
 		font-size:10px;}
+		label {
+			color: #ffff;
+		}
 </style>
 </head>
 

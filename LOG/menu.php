@@ -18,7 +18,7 @@ body{
 	background-attachment: fixed;
 	}
 *{
-	padding:40;
+	padding:50;
 	margin:0;
 	box-sizing:border-box;
 	
@@ -34,7 +34,7 @@ h1{
 	padding:20;
 	margin:auto;
 	width:200%;
-	max-width:1200px;
+	max-width:1250px;
 	font-family:"Times New Roman", Times, serif;
 	text-align:center;
 	}
@@ -68,7 +68,7 @@ ul ,ol {
 .nav li ul{
 	display:none;
 	position:absolute;
-	min-width:140px;
+	min-width:180px;
 }
 
 .nav li:hover > ul{
@@ -82,7 +82,7 @@ ul ,ol {
 		}
 		
 .nav li ul li ul{
-			right:-140px;
+			right:-190px;
 			top:0px;
 			opacity:1;
 			visibility:visible;
@@ -90,7 +90,7 @@ ul ,ol {
 
 iframe{
 	border:none;
-	width:100%;
+	width:110%;
 	margin:0 auto;
 	display:inline-block;
 	padding:0em;
@@ -102,16 +102,16 @@ iframe{
 }
 ul{
 	list-style:none;
-	max-width:750px;
+	max-width:790px;
 	margin:auto;
 	}
 .nav a{
 	text-align:center;
 	text-decoration:none;
 	display:block;
-	padding:15px;
+	padding:12px;
 	color:white;
-	font-size:20px;
+	font-size:15px;
 	
 }
 .izquierda{
@@ -164,8 +164,9 @@ ul{
 <ul class="nav">
 <li><a href="../EMPLEADO/Informacion/Informacion.php">Informacion Personal</a></li>
  <li><a href="../EMPLEADO/detalle/Detalle.php">Detalle Planilla</a></li>
- <li><a href="#">Detalle de Pagos</a></li></br></br></br>
-</ul>
+ <li><a href="#">Detalle de Pagos</a></li>
+ <li><a href="../index.php">Cerrar sesión</a></li>
+</ul></br></br></br>
 </div>
 </nav><br/><br/>
 <center>

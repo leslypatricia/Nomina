@@ -8,7 +8,7 @@ function eliminar($CC){
 	
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-$sentencia="DELETE FROM pagocomplementario WHERE Cod_Complementario='".$CC."'";
+$sentencia="DELETE FROM pagocomplementario WHERE Cod_PagoC='".$CC."'";
 $conexion->query($sentencia) or die("error al eliminar".mysqli_error($conexion));
 }
 

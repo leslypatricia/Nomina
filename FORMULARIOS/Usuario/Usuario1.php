@@ -143,7 +143,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:%;
+	margin-left:0;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -236,7 +236,7 @@ header("location:Usuario.php");
 <thead class="text-center">
        <th>Código Usuario</th> 
        <th>Usuario</th>
-       <th>Password</th>
+       <th type="Password">Password</th>
        <th>Correo</th>
        <th>Código Rol</th>
 	   <th>Código Empleado</th>
@@ -249,18 +249,19 @@ header("location:Usuario.php");
 
 
  <?php
-                        foreach($usuarios as $usuario){
-                    ?>
-	<tr>"
-		<td> <?php echo  $usuario['Cod_Usuario']?></td>;
-		<td> <?php echo  $usuario['Cod_Usuario']?>['Usuario']</td>";
-		<td> <?php echo  $usuario['Cod_Usuario']?>['Password']; echo"</td>";
-        <td> <?php echo  $usuario['Cod_Usuario']?>['Correo']; echo"</td>";
-		<td> <?php echo  $usuario['Cod_Usuario']?>['Cod_rol']; echo"</td>";
-	    <td> <?php echo  $usuario['Cod_Usuario']?>['Cod_empleados']; echo"</td>";
-	    echo "<td><a href='Eliminar.php?CU=".$mostrar['Cod_Usuario']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?CU=".$mostrar['Cod_Usuario']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
-	   echo "<tr>";
+ foreach($usuarios as $usuario){
+?><?php
+
+	echo "<tr>";
+	echo "<td>";echo  $usuario['Cod_Usuario']; echo"</td>";
+	echo "<td>";echo  $usuario['Usuario']; echo "</td>";/*['Usuario']?>*/ 
+	echo "<td>";echo  $usuario['Password']; echo"</td>";/*['Password']?>*/
+	echo "<td>";echo  $usuario['Correo']; echo"</td>";/*['Correo']?>*/
+	echo "<td>";echo  $usuario['Cod_rol']; echo"</td>";/*['Cod_rol']?>*/
+	echo "<td>";echo  $usuario['Cod_empleados']; echo"</td>";/*['Cod_empleados']?>*/
+	echo "<td><a href='Eliminar.php?CU=".$usuario['Cod_Usuario']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
+	echo "<td><a href='Actualizar.php?CU=".$usuario['Cod_Usuario']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+	echo "</tr>";
 	?>
 
 <?php

@@ -68,9 +68,9 @@ header #button-menu{
 }
 .navegacion .menu a{
 	display: block;
-	padding: 20px;
+	padding: 05px;
 	border-bottom: 1px solid #C6D0DA;
-	font-size: 22px;
+	font-size: 18px;
 	font-weight: 200;
 	text-decoration: none;
 	color: #575D69;

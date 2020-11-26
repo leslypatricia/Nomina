@@ -21,7 +21,9 @@
         <div class="wrap-login">
             <form class="login-form validate-form" id="formLogin" action="LOG/login.php" method="post">
                 <span class="login-form-title">Iniciar Sesiòn</span>
-                
+                <div align="center">
+                <img src="IMG/icon.svg" id="icon" alt="User Icon" />
+            </div>
                 <div class="wrap-input100" data-validate = "Usuario incorrecto">
                     <input class="input100" type="text" id="usuario" name="usuario" placeholder="Usuario" required value="">
                     <span class="focus-efecto"></span>
@@ -31,18 +33,15 @@
                     <input class="input100" type="password" id="password" name="password" placeholder="Password" required value="">
                     <span class="focus-efecto"></span>
                 </div>
-                <center> <p> <a class="link" href="olvi_contra.php">¿olvidaste la contraseña?</a></p></center>
+                <center> <p> <a class="link" href="LOG/olvido/olvido.php">¿olvidaste la contraseña?</a></p></center>
                 <div class="container-login-form-btn">
                     <div class="wrap-login-form-btn">
                     
                         <div class="login-form-bgbtn"></div>
-                        <button type="submit" name="submit" class="login-form-btn">Ingresar</button>
+                        <button type="submit" name="submit"    class="login-form-btn">Ingresar</button>
                         
                         
                     </div>
-
-                   
-<p><a class="link" href="registra.html">NO Tienes una Cuenta</a></p>
                 </div>
             </form>
         </div>

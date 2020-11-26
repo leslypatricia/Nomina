@@ -8,16 +8,17 @@ function consulta($CC){
 		
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-		$sentencia="SELECT * FROM pagocomplementario where Cod_Complementario='".$CC."'";
+		$sentencia="SELECT * FROM pagocomplementario where Cod_PagoC='".$CC."'";
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
 $mostrar=$res->fetch_assoc();
 		return[	
-			$mostrar['Cod_Complementario'],
+			$mostrar['Cod_PagoC'],
 			$mostrar['Descripcion'],
 			$mostrar['Porcentaje'],
-			$mostrar['fijo'],
-			$mostrar['valor']
+			$mostrar['Valor'],
+			$mostrar['fijo']
+
 
 		];
 	}
@@ -50,6 +51,9 @@ padding:110px;
 	font-family:"Times New Roman";
 	color:white;
 	box-shadow:7px 13px 37px #000;
+}
+label{
+	color: white;
 }
 h1{
 	font-size:50px;
@@ -144,8 +148,9 @@ font-weight:bold;
 $codigo="";
 $Descripcion="";
 $Porcentaje="";
-$fijo="";
 $valor="";
+$fijo="";
+
 
 
 
@@ -158,8 +163,8 @@ if (isset($_POST["limpiar"])){
 	$codigo="";
 	$Descripcion="";
 	$Porcentaje="";
-	$fijo="";
 	$valor="";
+	$fijo="";
 
 }
 
@@ -190,11 +195,12 @@ header("location:http://localhost:801/phpmyadmin/");
 
 <tr><td><label>Porcentaje:</label></td>
 <td><input type="text" name="P" value="<?php echo $con[2]; echo $Porcentaje;?>" size="20" maxlength="20"/></td></tr>
-<tr><td><label>Fijo:</label></td>
-<td><input type="text" name="F" value="<?php echo $con[3]; echo $fijo;?>" size="20" maxlength="20"/></td></tr>
 
 <tr><td><label>Valor:</label></td>
 <td><input type="text" name="V" value="<?php echo $con[4]; echo $valor;?>" size="20" maxlength="20"/></td></tr>
+<tr><td><label>Fijo:</label></td>
+<td><input type="text" name="F" value="<?php echo $con[3]; echo $fijo;?>" size="20" maxlength="20"/></td></tr>
+
 <br/>
 </table>
 

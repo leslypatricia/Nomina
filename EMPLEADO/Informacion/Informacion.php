@@ -51,13 +51,7 @@ h1{
 	font-size:18px;
 	
 	}
-.btn-btn-primary {
-		width:80PX;
-		background:#1f53c5;
-		padding:10px;
-		color:white;
-		font-size:10px;
-}
+
 
 /*iconos*/
 .fa-search{
@@ -102,17 +96,7 @@ font-weight:bold;
 
 ul ,ol {
 		list-style:none;
-	}
-#header{
-	list-style:none;
-	padding:20;
-	margin:auto;
-	width:200%;
-	max-width:1200px;
-	font-family:"Times New Roman", Times, serif;
-	text-align:center;
-	}
-
+		}
 .nav > li{
 	float:left;
 	display:inline-block;
@@ -139,7 +123,7 @@ ul ,ol {
 .nav li ul{
 	display:none;
 	position:absolute;
-	min-width:140px;
+	min-width:180px;
 }
 
 .nav li:hover > ul{
@@ -153,7 +137,7 @@ ul ,ol {
 		}
 		
 .nav li ul li ul{
-			right:-140px;
+			right:-190px;
 			top:0px;
 			opacity:1;
 			visibility:visible;
@@ -161,7 +145,7 @@ ul ,ol {
 
 iframe{
 	border:none;
-	width:100%;
+	width:110%;
 	margin:0 auto;
 	display:inline-block;
 	padding:0em;
@@ -173,16 +157,16 @@ iframe{
 }
 ul{
 	list-style:none;
-	max-width:750px;
+	max-width:790px;
 	margin:auto;
 	}
 .nav a{
 	text-align:center;
 	text-decoration:none;
 	display:block;
-	padding:15px;
+	padding:12px;
 	color:white;
-	font-size:20px;
+	font-size:15px;
 	
 }
 </style>
@@ -192,10 +176,10 @@ ul{
 
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../menu.php");
+header("location:../../LOG/menu.php");
 }
 ?>
-<td><a href="../menu.php"><img src="../../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
+<td><a href="../../LOG/menu.php"><img src="../../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
 <h1>NOMINAS $OLUTION</h1>
 
 <header>
@@ -203,13 +187,14 @@ header("location:../menu.php");
 <ul class="nav">
 <li><a href="Informacion.php">Informacion Personal</a></li>
  <li><a href="../detalle/Detalle.php">Detalle Planilla</a></li>
- <li><a href="#">Detalle de Pagos</a></li></br></br></br>
+ <li><a href="#">Detalle de Pagos</a></li>
+ <li><a href="../../index.php">Cerrar sesión</a></li></br></br></br>
 </ul>
 </div>
 </nav><br/><br/>
 
 
-<form class="from"  id="form1" action= "Actualizar2.php" method="POST" >
+<form class="from"  id="form1" action= "" method="POST" >
 <center>
 <h1>Actualizar Informcaion</h1>
 <div class="form-group">
