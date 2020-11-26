@@ -163,6 +163,8 @@ header #button-menu{
 				<!-- TITULAR -->
 				<a href="../FORMULARIOS/Estructura.php">Formularios</a></li>
 				<li><a href="../FORMULARIOS/NominaGeneral/Nomina.php">Generar Planilla</a></li>
+				<li><a href="../FORMULARIOS/Graficos/graficos.php">Graficos</a></li>
+				<li><a href="../FORMULARIOS/Calendario/Calendar.html">Calendario</a></li>
                <li><a href="">Derechos Reservados</a></li>
                 <li><p><a href="../index.php">Cerrar sesión</a></p></li>
 				<!--<li class="item-submenu" menu="1">

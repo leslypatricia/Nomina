@@ -3,10 +3,49 @@
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
+<script>
+//Validaciones con Javascrip
+	function SoloNumeros(evt){
+if(window.event){
+
+	keynum= evt.keyCode;
+}else{
+	keynum=evt.which;
+}
+
+if(keynum > 47 && keynum<58 || keynum==8 || keynum==13){
+	return true;
+}else{
+	return false;
+}
+
+	}
+function SoloLetras(e){
+key=e.keyCode || e.which;
+tecla= String.fromCharCode(key).toLowerCase();
+letras= " abcdefghijklmnopqrstuvwxyz";
+
+especiales="8-37-38-46-164";
+tecla_especial=false;
+for(var i in especiales){
+if(key==especiales[i]){
+tecla_especial= true;break;
+
+}
+}
+
+if (letras.indexOf(tecla) == -1  && !tecla_especial){
+
+return false;
+}
+}
+
+</script>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <style>
+
 body{
 	margin:0;
 	padding:0;
@@ -136,14 +175,14 @@ $PH="";
 $TOTAL="";
 $CO="";
 $CH="0";
+
 include("../conexion.php");
-$registros=mysqli_query($conexion,"SELECT Cod_HExtra  FROM  horaextra");
+$registros=mysqli_query($conexion,"SELECT *  FROM  horaextra");
 while ($registro= mysqli_fetch_array($registros)){
 $CH=$registro['Cod_HExtra'];
 
 }
-$CHE=$CH + 1;
-
+$CHE= $CH + 1 ;
 $sueldo="";
 
 ?>
@@ -158,7 +197,7 @@ $CJJ=$_POST["CJ"];
 
 $sueldo="";
 $S_D="";
-
+$fecha=$_POST["F"];
 $registros=mysqli_query($conexion,"select Sueldo_base  FROM  empleados WHERE Cod_empleados='$CO'");
 
 
@@ -205,7 +244,6 @@ $TOTALN=$PHN * $N;
 $TOTAL=$TOTALD + $TOTALN;
 
 
-
 }
 
 
@@ -236,39 +274,30 @@ $HORAS=$D + $N;
 $TOTAL=$_POST["TOTAL"];
 $fecha=$_POST["F"];
 $TOTALD=$S + $TOTAL;
-if($CHE="" or $CO="" or $CJJ="" or $C="" or $S="" or $SD="" or $SH="" or $POR="" or $PH="" or $D="" or $N="" or $HORAS="" or $TOTAL="" ){
-
-echo "<script> 
-	     alert ('llene los campos obligatorios');
-	  window.location='HoraExtra.php';
-	  </script>";
+if($fecha == $fcha ){
+	echo "<script>
+		 
+		alert ('La fecha debe ser igual a la del Sistema!!!');
+	 window.location='HoraExtra.php';
+	 </script>";
 }else{
-$CHE=$_POST["CHE"];
-$CO=$_POST["CEE"];
-$CJJ=$_POST["CJ"];
-$C=$_POST["CHE"];
-$S=$_POST["S_O"];
-$SD=$_POST["S_D"];
-$SH=$_POST["S_H"];
-$POR=$_POST["Porcentaje"];
-$PH=$_POST["P_H"];
-$D=$_POST["D"];
-$N=$_POST["N"];
-$HORAS=$D + $N;
-$TOTAL=$_POST["TOTAL"];
-$fecha=$_POST["F"];
-$TOTALD=$S + $TOTAL;
+
 $consulta="insert into horaextra(Cod_HExtra,Cod_Jornada,Cod_Empleados,Sueldo_Ordinario,Sueldo_Diario,Sueldo_Hora,Porce_Hora_Extra,pago_Hora,Numero_horas,Total_HE,fecha)
  VALUES('$CHE','$CJJ','$CO','$S','$SD','$SH','$POR','$PH','$HORAS','$TOTAL','$fecha')";
- 
+ $registros=mysqli_query($conexion,"select Sueldo_base  FROM  empleados WHERE Cod_empleados='$CO'");
 
- if (mysqli_query($conexion, $consulta)) {
-	$registro=mysqli_query($conexion,"update nominageneral set Cant_Horas='$HORAS', Costo_U='$PH' ,TotalP_HE='$TOTAL',Total_Devengado='$TOTALD'  
-where Cod_empleados='$CO'")
-or die ("error al actualizar");
-	 echo "<script> 
+
+while ($registro= mysqli_fetch_array($registros)){
+$sueldo=$registro['Sueldo_base'];
+
+}
+$SueldoNeto=$sueldo + $TOTAL;
+
+ if(mysqli_query($conexion, $consulta)){
+	$registro=mysqli_query($conexion,"update nominageneral set Cant_Horas='$HORAS', Costo_U='$PH' ,TotalP_HE='$TOTAL',Total_Devengado='$TOTALD',SUELDO_NETO_Pagar='$TOTALD' where Cod_empleados='$CO'") or die ("error al actualizar");
+	echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='HoraExtra.php';
+	  window.location='HoraExtra1.php';
 	  </script>";
 } else {
 	echo "<script>
@@ -338,35 +367,34 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  jornada");
 
 <tr><td>Cant. Horas Diurna </td>
 	
-<td><input type="text" class="form"  name="D" value="<?php echo $D ?>"  size="20" maxlength="20"/></td></tr>
+<td><input type="text" class="form"  name="D" value="<?php echo $D ?>"  size="20" maxlength="20"onKeyPress=" return SoloNumeros (event)" onpaste="return false"/></td></tr>
 			
 <tr><td>Cant. Horas Nocturna </td>
-<td><input type="text" class="form"  name="N" value="<?php echo $N ?>"  size="20" maxlength="20"/></td></tr>
+<td><input type="text" class="form"  name="N" value="<?php echo $N ?>"  size="20" maxlength="20"onKeyPress=" return SoloNumeros (event)" onpaste="return false"/></td></tr>
 
 	
 	
 	<tr><td>Salario Base<br/> </td>
-	<td> <input type="text" class="form"  name="S_O" value="<?php echo $sueldo ?>"  size="20" maxlength="20" readonly="readonly"/><br/>
+	<td> <input type="text" class="form"  name="S_O" value="<?php echo $sueldo ?>"  size="20" maxlength="20" readonly="readonly"onKeyPress=" return SoloNumeros (event)" onpaste="return false"/><br/>
 </td></tr>
 	<tr><td>Salario Diario<br/> </td>
-	<td> <input type="text" class="form"  name="S_D" value="<?php echo $S_D ?>" size="20" maxlength="30" readonly="readonly"/><br/>
+	<td> <input type="text" class="form"  name="S_D" value="<?php echo $S_D ?>" size="20" maxlength="30" readonly="readonly"onKeyPress=" return SoloNumeros (event)" onpaste="return false"/><br/>
 </td></tr>
 	<tr><td>Sueldo por Hora<br/> </td>
-	<td> <input type="text" class="form"   name="S_H" value="<?php echo $S_H ?>"   size="20"  maxlength="30" readonly="readonly" /><br/>
+	<td> <input type="text" class="form"   name="S_H" value="<?php echo $S_H ?>"   size="20"  maxlength="30" readonly="readonly"onKeyPress=" return SoloNumeros (event)" onpaste="return false" /><br/>
 </td></tr>
 <tr><td>Porcentaje<br/> </td>
 	<td> <input type="text" class="form"   name="Porcentaje" value="<?php echo $POR ?>"   size="20" maxlength="30" readonly="readonly" /><br/>
 </td></tr>
 	<tr><td>Pago por Hora<br/> </td>
-	<td><input type="text" class="form"  name="P_H" value="<?php echo $PH ?>"  size="20" maxlength="30" readonly="readonly" /><br/> 
+	<td><input type="text" class="form"  name="P_H" value="<?php echo $PH ?>"  size="20" maxlength="30" readonly="readonly" onKeyPress=" return SoloNumeros (event)" onpaste="return false" /><br/> 
  </td></tr>
 	<tr><td>Total a Pagar<br/> </td>
-	<td><input type="text" class="form"  name="TOTAL"  size="20" value="<?php echo $TOTAL ?>"  maxlength="30" readonly="readonly"/><br/>
+	<td><input type="text" class="form"  name="TOTAL"  size="20" value="<?php echo $TOTAL ?>"  maxlength="30" readonly="readonly" onKeyPress=" return SoloNumeros (event)" onpaste="return false"/><br/>
  </td></tr>
 	</td></tr>
 	<tr><td>Fecha<br/> </td>
- <?php $fcha = date("Y-m-d");?>
-<td><input type="date" class="form" name="F" value="<?php echo $fcha?>"  size="20"  maxlength="30" readonly="readonly"/><br/>
+	<td> <input id="date" class="form"  type="date" name="F" value="<?php echo $fecha?>" size="20" maxlength="30" /><br/>
 </td></tr>
 </table>
 <br>

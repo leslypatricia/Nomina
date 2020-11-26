@@ -142,38 +142,38 @@ $RAP=$sueldo * 0.015;
 $TOTALD=$IHSS + $RAP + $Prestamo;
 }
 
-
-
-
  ?>
  <?php
 
 
 if (isset($_POST["crs"])){
+$totald="0";
+$totalPC="0";
+$totalA="0";
 include("../conexion.php");
-$CN=$_POST["CHE"];
+$CND=$_POST["CHE"];
 $CE=$_POST["CEE"];
-$IHSS=$_POST["IHSS"];
-$RAP=$_POST["RAP"];
 $DE=1;
-$TOTALD=$IHSS + $RAP + $Prestamo;
+$TOTALD=$_POST["IHSS"];
+$IHSS=$_POST["IHSS"];
 $consulta="insert into nominadeducciones (Cod_NominaD,Cod_Empleados,Cod_Deducciones,Total_Deducciones)
- VALUES('$CN','$CE','$DE','$TOTALD')";
- $registros=mysqli_query($conexion,"SELECT Total_Devengado  FROM  nominageneral WHERE Cod_Empleados='$CE'");
+ VALUES('$CND','$CE','$DE','$TOTALD')";
+ $registros=mysqli_query($conexion,"SELECT Total_Devengado,Total_PagosComplementarios,Total_Aumento  FROM  nominageneral WHERE Cod_Empleados='$CE'");
 
 while ($registro= mysqli_fetch_array($registros)){
 $totald=$registro['Total_Devengado'];
-
+$totalPC=$registro['Total_PagosComplementarios'];
+$totalA=$registro['Total_Aumento'];
 }
 
-$totalpagar=$totald - $TOTALD;
+$totalpagar=$totald - $TOTALD + $totalPC + $totalA;
  if (mysqli_query($conexion, $consulta)) {
- 	$registro=mysqli_query($conexion,"update nominageneral set IHSS='$IHSS', RAP='$RAP' ,Total_Deducciones='$TOTALD',	SUELDO_NETO_Pagar='$totalpagar' 
+ 	$registro=mysqli_query($conexion,"update nominageneral set IHSS='$IHSS',Total_Deducciones='$TOTALD',SUELDO_NETO_Pagar='$totalpagar' 
 where Cod_empleados='$CE'")
 or die ("error al actualizar");
      echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='NominaDeduccion.php';
+	  window.location='NominaDeduccion1.php';
 	  </script>";
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);

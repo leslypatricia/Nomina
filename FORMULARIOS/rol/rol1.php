@@ -19,13 +19,25 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
+	color:red;
 }
 
-th, td {
+th{
+	border:none;
+	padding:10px;
+	text-align:center;
+	color:#FFFFFF;
+	font-family:Times New Roman;
+	font-size:15px;
+	 background:#346BFB;
+ font-family:Times New Roman ;
+}
+td{
 	border:none;
 	padding:10px;
 	text-align:center;
 }
+
 tr:nth-child(even){
 
 	background:#F5F5F5;
@@ -35,7 +47,7 @@ tr:nth-child(even){
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	color:black;
 }
 h1{
@@ -50,7 +62,7 @@ h1{
 	border-radius:6px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	font-size:18px;
 	}
 .color-Tabla {
@@ -59,9 +71,11 @@ h1{
 	/*border-top-left-radius:100px !important;*/
 	/*border-spacing: 0.5rem;  rem unidad de medida*/
 	font-family:Times New Roman ;
-
+   	border:solid 10px #346BFB ;
 
 }
+
+
 /*iconos*/
 .fa-trash-alt{
 color:red;
@@ -101,8 +115,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:10%;
-	margin-right:44%;
+	margin-left:%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -137,11 +150,11 @@ color:green;
 .Estilo-tabla{
    background:#346BFB;
    color:white;
+
 }
 
 .boton_Añadir:hover{
 	margin-left:10%;
-	margin-right:44%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -193,15 +206,16 @@ header("location:rol.php");
 	<div class="container-table">
 	<center>
 	
-<table border="1" class="color-Tabla">
+<table id="Tabla_Dep" border="10" class="color-Tabla" style="width:100%"><br/><br/>
 
-    <tr class="Estilo-tabla">
-       <td>Código Rol</td> 
-	   <td>Descripción</td>
-	   <td>Cód. privilegios</td>
-	   <td>Eliminar</td>
-	   <td>Actualizar</td>
-	</tr>
+<thead class="text-center" >
+       <th>Código Rol</th> 
+	   <th>Descripción</th>
+	   <th>Cód. privilegios</th>
+	   <th>Eliminar</th>
+	   <th>Actualizar</th>
+  </thead>
+                <tbody>
 	
 	<?php
 $sql="SELECT * from rol" ;
@@ -224,7 +238,8 @@ $sql="SELECT * from rol" ;
 ?>
  </div class="color-Tabla">
 </center>
-   </table> 
+        </tbody>
+            </table>
 
 	</center>
 	<br/>

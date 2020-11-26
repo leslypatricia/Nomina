@@ -19,6 +19,7 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
+	color:red;
 }
 
 th{
@@ -70,7 +71,7 @@ h1{
 	/*border-top-left-radius:100px !important;*/
 	/*border-spacing: 0.5rem;  rem unidad de medida*/
 	font-family:Times New Roman ;
-
+   	border:solid 10px #346BFB ;
 
 }
 
@@ -114,11 +115,11 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:10%;
+	margin-left:20%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
-	padding-right:1.5%;
+	padding-right:8.5%;
 	padding-top:0.5%;
 	padding-bottom:0.5%;
 	background:#346BFB;
@@ -149,6 +150,7 @@ color:green;
 .Estilo-tabla{
    background:#346BFB;
    color:white;
+
 }
 
 .boton_Añadir:hover{
@@ -168,9 +170,11 @@ color:green;
 
 }
 </style>
+  
 </head>
 
 <body>
+
 <?php
 
 $conexion=mysqli_connect('localhost','root','','nominas')
@@ -183,12 +187,21 @@ if (isset($_POST["Regresar"])){
 header("location:../estructura.php");
 }
 ?>
+<?php
+if (isset($_POST["Exportar"])){
+header("location:NominaPDF.php");
+}
+?>
+  
+       
+
+ 
 <div class="Container">
 	
   <div class="form-group">
 	 
 	 <center>
-	 <h1>Generar Nómina</h1>
+	 <h1>Nómina General</h1>
 	 </center>
 	 <center>
 	  <div class="form">
@@ -197,8 +210,8 @@ header("location:../estructura.php");
           <td align="legth"><img src="../../IMG/nominas.jpg" width="150px">
           </td></table>
 
-          <table border="1" class="color-Tabla" align="rigth">
-          <tr class="Estilo-tabla" align="regth">
+          <table border="1" class="color-Tabla" align="right">
+          <tr class="Estilo-tabla" align="">
           <td>Periodo de Pago</td> </tr>
           <tr><td>Noviembre/01/2020-Noviembre/30/2020</td></tr>
           <tr class="Estilo-tabla"align="regth" ><td>Fecha de Liquidación</td></tr>
@@ -208,44 +221,53 @@ header("location:../estructura.php");
         </table>
 		</div>
 	</table>
-    </center><br/><br/>
-    <table border="1" class="color-Tabla" align="left">
+    </center>
+	<br><br/>
+	<br><br/>
+	<br><br/>
+	<br><br/>
+	<br><br/>
+<table border="1" class="color-Tabla" align="left">
     <tr class="Estilo-tabla">
        <td>Código Nómina</td> 
     </tr>
     <?php 
-	/*
-    $sql="SELECT Cod_Nomina from nominageneral " ;
-    
-        $res=mysqli_query($conexion,$sql);
-        while($mostrar=mysqli_fetch_array($res)){*/
+
             echo "<tr>";
             echo "<td>";echo "1"; /*$mostrar['Cod_Nomina'];*/ echo"</td>";
             echo "<tr>";
     ?>
-    <?php //}?>
-     </table><br/><br/>
+     </table>
+	 <br><br/> <br><br/> 
 	<!--<button name="Insertar"  class="boton_Añadir">Añadir Usuario  <i class="fas fa-plus"></i></button>
--->
+--><button name="Exportar"  >Visualizar en PDF<i></i></button>	
+   <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
+    <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
+    <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
+    <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+     
+    <!-- código JS propìo-->    
+    <script type="text/javascript" src="main.js"></script>  
 <div class="container-table">
 <center>
 	
-<table border="1" class="color-Tabla"><br/><br/>
+<table id="tablaNominaGeneral" border="10" class="color-Tabla" style="width:100%"><br/><br/>
 
-    <tr class="Estilo-tabla" >
-       <td rowspan="2">Código Empleado</td> <br/><br/>
-       <td rowspan="2">Nombre Completo</td>
-       <td rowspan="2">Sueldo Ordinario</td>
-       <td colspan="3">Horas Extra</td>
-       <td rowspan="2">Total Devengado</td>
-	   <td colspan="2">Deducciones </td>
-	   <td rowspan="2">Total Deducciones</td>
-	   <td rowspan="2">Total Complementarios</td>
-	   <td rowspan="2">Total Aumento</td>
-	    <td rowspan="2">Sueldo Neto</td>
-	   <td rowspan="2">Eliminar</td>
-	   <td rowspan="2">Editar</td>
-    </tr >
+<thead class="text-center" border="60" color="black">
+       <th rowspan="2" >Código</th> <br/><br/>
+       <th rowspan="2">Nombre Completo</th>
+       <th rowspan="2">Sueldo Ordinario</th>
+       <th colspan="3">Horas Extra</th>
+       <th rowspan="2">Total Devengado</th>
+	   <th colspan="2">Deducciones </th>
+	   <th rowspan="2">Total Deducciones</th>
+	   <th rowspan="2">Total Complementarios</th>
+	   <th rowspan="2">Total Aumento</th>
+	    <th rowspan="2">Sueldo Neto</th>
+	  <th rowspan="2">Eliminar</th>
+	   <th rowspan="2">Editar</th>
+   
     <tr>   
         <th>Cant. Hr/Extras</th>
         <th>Valor hora</th>
@@ -253,7 +275,8 @@ header("location:../estructura.php");
         <th>IHSS</th>
         <th>RAP</th>
     </tr>
-	
+	  </thead>
+                <tbody>
     <?php
   $sql="SELECT * FROM nominageneral";
   $res=mysqli_query($conexion,$sql);
@@ -261,7 +284,10 @@ header("location:../estructura.php");
   
   echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
-		echo "<td>";echo $mostrar['Primer_Nombre'];echo"</td>";
+		echo "<td>";echo $mostrar['Primer_Nombre']; echo " ";
+	
+		echo $mostrar['Primer_Apellido']; echo " ";
+		echo $mostrar['Segundo_Apellido']; echo"</td>";
 		echo "<td>";echo $mostrar['Sueldo_base']; echo"</td>";
 		echo "<td>";echo $mostrar['Cant_Horas']; echo"</td>";
 		echo "<td>";echo $mostrar['Costo_U']; echo"</td>";
@@ -270,29 +296,56 @@ header("location:../estructura.php");
 		echo "<td>";echo $mostrar['IHSS']; echo"</td>";
 		echo "<td>";echo $mostrar['RAP']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_Deducciones']; echo"</td>";
-		echo "<td>";echo $mostrar['Total_PagosComplemetarios']; echo"</td>";
+		echo "<td>";echo $mostrar['Total_PagosComplementarios']; echo"</td>";
 	    echo "<td>";echo $mostrar['Total_aumento']; echo"</td>";	
 	    echo "<td>";echo $mostrar['SUELDO_NETO_Pagar']; echo"</td>";	
 		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_empleados']."'><button name='Eliminar' class='boton-eliminar' ><i class='far fa-trash-alt'></a></i></button></td>";
 		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_empleados']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+	
 		echo "</tr>";
-			
+		  
 	?>
 
 <?php
 }
 ?>
 
-</div class="color-Tabla">
+
 </center>
+
+ </tbody>
    </table> <br/><br/>
 	</center>
 	<br/>
-	<td><button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
-	</div>
-	</div>
+	<button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
     </form>
-</div>
+
 <br>
+	</div>
+		</div>
+	</div>
+	</div class="color-Tabla">
+
+ <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+       
+	   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/> 
+      
+<!--    Datatables-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
+      
+      
+    <script>
+      $(document).ready(function(){
+         $('#tablaNominaGeneral').DataTable(); 
+      });
+    </script>
+ 
+     
+    <!-- para usar botones en datatables JS -->  
+ 
+    
     </body>
     </html>

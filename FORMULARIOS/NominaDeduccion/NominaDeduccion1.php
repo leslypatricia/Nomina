@@ -19,13 +19,25 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
+	color:red;
 }
 
-th, td {
+th{
+	border:none;
+	padding:10px;
+	text-align:center;
+	color:#FFFFFF;
+	font-family:Times New Roman;
+	font-size:15px;
+	 background:#346BFB;
+ font-family:Times New Roman ;
+}
+td{
 	border:none;
 	padding:10px;
 	text-align:center;
 }
+
 tr:nth-child(even){
 
 	background:#F5F5F5;
@@ -35,7 +47,7 @@ tr:nth-child(even){
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	color:black;
 }
 h1{
@@ -50,7 +62,7 @@ h1{
 	border-radius:6px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	font-size:18px;
 	}
 .color-Tabla {
@@ -59,9 +71,11 @@ h1{
 	/*border-top-left-radius:100px !important;*/
 	/*border-spacing: 0.5rem;  rem unidad de medida*/
 	font-family:Times New Roman ;
-
+   	border:solid 10px #346BFB ;
 
 }
+
+
 /*iconos*/
 .fa-trash-alt{
 color:red;
@@ -101,8 +115,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:10%;
-	margin-right:41.5%;
+	margin-left:%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -137,11 +150,11 @@ color:green;
 .Estilo-tabla{
    background:#346BFB;
    color:white;
+
 }
 
 .boton_Añadir:hover{
 	margin-left:10%;
-	margin-right:41.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -194,15 +207,16 @@ header("location:NominaDeduccion.php");
 	<div class="container-table">
 	<center>
 	
-<table border="1" class="color-Tabla">
+<table id="Tabla_Departamentos" border="10" class="color-Tabla" style="width:100%"><br/><br/>
 
-    <tr class="Estilo-tabla">
-	   <td>Código Deducciones</td>
-	   <td>Código Empleados</td>
-	   <td>Total Deducciones</td>
-	   <td>Eliminar</td>
-	   <td>Actualizar</td>
-	</tr>
+<thead class="text-center" border="60" color="black">
+	   <th>Código Deducciones</th>
+	   <th>Código Empleados</th>
+	   <th>Total Deducciones</th>
+	   <th>Eliminar</th>
+	   <th>Actualizar</th>
+  </thead>
+                <tbody>
 	
 	<?php
 $sql="SELECT Cod_NominaD,Cod_Empleados,Total_Deducciones from nominadeducciones";
@@ -223,7 +237,8 @@ $res=mysqli_query($conexion,$sql);
 ?>
  </div class="color-Tabla">
 </center>
-   </table> 
+ </tbody>
+   </table> <br/><br/>
 
 	</center>
 	<br/>
@@ -233,5 +248,20 @@ $res=mysqli_query($conexion,$sql);
     </form>
 </div>
 <br>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+       
+	   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/> 
+      
+<!--    Datatables-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
+       
+    <script>
+      $(document).ready(function(){
+         $('#Tabla_Departamentos').DataTable(); 
+      });
+    </script>
     </body>
     </html>

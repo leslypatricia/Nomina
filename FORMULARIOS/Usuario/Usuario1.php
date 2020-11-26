@@ -1,9 +1,37 @@
+	<?php
+class Conexion{	  
+    public static function Conectar() {        
+        define('servidor', 'localhost');
+        define('nombre_bd', 'nominas');
+        define('usuario', 'root');
+        define('password', '');					        
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');			
+        try{
+            $conexion = new PDO("mysql:host=".servidor."; dbname=".nombre_bd, usuario, password, $opciones);			
+            return $conexion;
+        }catch (Exception $e){
+            die("El error de Conexión es: ". $e->getMessage());
+        }
+    }
+}
+$objeto = new Conexion();
+$conexion = $objeto->Conectar();
+
+$consulta = "SELECT u.Cod_Usuario,u.Usuario,u.Password,u.Correo
+,r.Cod_rol,ep.Cod_empleados from usuario as u 
+JOIN rol as r on u.Cod_rol=r.Cod_rol
+JOIN empleados as ep on u.Cod_empleados=ep.Cod_empleados" ;
+$resultado = $conexion->prepare($consulta);
+$resultado->execute();
+$usuarios=$resultado->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+
 <!DOCTYPE html >
 <html lang="es">
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
-<link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <style>
@@ -19,13 +47,25 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
+	color:red;
 }
 
-th, td {
+th{
+	border:none;
+	padding:10px;
+	text-align:center;
+	color:#FFFFFF;
+	font-family:Times New Roman;
+	font-size:15px;
+	 background:#346BFB;
+ font-family:Times New Roman ;
+}
+td{
 	border:none;
 	padding:10px;
 	text-align:center;
 }
+
 tr:nth-child(even){
 
 	background:#F5F5F5;
@@ -35,7 +75,7 @@ tr:nth-child(even){
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	color:black;
 }
 h1{
@@ -50,7 +90,7 @@ h1{
 	border-radius:6px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	font-size:18px;
 	}
 .color-Tabla {
@@ -59,9 +99,11 @@ h1{
 	/*border-top-left-radius:100px !important;*/
 	/*border-spacing: 0.5rem;  rem unidad de medida*/
 	font-family:Times New Roman ;
-
+   	border:solid 10px #346BFB ;
 
 }
+
+
 /*iconos*/
 .fa-trash-alt{
 color:red;
@@ -101,8 +143,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:10%;
-	margin-right:72.5%;
+	margin-left:%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -137,11 +178,11 @@ color:green;
 .Estilo-tabla{
    background:#346BFB;
    color:white;
+
 }
 
 .boton_Añadir:hover{
 	margin-left:10%;
-	margin-right:72.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -162,10 +203,7 @@ color:green;
 <body>
 <?php
 
-$conexion=mysqli_connect('localhost','root','','nominas')
 ?>
-
-<input type="hidden" id="CE" value="<?php echo $codigo;?>">
 
 <?php
 if (isset($_POST["Regresar"])){
@@ -177,7 +215,7 @@ if (isset($_POST["Insertar"])){
 header("location:Usuario.php");
 }
 ?>
-<div class="Container">
+ <div class="Container">
 	<center>
   <div class="form-group">
 	 <center>
@@ -193,36 +231,34 @@ header("location:Usuario.php");
 	<div class="container-table">
 	<center>
 	
-<table border="1" class="color-Tabla">
+<table id="Tabla_Departamentos" border="10" class="color-Tabla" style="width:90%"><br/><br/>
 
-    <tr class="Estilo-tabla">
-       <td>Código Usuario</td> 
-       <td>Usuario</td>
-       <td >Password</td>
-       <td>Correo  </td>
-       <td>Código Rol</td>
-	   <td>Código Empleado</td>
-	   <td>Eliminar</td>
-	   <td>Actualizar</td>
-	</tr>
-	
-	<?php
-$sql="SELECT u.Cod_Usuario,u.Usuario,u.Password,u.Correo
-,r.Cod_rol,ep.Cod_empleados from usuario as u 
-JOIN rol as r on u.Cod_rol=r.Cod_rol
-JOIN empleados as ep on u.Cod_empleados=ep.Cod_empleados" ;
+<thead class="text-center">
+       <th>Código Usuario</th> 
+       <th>Usuario</th>
+       <th>Password</th>
+       <th>Correo</th>
+       <th>Código Rol</th>
+	   <th>Código Empleado</th>
+	   <th>Eliminar</th>
+	   <th>Actualizar</th>
+</thead>
+	<tbody>
 
 
-	$res=mysqli_query($conexion,$sql);
-	while($mostrar=mysqli_fetch_array($res)){
-		echo "<tr>";
-		echo "<td>";echo $mostrar['Cod_Usuario']; echo"</td>";
-		echo "<td>";echo $mostrar['Usuario']; echo"</td>";
-		echo "<td>";echo $mostrar['Password']; echo"</td>";
-		echo "<td>";echo $mostrar['Correo']; echo"</td>";
-		echo "<td>";echo $mostrar['Cod_rol']; echo"</td>";
-		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CU=".$mostrar['Cod_Usuario']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
+
+
+ <?php
+                        foreach($usuarios as $usuario){
+                    ?>
+	<tr>"
+		<td> <?php echo  $usuario['Cod_Usuario']?></td>;
+		<td> <?php echo  $usuario['Cod_Usuario']?>['Usuario']</td>";
+		<td> <?php echo  $usuario['Cod_Usuario']?>['Password']; echo"</td>";
+        <td> <?php echo  $usuario['Cod_Usuario']?>['Correo']; echo"</td>";
+		<td> <?php echo  $usuario['Cod_Usuario']?>['Cod_rol']; echo"</td>";
+	    <td> <?php echo  $usuario['Cod_Usuario']?>['Cod_empleados']; echo"</td>";
+	    echo "<td><a href='Eliminar.php?CU=".$mostrar['Cod_Usuario']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
 	    echo "<td><a href='Actualizar.php?CU=".$mostrar['Cod_Usuario']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";
 	?>
@@ -232,7 +268,10 @@ JOIN empleados as ep on u.Cod_empleados=ep.Cod_empleados" ;
 ?>
    </div class="color-Tabla">
 </center>
-   </table> 
+	</tbody>
+   </table>
+
+ 
 
 	</center>
 	<br/>
@@ -242,5 +281,20 @@ JOIN empleados as ep on u.Cod_empleados=ep.Cod_empleados" ;
     </form>
 </div>
 <br>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+       
+	   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/> 
+      
+<!--    Datatables-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
+       
+    <script>
+      $(document).ready(function(){
+         $('#Tabla_Departamentos').DataTable(); 
+      });
+    </script>
     </body>
     </html>

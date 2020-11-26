@@ -3,6 +3,44 @@
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
+<script>
+//Validaciones con Javascrip
+	function SoloNumeros(evt){
+if(window.event){
+
+	keynum= evt.keyCode;
+}else{
+	keynum=evt.which;
+}
+
+if(keynum > 47 && keynum<58 || keynum==8 || keynum==13){
+	return true;
+}else{
+	return false;
+}
+
+	}
+function SoloLetras(e){
+key=e.keyCode || e.which;
+tecla= String.fromCharCode(key).toLowerCase();
+letras= " abcdefghijklmnopqrstuvwxyz";
+
+especiales="8-37-38-46-164";
+tecla_especial=false;
+for(var i in especiales){
+if(key==especiales[i]){
+tecla_especial= true;break;
+
+}
+}
+
+if (letras.indexOf(tecla) == -1  && !tecla_especial){
+
+return false;
+}
+}
+
+</script>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
@@ -129,7 +167,13 @@ if (isset($_POST["crs"])){
 $CD=$_POST['CD'];
 $D=$_POST['D'];
 $CF=$_POST['CJ'];
-
+if($D=="" Or $CF==""){
+	echo "<script>
+     
+	alert ('Debe llenar los campos!!!');
+ window.location='Departamento.php';
+ </script>";	
+}else{
 $consulta="insert into departamento(Cod_Depto,Descripcion,Cod_Jefe)
  VALUES($CD,'$D','$CF')";
  
@@ -148,7 +192,7 @@ $consulta="insert into departamento(Cod_Depto,Descripcion,Cod_Jefe)
  mysqli_close($conexion);
 
 }
-
+}
 ?>
 
 <?php
@@ -209,9 +253,9 @@ header("location:http://localhost:801/phpmyadmin/");
 <center>
 <tr><td><label>Código Departamentos:</label></td><td><input type="text"   aling="center"  name="CD" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
 
-<tr><td><label>Descripción:</label></td><td><input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" /></td></tr>
+<tr><td><label>Descripción:</label></td><td><input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15"onKeyPress=" return SoloLetras (event)" onpaste="return false"requered /></td></tr>
 
-<tr><td><label>Código Jefe:</label></td><td><input type="text" name="CJ" value="<?php echo $jefe?>" size="20" maxlength="20"/></td></tr>
+<tr><td><label>Código Jefe:</label></td><td><input type="text" name="CJ" value="<?php echo $jefe?>" size="20" maxlength="20"onKeyPress=" return SoloNumeros (event)" onpaste="return false"/></td></tr>
 </center>
 </table>
 <center>

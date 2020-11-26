@@ -12,7 +12,7 @@ body{
 	box-sizing:border-box;
     height:100%;
 	width:100%;
-	background-image: url("../../IMG/Fondo10.jpg");
+	background-image: url("../IMG/Fondo10.jpg");
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;

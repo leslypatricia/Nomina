@@ -3,6 +3,29 @@
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
+<script>
+//Validaciones con Javascrip
+function SoloLetras(e){
+key=e.keyCode || e.which;
+tecla= String.fromCharCode(key).toLowerCase();
+letras= " abcdefghijklmnopqrstuvwxyz";
+
+especiales="8-37-38-46-164";
+tecla_especial=false;
+for(var i in especiales){
+if(key==especiales[i]){
+tecla_especial= true;break;
+
+}
+}
+
+if (letras.indexOf(tecla) == -1  && !tecla_especial){
+
+return false;
+}
+}
+
+</script>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
@@ -106,7 +129,14 @@ include("../conexion.php");
 if (isset($_POST["crs"])){
 $CP=$_POST['CP'];
 $D=$_POST['D'];
+if($D == ""){
+	echo "<script>
+     
+	alert ('Debe llenar los campos!!!');
+ window.location='Privilegios.php';
+ </script>";	
 
+}else{
 $consulta="insert into privilegios(Cod_privilegios,Descripcion)
  VALUES('$CP','$D')";
  
@@ -127,7 +157,7 @@ $consulta="insert into privilegios(Cod_privilegios,Descripcion)
  mysqli_close($conexion);
 
 }
-
+}
 ?>
 
 <?php
@@ -185,7 +215,7 @@ header("location:http://localhost:801/phpmyadmin/");
 <td><input type="text" name="CP" value="<?php echo $CHE?>" size="5" maxlength="5" /></td></tr>
 
 <tr><td><label>Descripción</label></td>
-<td><input type="text" name="D" value="<?php echo $Descripcion?>" size="25" maxlength="25" /></td></tr>
+<td><input type="text" name="D" value="<?php echo $Descripcion?>" size="25" maxlength="25"onKeyPress=" return SoloLetras (event)" onpaste="return false"requered /></td></tr>
 
 <br/>
 </table>

@@ -102,7 +102,7 @@ color:green;
 }
 .boton_Añadir{
 	margin-left:10%;
-	margin-right:44.5%;
+	margin-right:29%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -141,7 +141,7 @@ color:green;
 
 .boton_Añadir:hover{
 	margin-left:10%;
-	margin-right:44.5%;
+	margin-right:29%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -196,11 +196,11 @@ header("location:PagosComplementarios.php");
 <table border="1" class="color-Tabla">
 
     <tr class="Estilo-tabla">
-       <td>Código Complementario</td> 
+       <td>Código Pago Complementario</td> 
        <td>Descripción</td>
        <td>Porcentaje</td>
-       <td>Valor Fijo</td>
 	   <td>Valor</td>
+	   <td>Fijo</td>
 	   <td>Eliminar</td>
 	   <td>Actualizar</td>
 	</tr>
@@ -212,13 +212,14 @@ $sql="SELECT * from pagocomplementario" ;
 	$res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
 		echo "<tr>";
-		echo "<td>";echo $mostrar['Cod_Complementario']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_PagoC']; echo"</td>";
 		echo "<td>";echo $mostrar['Descripcion']; echo"</td>";
 		echo "<td>";echo $mostrar['Porcentaje']; echo"</td>";
+	    echo "<td>";echo $mostrar['Valor']; echo"</td>";
 		echo "<td>";echo $mostrar['fijo']; echo"</td>";
-		echo "<td>";echo $mostrar['valor']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CC=".$mostrar['Cod_Complementario']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?CC=".$mostrar['Cod_Complementario']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+
+		echo "<td><a href='Eliminar.php?CC=".$mostrar['Cod_PagoC']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
+	    echo "<td><a href='Actualizar.php?CC=".$mostrar['Cod_PagoC']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";
 	?>
 

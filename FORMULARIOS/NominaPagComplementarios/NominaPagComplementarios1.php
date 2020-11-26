@@ -6,6 +6,11 @@
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>	
 <style>
 /*-----------------------------------código_css-------------------------------------------------------------------------------*/
 body{
@@ -19,13 +24,25 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
+	color:red;
 }
 
-th, td {
+th{
+	border:none;
+	padding:10px;
+	text-align:center;
+	color:#FFFFFF;
+	font-family:Times New Roman;
+	font-size:15px;
+	 background:#346BFB;
+ font-family:Times New Roman ;
+}
+td{
 	border:none;
 	padding:10px;
 	text-align:center;
 }
+
 tr:nth-child(even){
 
 	background:#F5F5F5;
@@ -35,7 +52,7 @@ tr:nth-child(even){
 	margin:auto;
 	margin-top:-10PX;
 	border-radius:4px;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	color:black;
 }
 h1{
@@ -50,7 +67,7 @@ h1{
 	border-radius:6px;
 	margin-bottom:16px;
 	border:1px solid #1f53c5;
-	font-family:"Arial Black", Gadget, sans-serif;
+	font-family:Times New Roman ;
 	font-size:18px;
 	}
 .color-Tabla {
@@ -59,9 +76,11 @@ h1{
 	/*border-top-left-radius:100px !important;*/
 	/*border-spacing: 0.5rem;  rem unidad de medida*/
 	font-family:Times New Roman ;
-
+   	border:solid 10px #346BFB ;
 
 }
+
+
 /*iconos*/
 .fa-trash-alt{
 color:red;
@@ -101,8 +120,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:10%;
-	margin-right:56.5%;
+	margin-left:%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -137,11 +155,11 @@ color:green;
 .Estilo-tabla{
    background:#346BFB;
    color:white;
+
 }
 
 .boton_Añadir:hover{
 	margin-left:10%;
-	margin-right:56.5%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -162,10 +180,11 @@ color:green;
 <body>
 <?php
 
-$conexion=mysqli_connect('localhost','root','','nominas')
+$conexion=mysqli_connect('localhost','root','','nominas');
 ?>
 
-<input type="hidden" id="CE" value="<?php echo $codigo;?>">
+
+
 
 <?php
 if (isset($_POST["Regresar"])){
@@ -181,51 +200,50 @@ header("location:NominaPagComplementarios.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Nómina Pagos-Complementarios</h1>
+	 <h1>Nómina Pagos Complementarios</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
-		<!--   <label for="caja"> </label>
+		 <!--  <label for="caja"> </label>
 		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>-->
 		</div>
 	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir NPC  <i class="fas fa-plus"></i></button>
+	<button name="Insertar"  class="boton_Añadir">Añadir Nómina-PagosComplementarios<i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
 	
-<table border="1" class="color-Tabla">
+<table id="Tabla_Departamentos" border="10" class="color-Tabla" style="width:100%"><br/><br/>
 
-    <tr class="Estilo-tabla">
-       <td>Código N. complementarios</td> 
-       <td>Código Nómina</td>
-       <td>Código Complementario </td>
-	   <td>Eliminar</td>
-	   <td>Actualizar</td>
-	</tr>
+<thead class="text-center" border="60" color="black">
+	   <th>Código Pagos_Complementarios</th>
+	   <th>Código Empleados</th>
+	   <th>Total Pagos Complementarios</th>
+	   <th>Eliminar</th>
+	   <th>Actualizar</th>
+ </thead>
+                <tbody>	
 	
 	<?php
-$sql="SELECT npc.Cod_N_PAGOS_C,ng.Cod_Nomina,pc.Cod_Complementario 
-from nominaspagoscomplementarios as npc 
-JOIN nominageneral as ng on npc.Cod_Nomina=ng.Cod_Nomina
-JOIN pagocomplementario as pc on npc.Cod_Complementario=pc.Cod_Complementario" ;
+$sql="SELECT Cod_NominaPC,Cod_Empleados,Total_PagosC  from NominasPagosComplementarios";
 
-	$res=mysqli_query($conexion,$sql);
+$res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
 		echo "<tr>";
-		echo "<td>";echo $mostrar['Cod_N_PAGOS_C']; echo"</td>";
-		echo "<td>";echo $mostrar['Cod_Nomina']; echo"</td>";
-		echo "<td>";echo $mostrar['Cod_Complementario']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CNPC=".$mostrar['Cod_N_PAGOS_C']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?CNPC=".$mostrar['Cod_N_PAGOS_C']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+		echo "<td>";echo $mostrar['Cod_NominaPC']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_Empleados']; echo"</td>";
+		echo "<td>";echo $mostrar['Total_PagosC']; echo"</td>";
+		echo "<td><a href='Eliminar.php?CN=".$mostrar['Cod_NominaPC']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
+	    echo "<td><a href='Actualizar.php?CN=".$mostrar['Cod_NominaPC']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";
 	?>
 
 <?php
 }
 ?>
-   </div class="color-Tabla">
+ </div class="color-Tabla">
 </center>
-   </table> 
+ </tbody>
+   </table> <br/><br/>
 
 	</center>
 	<br/>
@@ -235,5 +253,21 @@ JOIN pagocomplementario as pc on npc.Cod_Complementario=pc.Cod_Complementario" ;
     </form>
 </div>
 <br>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+       
+	   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/> 
+      
+<!--    Datatables-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
+       
+    <script>
+      $(document).ready(function(){
+         $('#Tabla_Departamentos').DataTable(); 
+      });
+    </script>
     </body>
     </html>
+

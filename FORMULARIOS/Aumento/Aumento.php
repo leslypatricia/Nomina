@@ -1,8 +1,51 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<title>Menu</title>
+<meta charset="utf-8">
+<title>Menu de navegacion</title>
+<link rel="stylesheet" type="text/css" href="">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="../../codigo.js"></script>
+<script>
+//Validaciones con Javascrip
+	function SoloNumeros(evt){
+if(window.event){
+
+	keynum= evt.keyCode;
+}else{
+	keynum=evt.which;
+}
+
+if(keynum > 47 && keynum<58 || keynum==8 || keynum==13){
+	return true;
+}else{
+	return false;
+}
+
+	}
+function SoloLetras(e){
+key=e.keyCode || e.which;
+tecla= String.fromCharCode(key).toLowerCase();
+letras= " abcdefghijklmnopqrstuvwxyz";
+
+especiales="8-37-38-46-164";
+tecla_especial=false;
+for(var i in especiales){
+if(key==especiales[i]){
+tecla_especial= true;break;
+
+}
+}
+
+if (letras.indexOf(tecla) == -1  && !tecla_especial){
+
+return false;
+}
+}
+
+</script>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
@@ -87,34 +130,47 @@ h1{
 	
 	}
 </style>
-</head>
 
+
+</head>
 <body>
 <?php
-$codigo="";
 $Porcentaje="";
 $año="";
 $Descripcion="";
 $Aplicado="";
+$CH="0";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT Cod_Aumento  FROM  Aumento");
+while ($registro= mysqli_fetch_array($registros)){
+$CH=$registro['Cod_Aumento'];
+
+}
+$codigo=$CH + 1;
 
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
+include("../conexion.php");
 if (isset($_POST["crs"])){
 $CA=$_POST['CA'];
 $PA=$_POST['PA'];
 $ANNO=$_POST['ANNO'];
 $D=$_POST['D'];
 $A=$_POST['A'];
+if($ANNO == $fcha){
+	echo "<script>
+     
+	alert ('La fecha debe ser igual a la del Sistema!!!');
+ window.location='Aumento.php';
+ </script>";
 
-
+}elseif($PA=="" Or $ANNO=="" Or $D=="" Or $A==""){
+echo "<script>
+alert ('Debe llenar todos los campos!!!');
+window.location='Aumento.php'
+</script>";
+}else{
 $consulta="INSERT INTO aumento (Cod_Aumento,Porcentaje_aumento,Año,Descripcion,aplicado)
  VALUES($CA,'$PA','$ANNO','$D','$A')";
  
@@ -136,17 +192,11 @@ $consulta="INSERT INTO aumento (Cod_Aumento,Porcentaje_aumento,Año,Descripcion,
  mysqli_close($conexion);
 
 }
-
+}
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
- 
+include("../conexion.php");
 if (isset($_POST["buscar"])){
 
 $CA=$_POST["CA"];
@@ -203,7 +253,7 @@ header("location:http://localhost:801/phpmyadmin/");
 <td><input type="text" name="CA" size="5" maxlength="5" value="<?php echo $codigo?>"></td></tr>
 
 <tr><td><label>Porcentaje Aumento:</label></td>
-<td><input type="text" name="PA" size="15" maxlength="15" value="<?php echo $Porcentaje?>"></td></tr>
+<td><input type="text" name="PA" size="15" maxlength="15" value="<?php echo $Porcentaje?>"onKeyPress=" return SoloNumeros (event)" onpaste="return false"></td></tr>
 
 <tr><td><label>Año:</label></td>
 <td><input type="date" id="date" name="ANNO" size="20" maxlength="20" value="<?php echo $año?>"></td></tr>
@@ -211,7 +261,7 @@ header("location:http://localhost:801/phpmyadmin/");
 <tr><td><label>Descripción:</label></td>
 <td><input type="text" name="D" size="20" maxlength="20"  value="<?php echo $Descripcion?>"></td></tr>
 
-<tr><td><label>Aplicado:</label></td>
+<tr><td><label>Autorizado por:</label></td>
 <td><input type="text" name="A" size="20" maxlength="30" value="<?php echo $Aplicado?>"></td></tr>
 <br/>
 <br/>
@@ -227,5 +277,6 @@ header("location:http://localhost:801/phpmyadmin/");
 
 </div>
 </form>
+
 </body>
 </html>

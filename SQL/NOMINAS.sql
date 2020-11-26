@@ -26,16 +26,20 @@ CHARACTER SET UTF8                                                        COMMEN
 COLLATE= UTF8_UNICODE_CI;
 
 create table PagoComplementario(                                          /*COMMENT 'CREAR LA TABLA PAGOCOMPLEMENTARIO EN LA BBDD NOMINAS'*/
-Cod_Complementario integer AUTO_INCREMENT  primary key not null            COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
-Descripcion varchar(30)                                                    COMMENT 'SE DESCRIBE QUE TIPO DE COMPLEMENTO SE GENERA'
+Cod_PagoC integer primary key not null                                   COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
+Descripcion varchar(10) not null                                         COMMENT 'DESCRIPCION DEL TIPO DE DEDUCCIÓN QUE SE LE APLICA AL EMPLEADO ',
+Porcentaje double(20,2) not null                                         COMMENT 'PORCENTAJE DE LA DEDUCCIÓN ',
+Valor int not null                                                       COMMENT 'VALOR DE LA DEDUCCIÓN',
+fijo int not null                                                        COMMENT 'SE DESCRIBE QUE TIPO DE COMPLEMENTO SE GENERA'
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                         COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;
 
 create table NominasPagosComplementarios(
-Cod_N_PAGOS_C INTEGER AUTO_INCREMENT  PRImary key                           COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
-Cod_Nomina integer                                                          COMMENT 'LLAVE FORANEA DE LA TABLA NOMINA GENERAL',
-Cod_Complementario integer                                                  COMMENT 'LLAVE FORANEA DE LA TABLA PAGO COMPLEMENTARIO'
+Cod_NominaPC     integer                                                 COMMENT '',
+Cod_Empleados   integer primary key  not null                            COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA',
+Cod_PagoC varchar(10)                                                    COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA',
+Total_PagosC   double(20,2)                                             
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                          COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;
@@ -54,7 +58,8 @@ COLLATE= UTF8_UNICODE_CI;
 create table NominaAumento(                                              /*COMMENT 'CREAR LA TABLA NOMINADEDUCCIONES EN LA BBDD NOMINAS' */
 Cod_NominaA     integer                                                  COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA',
 Cod_Empleados   integer  not null                                        COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA',
-Cod_Aumento integer not null                                             COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA'
+Cod_Aumento     integer not null                                             COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA',
+Total_A   double(20,2)                                             
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                       COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;
@@ -94,7 +99,7 @@ Total_Devengado double(20,0)                                             COMMENT
 IHSS      double(20,0)                                                   COMMENT 'IHSS',
 RAP       double(20,0)                                                   COMMENT 'RAP',
 Total_Deducciones double(20,0)                                           COMMENT 'TOTAL DEDUCCIONES',
-Total_PagosComplemetarios double(20,0)                                   COMMENT 'TOTAL POR PAGOS COMPLEMENTARIOS',
+Total_PagosComplementarios double(20,0)                                   COMMENT 'TOTAL POR PAGOS COMPLEMENTARIOS',
 Total_aumento double(20,0)                                               COMMENT 'TOTAL DE AUMENTO',
 SUELDO_NETO_Pagar double(20,0)                                           COMMENT 'SUELDO NETO A PAGAR AL EMPLEADO',
 Total_Nomina double(20,0)                                                COMMENT 'IMPRIME EL TOTAL DE TODA LA NOMINA',
@@ -179,8 +184,6 @@ alter table Empleados ADD FOREIGN KEY (Cod_FormaPago) REFERENCES FormaPago(Cod_F
 alter table HoraExtra ADD FOREIGN KEY (Cod_empleados) REFERENCES Empleados(Cod_empleados);
 #Crear llave foranea de Cod_Jornada en la tabla HoraExtra con referencia de la tabla Jornada
 alter table HoraExtra ADD FOREIGN KEY (Cod_Jornada) REFERENCES Jornada(Cod_Jornada);
-#Crear llave foranea de Cod_Complementario en la tabla NominasPagosComplementarios con referencia de la tabla PagoComplementario
-alter table NominasPagosComplementarios add  foreign key (Cod_Complementario) references PagoComplementario(Cod_Complementario);
 #Crear llave foranea de Cod_Depto en la tabla Empleados con referencia de la tabla Departamento
 alter table Empleados add  foreign key (Cod_Depto) references Departamento(Cod_Depto);
 #Crear llave foranea de Cod_Empleados en la tabla Usuario con referencia de la tabla Empleados

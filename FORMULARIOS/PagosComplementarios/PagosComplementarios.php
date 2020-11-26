@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
-
 <style>
 body{
 	margin:0;
@@ -17,6 +16,33 @@ body{
 	background-size:cover;
 	background-attachment: fixed;
 }
+.from{
+padding:110px;
+	margin:auto;
+	margin-top:-10PX;
+	border-radius:4px;
+	font-family:"Times New Roman";
+	color:white;
+	/*box-shadow:7px 13px 37px #000;*/
+}
+h1{
+	font-size:50px;
+	margin-bottom:35px;	
+	color: blanchedalmond;
+	}
+	
+.form-group{
+	width:900px;
+	/*background:#00ced1;*/
+	padding:20px;
+	border-radius:4px;
+	margin-bottom:16px;
+	border:1px solid #1f53c5;
+	font-family:"Times New Roman";
+	font-size:18px;
+	
+	}
+	
 /*iconos*/
 .fa-search{
 color:blue;
@@ -57,64 +83,38 @@ font-weight:bold;
 	
 
 }
-.from{
-padding:110px;
-/*background:black;*/
-	margin:auto;
-	margin-top:-10PX;
-	border-radius:4px;
-	font-family:"Times New Roman";
-	color:White;
-	/*box-shadow:7px 13px 37px #000;*/
-}
-h1{
-	font-size:50px;
-	margin-bottom:35px;	
-	color: blanchedalmond;
-	}
-	
-.form-group{
-	width:900px;
-	/*background:#00ced1;*/
-	padding:20px;
-	border-radius:4px;
-	margin-bottom:16px;
-	border:1px solid #1f53c5;
-	font-family:"Times New Roman";
-	font-size:18px;
-	
-	}
 </style>
 </head>
 
 <body>
 <?php
-$codigo="";
+
 $Descripcion="";
 $Porcentaje="";
-$fijo="";
 $valor="";
+$fijo="";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT Cod_PagoC  FROM  PagoComplementario");
+while ($registro= mysqli_fetch_array($registros)){
+$CH=$registro['Cod_PagoC'];
+
+}
+$codigo=$CH + 1;
+
+
 ?>
 
-
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
+include("../conexion.php");
 if (isset($_POST["crs"])){
-$CC=$_POST['CC'];
+$CD=$_POST['CD'];
 $D=$_POST['D'];
 $P=$_POST['P'];
-$F=$_POST['F'];
 $V=$_POST['V'];
+$F=$_POST['F'];
 
-
-$consulta="insert into pagocomplementario(Cod_Complementario,Descripcion,Porcentaje,fijo,valor)
- VALUES($CC,'$D','$P','$F','$V')";
+$consulta="insert into PagoComplementario(Cod_PagoC,Descripcion,Porcentaje,Valor,fijo)
+ VALUES($CD,'$D','$P','$V','$F')";
  
  if (mysqli_query($conexion, $consulta)) {
      echo "<script> 
@@ -122,43 +122,34 @@ $consulta="insert into pagocomplementario(Cod_Complementario,Descripcion,Porcent
 	  window.location='PagosComplementarios1.php';
 	  </script>";
 } else {
-	echo "<script> 
-	alert ('Registro  NO Ingresado Correctamente!!!');
+	echo "<script>
+     
+	alert ('Registro NO Ingresado Correctamente!!!');
  window.location='PagosComplementarios.php';
  </script>";
-   /*   echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
+     /* echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 }
  mysqli_close($conexion);
 
 }
-
 ?>
 
-
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-
-
+include("../conexion.php");
  
 if (isset($_POST["buscar"])){
 
-$CC=$_POST["CC"];
+$CD=$_POST["CD"];
 
-$registros=mysqli_query($conexion,"SELECT * FROM  pagocomplementario WHERE Cod_Complementario='$CC'");
-
+$registros=mysqli_query($conexion,"SELECT * FROM  PagoComplementario WHERE Cod_PagoC='$CD'");
 
 while ($registro= mysqli_fetch_array($registros)){
 
-$codigo=$registro['Cod_Complementario'];
+$codigo=$registro['Cod_Deducciones'];
 $Descripcion=$registro['Descripcion'];
 $Porcentaje=$registro['Porcentaje'];
+$valor=$registro['Valor'];
 $fijo=$registro['fijo'];
-$valor=$registro['valor'];
 
 mysqli_close($conexion);
 }
@@ -173,9 +164,8 @@ if (isset($_POST["limpiar"])){
 $codigo="";
 $Descripcion="";
 $Porcentaje="";
-$fijo="";
 $valor="";
-
+$fijo="";
 
 }
 
@@ -192,27 +182,29 @@ header("location:http://localhost:801/phpmyadmin/");
 ?>
 
 
-
 <form class="from"  id="form1" action="#" method="POST">
 <center>
 <h1>Nuevo Pago Complementario</h1>
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
-<tr><td><label>Código Complementario:</label></td>
-<td><input type="text" name="CC" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
+
+<tr><td><label>Código Pago ComplementARIO:</label></td>
+<td><input type="text" name="CD" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
 
 <tr><td><label>Descripción:</label></td>
-<td><input type="text" name="D" value="<?php echo $Descripcion?>"" size="15" maxlength="15" /></td></tr>
+<td><input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" /></td></tr>
 
 <tr><td><label>Porcentaje:</label></td>
 <td><input type="text" name="P" value="<?php echo $Porcentaje?>" size="20" maxlength="20"/></td></tr>
-<tr><td><label>Fijo:</label></td>
-<td><input type="text" name="F" value="<?php echo $fijo?>" size="20" maxlength="20"/></td></tr>
 
 <tr><td><label>Valor:</label></td>
-<td><input type="text" name="V" value="<?php echo $valor?>" size="20" maxlength="20"/></td></tr>
+<td><input type="text" name="V" value="<?php echo $valor?>" size="20" maxlength="20" /></td></tr>
+
+<tr><td><label>Fijo:</label></td>
+<td><input type="text" name="F" value="<?php echo $fijo?>" size="20" maxlength="30" /></td></tr>
 <br/>
+
 </table>
 <center>
 <br/><br/>

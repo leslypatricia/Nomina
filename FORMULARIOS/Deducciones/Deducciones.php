@@ -3,6 +3,44 @@
 <head>
 <meta charset="utf-8" />
 <title>Menu</title>
+<script>
+//Validaciones con Javascrip
+	function SoloNumeros(evt){
+if(window.event){
+
+	keynum= evt.keyCode;
+}else{
+	keynum=evt.which;
+}
+
+if(keynum > 47 && keynum<58 || keynum==8 || keynum==13){
+	return true;
+}else{
+	return false;
+}
+
+	}
+function SoloLetras(e){
+key=e.keyCode || e.which;
+tecla= String.fromCharCode(key).toLowerCase();
+letras= " abcdefghijklmnopqrstuvwxyz";
+
+especiales="8-37-38-46-164";
+tecla_especial=false;
+for(var i in especiales){
+if(key==especiales[i]){
+tecla_especial= true;break;
+
+}
+}
+
+if (letras.indexOf(tecla) == -1  && !tecla_especial){
+
+return false;
+}
+}
+
+</script>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
@@ -88,20 +126,22 @@ font-weight:bold;
 
 <body>
 <?php
-$codigo="";
 $Descripcion="";
 $Porcentaje="";
 $valor="";
 $fijo="";
+$CH="0";
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT Cod_Deducciones  FROM  Deducciones");
+while ($registro= mysqli_fetch_array($registros)){
+$CH=$registro['Cod_Deducciones'];
+
+}
+$codigo=$CH + 1;
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+include("../conexion.php");
 
 if (isset($_POST["crs"])){
 $CD=$_POST['CD'];
@@ -109,7 +149,12 @@ $D=$_POST['D'];
 $P=$_POST['P'];
 $V=$_POST['V'];
 $F=$_POST['F'];
-
+if($CD=="" Or $D=="" Or $P=="" Or $V=="" Or $F==""){
+echo "<script>
+alert ('Debe llenar todos los campos!!!');
+window.location='Deducciones.php';
+</script>";
+}else{
 $consulta="insert into deducciones(Cod_Deducciones,Descripcion,Porcentaje,Valor,fijo)
  VALUES($CD,'$D','$P','$V','$F')";
  
@@ -129,16 +174,11 @@ $consulta="insert into deducciones(Cod_Deducciones,Descripcion,Porcentaje,Valor,
  mysqli_close($conexion);
 
 }
+}
 ?>
 
 <?php
-$db_host="localhost";
-$db_usuario="root";
-$db_contra="";
-$db_nombre="nominas";
-
-$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
- 
+include("../conexion.php");
 if (isset($_POST["buscar"])){
 
 $CD=$_POST["CD"];
@@ -192,19 +232,19 @@ header("location:http://localhost:801/phpmyadmin/");
 
 
 <tr><td><label>Código Deducciones:</label></td>
-<td><input type="text" name="CD" value="<?php echo $codigo?>" size="5" maxlength="5" /></td></tr>
+<td><input type="text" name="CD" value="<?php echo $codigo?>" size="5" maxlength="5"onKeyPress=" return SoloNumeros (event)" onpaste="return false" /></td></tr>
 
 <tr><td><label>Descripción:</label></td>
-<td><input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" /></td></tr>
+<td><input type="text" name="D" value="<?php echo $Descripcion?>" size="15" maxlength="15" onKeyPress=" return SoloLetras (event)" onpaste="return false"/></td></tr>
 
 <tr><td><label>Porcentaje:</label></td>
-<td><input type="text" name="P" value="<?php echo $Porcentaje?>" size="20" maxlength="20"/></td></tr>
+<td><input type="text" name="P" value="<?php echo $Porcentaje?>" size="20" maxlength="20"onKeyPress=" return SoloNumeros (event)" onpaste="return false"/></td></tr>
 
 <tr><td><label>Valor:</label></td>
-<td><input type="text" name="V" value="<?php echo $valor?>" size="20" maxlength="20" /></td></tr>
+<td><input type="text" name="V" value="<?php echo $valor?>" size="20" maxlength="20"onKeyPress=" return SoloNumeros (event)" onpaste="return false" /></td></tr>
 
 <tr><td><label>Fijo:</label></td>
-<td><input type="text" name="F" value="<?php echo $fijo?>" size="20" maxlength="30" /></td></tr>
+<td><input type="text" name="F" value="<?php echo $fijo?>" size="20" maxlength="30"onKeyPress=" return SoloNumeros (event)" onpaste="return false" /></td></tr>
 <br/>
 
 </table>
