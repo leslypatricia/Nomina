@@ -17,7 +17,6 @@ Sexo varchar(2) not null                                                  COMMEN
 Cuenta_Bancaria varchar(20)                                               COMMENT 'CUENTA BANCARIA DEL EMPLEADO',
 Fecha_ingreso date not null                                               COMMENT 'FECHA DE INGRESO DEL EMPLEADO',
 Nacionalidad varchar(20)                                                  COMMENT 'NACIONALIDAD DEL EMPLEADO',
-Fecha_Deduccion INTEGER                                                   COMMENT 'SE ELIGE LA FECHA EN LA QUE SE APLICA LA DEDUCCIÓN', 
 Sueldo_base double(20,0)not null                                          COMMENT 'SUELDO BASE QUE TENDRÁ EL EMPLEADO',
 Cod_FormaPago integer                                                     COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA FORMA_PAGO',
 Cod_Depto integer                                                         COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA DEPARTAMENTO'
@@ -109,6 +108,57 @@ Fecha_Generada DATE                                                      COMMENT
 CHARACTER SET UTF8                                                       COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;
 
+create table Nomina_Mensual(                                             /* COMMENT 'CREAR LA TABLA NOMINAGENERAL EN LA BBDD NOMINAS'*/
+Cod_Nomina integer                                                       COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
+Cod_empleados integer                                                    COMMENT 'CAMPO UTILIZADO COMO LLAVE FORANEA',
+Identidad varchar (25)                                                   COMMENT 'CAMPO INGRESAR NUMERO DE IDENTIDAD DEL EMPLEADO',
+Primer_Nombre varchar(25)                                                COMMENT 'CAMPO INGRESAR PRIMER NOMBRE DEL EMPLEADO',
+Segundo_Nombre varchar(25)                                               COMMENT 'CAMPO INGRESAR SEGUNDO NOMBRE DEL EMPLEADO',                                             
+Primer_Apellido varchar(25)                                              COMMENT 'CAMPO INGRESAR PRIMER APELLIDO EMPLEADO',
+Segundo_Apellido varchar(25)                                             COMMENT 'CAMPO INGRESAR SEGUNDO APELLIDO EMPLEADO',
+Sueldo_base double(20,0)                                                 COMMENT 'SUELDO BASE',
+Cant_Horas  integer                                                      COMMENT 'CANTIDAD DE HORAS EXTRAS',
+Costo_U double(20,0)                                                     COMMENT 'COSTO UNITARIO POR HORA EXTRA',
+TotalP_HE  double(20,0)                                                  COMMENT 'TOTAL A PAGAR POR HORAS EXTRAS',
+Total_Devengado double(20,0)                                             COMMENT 'TOTAL DEVENGADO',
+IHSS      double(20,0)                                                   COMMENT 'IHSS',
+RAP       double(20,0)                                                   COMMENT 'RAP',
+Total_Deducciones double(20,0)                                           COMMENT 'TOTAL DEDUCCIONES',
+Total_PagosComplementarios double(20,0)                                   COMMENT 'TOTAL POR PAGOS COMPLEMENTARIOS',
+Total_aumento double(20,0)                                               COMMENT 'TOTAL DE AUMENTO',
+SUELDO_NETO_Pagar double(20,0)                                           COMMENT 'SUELDO NETO A PAGAR AL EMPLEADO',
+Fecha_Generada DATE                                                      COMMENT 'IMPRIME LA FECHA EXACTA EN LA QUE SE IMPRIME'
+
+)ENGINE=INNODB  
+CHARACTER SET UTF8                                                       COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
+COLLATE= UTF8_UNICODE_CI;
+
+create table Nomina_Quincenal(                                             /* COMMENT 'CREAR LA TABLA NOMINAGENERAL EN LA BBDD NOMINAS'*/
+Cod_Nomina integer                                                       COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
+Cod_empleados integer                                                    COMMENT 'CAMPO UTILIZADO COMO LLAVE FORANEA',
+Identidad varchar (25)                                                   COMMENT 'CAMPO INGRESAR NUMERO DE IDENTIDAD DEL EMPLEADO',
+Primer_Nombre varchar(25)                                                COMMENT 'CAMPO INGRESAR PRIMER NOMBRE DEL EMPLEADO',
+Segundo_Nombre varchar(25)                                               COMMENT 'CAMPO INGRESAR SEGUNDO NOMBRE DEL EMPLEADO',                                             
+Primer_Apellido varchar(25)                                              COMMENT 'CAMPO INGRESAR PRIMER APELLIDO EMPLEADO',
+Segundo_Apellido varchar(25)                                             COMMENT 'CAMPO INGRESAR SEGUNDO APELLIDO EMPLEADO',
+Sueldo_base double(20,0)                                                 COMMENT 'SUELDO BASE',
+Cant_Horas  integer                                                      COMMENT 'CANTIDAD DE HORAS EXTRAS',
+Costo_U double(20,0)                                                     COMMENT 'COSTO UNITARIO POR HORA EXTRA',
+TotalP_HE  double(20,0)                                                  COMMENT 'TOTAL A PAGAR POR HORAS EXTRAS',
+Total_Devengado double(20,0)                                             COMMENT 'TOTAL DEVENGADO',
+IHSS      double(20,0)                                                   COMMENT 'IHSS',
+RAP       double(20,0)                                                   COMMENT 'RAP',
+Total_Deducciones double(20,0)                                           COMMENT 'TOTAL DEDUCCIONES',
+Total_PagosComplementarios double(20,0)                                   COMMENT 'TOTAL POR PAGOS COMPLEMENTARIOS',
+Total_aumento double(20,0)                                               COMMENT 'TOTAL DE AUMENTO',
+SUELDO_NETO_Pagar double(20,0)                                           COMMENT 'SUELDO NETO A PAGAR AL EMPLEADO',
+Fecha_Generada DATE                                                      COMMENT 'IMPRIME LA FECHA EXACTA EN LA QUE SE IMPRIME'
+
+)ENGINE=INNODB  
+CHARACTER SET UTF8                                                       COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
+COLLATE= UTF8_UNICODE_CI;
+
+
 create table Departamento(                                               /*'CREAR LA TABLA DEPARTAMENT EN LA BBDD NOMINAS'*/
 Cod_Depto integer primary key                                             COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
 Descripcion varchar(20) not null                                          COMMENT 'DESCRIPCION DEL DEPARTAMENTO AL CUAL PERTENECE EL EMPLEADO',
@@ -171,7 +221,7 @@ COLLATE= UTF8_UNICODE_CI;
 
 create table privilegios(                                              /*COMMENT 'CREAR LA TABLA PRIVILEGIOS EN LA BBDD NOMINAS' */
 Cod_privilegios integer primary key                                     COMMENT 'CAMPO QUE SE USA COMO LLAVE PRIMARIA',
-Descripcion varchar(20)                                                 COMMENT 'SE USA PARA DAR PERMISOS DE LECTURA A CIERTOS USUSARIOS'
+Descripcion varchar(30)                                                 COMMENT 'SE USA PARA DAR PERMISOS DE LECTURA A CIERTOS USUSARIOS'
                                                                     
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                      COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
@@ -195,7 +245,7 @@ alter table rol add  foreign key (Cod_privilegios) references privilegios(Cod_Pr
 #Insertar registros en la tabla Rol
 INSERT INTO `rol` (`Cod_rol`, `Descripcion`) VALUES ('1000', 'Administrador'), ('2000', 'Empleado_Normal');
 #Insertar registros en la tabla Privilegios
-INSERT INTO `privilegios` (`Cod_privilegios`, `Descripcion`) VALUES ('1', 'Modificacion'), ('2', 'Lectura');
+INSERT INTO `privilegios` (`Cod_privilegios`, `Descripcion`) VALUES ('1', 'Lectura-Modificacion-Eliminacion'), ('2', 'Lectura');
 #Insertar registros en la tabla Formapago
 INSERT INTO `formapago` (`Cod_FormaPago`, `Descripcion`) VALUES ('1', 'Mensual'), ('2', 'Quincenal');
 #Insertar registros en la tabla departamento
@@ -205,12 +255,8 @@ INSERT INTO `jornada` (`Cod_Jornada`, `Tipo_Jornada`) VALUES ('1', 'Diurna'),('2
 #Insertar registros en la tabla deducciones
 INSERT INTO `deducciones` (`Cod_Deducciones`, `Descripcion`, `Porcentaje`, `Valor`, `fijo`) VALUES ('1', 'IHSS', '3.5', '0', '0'),('2', 'RAP', '1.5', '0', '0');
 
-#TRIGGER en la tabla empleados que afecta a la tabla nominageneral
-CREATE TRIGGER EMPLEADOS AFTER INSERT ON Empleados FOR EACH ROW 
-INSERT INTO NominaGeneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base) 
-VALUES ('1',NEW.Cod_empleados,NEW.Identidad,NEW.Primer_Nombre,NEW.Segundo_Nombre,NEW.Primer_Apellido,NEW.Segundo_Apellido,NEW.Sueldo_base);
 
 #Insertar 5 empleados de forma automatica
-INSERT INTO `empleados` (`Cod_empleados`, `Identidad`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `Fecha_nacimiento`, `Correo`, `Direccion`, `Telefono`, `Sexo`, `Cuenta_Bancaria`, `Fecha_ingreso`, `Nacionalidad`, `Fecha_Deduccion`, `Sueldo_base`, `Cod_FormaPago`, `Cod_Depto`) VALUES ('1', '0819199000066', 'José', 'Mario', 'Gómez', 'López', '1990-11-08 14:08:22', 'josemario123_123@outlook.es', 'Prados Universitarios', '97217988', 'M', '20068043', '2020-10-01', 'Hondureña', '30', '20000', '1', '3'),('2', '0801197500555', 'Carlos', 'Manuel', 'Pérez', 'Torres', '1975-09-31', 'mtorres@gmail.com', 'Col. Los Pinos', '99554567', 'M', '345678987652', '2017-10-15', 'Hondureña', '30', '11000', '1', '3'),('3', '1516197000304', 'José', 'David', 'Mondragón', 'Turcios', '1970-11-20', 'jdturcios@hotmail.com', 'Los Proceres', '33213456', 'M', '001235467891', '2018-10-15', 'Extranjera', '30', '9000', '2', '2'), ('4', '1517199755498', 'Marlon', 'Fernando', 'Ozorto', 'Miñiz', '1997-05-28', 'ozorto1997@yahoo.com', 'Villa Nueva', '98345643', 'M', '335678992387', '2019-05-01', 'Extranjera', '30', '10500', '1', '1'),('5', '0321197600354', 'Mauda', 'Patricia', 'Araujo', 'Cubas', '1976-02-21', 'patricia@gmail.com', 'Independencia', '89785676', 'F', '200135678223', '2020-05-15', 'Hondureña', '30', '9500', '1', '2');
+INSERT INTO `empleados` (`Cod_empleados`, `Identidad`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `Fecha_nacimiento`, `Correo`, `Direccion`, `Telefono`, `Sexo`, `Cuenta_Bancaria`, `Fecha_ingreso`, `Nacionalidad`, `Sueldo_base`, `Cod_FormaPago`, `Cod_Depto`) VALUES ('1', '0819199000066', 'José', 'Mario', 'Gómez', 'López', '1990-11-08', 'josemario123_123@outlook.es', 'Prados Universitarios', '97217988', 'M', '20068043', '2020-10-01', 'Hondureña', '20000', '1', '3'),('2', '0801197500555', 'Carlos', 'Manuel', 'Pérez', 'Torres', '1975-09-31', 'mtorres@gmail.com', 'Col. Los Pinos', '99554567', 'M', '345678987652', '2017-10-15', 'Hondureña', '11000', '1', '3'),('3', '1516197000304', 'José', 'David', 'Mondragón', 'Turcios', '1970-11-20', 'jdturcios@hotmail.com', 'Los Proceres', '33213456', 'M', '001235467891', '2018-10-15', 'Extranjera', '9000', '2', '2'), ('4', '1517199755498', 'Marlon', 'Fernando', 'Ozorto', 'Miñiz', '1997-05-28', 'ozorto1997@yahoo.com', 'Villa Nueva', '98345643', 'M', '335678992387', '2019-05-01', 'Extranjera', '10500', '1', '1'),('5', '0321197600354', 'Mauda', 'Patricia', 'Araujo', 'Cubas', '1976-02-21', 'patricia@gmail.com', 'Independencia', '89785676', 'F', '200135678223', '2020-05-15', 'Hondureña', '9500', '1', '2'),('6', '2311200098765', 'Lorena', 'Abigail', 'López', 'Lagos', '2000-06-29', 'lalagos@hotmail.com', 'Las Torres', '95343465', 'F', '234567890987', '2016-11-15', 'Hondureña', '12000', '2', '3'),('7', '1342200165345', 'Fernando', 'Josué', 'Díaz', 'Zelaya', '2001-08-15', 'fzelaya@gmail.com', 'Salamá', '99713403', 'M', '564327897654', '2017-02-01', 'Extranjera', '15000', '2', '3'),('8', '1519196903567', 'Pedro', 'Jared', 'Meráz', 'Olivera', '1969-10-25', 'meraz1969@yahoo.com', 'Armenia', '31989009', 'M', '214590987656', '2016-09-05', 'Hondureña', '20000', '1', '2'),('9', '2312197925678', 'Merary', 'Juliana', 'Bejarano', 'Trochéz', '1979-11-30', 'mjbejarano@gmail.com', 'Zoroguara', '97340321', 'F', '089076543456', '2015-11-30', 'Hondureña', '11500', '1', '3'),('10', '1520198890890', 'Marcos', 'Noé', 'Rochéz', 'Palma', '1988-07-19', 'marcospalma@hotmail.com', 'Punuare', '32679087', 'M', '032456789876', '2017-04-30', 'Hondureña', '8500', '2', '1');
 #Insertar un usuario
 INSERT INTO `usuario` (`Cod_Usuario`, `Usuario`, `Password`, `Correo`, `Cod_rol`, `Cod_empleados`) VALUES ('1', 'Administrador', '1234', 'josemario123_123@outlook.es', '1000', '1');

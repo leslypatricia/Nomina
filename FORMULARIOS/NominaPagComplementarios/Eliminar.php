@@ -8,7 +8,7 @@ function eliminar($CNPC){
 	
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-$sentencia="DELETE FROM nominaspagoscomplementarios WHERE Cod_N_PAGOS_C='".$CNPC."'";
+$sentencia="DELETE FROM nominaspagoscomplementarios WHERE Cod_NominaPC='".$CNPC."'";
 $conexion->query($sentencia) or die("error al eliminar".mysqli_error($conexion));
 }
 

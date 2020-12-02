@@ -1,7 +1,7 @@
 
 <?php
-Modificar($_POST['CEE'],$_POST['CD'],$_POST['IHSS'],$_POST['CN']);
-function Modificar($CEE,$CD,$IHSS,$CN){
+Modificar($_POST['CEE'],$_POST['TOTALA'],$_POST['CHE']);
+function Modificar($CEE,$TOTALA,$CHE){
 	$db_host="localhost";
 	$db_usuario="root";
 	$db_contra="";
@@ -9,13 +9,13 @@ function Modificar($CEE,$CD,$IHSS,$CN){
 	
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-$sentencia="UPDATE nominadeducciones SET Cod_Empleados='".$CEE."',Total_Deducciones='".$IHSS."',Cod_Deducciones='".$CD."'
-WHERE Cod_NominaD='".$CN."'";
+$sentencia="UPDATE nominaaumento SET Cod_Empleados='".$CEE."',Total_A='".$TOTALA."'
+WHERE Cod_NominaA='".$CHE."'";
 $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexion));
 }
 
 ?>
 <script type="text/javascript">
-alert("Datos Actualizados del Nonima Deducciones ");
-window.location="NominaDeduccion1.php";
+alert("Datos Actualizados del Nonima Aumento ");
+window.location="NominaAumento1.php";
 </script>

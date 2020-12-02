@@ -197,6 +197,7 @@ header("location:/FORMULARIOS/NominaGeneral/nomina.php");
 
 
   <tr><td><label>Aumentos</label></td>
+ 
 <td>
 <?php
 include("../conexion.php");
@@ -212,6 +213,7 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  Aumento");
   
    } 
   ?>
+
   <br/></td></tr>
 	<tr><td><label>Total Aumento<br/></label> </td>
 	<td><input type="text" class="form" name="TOTALA" value="<?php echo $TOTALA?>"size="20" maxlength="20" readonly="readonly"/><br/></td></tr>

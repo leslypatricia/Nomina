@@ -221,7 +221,8 @@ header("location:HoraExtra.php");
 	<?php
 $sql="SELECT ex.Cod_HExtra,j.Cod_Jornada,ep.Cod_empleados
 ,ex.Sueldo_Ordinario,ex.Sueldo_Diario,ex.Sueldo_Hora,
-ex.Porce_Hora_Extra,ex.Pago_Hora,ex.Numero_Horas,ex.Total_HE,ex.fecha from horaextra as ex 
+ex.Porce_Hora_Extra,ex.Pago_Hora,ex.Numero_Horas,ex.Total_HE,
+ex.fecha from horaextra as ex 
 JOIN jornada as j on ex.Cod_Jornada=j.Cod_Jornada
 JOIN empleados as ep on ex.Cod_empleados=ep.Cod_empleados " ;
 

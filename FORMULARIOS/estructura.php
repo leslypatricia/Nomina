@@ -156,7 +156,6 @@ li{
 						<li><a href="../FORMULARIOS/Empleado/Empleados1.php">Empleados</a></li>
                         <li><a href="../FORMULARIOS/Departamento/Departamento1.php">Departamentos</a></li>
                         <li><a href="../FORMULARIOS/FormaPago/FormaPago1.php">Formas de Pago</a></li>
-
 					</ul>
 				</li>
 				<li class="item-submenu" menu="3">
@@ -167,19 +166,15 @@ li{
 						<li><a href="../FORMULARIOS/Deducciones/Deducciones1.php">Agregar Deducciones</a></li>
 						<li><a href="../FORMULARIOS/NominaDeduccion/NominaDeduccion1.php">Nómina Deducciones</a></li>
 					</ul>
-					
-
 				</li>
 				<li class="item-submenu" menu="4">
 					<a href="#"><span class=" icon-menu"></span>Tipo de Nómina</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Nómina</li>
 						<li class="go-back">Atrás</li>
-						<li><a href="../FORMULARIOS/Deducciones/Deducciones1.php">Nómina Mensual</a></li>
+						<li><a href="../FORMULARIOS/NominaGeneral/Nomina Mensual.php">Nómina Mensual</a></li>
 						<li><a href="../FORMULARIOS/NominaDeduccion/NominaDeduccion1.php">Nómina Quincenal</a></li>
 					</ul>
-					
-
 				</li>
 				<li class="item-submenu" menu="5">
 					<a href="#"><span class=" icon-menu"></span>Horas Laborales</a>

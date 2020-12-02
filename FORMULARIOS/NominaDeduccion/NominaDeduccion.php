@@ -151,7 +151,7 @@ $totald="0";
 $totalPC="0";
 $totalA="0";
 include("../conexion.php");
-$CND=$_POST["CHE"];
+$CND=$_POST["CN"];
 $CE=$_POST["CEE"];
 $DE=1;
 $TOTALD=$_POST["IHSS"];
@@ -203,7 +203,7 @@ header("location:/FORMULARIOS/NominaGeneral/nomina.php");
 
 
 	<tr><td><label>Código<br/></label> </td>
-	<td><input type="text" class="form" name="CHE" value="<?php echo $CD ?>"size="20" maxlength="20" readonly="readonly" /><br/></td></tr>
+	<td><input type="text" class="form" name="CN" value="<?php echo $CD ?>"size="20" maxlength="20" readonly="readonly" /><br/></td></tr>
 	
 	
 	</td></tr>

@@ -19,7 +19,7 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
-	color:red;
+	color:black;
 }
 
 th{
@@ -115,7 +115,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:%;
+	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -150,6 +150,7 @@ color:green;
 .Estilo-tabla{
    background:#346BFB;
    color:white;
+   aligen:center;
 
 }
 
@@ -206,15 +207,14 @@ header("location:rol.php");
 	<div class="container-table">
 	<center>
 	
-<table id="Tabla_Dep" border="10" class="color-Tabla" style="width:100%"><br/><br/>
+<table border="1" class="color-Tabla" ><br/><br/>
 
-<thead class="text-center" >
+<tr class="Estilo-Tabla" >
        <th>Código Rol</th> 
 	   <th>Descripción</th>
-	   <th>Cód. privilegios</th>
 	   <th>Eliminar</th>
 	   <th>Actualizar</th>
-  </thead>
+</tr>
                 <tbody>
 	
 	<?php
@@ -227,7 +227,6 @@ $sql="SELECT * from rol" ;
 		echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_rol']; echo"</td>";
 		echo "<td>";echo $mostrar['Descripcion']; echo"</td>";
-		echo "<td>";echo $mostrar['Cod_privilegios']; echo"</td>";
 		echo "<td><a href='Eliminar.php?CR=".$mostrar['Cod_rol']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
 	    echo "<td><a href='Actualizar.php?CR=".$mostrar['Cod_rol']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";

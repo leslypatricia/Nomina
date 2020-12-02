@@ -120,7 +120,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:%;
+	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -209,7 +209,7 @@ header("location:Eliminar.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Aumento</h1>
+	 <h1>Aumentos</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
 		 <!--  <label for="caja"> </label>

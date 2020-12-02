@@ -8,7 +8,8 @@ function consulta($CP){
 		
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-	$sentencia="SELECT * FROM privilegios where Cod_privilegios='".$CP."'";
+	$sentencia="SELECT * FROM privilegios
+	 where Cod_privilegios='".$CP."'";
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
 $mostrar=$res->fetch_assoc();

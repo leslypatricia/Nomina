@@ -8,7 +8,10 @@ function consulta($CN){
 		
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-		$sentencia="SELECT Cod_NominaD,Cod_Empleados,Cod_Deducciones,Total_Deducciones FROM nominadeducciones where Cod_NominaD='".$CN."'";
+		$sentencia="SELECT nd.Cod_NominaD,e.Cod_empleados,
+		nd.Total_Deducciones FROM nominadeducciones as nd
+		JOIN empleados as e on nd.Cod_Empleados=e.Cod_empleados
+		 where nd.Cod_NominaD='".$CN."'";
 	/*	$sentencia="SELECT Primer_Nombre,Segundo_Apellido,Telefono,
         Fecha_ingreso,Sueldo_base,Cod_FormaPago,Cod_Depto
         FROM empleados WHERE Cod_empleados='".$cod."' " ;*/
@@ -17,8 +20,7 @@ $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($con
 $mostrar=$res->fetch_assoc();
 		return[	
 			$mostrar['Cod_NominaD'],
-			$mostrar['Cod_Empleados'],
-			$mostrar['Cod_Deducciones'],
+			$mostrar['Cod_empleados'],
 			$mostrar['Total_Deducciones']
 		];
 	}
@@ -135,6 +137,9 @@ font-weight:bold;
 		padding:10px;
 		color:white;
 		font-size:10px;}
+		label{
+			color: whitesmoke;
+		}
 </style>
 </head>
 
@@ -177,13 +182,12 @@ header("location:http://localhost:801/phpmyadmin/");
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 <tr><td><label>Codigo Nominas:</label></td>
 <td><input type="text" name="CN" value="<?php echo $con[0]; echo $nomina ?>" size="5" maxlength="5" /></td></tr>
+
 <tr><td><label>Codigo empleado:</label></td>
 <td><input type="text" name="CEE" value="<?php echo $con[1]; echo $emlea?>" size="15" maxlength="15" /></td></tr>
 
-<tr><td><label>Codigo Deducciones:</label></td>
-<td><input type="text" name="CD" value="<?php echo $con[2]; echo $dedu?>" size="15" maxlength="15" /></td></tr>
 <tr><td><label>Total Deducciones:</label></td>
-<td><input type="text" name="IHSS" value="<?php echo $con[3]; echo $to?>" size="15" maxlength="15" /></td></tr>
+<td><input type="text" name="IHSS" value="<?php echo $con[2]; echo $to?>" size="15" maxlength="15" /></td></tr>
 
 </table>
 

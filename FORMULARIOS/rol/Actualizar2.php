@@ -9,7 +9,8 @@ function Modificar($CR,$D){
 	
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-$sentencia="UPDATE rol SET Descripcion='".$D."'WHERE Cod_rol='".$CR."'";
+$sentencia="UPDATE rol SET Descripcion='".$D."'
+WHERE Cod_rol='".$CR."'";
 $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexion));
 }
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 eliminar($_GET["HE"]);
 function eliminar($HE){
 	$db_host="localhost";
@@ -17,4 +17,5 @@ $conexion->query($sentencia) or die("error al eliminar".mysqli_error($conexion))
 alert("Datos eliminado");
 window.location="HoraExtra1.php";
 </script>
+
 

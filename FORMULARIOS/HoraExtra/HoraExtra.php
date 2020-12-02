@@ -173,8 +173,11 @@ $S_H="";
 $POR="";
 $PH="";
 $TOTAL="";
-$CO="";
 $CH="0";
+
+if(!isset($_POST["Actualizar"])){
+$CO=$_GET["CE"];
+}
 
 include("../conexion.php");
 $registros=mysqli_query($conexion,"SELECT *  FROM  horaextra");
@@ -198,7 +201,7 @@ $CJJ=$_POST["CJ"];
 $sueldo="";
 $S_D="";
 $fecha=$_POST["F"];
-$registros=mysqli_query($conexion,"select Sueldo_base  FROM  empleados WHERE Cod_empleados='$CO'");
+$registros=mysqli_query($conexion,"SELECT Sueldo_base  FROM  empleados WHERE Cod_empleados='$CO'");
 
 
 while ($registro= mysqli_fetch_array($registros)){
@@ -274,17 +277,10 @@ $HORAS=$D + $N;
 $TOTAL=$_POST["TOTAL"];
 $fecha=$_POST["F"];
 $TOTALD=$S + $TOTAL;
-if($fecha == $fcha ){
-	echo "<script>
-		 
-		alert ('La fecha debe ser igual a la del Sistema!!!');
-	 window.location='HoraExtra.php';
-	 </script>";
-}else{
 
-$consulta="insert into horaextra(Cod_HExtra,Cod_Jornada,Cod_Empleados,Sueldo_Ordinario,Sueldo_Diario,Sueldo_Hora,Porce_Hora_Extra,pago_Hora,Numero_horas,Total_HE,fecha)
+$consulta="	INSERT INTO horaextra(Cod_HExtra,Cod_Jornada,Cod_Empleados,Sueldo_Ordinario,Sueldo_Diario,Sueldo_Hora,Porce_Hora_Extra,pago_Hora,Numero_horas,Total_HE,fecha)
  VALUES('$CHE','$CJJ','$CO','$S','$SD','$SH','$POR','$PH','$HORAS','$TOTAL','$fecha')";
- $registros=mysqli_query($conexion,"select Sueldo_base  FROM  empleados WHERE Cod_empleados='$CO'");
+$registros=mysqli_query($conexion,"select Sueldo_base  FROM  empleados WHERE Cod_empleados='$CO'");
 
 
 while ($registro= mysqli_fetch_array($registros)){
@@ -292,9 +288,10 @@ $sueldo=$registro['Sueldo_base'];
 
 }
 $SueldoNeto=$sueldo + $TOTAL;
-
+$nomina="1";
  if(mysqli_query($conexion, $consulta)){
-	$registro=mysqli_query($conexion,"update nominageneral set Cant_Horas='$HORAS', Costo_U='$PH' ,TotalP_HE='$TOTAL',Total_Devengado='$TOTALD',SUELDO_NETO_Pagar='$TOTALD' where Cod_empleados='$CO'") or die ("error al actualizar");
+	$registro=mysqli_query($conexion,"update nominageneral set
+Cant_Horas='$HORAS',Costo_U='$PH',TotalP_HE='$TOTAL',Total_Devengado='$TOTALD',SUELDO_NETO_Pagar='$TOTALD' where Cod_empleados='$CO'")  or die ("error al actualizar");
 	echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
 	  window.location='HoraExtra1.php';
@@ -309,7 +306,7 @@ $SueldoNeto=$sueldo + $TOTAL;
 
  mysqli_close($conexion);
 }
-}
+
 
 ?>
 
@@ -361,7 +358,7 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  jornada");
 
 </td></tr>
 	<tr><td>Código Empleado<br/> </td>
-	<td><input type="text" class="form"  name="CEE"  value="<?php echo $CO ?>" size="20" maxlength="20"/><br/>
+	<td><input type="text" class="form"  name="CEE"  value="<?php echo $CO; ?>" size="20" maxlength="20" <!--readonly="readonly"-->/><br/>
  </td></tr>
  
 
@@ -393,8 +390,9 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  jornada");
 	<td><input type="text" class="form"  name="TOTAL"  size="20" value="<?php echo $TOTAL ?>"  maxlength="30" readonly="readonly" onKeyPress=" return SoloNumeros (event)" onpaste="return false"/><br/>
  </td></tr>
 	</td></tr>
+
 	<tr><td>Fecha<br/> </td>
-	<td> <input id="date" class="form"  type="date" name="F" value="<?php echo $fecha?>" size="20" maxlength="30" /><br/>
+	<td> <input id="date" class="form"  type="date" name="F" value="<?php echo $fcha = date("Y-m-d"); ?>" size="20" readonly="readonly" maxlength="30" /><br/>
 </td></tr>
 </table>
 <br>

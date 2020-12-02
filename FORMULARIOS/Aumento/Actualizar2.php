@@ -12,10 +12,11 @@ function Modificar($CA,$P,$AN,$D,$A){
 $sentencia="UPDATE aumento SET Porcentaje_aumento='".$P."',
 Año='".$AN."',Descripcion='".$D."',aplicado='".$A."' WHERE Cod_Aumento='".$CA."'";
 $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexion));
+
 }
 
 ?>
-<script type="text/javascript">
-alert("Datos Actualizados deL Aumento ");
+<script>
+alert('Datos Actualizados deL Aumento ');
 window.location="Aumento1.php";
 </script>

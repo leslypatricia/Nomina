@@ -1,7 +1,7 @@
 
 <?php
-Modificar($_POST['CNPC'],$_POST['CN'],$_POST['CC']);
-function Modificar($cod,$CN,$CC){
+Modificar($_POST['CNPC'],$_POST['CEE'],$_POST['TOTALPC']);
+function Modificar($CNPC,$CEE,$TOTALPC){
 	$db_host="localhost";
 	$db_usuario="root";
 	$db_contra="";
@@ -9,8 +9,9 @@ function Modificar($cod,$CN,$CC){
 	
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-$sentencia="UPDATE nominaspagoscomplementarios SET Cod_Nomina='".$CN."',Cod_Complementario='".$CC."'
-WHERE Cod_N_PAGOS_C='".$cod."'";
+$sentencia="UPDATE nominaspagoscomplementarios 
+SET Cod_Empleados='".$CEE."',Total_PagosC='".$TOTALPC."'
+WHERE Cod_NominaPC='".$CNPC."'";
 $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexion));
 }
 

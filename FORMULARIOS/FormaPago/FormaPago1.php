@@ -4,8 +4,13 @@
 <meta charset="utf-8" />
 <title>Menu</title>
 <link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">g
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>	
 <style>
 /*-----------------------------------código_css-------------------------------------------------------------------------------*/
 body{
@@ -115,7 +120,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:%;
+	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -206,7 +211,7 @@ header("location:FormaPago.php");
 	
 <table id="Tabla_Departamentos" border="10" class="color-Tabla" style="width:100%"><br/><br/>
 
-<thead class="text-center" border="60" color="black">
+<thead class="text-center Estilo-Tabla" border="60" color="black">
        <th>Código FormaPago</th> 
        <th>Descripción</th>
 	   <th>Eliminar</th>
@@ -221,12 +226,11 @@ $sql="SELECT * from formapago" ;
 		echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_FormaPago']; echo"</td>";
 		echo "<td>";echo $mostrar['Descripcion']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_FormaPago']."'><button name='Eliminar' class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_FormaPago']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
-		echo "</tr>";
-			
-	?>
-
+		echo "<td><a href='Eliminar.php?FP=".$mostrar['Cod_FormaPago']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
+		echo "<td><a href='Actualizar.php?FP=".$mostrar['Cod_FormaPago']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+		echo "</td>";
+	?>	
+	
 <?php
 }
 ?>
@@ -258,3 +262,4 @@ $sql="SELECT * from formapago" ;
     </script>
     </body>
     </html>
+

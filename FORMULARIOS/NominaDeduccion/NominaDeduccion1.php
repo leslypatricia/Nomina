@@ -115,7 +115,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:%;
+	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -219,13 +219,15 @@ header("location:NominaDeduccion.php");
                 <tbody>
 	
 	<?php
-$sql="SELECT Cod_NominaD,Cod_Empleados,Total_Deducciones from nominadeducciones";
+$sql="SELECT d.Cod_NominaD,e.Cod_empleados,d.Total_Deducciones 
+from nominadeducciones as d
+JOIN empleados as e on d.Cod_Empleados=e.Cod_empleados";
 
 $res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
 		echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_NominaD']; echo"</td>";
-		echo "<td>";echo $mostrar['Cod_Empleados']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_Deducciones']; echo"</td>";
 		echo "<td><a href='Eliminar.php?CN=".$mostrar['Cod_NominaD']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
 	    echo "<td><a href='Actualizar.php?CN=".$mostrar['Cod_NominaD']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";

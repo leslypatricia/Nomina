@@ -120,7 +120,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:%;
+	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -223,7 +223,7 @@ header("location:Empleados.php");
        <th>Fecha Ingreso</th>
        <th>Sueldo Base</th>
        <th>Forma de Pago</th>
-       <th>Código Depto</th>
+       <th>Departamento</th>
 	   <th>Eliminar</th>
 	   <th>Actualizar</th>
  </thead>

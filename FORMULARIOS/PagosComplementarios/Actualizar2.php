@@ -1,7 +1,7 @@
 
 <?php
-Modificar($_POST['CC'],$_POST['D'],$_POST['P'],$_POST['V'],$_POST['F']);
-function Modificar($CC,$D,$P,$V,$F){
+Modificar($_POST['CC'],$_POST['D'],$_POST['P'],$_POST['F'],$_POST['V']);
+function Modificar($CC,$D,$P,$F,$V){
 	$db_host="localhost";
 	$db_usuario="root";
 	$db_contra="";
@@ -9,8 +9,10 @@ function Modificar($CC,$D,$P,$V,$F){
 	
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-$sentencia="UPDATE pagocomplementario SET Descripcion='".$D."',Porcentaje='".$P."',
-Valor='".$V."',fijo='".$F."' WHERE Cod_PagoC='".$CC."'";
+$sentencia="UPDATE pagocomplementario SET 
+Descripcion='".$D."',Porcentaje='".$P."',
+Valor='".$V."' ,fijo='".$F."'
+WHERE Cod_PagoC='".$CC."'";
 $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexion));
 }
 

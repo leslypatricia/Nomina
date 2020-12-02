@@ -17,4 +17,3 @@ $conexion->query($sentencia) or die("error al eliminar".mysqli_error($conexion))
 alert("Datos eliminado");
 window.location="rol1.php";
 </script>
-

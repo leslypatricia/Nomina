@@ -42,7 +42,7 @@ echo "<script>
 	echo "<script>
      
 	     alert ('Bienvenido!!!');
-	 	  window.location='../LOG/menu.php';
+	 	  window.location='../LOG/Menu_Usuario.php';
 	  </script>";
 
     }

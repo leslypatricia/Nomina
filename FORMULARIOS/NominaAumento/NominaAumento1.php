@@ -6,6 +6,11 @@
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>	
 <style>
 /*-----------------------------------código_css-------------------------------------------------------------------------------*/
 body{
@@ -115,7 +120,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:%;
+	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -173,13 +178,14 @@ color:green;
 </head>
 
 <body>
+
+
+
 <?php
 
 $conexion=mysqli_connect('localhost','root','','nominas')
 ?>
-
 <input type="hidden" id="CE" value="<?php echo $codigo;?>">
-
 
 <?php
 if (isset($_POST["Regresar"])){
@@ -195,48 +201,53 @@ header("location:NominaAumento.php");
 	<center>
   <div class="form-group">
 	 <center>
-	 <h1>Nómina Aumento</h1>
+	 <h1>Nomina Aumento</h1>
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
-		 <!--  <label for="caja"> </label>
-		  <input type="text" name="caja" id="caja" aling="center" > <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>-->
+		   <label for="caja"> </label>
+		
 		</div>
 	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Nómina-Aumento<i class="fas fa-plus"></i></button>
+	<button name="Insertar"  class="boton_Añadir">Añadir Aumento a Empleados  <i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
-	
-	
 <table id="Tabla_Departamentos" border="10" class="color-Tabla" style="width:100%"><br/><br/>
 
 <thead class="text-center" border="60" color="black">
-	   <th>Código Aumento</th>
+ <th>Código Aumento</th>
 	   <th>Código Empleados</th>
 	   <th>Total Aumento</th>
 	   <th>Eliminar</th>
 	   <th>Actualizar</th>
-  </thead>
-                <tbody>
+
+ </thead>
+                <tbody>	
 	
 	<?php
-$sql="SELECT Cod_NominaA,Cod_Empleados,Total_A from NominaAumento";
+	
+	$sql="SELECT a.Cod_NominaA,
+	e.Cod_empleados,Total_A 
+	from NominaAumento as a
+	JOIN empleados as e on  a.Cod_Empleados=e.Cod_empleados";
 
-$res=mysqli_query($conexion,$sql);
+
+	$res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
 		echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_NominaA']; echo"</td>";
-		echo "<td>";echo $mostrar['Cod_Empleados']; echo"</td>";
+		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_A']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CN=".$mostrar['Cod_NominaA']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?CN=".$mostrar['Cod_NominaA']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
-	   echo "<tr>";
+		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_NominaA']."'><button name='Eliminar' class='boton-eliminar' ><i class='far fa-trash-alt'></a></i></button></td>";
+		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_NominaA']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
+		echo "</tr>";
+			
 	?>
 
 <?php
 }
 ?>
- </div class="color-Tabla">
+</div class="color-Tabla">
 </center>
  </tbody>
    </table> <br/><br/>
@@ -249,7 +260,6 @@ $res=mysqli_query($conexion,$sql);
     </form>
 </div>
 <br>
-
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -267,3 +277,7 @@ $res=mysqli_query($conexion,$sql);
     </script>
     </body>
     </html>
+
+
+
+

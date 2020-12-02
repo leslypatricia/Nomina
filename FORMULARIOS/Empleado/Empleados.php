@@ -201,23 +201,25 @@ $SA=$_POST['SA'];//Segundo Apellido
 $FN=$_POST['FN'];//Fecha de nacimiento
 $CORRE=$_POST['correo'];//correo
 $DIR=$_POST['Dire'];//Dirrección
-$TELE=$_POST['tele'];//Teléfono
+$TELE=$_POST['tel'];//Teléfono
 $S=$_POST['SEXO'];//Sexo
 $CB=$_POST['CB'];//Cuenta Bancaria
 $FI=$_POST['FI'];//Fecha de Ingreso
 $NAC=$_POST['Nac'];//Nacionalidad
-$FD=$_POST['FD'];//Fecha de Deducción
 $SB=$_POST['SB'];//Sueldo base 
 $FP=$_POST['FP'];//forma de pago
 $CD=isset($_POST['CD'])?$_POST['CD']:0;//código de depto
 $fcha = date("Y-m-d");
-if($FN< $fcha or $FI <= $fcha ){
+
+
+if($FN>$fcha or $FI > $fcha ){
 echo "<script>
      
 	alert ('La fecha debe ser menor o igual a la del Sistema!!!');
  window.location='Empleados.php';
  </script>";
-}elseif($CE=="" Or $id=="" Or $PN=="" Or $SN=="" Or $PA=="" Or $SA=="" Or $CORRE=="" Or $DIR=="" Or $TELE==""  Or $CB=="" Or $SB=="" or $FD=="") {
+}
+elseif($CE=="" Or $id=="" Or $PN=="" Or $SN=="" Or $PA=="" Or $SA=="" Or $CORRE=="" Or $DIR=="" Or $TELE==""  Or $CB=="" Or $SB=="") {
  echo "<script>
      
 	alert ('Debe llenar todos los campos!!!');
@@ -226,8 +228,8 @@ echo "<script>
 	
 }else {
 //------------consulta para insetar-----//
-$consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Fecha_Deduccion,Sueldo_base,Cod_FormaPago,Cod_Depto)
- VALUES('$CE','$id','$PN','$SN','$PA','$SA','$FN','$CORRE','$DIR','$TELE','$S','$CB','$FI','$NAC','$FD','$SB','$FP','$CD')";
+$consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Sueldo_base,Cod_FormaPago,Cod_Depto)
+ VALUES('$CE','$id','$PN','$SN','$PA','$SA','$FN','$CORRE','$DIR','$TELE','$S','$CB','$FI','$NAC','$SB','$FP','$CD')";
  
  if (mysqli_query($conexion, $consulta)) {
      echo "<script>
@@ -391,7 +393,8 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
 	<td><input type="text" class="form"  name="Dire" value="<?php echo $direccion?>" size="20" maxlength="30" /><br/>
  </td></tr>
 	<tr><td>Teléfono<br/> </td>
-	<td> <input type="text" class="form"  name="text" value="<?php echo $tel?>" size="15" maxlength="15" onKeyPress=" return SoloNumeros (event)" onpaste="return false"  /><br/></td></tr>
+	<td> <input type="text" class="form"  name="tel" value="<?php echo $tel?>" size="15" maxlength="15" onKeyPress=" return SoloNumeros (event)" onpaste="return false"  /><br/>
+	</td></tr>
 	<tr><td>Sexo<br/> </td>
 	<td><select  name="SEXO" id="SEXO"  class="form"  maxlength="20">
 	
@@ -412,7 +415,7 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
 	</select></td></tr>
 
 	<tr><td>Nacionalidad<br/> </td>
-		<td><select  name="Nac" id="SEXO"  class="form"  maxlength="20">
+		<td><select  name="Nac" id="Nac"  class="form"  maxlength="20">
 	
 	    <?php
 
@@ -437,9 +440,7 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
 	<tr><td> Número de cuenta Bancaria<br/> </td>
 	<td> <input type="text" class="form"  name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" onKeyPress=" return SoloNumeros (event)" onpaste="return false" /><br/>
 </td></tr>
-	<tr><td>Fecha de Deducciones (15/30 )<br/> </td>
-	<td> <input type="text"  class="form"   name="FD" value="<?php echo $fechad?>" size="20"  maxlength="30"  onKeyPress=" return SoloNumeros (event)" onpaste="return false" /><br/>
-</td></tr>
+	
 	<tr><td>Forma de Pago<br/> </td>
 	<td><select name="FP" class="form"  maxlength="20">
 
@@ -461,6 +462,7 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
 			
 		?>
 	</select></td></tr>
+           
 </table>
 <br>
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
@@ -479,6 +481,7 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
 <br/>
 </div>
 </form>
+
 </body>
 </html>
 

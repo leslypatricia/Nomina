@@ -102,7 +102,7 @@ h1{
 	
 	}
 	ul ,ol {
-		list-style:none;
+	list-style:none;
 		}
 .nav > li{
 	float:left;
@@ -130,7 +130,7 @@ h1{
 .nav li ul{
 	display:none;
 	position:absolute;
-	min-width:180px;
+	min-width:140px;
 }
 
 .nav li:hover > ul{
@@ -144,7 +144,7 @@ h1{
 		}
 		
 .nav li ul li ul{
-			right:-190px;
+			right:-140px;
 			top:0px;
 			opacity:1;
 			visibility:visible;
@@ -152,7 +152,7 @@ h1{
 
 iframe{
 	border:none;
-	width:110%;
+	width:100%;
 	margin:0 auto;
 	display:inline-block;
 	padding:0em;
@@ -164,16 +164,16 @@ iframe{
 }
 ul{
 	list-style:none;
-	max-width:790px;
+	max-width:750px;
 	margin:auto;
 	}
 .nav a{
 	text-align:center;
 	text-decoration:none;
 	display:block;
-	padding:12px;
+	padding:15px;
 	color:white;
-	font-size:15px;
+	font-size:20px;
 	
 }
 </style>
@@ -191,10 +191,10 @@ $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
  ?>
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../../LOG/menu.php");
+header("location:../menu.php");
 }
 ?>
-<td><a href="../../LOG/menu.php"><img src="../../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
+<td><a href="../menu.php"><img src="../../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
 <h1>NOMINAS $OLUTION</h1>
 <header>
 <div id="header">
@@ -202,7 +202,6 @@ header("location:../../LOG/menu.php");
 <li><a href="../Informacion/Informacion.php">Informacion Personal</a></li>
  <li><a href="Detalle.php">Detalle Planilla</a></li>
  <li><a href="#">Detalle de Pagos</a></li>
- <li><a href="../../index.php">Cerrar sesión</a></li></br></br></br>
 </ul>
 </div>
 </nav>

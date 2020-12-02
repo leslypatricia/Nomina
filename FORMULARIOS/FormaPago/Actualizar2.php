@@ -9,7 +9,8 @@ function Modificar($FP,$D){
 	
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-$sentencia="UPDATE formapago SET Descripcion='".$D."' WHERE Cod_FormaPago='".$FP."'";
+$sentencia="UPDATE formapago SET Descripcion='".$D."' 
+WHERE Cod_FormaPago='".$FP."'";
 $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexion));
 }
 

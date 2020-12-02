@@ -8,14 +8,14 @@ function consulta($FP){
 		
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-	$sentencia="SELECT * FROM formapago where Cod_FormaPago='".$FP."'";
+	$sentencia="SELECT Cod_FormaPago,Descripcion FROM formapago
+	 where Cod_FormaPago='".$FP."'";
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
 $mostrar=$res->fetch_assoc();
 		return[	
 			$mostrar['Cod_FormaPago'],
 			$mostrar['Descripcion']
-
 		];
 	}
 
@@ -38,6 +38,10 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
+}
+
+label{
+	color: blanchedalmond;
 }
 .from{
 padding:110px;

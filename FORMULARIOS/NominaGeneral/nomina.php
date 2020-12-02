@@ -115,7 +115,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:20%;
+	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -174,6 +174,51 @@ color:green;
 </head>
 
 <body>
+<?php 
+$Codigo="";
+ ?>	
+<?php
+if (isset($_POST["Crear"])){
+
+
+include("../conexion.php");
+
+ $registros=mysqli_query($conexion,"select Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base FROM  empleados WHERE Cod_FormaPago=1");
+
+
+while ($registro= mysqli_fetch_array($registros)){
+$CE=$registro['Cod_empleados'];
+$ID=$registro['Identidad'];
+$PN=$registro['Primer_Nombre'];
+$SN=$registro['Segundo_Nombre'];
+$PA=$registro['Primer_Apellido'];
+$SA=$registro['Segundo_Apellido'];
+$sueldo=$registro['Sueldo_base'];
+$Codigo=$_POST["CHE"];
+$fecha = date("Y-m-d");
+
+
+$sql="insert into 
+nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base,Fecha_Generada)
+ VALUES('$Codigo','$CE','$ID','$PN','$SN','$PA','$SA','$sueldo','$fecha')";
+ 
+ 
+ if (mysqli_query($conexion, $sql)) {
+   	echo "<script> 
+	     alert ('Operacion Realizada!!!');
+	  window.location='nomina.php';
+	  </script>";  
+	  
+}
+  
+/*$registross="insert into 
+nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base)
+ VALUES('$nomina','$CE','$ID','$PN','$SN','$PA','$SA','$sueldo')";*/
+
+}
+}
+?>
+
 
 <?php
 
@@ -204,6 +249,7 @@ header("location:NominaPDF.php");
 	 <h1>Nómina General</h1>
 	 </center>
 	 <center>
+
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
       <table border="1" class="color-Tabla" align="left">
@@ -227,20 +273,25 @@ header("location:NominaPDF.php");
 	<br><br/>
 	<br><br/>
 	<br><br/>
+	<form class="from"  id="form1" action= "" method="POST" >
+<center>
+<div class="form-group">
+
 <table border="1" class="color-Tabla" align="left">
     <tr class="Estilo-tabla">
        <td>Código Nómina</td> 
     </tr>
-    <?php 
+          <tr>
+				<td><input type="text" class="form" name="CHE" value="<?php echo $Codigo ?>"size="20" maxlength="20" /><br/></td>
+				</tr>
+				<tr>
+				<td><button name="Crear"  class="boton_Añadir">Crear Nomina Mensual<i class="fas fa-plus"></i></button></td>
+				</tr>
 
-            echo "<tr>";
-            echo "<td>";echo "1"; /*$mostrar['Cod_Nomina'];*/ echo"</td>";
-            echo "<tr>";
-    ?>
+
      </table>
 	 <br><br/> <br><br/> 
 	<!--<button name="Insertar"  class="boton_Añadir">Añadir Usuario  <i class="fas fa-plus"></i></button>
---><button name="Exportar"  >Visualizar en PDF<i></i></button>	
    <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
     <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
     <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
@@ -249,10 +300,9 @@ header("location:NominaPDF.php");
      
     <!-- código JS propìo-->    
     <script type="text/javascript" src="main.js"></script>  
-<div class="container-table">
 <center>
-	
-<table id="tablaNominaGeneral" border="10" class="color-Tabla" style="width:100%"><br/><br/>
+
+<table id="tablaNominaGeneral" border="10" class="color-Tabla" style="width:80%"><br/><br/>
 
 <thead class="text-center" border="60" color="black">
        <th rowspan="2" >Código</th> <br/><br/>
@@ -266,7 +316,7 @@ header("location:NominaPDF.php");
 	   <th rowspan="2">Total Aumento</th>
 	    <th rowspan="2">Sueldo Neto</th>
 	  <th rowspan="2">Eliminar</th>
-	   <th rowspan="2">Editar</th>
+	   <th rowspan="2">Calcular</th>
    
     <tr>   
         <th>Cant. Hr/Extras</th>
@@ -278,14 +328,16 @@ header("location:NominaPDF.php");
 	  </thead>
                 <tbody>
     <?php
-  $sql="SELECT * FROM nominageneral";
+		$fcha = date("Y-m-d");
+		$sql="SELECT * FROM nominageneral";
+  
+  
   $res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
   
   echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
 		echo "<td>";echo $mostrar['Primer_Nombre']; echo " ";
-	
 		echo $mostrar['Primer_Apellido']; echo " ";
 		echo $mostrar['Segundo_Apellido']; echo"</td>";
 		echo "<td>";echo $mostrar['Sueldo_base']; echo"</td>";
@@ -300,8 +352,9 @@ header("location:NominaPDF.php");
 	    echo "<td>";echo $mostrar['Total_aumento']; echo"</td>";	
 	    echo "<td>";echo $mostrar['SUELDO_NETO_Pagar']; echo"</td>";	
 		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_empleados']."'><button name='Eliminar' class='boton-eliminar' ><i class='far fa-trash-alt'></a></i></button></td>";
-		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_empleados']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
-	
+		/*echo "<td><a href='../HoraExtra/HoraExtra.php?'CE=".$mostrar['Cod_empleados']."'><button name='bot_actualizar' class='boton-calcular'><i class='fas fa-calculator'></a></i></button></td>";*/
+			echo "<td><a href='../HoraExtra/HoraExtra.php?CE=".$mostrar['Cod_empleados']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-calculator'></a></i></button></td>";
+
 		echo "</tr>";
 		  
 	?>

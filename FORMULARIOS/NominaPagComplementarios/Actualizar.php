@@ -8,17 +8,18 @@ function consulta($CNPC){
 		
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-		$sentencia="SELECT npc.Cod_N_PAGOS_C,ng.Cod_Nomina,pc.Cod_Complementario 
-		from nominaspagoscomplementarios as npc 
-		JOIN nominageneral as ng on npc.Cod_Nomina=ng.Cod_Nomina
-		JOIN pagocomplementario as pc on npc.Cod_Complementario=pc.Cod_Complementario WHERE npc.Cod_N_PAGOS_C='".$CNPC."' " ;
+$sentencia="SELECT npc.Cod_NominaPC,e.Cod_empleados
+,npc.Total_PagosC from nominaspagoscomplementarios as npc
+JOIN empleados as e on npc.Cod_Empleados=e.Cod_empleados
+/*JOIN pagocomplementario as pc on npc.Cod_Complementario=pc.Cod_Complementario*/
+ WHERE Cod_NominaPC='".$CNPC."' " ;
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
 $mostrar=$res->fetch_assoc();
 		return[	
-			$mostrar['Cod_N_PAGOS_C'],
-			$mostrar['Cod_Nomina'],
-			$mostrar['Cod_Complementario']
+			$mostrar['Cod_NominaPC'],
+			$mostrar['Cod_empleados'],
+			$mostrar['Total_PagosC']
 
 		];
 	}
@@ -42,6 +43,9 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
+}
+label{
+	color: white;
 }
 .from{
 padding:110px;
@@ -179,13 +183,13 @@ header("location:http://localhost:801/phpmyadmin/");
 
 
 <tr><td><label>Codigo Nomina Pagos Complementarios:</label></td>
-<td><input type="text" name="CNPC" value="<?php echo $con[0];	 echo $codigo?>" size="5" maxlength="5" /></td></tr>
+<td><input type="text" name="$CNPC" value="<?php echo $con[0];	 echo $codigo?>" size="5" maxlength="5" /></td></tr>
 
-<tr><td><label>Codigo Nomina:</label></td>
-<td><input type="text" name="CN" value="<?php echo $con[1]; echo $nomina?>" size="15" maxlength="15" /></td></tr>
+<tr><td><label>Codigo Empleado:</label></td>
+<td><input type="text" name="CEE" value="<?php echo $con[1]; echo $nomina?>" size="15" maxlength="15" /></td></tr>
 
-<tr><td><label>Codigo Complementario:</label></td>
-<td><input type="text" name="CC" value="<?php echo $con[2]; echo $comple?>" size="20" maxlength="20"/></td></tr>
+<tr><td><label>Total PagoC:</label></td>
+<td><input type="text" name="TOTALPC" value="<?php echo $con[2]; echo $comple?>" size="20" maxlength="20"/></td></tr>
 <br/>
 </table>
 

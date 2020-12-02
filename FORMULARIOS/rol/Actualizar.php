@@ -8,7 +8,8 @@ function consulta($CR){
 		
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-		$sentencia="SELECT * FROM rol where Cod_rol='".$CR."'";
+		$sentencia="SELECT Cod_rol,Descripcion FROM rol 
+		where Cod_rol='".$CR."'";
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
 $mostrar=$res->fetch_assoc();

@@ -141,13 +141,15 @@ $TOTALPC=$Bono + $Comision;
 
 if (isset($_POST["crs"])){
 include("../conexion.php");
-$CN=$_POST["CHE"];
+$CNPC=$_POST['CNPC'];
 $CE=$_POST["CEE"];
 $TOTALP=$_POST["TOTALPC"];
 $DE=1;
-$consulta="insert into nominaspagoscomplementarios (Cod_NominaPC,Cod_Empleados,Cod_PagoC,Total_PagosC)
- VALUES('$CN','$CE','$DE','$TOTALP')";
- $registros=mysqli_query($conexion,"SELECT Total_Devengado,Total_Deducciones,Total_Aumento  FROM  nominageneral WHERE Cod_Empleados='$CE'");
+$consulta="insert into nominaspagoscomplementarios 
+(Cod_NominaPC,Cod_Empleados,Cod_PagoC,Total_PagosC)
+ VALUES('$CNPC','$CE','$DE','$TOTALP')";
+ $registros=mysqli_query($conexion,"SELECT Total_Devengado,Total_Deducciones,Total_Aumento 
+  FROM  nominageneral WHERE Cod_Empleados='$CE'");
 
 while ($registro= mysqli_fetch_array($registros)){
 $totald=$registro['Total_Devengado'];
@@ -163,7 +165,7 @@ where Cod_empleados='$CE'")
 or die ("error al actualizar");
      echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='NominaPagComplementarios.php';
+	  window.location='NominaPagComplementarios1.php';
 	  </script>";
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
@@ -193,9 +195,8 @@ header("location:/FORMULARIOS/NominaGeneral/nomina.php");
 
 
 	<tr><td><label>Código<br/></label> </td>
-	<td><input type="text" class="form" name="CHE" value="<?php echo $CD ?>"size="20" maxlength="20" readonly="readonly" /><br/></td></tr>
-	
-	
+	<td><input type="text"  class="form" name="CNPC" value="<?php echo $CD ?>"size="20" maxlength="20"   readonly="readonly" /><br/></td></tr>
+
 	</td></tr>
 	<tr><td>Código Empleado<br/> </td>
 	<td><input type="text" class="form"  name="CEE"  value="<?php echo $CE ?>" size="20" maxlength="20" /><br/>

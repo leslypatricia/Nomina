@@ -1,6 +1,6 @@
 <?php
-$con=consulta($_GET['CN']);
-function consulta($CN){
+$con=consulta($_GET['CHE']);
+function consulta($CHE){
 		$db_host="localhost";
 		$db_usuario="root";
 		$db_contra="";
@@ -8,18 +8,16 @@ function consulta($CN){
 		
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
-		$sentencia="SELECT Cod_NominaD,Cod_Empleados,Cod_Deducciones,Total_Deducciones FROM nominadeducciones where Cod_NominaD='".$CN."'";
-	/*	$sentencia="SELECT Primer_Nombre,Segundo_Apellido,Telefono,
-        Fecha_ingreso,Sueldo_base,Cod_FormaPago,Cod_Depto
-        FROM empleados WHERE Cod_empleados='".$cod."' " ;*/
+		$sentencia="SELECT Cod_NominaA,Cod_empleados,Total_A 
+		FROM nominaaumento where Cod_NominaA='".$CHE."'";
+
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
 $mostrar=$res->fetch_assoc();
 		return[	
-			$mostrar['Cod_NominaD'],
+			$mostrar['Cod_NominaA'],
 			$mostrar['Cod_Empleados'],
-			$mostrar['Cod_Deducciones'],
-			$mostrar['Total_Deducciones']
+			$mostrar['Total_A'],
 		];
 	}
 
@@ -42,6 +40,9 @@ body{
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
+}
+label{
+	color: whitesmoke;
 }
 .from{
 padding:110px;
@@ -160,7 +161,7 @@ $to="";
 ?>
 <?php
 if (isset($_POST["Regresar"])){
-header("location:NominaDeduccion/NominaDeduccion1.php");
+header("location:../NominaAumento/NominaAumento1.php");
 }
 ?>
 <?php
@@ -172,18 +173,16 @@ header("location:http://localhost:801/phpmyadmin/");
 
 <form class="from"  id="form1" action= "Actualizar2.php" method="POST" >
 <center>
-<h1>Formulario ND</h1>
+<h1>Formulario NominaA</h1>
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 <tr><td><label>Codigo Nominas:</label></td>
-<td><input type="text" name="CN" value="<?php echo $con[0]; echo $nomina ?>" size="5" maxlength="5" /></td></tr>
+<td><input type="text" name="CHE" value="<?php echo $con[0]; echo $nomina ?>" size="5" maxlength="5" /></td></tr>
 <tr><td><label>Codigo empleado:</label></td>
 <td><input type="text" name="CEE" value="<?php echo $con[1]; echo $emlea?>" size="15" maxlength="15" /></td></tr>
 
-<tr><td><label>Codigo Deducciones:</label></td>
-<td><input type="text" name="CD" value="<?php echo $con[2]; echo $dedu?>" size="15" maxlength="15" /></td></tr>
-<tr><td><label>Total Deducciones:</label></td>
-<td><input type="text" name="IHSS" value="<?php echo $con[3]; echo $to?>" size="15" maxlength="15" /></td></tr>
+<tr><td><label>Total Aumento:</label></td>
+<td><input type="text" name="TOTALA" value="<?php echo $con[2]; echo $to?>" size="15" maxlength="15" /></td></tr>
 
 </table>
 

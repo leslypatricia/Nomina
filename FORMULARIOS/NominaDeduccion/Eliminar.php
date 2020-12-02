@@ -17,4 +17,3 @@ $conexion->query($sentencia) or die("error al eliminar".mysqli_error($conexion))
 alert("Nonima Deducciones eliminado");
 window.location="NominaDeduccion1.php";
 </script>
-
