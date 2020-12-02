@@ -10,7 +10,7 @@ function consulta($CE){
 
 	/*	$sentencia="SELECT * FROM empleados where Cod_empleados='".$cod."'";*/
 		$sentencia="SELECT Cod_empleados,Primer_Nombre,Segundo_Apellido,Telefono,
-        Fecha_ingreso,Sueldo_base,Cod_FormaPago,Cod_Depto
+        Fecha_ingreso,Sueldo_base,DescripcionFP,DescripcionD
         FROM empleados WHERE Cod_empleados='".$CE."' " ;
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
@@ -32,8 +32,8 @@ $mostrar=$res->fetch_assoc();
 			/*$mostrar['Nacionalidad'],*/
 			/*$mostrar['Fecha_Deduccion'],*/
 			$mostrar['Sueldo_base'],
-			$mostrar['Cod_FormaPago'],
-			$mostrar['Cod_Depto']
+			$mostrar['DescripcionFP'],
+			$mostrar['DescripcionD']
 
 		];
 	}

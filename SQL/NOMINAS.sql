@@ -18,8 +18,8 @@ Cuenta_Bancaria varchar(20)                                               COMMEN
 Fecha_ingreso date not null                                               COMMENT 'FECHA DE INGRESO DEL EMPLEADO',
 Nacionalidad varchar(20)                                                  COMMENT 'NACIONALIDAD DEL EMPLEADO',
 Sueldo_base double(20,0)not null                                          COMMENT 'SUELDO BASE QUE TENDRÁ EL EMPLEADO',
-Cod_FormaPago integer                                                     COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA FORMA_PAGO',
-Cod_Depto integer                                                         COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA DEPARTAMENTO'
+DescripcionFP varchar(20)                                                     COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA FORMA_PAGO',
+DescripcionD varchar(20)                                                         COMMENT 'CAMPO QUE SE USA COMO LLAVE FORANEA DE LA TABLA DEPARTAMENTO'
 )ENGINE=INNODB
 CHARACTER SET UTF8                                                        COMMENT '(JUEGO DE CARACTERES CODIFICADOS UNIVERSALES ) : 8 BITS ',
 COLLATE= UTF8_UNICODE_CI;
@@ -229,13 +229,13 @@ COLLATE= UTF8_UNICODE_CI;
 
 
 #Crear llave foranea de Cod_FormaPago en la tabla Empleados con referencia de la tabla FormaPago
-alter table Empleados ADD FOREIGN KEY (Cod_FormaPago) REFERENCES FormaPago(Cod_FormaPago);
+/*alter table Empleados ADD FOREIGN KEY (Cod_FormaPago) REFERENCES FormaPago(Cod_FormaPago);*/
 #Crear llave foranea de Cod_empleados en la tabla HoraExtra con referencia de la tabla Empleados
 alter table HoraExtra ADD FOREIGN KEY (Cod_empleados) REFERENCES Empleados(Cod_empleados);
 #Crear llave foranea de Cod_Jornada en la tabla HoraExtra con referencia de la tabla Jornada
 alter table HoraExtra ADD FOREIGN KEY (Cod_Jornada) REFERENCES Jornada(Cod_Jornada);
 #Crear llave foranea de Cod_Depto en la tabla Empleados con referencia de la tabla Departamento
-alter table Empleados add  foreign key (Cod_Depto) references Departamento(Cod_Depto);
+/*alter table Empleados add  foreign key (Cod_Depto) references Departamento(Cod_Depto);*/
 #Crear llave foranea de Cod_Empleados en la tabla Usuario con referencia de la tabla Empleados
 alter table Usuario add  foreign key (Cod_empleados) references Empleados(Cod_empleados);
 #Crear llave foranea de Dod_rol en la tabla Usuario con referencia de l atabla rol
@@ -257,6 +257,16 @@ INSERT INTO `deducciones` (`Cod_Deducciones`, `Descripcion`, `Porcentaje`, `Valo
 
 
 #Insertar 5 empleados de forma automatica
-INSERT INTO `empleados` (`Cod_empleados`, `Identidad`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `Fecha_nacimiento`, `Correo`, `Direccion`, `Telefono`, `Sexo`, `Cuenta_Bancaria`, `Fecha_ingreso`, `Nacionalidad`, `Sueldo_base`, `Cod_FormaPago`, `Cod_Depto`) VALUES ('1', '0819199000066', 'José', 'Mario', 'Gómez', 'López', '1990-11-08', 'josemario123_123@outlook.es', 'Prados Universitarios', '97217988', 'M', '20068043', '2020-10-01', 'Hondureña', '20000', '1', '3'),('2', '0801197500555', 'Carlos', 'Manuel', 'Pérez', 'Torres', '1975-09-31', 'mtorres@gmail.com', 'Col. Los Pinos', '99554567', 'M', '345678987652', '2017-10-15', 'Hondureña', '11000', '1', '3'),('3', '1516197000304', 'José', 'David', 'Mondragón', 'Turcios', '1970-11-20', 'jdturcios@hotmail.com', 'Los Proceres', '33213456', 'M', '001235467891', '2018-10-15', 'Extranjera', '9000', '2', '2'), ('4', '1517199755498', 'Marlon', 'Fernando', 'Ozorto', 'Miñiz', '1997-05-28', 'ozorto1997@yahoo.com', 'Villa Nueva', '98345643', 'M', '335678992387', '2019-05-01', 'Extranjera', '10500', '1', '1'),('5', '0321197600354', 'Mauda', 'Patricia', 'Araujo', 'Cubas', '1976-02-21', 'patricia@gmail.com', 'Independencia', '89785676', 'F', '200135678223', '2020-05-15', 'Hondureña', '9500', '1', '2'),('6', '2311200098765', 'Lorena', 'Abigail', 'López', 'Lagos', '2000-06-29', 'lalagos@hotmail.com', 'Las Torres', '95343465', 'F', '234567890987', '2016-11-15', 'Hondureña', '12000', '2', '3'),('7', '1342200165345', 'Fernando', 'Josué', 'Díaz', 'Zelaya', '2001-08-15', 'fzelaya@gmail.com', 'Salamá', '99713403', 'M', '564327897654', '2017-02-01', 'Extranjera', '15000', '2', '3'),('8', '1519196903567', 'Pedro', 'Jared', 'Meráz', 'Olivera', '1969-10-25', 'meraz1969@yahoo.com', 'Armenia', '31989009', 'M', '214590987656', '2016-09-05', 'Hondureña', '20000', '1', '2'),('9', '2312197925678', 'Merary', 'Juliana', 'Bejarano', 'Trochéz', '1979-11-30', 'mjbejarano@gmail.com', 'Zoroguara', '97340321', 'F', '089076543456', '2015-11-30', 'Hondureña', '11500', '1', '3'),('10', '1520198890890', 'Marcos', 'Noé', 'Rochéz', 'Palma', '1988-07-19', 'marcospalma@hotmail.com', 'Punuare', '32679087', 'M', '032456789876', '2017-04-30', 'Hondureña', '8500', '2', '1');
+INSERT INTO `empleados` (`Cod_empleados`, `Identidad`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `Fecha_nacimiento`, `Correo`, `Direccion`, `Telefono`, `Sexo`, `Cuenta_Bancaria`, `Fecha_ingreso`, `Nacionalidad`, `Sueldo_base`, `DescripcionFP`, `DescripcionD`)
+ VALUES ('1', '0819199000066', 'José', 'Mario', 'Gómez', 'López', '1990-11-08', 'josemario123_123@outlook.es', 'Prados Universitarios', '97217988', 'M', '20068043', '2020-10-01', 'Hondureña', '20000', 'Mensual', 'Administración'),
+ ('2', '0801197500555', 'Carlos', 'Manuel', 'Pérez', 'Torres', '1975-09-31', 'mtorres@gmail.com', 'Col. Los Pinos', '99554567', 'M', '345678987652', '2017-10-15', 'Hondureña', '11000', 'Mensual', 'Tecnologia'),
+ ('3', '1516197000304', 'José', 'David', 'Mondragón', 'Turcios', '1970-11-20', 'jdturcios@hotmail.com', 'Los Proceres', '33213456', 'M', '001235467891', '2018-10-15', 'Extranjera', '9000', 'Quincenal', 'Contabilidad'),
+  ('4', '1517199755498', 'Marlon', 'Fernando', 'Ozorto', 'Miñiz', '1997-05-28', 'ozorto1997@yahoo.com', 'Villa Nueva', '98345643', 'M', '335678992387', '2019-05-01', 'Extranjera', '10500', 'Mensual', 'Administración'),
+  ('5', '0321197600354', 'Mauda', 'Patricia', 'Araujo', 'Cubas', '1976-02-21', 'patricia@gmail.com', 'Independencia', '89785676', 'F', '200135678223', '2020-05-15', 'Hondureña', '9500', 'Mensual', 'Contabilidad'),
+  ('6', '2311200098765', 'Lorena', 'Abigail', 'López', 'Lagos', '2000-06-29', 'lalagos@hotmail.com', 'Las Torres', '95343465', 'F', '234567890987', '2016-11-15', 'Hondureña', '12000', 'Quincenal', 'Tecnologia'),
+  ('7', '1342200165345', 'Fernando', 'Josué', 'Díaz', 'Zelaya', '2001-08-15', 'fzelaya@gmail.com', 'Salamá', '99713403', 'M', '564327897654', '2017-02-01', 'Extranjera', '15000', 'Quincenal', 'Tecnologia'),
+('8', '1519196903567', 'Pedro', 'Jared', 'Meráz', 'Olivera', '1969-10-25', 'meraz1969@yahoo.com', 'Armenia', '31989009', 'M', '214590987656', '2016-09-05', 'Hondureña', '20000', 'Mensual', 'Contabilidad'),
+      ('9', '2312197925678', 'Merary', 'Juliana', 'Bejarano', 'Trochéz', '1979-11-30', 'mjbejarano@gmail.com', 'Zoroguara', '97340321', 'F', '089076543456', '2015-11-30', 'Hondureña', '11500', 'Mensual', 'Tecnologia'),
+      ('10', '1520198890890', 'Marcos', 'Noé', 'Rochéz', 'Palma', '1988-07-19', 'marcospalma@hotmail.com', 'Punuare', '32679087', 'M', '032456789876', '2017-04-30', 'Hondureña', '8500', 'Quincenal', 'Administración');
 #Insertar un usuario
 INSERT INTO `usuario` (`Cod_Usuario`, `Usuario`, `Password`, `Correo`, `Cod_rol`, `Cod_empleados`) VALUES ('1', 'Administrador', '1234', 'josemario123_123@outlook.es', '1000', '1');
