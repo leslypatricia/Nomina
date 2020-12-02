@@ -162,15 +162,7 @@ header #button-menu{
 				<li class="title-menu">Menú  de Administrador</li>
 				<!-- TITULAR -->
 				<a href="../FORMULARIOS/Estructura.php">Formularios</a></li>
-				<li class="item-submenu" menu="1">
-					<a href="#"><span class=" icon-menu"></span>Generar Nomina</a>
-					<ul class="submenu">
-						<li class="title-menu"><span class=" icon-menu"></span>Nóminas</li>
-						<li class="go-back">Atrás</li>
-						<li><a href="../FORMULARIOS/NominaMensual/Nomina.php">Nómina Mensual</a></li>
-						<li><a href="../FORMULARIOS/NominaQuincenal/Nomina.php">Nómina Quincenal</a></li>
-					</ul>
-				</li>
+				<li><a href="../FORMULARIOS/NominaGeneral/Nomina.php">Generar Planilla</a></li>
 				<li><a href="../FORMULARIOS/Graficos/graficos.php">Graficos</a></li>
 				<li><a href="../FORMULARIOS/Calendario/Calendar.html">Calendario</a></li>
                <li><a href="">Derechos Reservados</a></li>
