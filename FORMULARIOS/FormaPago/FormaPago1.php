@@ -205,7 +205,7 @@ header("location:FormaPago.php");
 		  <input type="text" name="caja" id="caja" aling="center" >   <i class="fas fa-search-plus" class="boton-Buscar"> </i> </input>-->
 		</div>
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Forma de Pago  <i class="fas fa-plus"></i></button>
+	
 	<div class="container-table">
 	<center>
 	

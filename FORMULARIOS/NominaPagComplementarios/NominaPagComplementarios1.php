@@ -208,7 +208,7 @@ header("location:NominaPagComplementarios.php");
 		</div>
 	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Nómina-PagosComplementarios<i class="fas fa-plus"></i></button>
+
 	<div class="container-table">
 	<center>
 	
@@ -218,8 +218,6 @@ header("location:NominaPagComplementarios.php");
 	   <th>Código Pagos_Complementarios</th>
 	   <th>Código Empleados</th>
 	   <th>Total Pagos Complementarios</th>
-	   <th>Eliminar</th>
-	   <th>Actualizar</th>
  </thead>
                 <tbody>	
 	
@@ -234,8 +232,6 @@ $res=mysqli_query($conexion,$sql);
 		echo "<td>";echo $mostrar['Cod_NominaPC']; echo"</td>";
 		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_PagosC']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CN=".$mostrar['Cod_NominaPC']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?CN=".$mostrar['Cod_NominaPC']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";
 	?>
 

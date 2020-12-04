@@ -89,11 +89,17 @@ font-weight:bold;
 </head>
 
 <body>
+
 <?php
 $IHSS="";
 $RAP="";
 $PRESTAMO="";
-$CE="";
+
+
+if(!isset($_POST["crs"])){
+$CO=$_GET["CE"];
+}
+
 $CH="0";
 include("../conexion.php");
 $registros=mysqli_query($conexion,"SELECT Cod_NominaD  FROM  NominaDeducciones");
@@ -113,13 +119,19 @@ if (isset($_POST["calcular"])){
 //if(
 	include("../conexion.php");
 $CE=$_POST["CEE"];
-$I=$_POST["1"];
-$R=$_POST["2"];
-
-$registros=mysqli_query($conexion,"SELECT Sueldo_base  FROM  empleados WHERE Cod_empleados='$CE'");
+$TOTALD="0";
+$IHSS="0";
+$RAP="0";
+$sueldo="0";
+$IVM="0";
+$MATER="0";
+$Prestamo="0";
+$Coop="0";
+$registros=mysqli_query($conexion,"SELECT Sueldo_base,FormaPago  FROM  empleados WHERE Cod_empleados='$CE'");
 
 while ($registro= mysqli_fetch_array($registros)){
 $sueldo=$registro['Sueldo_base'];
+$FM=$registro['FormaPago'];
 
 }
 //$CHE=$_POST["CHE"];
@@ -134,12 +146,48 @@ $IHSS=$sueldo * 0.035;
 
 }
 }
+
 if(isset($_POST["2"])){
 
 $RAP=$sueldo * 0.015;
 
 }
-$TOTALD=$IHSS + $RAP + $Prestamo;
+
+
+if(isset($_POST["3"])){
+
+$IVM=88882.3 * 0.025;
+
+}
+
+if(isset($_POST["4"])){
+
+$MATER=7000 * 0.025;
+
+}
+
+if(isset($_POST["5"])){
+
+$Coop=$sueldo * 0.01;
+
+}
+
+if(isset($_POST["6"])){
+
+$Prestamo=$sueldo * 0.035;
+
+}
+
+if($FM=="Quincena"){
+$TD=$IHSS + $RAP + $Prestamo + $IVM + $MATER + $Coop;
+
+
+$TOTALD=$TD/2;
+
+}else{
+$TOTALD=$IHSS + $RAP + $Prestamo + $IVM + $MATER + $Coop;
+
+}
 }
 
  ?>
@@ -147,33 +195,45 @@ $TOTALD=$IHSS + $RAP + $Prestamo;
 
 
 if (isset($_POST["crs"])){
+ $fcha = date("Y-m-d");
 $totald="0";
 $totalPC="0";
 $totalA="0";
+$SueldoB="0";
+$totalpagar="0";
 include("../conexion.php");
-$CND=$_POST["CN"];
+$CND=$_POST["CHE"];
 $CE=$_POST["CEE"];
 $DE=1;
+
+
 $TOTALD=$_POST["IHSS"];
-$IHSS=$_POST["IHSS"];
+
+
 $consulta="insert into nominadeducciones (Cod_NominaD,Cod_Empleados,Cod_Deducciones,Total_Deducciones)
  VALUES('$CND','$CE','$DE','$TOTALD')";
- $registros=mysqli_query($conexion,"SELECT Total_Devengado,Total_PagosComplementarios,Total_Aumento  FROM  nominageneral WHERE Cod_Empleados='$CE'");
+ $registros=mysqli_query($conexion,"SELECT Total_Devengado,TotalP_HE,Total_PagosComplementarios,Total_Aumento,Sueldo_base  FROM  nominageneral WHERE Cod_Empleados='$CE'");
 
 while ($registro= mysqli_fetch_array($registros)){
 $totald=$registro['Total_Devengado'];
 $totalPC=$registro['Total_PagosComplementarios'];
 $totalA=$registro['Total_Aumento'];
+$SueldoB=$registro['Sueldo_base'];
+$Total_HE=$registro['TotalP_HE'];
 }
+$RAP=$SueldoB * 0.015;
+$IHSS=$TOTALD - $RAP;
 
-$totalpagar=$totald - $TOTALD + $totalPC + $totalA;
+$totalpagar=$SueldoB + $Total_HE - $TOTALD + $totalPC + $totalA;
  if (mysqli_query($conexion, $consulta)) {
- 	$registro=mysqli_query($conexion,"update nominageneral set IHSS='$IHSS',Total_Deducciones='$TOTALD',SUELDO_NETO_Pagar='$totalpagar' 
-where Cod_empleados='$CE'")
+ 
+ 	$registro=mysqli_query($conexion,"update nominageneral set Total_Deducciones='$TOTALD',SUELDO_NETO_Pagar='$totalpagar' 
+where Cod_empleados='$CE' and Fecha_Generada='$fcha'")
 or die ("error al actualizar");
      echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='NominaDeduccion1.php';
+		 window.location='../NominaPagComplementarios/NominaPagComplementarios.php?CE=$CE';
+
 	  </script>";
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
@@ -186,12 +246,15 @@ or die ("error al actualizar");
 
 <?php
 if (isset($_POST["Regresar"])){
-header("location:NominaDeduccion1.php");
+header("location:../HoraExtra/HoraExtra.php");
 }
 ?>
 <?php
+if(!isset($_POST["crs"])){
+$CO=$_GET["CE"];
+}
 if (isset($_POST["Siguiente"])){
-header("location:/FORMULARIOS/NominaGeneral/nomina.php");
+header("location:../NominaPagComplementarios/NominaPagComplementarios.php?CE=$CO");
 }
 ?>
 
@@ -203,12 +266,12 @@ header("location:/FORMULARIOS/NominaGeneral/nomina.php");
 
 
 	<tr><td><label>Código<br/></label> </td>
-	<td><input type="text" class="form" name="CN" value="<?php echo $CD ?>"size="20" maxlength="20" readonly="readonly" /><br/></td></tr>
+	<td><input type="text" class="form" name="CHE" value="<?php echo $CD ?>"size="20" maxlength="20" readonly="readonly" /><br/></td></tr>
 	
 	
 	</td></tr>
 	<tr><td>Código Empleado<br/> </td>
-	<td><input type="text" class="form"  name="CEE"  value="<?php echo $CE ?>" size="20" maxlength="20" /><br/>
+	<td><input type="text" class="form"  name="CEE"  value="<?php echo $CO ?>" size="20" maxlength="20" /><br/>
  </td></tr>
 
 

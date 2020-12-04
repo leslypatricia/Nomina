@@ -231,7 +231,7 @@ header("location:Usuario.php");
 	<div class="container-table">
 	<center>
 	
-<table id="Tabla_Departamentos" border="10" class="color-Tabla" style="width:90%"><br/><br/>
+<table id="Tabla_Departamentos" border="10" class="color-Tabla" style="width:100%"><br/><br/>
 
 <thead class="text-center">
        <th>Código Usuario</th> 
@@ -254,11 +254,11 @@ header("location:Usuario.php");
 
 	echo "<tr>";
 	echo "<td>";echo  $usuario['Cod_Usuario']; echo"</td>";
-	echo "<td>";echo  $usuario['Usuario']; echo "</td>";/*['Usuario']?>*/ 
-	echo "<td>";echo  $usuario['Password']; echo"</td>";/*['Password']?>*/
-	echo "<td>";echo  $usuario['Correo']; echo"</td>";/*['Correo']?>*/
-	echo "<td>";echo  $usuario['Cod_rol']; echo"</td>";/*['Cod_rol']?>*/
-	echo "<td>";echo  $usuario['Cod_empleados']; echo"</td>";/*['Cod_empleados']?>*/
+	echo "<td>";echo  $usuario['Usuario']; echo "</td>"; 
+	echo "<td>";echo  $usuario['Password']; echo"</td>";
+	echo "<td>";echo  $usuario['Correo']; echo"</td>";
+	echo "<td>";echo  $usuario['Cod_rol']; echo"</td>";
+	echo "<td>";echo  $usuario['Cod_empleados']; echo"</td>";
 	echo "<td><a href='Eliminar.php?CU=".$usuario['Cod_Usuario']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
 	echo "<td><a href='Actualizar.php?CU=".$usuario['Cod_Usuario']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	echo "</tr>";

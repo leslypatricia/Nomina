@@ -229,7 +229,7 @@ $conexion=mysqli_connect('localhost','root','','nominas')
 
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../../LOG/Menu_Admin.php");
+header("location:../LOG/Menu_Admin.php");
 }
 ?>
 <?php

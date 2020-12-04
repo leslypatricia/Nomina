@@ -203,7 +203,6 @@ header("location:NominaDeduccion.php");
 		</div>
 	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Nómina-deducción<i class="fas fa-plus"></i></button>
 	<div class="container-table">
 	<center>
 	
@@ -213,8 +212,6 @@ header("location:NominaDeduccion.php");
 	   <th>Código Deducciones</th>
 	   <th>Código Empleados</th>
 	   <th>Total Deducciones</th>
-	   <th>Eliminar</th>
-	   <th>Actualizar</th>
   </thead>
                 <tbody>
 	
@@ -229,8 +226,6 @@ $res=mysqli_query($conexion,$sql);
 		echo "<td>";echo $mostrar['Cod_NominaD']; echo"</td>";
 		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_Deducciones']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CN=".$mostrar['Cod_NominaD']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?CN=".$mostrar['Cod_NominaD']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";
 	?>
 

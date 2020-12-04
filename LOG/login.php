@@ -3,6 +3,7 @@ session_start();
 
 include("../Bd/conexion.php");
 
+
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
@@ -14,6 +15,7 @@ $password = (isset($_POST["password"])) ? $_POST["password"] : ' ';
 
 $consulta = "SELECT usuario.Cod_rol AS idRol, rol.Descripcion AS rol FROM usuario JOIN rol ON usuario.Cod_rol = rol.Cod_rol WHERE Usuario='$usuario' AND Password='$password' ";	
 
+
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 
@@ -22,6 +24,7 @@ if($resultado->rowCount() >= 1){
     $_SESSION["s_usuario"] = $usuario;    
     $_SESSION["s_idRol"] = $data[0]["idRol"];
     $_SESSION["s_rol_Descripcion"] = $data[0]["rol"];
+$CO= $_SESSION["Cod_empleados"];
 }else{
 
     $_SESSION["s_usuario"] = null;  
@@ -38,15 +41,29 @@ echo "<script>
 	
 }else
     if($_SESSION["s_idRol"]!=1000){
-       
-	echo "<script>
+
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
+
+ $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+$usuario = (isset($_POST["usuario"])) ? $_POST["usuario"] : ' ';
+$password = (isset($_POST["password"])) ? $_POST["password"] : ' ';
+$registros=mysqli_query($conexion,"SELECT Cod_Usuario, Cod_empleados FROM usuario WHERE Usuario='$usuario' AND Password='$password'");
+
+while ($registro= mysqli_fetch_array($registros)){
+$CU=$registro['Cod_Usuario'];
+$CE=$registro['Cod_empleados'];
+}
+	  echo "<script>
      
 	     alert ('Bienvenido!!!');
-	 	  window.location='../LOG/menu.php';
+	 	  window.location='../LOG/menu.php?CE=$CU';
 	  </script>";
 
-    }
-	
+}
+
 	else{
 	  if($_SESSION["s_idRol"]=1000){
   echo "<script>
@@ -61,3 +78,4 @@ echo "<script>
 print json_encode($data);
 $conexion=null;
 ?>
+

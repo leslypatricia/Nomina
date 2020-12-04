@@ -136,12 +136,138 @@ header #button-menu{
 		width: 100%;
 	}
 }
+.texto{
+   display: flex;
+   align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(to right, white 0%, white 50%, black 50%, black 100%);
+}
+.texto h1{
+    background: linear-gradient(to right, black 0%, black 50%, white 50%, white 100% );
+    color: white;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 80px;
+    animation: texto 2s ease-in infinite;
+}
+.link_activo{
+    color: red;
+}
+nav a:nth-child(1),
+nav a:nth-child(4){
+    border-right: rgba(0, 128, 128, 0.39) 1px solid;
+}
+.logo{
+    letter-spacing: 5px;
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+}
+.contenedor{
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+.page{
+    width: 100%;
+    height: 50vh;
+    top: 100px;
+    left: 0;
+    background: linear-gradient(10deg, black 90%, white 90%);
+    border-radius: 20px;
+    position: absolute;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.644);
+    transform: translateX(150%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    
+}
+.page .contenido{
+    padding: 50px;
+    width: 100%;
+    color: white;
+}
+.page .contenido h2{
+    text-align: center;
+}
+.page .contenido p{
+    column-count: 3;
+    column-gap: 50px;
+    column-rule: 1px dotted black;
+    }
+
+.active{
+    transform: translateX(0%);
+}
+/* TEXTO EFECTO */
+.texto{
+   display: flex;
+   align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(to right, white 0%, white 50%, black 50%, black 100%);
+}
+.texto h1{
+    background: linear-gradient(to right, black 0%, black 50%, white 50%, white 100% );
+    color: white;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 80px;
+    animation: texto 2s ease-in infinite;
+}
+@keyframes texto {
+    0%{ transform: scale(1);}
+    50%{ transform: scale(1.5);}
+    100%{ transform: scale(1);}
+    
+}
+
+
+@keyframes navlinkfade {
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+@keyframes salir {
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(-150%);
+    }
+}
+@media only screen and (max-width: 800px) {
+    nav{
+        flex-direction: column;
+    }
+    .contenedor{
+        width: 100%;
+    }
+}
 </style>
 
 
 </head>
 <body>
 <header>
+<div class="contenedor">
+		  <div class="page active" id="page_uno">
+		  <div class="texto" >
+			  <center>
+                    <h1>Nomina $olution</h1></center>
+                </div></div></div>
 		<span id="button-menu" class="fa fa-bars"></span>
 
 		<nav class="navegacion">
@@ -157,6 +283,7 @@ header #button-menu{
 			$resul=mysqli_fetch_array($sql);
 			$total=$resul['Usuario'];	
 		?>
+		   
 			<ul class="menu">
 				<!-- TITULAR -->
 				<li class="title-menu">Menú  de Administrador</li>
@@ -167,54 +294,15 @@ header #button-menu{
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Nóminas</li>
 						<li class="go-back">Atrás</li>
-						<li><a href="../FORMULARIOS/NominaMensual/Nomina.php">Nómina Mensual</a></li>
-						<li><a href="../FORMULARIOS/NominaQuincenal/Nomina.php">Nómina Quincenal</a></li>
+						<li><a href="../FORMULARIOS/Nominas/nomina.php">Nómina Mensual</a></li>
+						<li><a href="../FORMULARIOS/Nominas/NominaQ.php">Nómina Quincenal</a></li>
 					</ul>
 				</li>
 				<li><a href="../FORMULARIOS/Graficos/graficos.php">Graficos</a></li>
 				<li><a href="../FORMULARIOS/Calendario/Calendar.html">Calendario</a></li>
-               <li><a href="">Derechos Reservados</a></li>
+      	<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>Derechos Reservados</a></li>
                 <li><p><a href="../index.php">Cerrar sesión</a></p></li>
-				<!--<li class="item-submenu" menu="1">
-					<a href="#"><span class="fa fa-suitcase icon-menu"></span>Estrucrura</a>
-					<ul class="submenu">
-						<li class="title-menu"><span class="fa fa-suitcase icon-menu"></span>Usuario</li>
-						<li class="go-back">Atras</li>
-						<li><a href="../FORMULARIOS/Usuario.php">Usuarios</a></li>
-                       <li><a href="../FORMULARIOS/rol.php">Rol</a></li>
-                       <li><a href="../FORMULARIOS/Privilegios.php">Privilegios</a></li>
-                       <li><a href="../FORMULARIOS/RolPrivilegios.php">Rol_Privilegios</a></li>
-					</ul></li>-->
-				
-
-			<!--	<li class="item-submenu" menu="2">
-					<a href="#"><span class="fa fa-shopping-bag icon-menu"></span>Ingresar</a>
-					<ul class="submenu">
-						<li class="title-menu"><span class="fa fa-shopping-bag icon-menu"></span>Ingresar</li>
-						<li class="go-back">Atras</li>
-
-						<li><a href="../FORMULARIOS/Empleados.php">Empleados</a></li>
-<li><a href="../FORMULARIOS/Departamento.php">Departamentos</a></li>
-<li><a href="../FORMULARIOS/Jornada.php">Jornada</a></li>
-<li><a href="../FORMULARIOS/FormaPago.php">Formas de Pago</a></li>
-<li><a href="../FORMULARIOS/Aumento.php">Aumento</a></li>
-					</ul>
-				</li>
-				<li class="item-submenu" menu="3">
-					<a href="#"><span class="fa fa-shopping-bag icon-menu"></span>Nomina_Deducciones</a>
-					<ul class="submenu">
-						<li class="title-menu"><span class="fa fa-shopping-bag icon-menu"></span>Ingresar</li>
-						<li class="go-back">Atras</li>
-
-						<li><a href="../FORMULARIOS/NominaGeneral.php">Nomina General</a></li>
-<li><a href="../FORMULARIOS/NominaDeduccion.php">Nomina Deducciones</a></li>
-<li><a href="../FORMULARIOS/Deducciones.php">Deducciones</a></li>
-<li><a href="../FORMULARIOS/PagosComplementarios.php">Pagos Complementarios</a></li>
-<li><a href="../FORMULARIOS/NominaPagComplementarios.php">Nomina Pagos Complementarios</a></li>
-					</ul>
-				</li>
-				<li><a href="../Index.php"><i class="icono izquierda"></i>Cerrar sesion</a></li>
-				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>Quienes Somos?</a></li>-->
+			
 			
 			</ul>
 		</nav>

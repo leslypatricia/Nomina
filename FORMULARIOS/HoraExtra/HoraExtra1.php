@@ -196,7 +196,7 @@ header("location:HoraExtra.php");
 		</div>
 	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Horas Extras  <i class="fas fa-plus"></i></button>
+	
 	<div class="container-table">
 	<center>
 	
@@ -214,8 +214,6 @@ header("location:HoraExtra.php");
 	   <td>Cant. Horas</td>
        <td>Total</td>
 	   <td>Fecha</td>
-	   <td>Eliminar</td>
-	   <td>Actualizar</td>
 	</tr>
 	
 	<?php
@@ -240,8 +238,6 @@ JOIN empleados as ep on ex.Cod_empleados=ep.Cod_empleados " ;
 		echo "<td>";echo $mostrar['Numero_Horas']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_HE']; echo"</td>";
 		echo "<td>";echo $mostrar['fecha']; echo"</td>";
-		echo "<td><a href='Eliminar.php?HE=".$mostrar['Cod_HExtra']."'><button name='Eliminar'  class='boton-eliminar'><i class='far fa-trash-alt'></a></i></button></td>";
-	    echo "<td><a href='Actualizar.php?HE=".$mostrar['Cod_HExtra']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 	   echo "<tr>";
 		
 

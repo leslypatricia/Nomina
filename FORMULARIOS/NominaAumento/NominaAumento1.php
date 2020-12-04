@@ -209,7 +209,7 @@ header("location:NominaAumento.php");
 		</div>
 	
 	</center><br/><br/>
-	<button name="Insertar"  class="boton_Añadir">Añadir Aumento a Empleados  <i class="fas fa-plus"></i></button>
+
 	<div class="container-table">
 	<center>
 <table id="Tabla_Departamentos" border="10" class="color-Tabla" style="width:100%"><br/><br/>
@@ -218,8 +218,6 @@ header("location:NominaAumento.php");
  <th>Código Aumento</th>
 	   <th>Código Empleados</th>
 	   <th>Total Aumento</th>
-	   <th>Eliminar</th>
-	   <th>Actualizar</th>
 
  </thead>
                 <tbody>	
@@ -238,8 +236,6 @@ header("location:NominaAumento.php");
 		echo "<td>";echo $mostrar['Cod_NominaA']; echo"</td>";
 		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_A']; echo"</td>";
-		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_NominaA']."'><button name='Eliminar' class='boton-eliminar' ><i class='far fa-trash-alt'></a></i></button></td>";
-		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_NominaA']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 		echo "</tr>";
 			
 	?>

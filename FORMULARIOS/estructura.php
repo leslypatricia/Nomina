@@ -124,12 +124,120 @@ li{
 		width: 100%;
 	}
 }
+.link_activo{
+    color: red;
+}
+nav a:nth-child(1),
+nav a:nth-child(4){
+    border-right: rgba(0, 128, 128, 0.39) 1px solid;
+}
+.logo{
+    letter-spacing: 5px;
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+}
+.contenedor{
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+.page{
+    width: 100%;
+    height: 50vh;
+    top: 100px;
+    left: 0;
+    background: linear-gradient(10deg, black 90%, white 90%);
+    border-radius: 20px;
+    position: absolute;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.644);
+    transform: translateX(150%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    
+}
+.page .contenido{
+    padding: 50px;
+    width: 100%;
+    color: white;
+}
+.page .contenido h2{
+    text-align: center;
+}
+.page .contenido p{
+    column-count: 3;
+    column-gap: 50px;
+    column-rule: 1px dotted black;
+    }
+
+.active{
+    transform: translateX(0%);
+}
+/* TEXTO EFECTO */
+.texto{
+   display: flex;
+   align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(to right, white 0%, white 50%, black 50%, black 100%);
+}
+.texto h1{
+    background: linear-gradient(to right, black 0%, black 50%, white 50%, white 100% );
+    color: white;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 80px;
+    animation: texto 2s ease-in infinite;
+}
+@keyframes texto {
+    0%{ transform: scale(1);}
+    50%{ transform: scale(1.5);}
+    100%{ transform: scale(1);}
+    
+}
+
+
+@keyframes navlinkfade {
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+@keyframes salir {
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(-150%);
+    }
+}
+@media only screen and (max-width: 800px) {
+    nav{
+        flex-direction: column;
+    }
+    .contenedor{
+        width: 100%;
+    }
+}
 </style>
 
 </head>
 <body>
 
 <header>
+<div class="contenedor">
+		  <div class="page active" id="page_uno">
+		  <div class="texto" >
+			  <center>
+                    <h1>Nomina $olution</h1></center>
+                </div></div></div>
 		<span id="button-menu" class="fa fa-bars"></span>
 	<!--	<span id="button-menu" class="fa fa-bars"><?php echo$_SESSION['s_usuario'].'-'.$_SESSION['idRol']; ?></span>-->
 		<nav class="navegacion">
@@ -167,16 +275,8 @@ li{
 						<li><a href="../FORMULARIOS/NominaDeduccion/NominaDeduccion1.php">Nómina Deducciones</a></li>
 					</ul>
 				</li>
+		
 				<li class="item-submenu" menu="4">
-					<a href="#"><span class=" icon-menu"></span>Tipo de Nómina</a>
-					<ul class="submenu">
-						<li class="title-menu"><span class=" icon-menu"></span>Nómina</li>
-						<li class="go-back">Atrás</li>
-						<li><a href="../FORMULARIOS/NominaGeneral/Nomina Mensual.php">Nómina Mensual</a></li>
-						<li><a href="../FORMULARIOS/NominaDeduccion/NominaDeduccion1.php">Nómina Quincenal</a></li>
-					</ul>
-				</li>
-				<li class="item-submenu" menu="5">
 					<a href="#"><span class=" icon-menu"></span>Horas Laborales</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Horas Laborales</li>
@@ -184,7 +284,7 @@ li{
 						<li><a href="../FORMULARIOS/HoraExtra/HoraExtra1.php">Horas Éxtras</a></li>
 					</ul>
 				</li>
-				<li class="item-submenu" menu="6">
+				<li class="item-submenu" menu="5">
 					<a href="#"><span class=" icon-menu"></span>Otros Pagos</a>
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Otros Pagos</li>
@@ -198,7 +298,6 @@ li{
 				</li>
 				<li><a href="../LOG/Menu_Admin.php">Atrás</a></li>
 				<li><a href="../Index.php"><i class="icono izquierda"></i>Cerrar sesion</a></li>
-				<li role="presentation"><a href="../Informacion/quienes_somos.html"><i class="icono izquierda"></i>¿Quienés Somos?</a></li>
 			</ul>
 		</nav>
 	</header>

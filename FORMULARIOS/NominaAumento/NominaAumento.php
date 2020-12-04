@@ -1,10 +1,11 @@
 <!DOCTYPE html >
 <html lang="es">
 <head>
-<meta charset="utf-8" />
+<meta charset="utf-8"/>
 <title>Menu</title>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+  
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
 <style>
 body{
@@ -86,16 +87,28 @@ font-weight:bold;
 
 }
 </style>
+
 </head>
 
 <body>
+<style>
+  .modal{
+      width: 50%;
+      height: 350px;
+      background-color: red;
+      display: none;
+  }  
+</style>
 <?php
-$CE="";
+if(!isset($_POST["crs"])){
+$CE=$_GET["CE"];
+}
+
 $CH="0";
 include("../conexion.php");
-$registros=mysqli_query($conexion,"SELECT Cod_Aumento  FROM  Aumento");
+$registros=mysqli_query($conexion,"SELECT Cod_NominaA   FROM  NominaAumento");
 while ($registro= mysqli_fetch_array($registros)){
-$CH=$registro['Cod_Aumento'];
+$CH=$registro['Cod_NominaA'];
 
 }
 $CD=$CH + 1;
@@ -110,8 +123,7 @@ if (isset($_POST["calcular"])){
 //if(
 	include("../conexion.php");
 $CE=$_POST["CEE"];
-$I=$_POST["1"];
-$R=$_POST["2"];
+
 
 $registros=mysqli_query($conexion,"SELECT Sueldo_base  FROM  empleados WHERE Cod_empleados='$CE'");
 
@@ -151,13 +163,14 @@ $totalD=$registro['Total_Deducciones'];
 }
 
 $totalpagar=$totald - $totalD + $totalPC + $TOTALA;
+$fcha=date("Y-m-d");
  if (mysqli_query($conexion, $consulta)) {
  	$registro=mysqli_query($conexion,"update nominageneral set Total_aumento='$TOTALA',SUELDO_NETO_Pagar='$totalpagar' 
-where Cod_empleados='$CE'")
+where Cod_empleados='$CE'  and Fecha_Generada='$fcha'")
 or die ("error al actualizar");
      echo "<script> 
-	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='NominaAumento1.php';
+	     alert ('Registro Ingresado Correctamente!!!');	 
+	  window.location='../Nominas/nomina.php';
 	  </script>";
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
@@ -174,10 +187,29 @@ header("location:NominaAumento1.php");
 }
 ?>
 <?php
-if (isset($_POST["Siguiente"])){
-header("location:/FORMULARIOS/NominaGeneral/nomina.php");
+if(!isset($_POST["crs"])){
+$CO=$_GET["CE"];
+}
+
+?>
+<?php
+if(!isset($_POST["Actualizar"])){
+$CO=$_GET["CE"];
 }
 ?>
+<?php
+if (isset($_POST["Siguiente"])){
+
+
+echo "<script>
+	alert ('Ir a Nomina Quincenal');
+ window.location='../Nominas/Nomina.php';
+ </script>";
+
+}
+?>
+
+
 
 <form class="from"  id="form1" action= "" method="POST" >
 <center>
@@ -197,7 +229,6 @@ header("location:/FORMULARIOS/NominaGeneral/nomina.php");
 
 
   <tr><td><label>Aumentos</label></td>
- 
 <td>
 <?php
 include("../conexion.php");
@@ -213,24 +244,26 @@ $registros=mysqli_query($conexion,"SELECT *  FROM  Aumento");
   
    } 
   ?>
-
   <br/></td></tr>
 	<tr><td><label>Total Aumento<br/></label> </td>
 	<td><input type="text" class="form" name="TOTALA" value="<?php echo $TOTALA?>"size="20" maxlength="20" readonly="readonly"/><br/></td></tr>
   	
 </table>
+</form>
 <br>
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <button name="crs"><i class="fas fa-save"></i></button>
 <button name="limpiar"><i class="fas fa-times"></i></button>
 <button name="calcular"><i class="fas fa-calculator"></i></button>
 <button name="Siguiente"><i class="fas fa-share-square"></i></button>
+
+
 <br>
 
 
 
 <br/>
 </div>
-</form>
+
 </body>
 </html>

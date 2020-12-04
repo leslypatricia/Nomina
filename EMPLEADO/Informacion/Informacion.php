@@ -179,6 +179,11 @@ if (isset($_POST["Regresar"])){
 header("location:../../LOG/menu.php");
 }
 ?>
+<?php
+include("../conexion.php");
+
+
+?>
 <td><a href="../../LOG/menu.php"><img src="../../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
 <h1>NOMINAS $OLUTION</h1>
 

@@ -229,7 +229,7 @@ $conexion=mysqli_connect('localhost','root','','nominas')
 
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../estructura.php");
+header("location:../../LOG/Menu_Admin.php");
 }
 ?>
 <?php
@@ -239,8 +239,6 @@ header("location:NominaPDF.php");
 ?>
   
        
-
- 
 <div class="Container">
 	
   <div class="form-group">

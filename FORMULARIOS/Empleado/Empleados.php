@@ -228,21 +228,20 @@ elseif($CE=="" Or $id=="" Or $PN=="" Or $SN=="" Or $PA=="" Or $SA=="" Or $CORRE=
 	
 }else {
 //------------consulta para insetar-----//
-$consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,
-Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Sueldo_base,DescripcionFP,DescripcionD)
+$consulta="insert into empleados (Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Fecha_nacimiento,Correo,Direccion,Telefono,Sexo,Cuenta_Bancaria,Fecha_ingreso,Nacionalidad,Sueldo_base,FormaPago,Departamento)
  VALUES('$CE','$id','$PN','$SN','$PA','$SA','$FN','$CORRE','$DIR','$TELE','$S','$CB','$FI','$NAC','$SB','$FP','$CD')";
  
  if (mysqli_query($conexion, $consulta)) {
      echo "<script>
      
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='Empleados.php';
+	  window.location='Empleados1.php';
 	  </script>";
 } else {
     /*  echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);*/
 	echo "<script>
      
-	alert ('ERROR AL Ingresar un Usuario!!!');
+	alert ('ERROR AL Ingresar !!!');
  window.location='Empleados.php';
  </script>";
 
@@ -344,17 +343,17 @@ header("location:../HoraExtra/HoraExtra.php");
 	<td> <select  name="CD" id="CD"  class="form"   maxlength="20">
         <?php
 include("../conexion.php");
-$registros=mysqli_query($conexion,"SELECT * FROM  departamento");
+$registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
          ?>
 		    <?php
 		 	if( $CD==1){
 			
-			   echo '<option value="1">Administración</option>';
+			   echo '<option value="1" >Administración</option>';
 			}elseif( $CD==2){
-			 echo '<option value="2">Contabilidad</option>';
+			 echo '<option value="2" >Contabilidad</option>';
 			
-			}elseif( $CD==3 ){
-			 echo '<option value="3">Tecnología</option>';
+			}elseif( $CD==3){
+			 echo '<option value="3" >Tecnología</option>';
 			
 			}else{
 		
@@ -433,15 +432,6 @@ $registros=mysqli_query($conexion,"SELECT * FROM  departamento");
 			}	
 		?>
 	</select></td></tr>
-
-	<tr><td>Sueldo Base<br/> </td>
-	<td>
-<input type="text" name="SB" class="form"  value="<?php echo $sueldob?>" size="15" maxlength="15" onKeyPress=" return SoloNumeros (event)" onpaste="return false"  /><br/>
- </td></tr>
-	<tr><td> Número de cuenta Bancaria<br/> </td>
-	<td> <input type="text" class="form"  name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" onKeyPress=" return SoloNumeros (event)" onpaste="return false" /><br/>
-</td></tr>
-	
 	<tr><td>Forma de Pago<br/> </td>
 	<td><select name="FP" class="form"  maxlength="20">
 
@@ -449,9 +439,9 @@ $registros=mysqli_query($conexion,"SELECT * FROM  departamento");
 		    <?php
 		 	if( $formapago==1){
 			
-			   echo '<option value="Mensual" >Mensual</option>';
+			   echo '<option value="1" >Mensual</option>';
 			}elseif( $formapago==2){
-			 echo '<option value="QUINCENAL" >Quincenal</option>';
+			 echo '<option value="2" >Quincenal</option>';
 			
 			}else{
 				echo '<option value="" >Seleccione</option>';
@@ -463,6 +453,15 @@ $registros=mysqli_query($conexion,"SELECT * FROM  departamento");
 			
 		?>
 	</select></td></tr>
+	<tr><td>Sueldo Base<br/> </td>
+	<td>
+<input type="text" name="SB" class="form"  value="<?php echo $sueldob?>" size="15" maxlength="15" onKeyPress=" return SoloNumeros (event)" onpaste="return false"  /><br/>
+ </td></tr>
+	<tr><td> Número de cuenta Bancaria<br/> </td>
+	<td> <input type="text" class="form"  name="CB" value="<?php echo  $Cuenta?>" size="20" maxlength="30" onKeyPress=" return SoloNumeros (event)" onpaste="return false" /><br/>
+</td></tr>
+	
+
            
 </table>
 <br>

@@ -156,15 +156,37 @@ ul{
 
 </head>
 <body>
+<?php
+$C="3";
+
+
+?>
+<?php
+if(!isset($_POST["submit"])){
+$CO="3";
+}
+
+
+
+
+
+?>
+
+
+
+
+
+
+
+
+
 <td><a href="menu.php"><img src="../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
 <h1>NOMINAS $OLUTION</h1>
 
 <header>
 <div id="header">
 <ul class="nav">
-<li><a href="../EMPLEADO/Informacion/Informacion.php">Informacion Personal</a></li>
- <li><a href="../EMPLEADO/detalle/Detalle.php">Detalle Planilla</a></li>
- <li><a href="#">Detalle de Pagos</a></li>
+ <li><a href="../EMPLEADO/detalle/Detalle.php?CE=$C0">Detalle Planilla</a></li>
  <li><a href="../index.php">Cerrar sesión</a></li>
 </ul></br></br></br>
 </div>

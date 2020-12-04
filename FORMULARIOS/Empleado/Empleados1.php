@@ -120,7 +120,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:0%;
+	margin-left:%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
@@ -232,10 +232,7 @@ header("location:Empleados.php");
 	<?php
 	
 	
-$sql="SELECT ep.Cod_empleados,ep.Primer_Nombre,ep.Segundo_Apellido,ep.Telefono,
-ep.Fecha_ingreso,ep.Sueldo_base,fp.Descripcion,ep.DescripcionD from empleados as ep 
-JOIN formapago as fp on ep.DescripcionFP=fp.Descripcion
-JOIN departamento as dep on ep.DescripcionD=dep.Descripcion" ;
+$sql="SELECT * from empleados" ;
 
 	$res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
@@ -246,8 +243,8 @@ JOIN departamento as dep on ep.DescripcionD=dep.Descripcion" ;
 		echo "<td>";echo $mostrar['Telefono']; echo"</td>";
 		echo "<td>";echo $mostrar['Fecha_ingreso']; echo"</td>";
 		echo "<td>";echo $mostrar['Sueldo_base']; echo"</td>";
-		echo "<td>";echo $mostrar['Descripcion']; echo"</td>";
-		echo "<td>";echo $mostrar['DescripcionD']; echo"</td>";
+		echo "<td>";echo $mostrar['FormaPago']; echo"</td>";
+		echo "<td>";echo $mostrar['Departamento']; echo"</td>";
 		echo "<td><a href='Eliminar.php?CE=".$mostrar['Cod_empleados']."'><button name='Eliminar' class='boton-eliminar' ><i class='far fa-trash-alt'></a></i></button></td>";
 		echo "<td><a href='Actualizar.php?CE=".$mostrar['Cod_empleados']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-edit'></a></i></button></td>";
 		echo "</tr>";

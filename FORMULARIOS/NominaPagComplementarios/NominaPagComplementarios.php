@@ -90,7 +90,10 @@ font-weight:bold;
 
 <body>
 <?php
-$CE="";
+if(!isset($_POST["crs"])){
+$CE=$_GET["CE"];
+}
+
 $Bonos="";
 $Comisiones="";
 $CH="0";
@@ -112,10 +115,13 @@ if (isset($_POST["calcular"])){
 //if(
 include("../conexion.php");
 $CE=$_POST["CEE"];
-$B=$_POST["1"];
-$C=$_POST["2"];
+$fcha = date("Y-m-d");
 $sueldo="0";
 $TOTALPC="0";
+$BonoE="0";
+$Aguinaldo="0";
+$Cator="0";
+$Vacaciones="0";
 $registros=mysqli_query($conexion,"SELECT Sueldo_base  FROM  empleados WHERE Cod_empleados='$CE'");
 
 while ($registro= mysqli_fetch_array($registros)){
@@ -124,15 +130,26 @@ $sueldo=$registro['Sueldo_base'];
 }
 //$CHE=$_POST["CHE"];
 if(isset($_POST["1"])){
-$Bono=1000;
+$Bono=$sueldo * 0.015;
 
 }
 if(isset($_POST["2"])){
 
-$Comision=$sueldo * 0.10;
+$BonoE=18808;
+
 
 }
-$TOTALPC=$Bono + $Comision;
+if(isset($_POST["3"])){
+$Aguinaldo=$sueldo / 360 * 348;
+
+}
+
+if(isset($_POST["4"])){
+$Cator=$sueldo / 360 * 360;
+
+}
+
+$TOTALPC=$Bono + $BonoE + $Aguinaldo;
 }
 
  ?>
@@ -141,15 +158,13 @@ $TOTALPC=$Bono + $Comision;
 
 if (isset($_POST["crs"])){
 include("../conexion.php");
-$CNPC=$_POST['CNPC'];
+$CN=$_POST["CHE"];
 $CE=$_POST["CEE"];
 $TOTALP=$_POST["TOTALPC"];
 $DE=1;
-$consulta="insert into nominaspagoscomplementarios 
-(Cod_NominaPC,Cod_Empleados,Cod_PagoC,Total_PagosC)
- VALUES('$CNPC','$CE','$DE','$TOTALP')";
- $registros=mysqli_query($conexion,"SELECT Total_Devengado,Total_Deducciones,Total_Aumento 
-  FROM  nominageneral WHERE Cod_Empleados='$CE'");
+$consulta="insert into nominaspagoscomplementarios (Cod_NominaPC,Cod_Empleados,Cod_PagoC,Total_PagosC)
+ VALUES('$CN','$CE','$DE','$TOTALP')";
+ $registros=mysqli_query($conexion,"SELECT Total_Devengado,Total_Deducciones,Total_Aumento  FROM  nominageneral WHERE Cod_Empleados='$CE'");
 
 while ($registro= mysqli_fetch_array($registros)){
 $totald=$registro['Total_Devengado'];
@@ -158,14 +173,15 @@ $totalA=$registro['Total_Aumento'];
 }
 
 $totalpagar=$totald - $totaldeduc + $TOTALP + $totalA;
-
+ $fcha = date("Y-m-d");
  if (mysqli_query($conexion, $consulta)) {
  	$registro=mysqli_query($conexion,"update nominageneral set Total_PagosComplementarios='$TOTALP',SUELDO_NETO_Pagar='$totalpagar' 
-where Cod_empleados='$CE'")
+where Cod_empleados='$CE'  and Fecha_Generada='$fcha'")
 or die ("error al actualizar");
      echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
-	  window.location='NominaPagComplementarios1.php';
+		 		 window.location='../Nominas/Nomina.php';
+
 	  </script>";
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
@@ -182,8 +198,11 @@ header("location:NominaPagComplementarios1.php");
 }
 ?>
 <?php
+if(!isset($_POST["crs"])){
+$CO=$_GET["CE"];
+}
 if (isset($_POST["Siguiente"])){
-header("location:/FORMULARIOS/NominaGeneral/nomina.php");
+header("location:../Nominas/Nomina.php");
 }
 ?>
 
@@ -195,8 +214,9 @@ header("location:/FORMULARIOS/NominaGeneral/nomina.php");
 
 
 	<tr><td><label>Código<br/></label> </td>
-	<td><input type="text"  class="form" name="CNPC" value="<?php echo $CD ?>"size="20" maxlength="20"   readonly="readonly" /><br/></td></tr>
-
+	<td><input type="text" class="form" name="CHE" value="<?php echo $CD ?>"size="20" maxlength="20" readonly="readonly" /><br/></td></tr>
+	
+	
 	</td></tr>
 	<tr><td>Código Empleado<br/> </td>
 	<td><input type="text" class="form"  name="CEE"  value="<?php echo $CE ?>" size="20" maxlength="20" /><br/>
