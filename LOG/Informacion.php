@@ -14,7 +14,7 @@ body{
 	box-sizing:border-box;
     height:100%;
 	width:100%;
-	background-image: url("../../IMG/Fondo10.jpg");
+	background-image: url("../IMG/Fondo10.jpg");
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
@@ -176,35 +176,69 @@ ul{
 
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../../LOG/menu.php");
+header("location:menu.php");
 }
 ?>
 <?php
-include("../../LOG/login.php");
 
-$sql="Select * From empleados where Cod_empleados='$CE'";
+$db_host="localhost";
+$db_usuario="root";
+$db_contra="";
+$db_nombre="nominas";
 
-while ($registro= mysqli_fetch_array($sql)){
+ $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+if(!isset($_POST["crs"])){{
+$CODR=$_GET["CE"];
+}
+}
+
+
+$registros=mysqli_query($conexion,"SELECT * From empleados WHERE Cod_empleados='$CODR'");
+
+while ($registro= mysqli_fetch_array($registros)){
 $codigo=$registro['Cod_empleados'];
-$tel=$registro['Direccion'];
+$tel=$registro['Telefono'];
 $correo=$registro['Correo'];
+$direccion=$registro['Direccion'];
+}
+
+
+?>
+<?
+
+if (isset($_POST["guardar"])){
+
+$COD=$_POST["CE"];
+$DI=$_POST["D"];
+$COR=$_POST["C"];
+$TEL=$_POST["T"];
+
+
+$registros=mysqli_query($conexion,
+
+
+
+
+"update empleados set
+Telefono='33',Direccion='dsfdsf' where Cod_empleados='2' ");
+
 
 }
 
 
 
 ?>
-
-<td><a href="../../LOG/menu.php"><img src="../../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
-<h1>NOMINAS $OLUTION</h1>
-
+<td><a href="menu.php"><img src="../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
+<center>
+<h1>NOMINAS $OLUTIÓN</h1>
+</center>
 <header>
 <div id="header">
 <ul class="nav">
-<li><a href="Informacion.php">Informacion Personal</a></li>
- <li><a href="../detalle/Detalle.php">Detalle Planilla</a></li>
- <li><a href="#">Detalle de Pagos</a></li>
- <li><a href="../../index.php">Cerrar sesión</a></li></br></br></br>
+<li><button name="crs"><?php echo "<a href='Informacion.php?CE=$CO'>"?>Informacion</a></button> </li>
+<li><button name="crs"><?php echo "<a href='Detalle.php?CE=$CO'>"?>Detalle Planilla</a></button></li>
+ <li><button name="crsCDS"> <a href="../index.php">Cerrar sesión</a></button></li>
 </ul>
 </div>
 </nav><br/><br/>
@@ -212,17 +246,17 @@ $correo=$registro['Correo'];
 
 <form class="from"  id="form1" action= "" method="POST" >
 <center>
-<h1>Actualizar Informcaion</h1>
+<h1>Actualizar Información</h1>
 <div class="form-group">
 <table class="table table-condensed" style="width: 100%" ><!--style="width: 100%;*/-->
 
-<tr><td><label>Codigo Empleados:</label></td>
-<td><input type="text" name="CE" size="5" maxlength="5"  value="<?php echo $codigo; ?>"></td></tr>
+<tr><td><label>Código Empleados:</label></td>
+<td><input type="text" name="CE" size="5" maxlength="5"  value="<?php echo $codigo; ?>"readonly="readonly"></td></tr>
 
-<tr><td><label>Telefono:</label></td>
-<td><input type="text" name="T" size="15" maxlength="15" value="<?php echo $cel; ?>"></td></tr>
+<tr><td><label>Teléfono:</label></td>
+<td><input type="text" name="T" size="15" maxlength="15" value="<?php echo $tel; ?>"></td></tr>
 
-<tr><td><label>Direccion:</label></td>
+<tr><td><label>Direccién:</label></td>
 <td><input type="text" name="D" size="20" maxlength="20" value="<?php echo $direccion; ?>"></td></tr>
 
 <tr><td><label>Correo:</label></td>
@@ -233,7 +267,7 @@ $correo=$registro['Correo'];
 </table>
 <br/>
 
-<a href="#"><button type="submit" name="guardar" value="guardar" class="boton-actualizar"><i class="fas fa-edit"></a></i></button>
+<button  name="guardar"><i class="fas fa-save"></i></button>
 <button name="Regresar" class="Boton-Regresar"><i class="fas fa-reply"></i></button>
 <br/><br/></center>
 

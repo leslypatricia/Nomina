@@ -157,25 +157,15 @@ ul{
 </head>
 <body>
 <?php
-$C="3";
-
-
-?>
-<?php
-if(!isset($_POST["submit"])){
-$CO="3";
+if(!isset($_POST["submit"])){{
+$CO=$_GET["CE"];
+}
 }
 
 
 
 
-
 ?>
-
-
-
-
-
 
 
 
@@ -186,8 +176,10 @@ $CO="3";
 <header>
 <div id="header">
 <ul class="nav">
- <li><a href="../EMPLEADO/detalle/Detalle.php?CE=$C0">Detalle Planilla</a></li>
- <li><a href="../index.php">Cerrar sesión</a></li>
+
+<li><button name="crs"><?php echo "<a href='Informacion.php?CE=$CO'>"?>Informacion</a></button> </li>
+<li><button name="crs"><?php echo "<a href='Detalle.php?CE=$CO'>"?>Detalle Planilla</a></button></li>
+ <li><button name="crsCDS"> <a href="../index.php">Cerrar sesión</a></button></li>
 </ul></br></br></br>
 </div>
 </nav><br/><br/>

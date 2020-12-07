@@ -19,17 +19,17 @@ body{
 
 th{
 	border:none;
-	padding:10px;
+	padding:5px;
 	text-align:center;
 	color:#FFFFFF;
 	font-family:Times New Roman;
-	font-size:15px;
+	font-size:12px;
 	 background:#346BFB;
  font-family:Times New Roman ;
 }
 td{
 	border:none;
-	padding:10px;
+	padding:4px;
 	text-align:center;
 }
 
@@ -40,25 +40,25 @@ tr:nth-child(even){
  
 .from{
 	margin:auto;
-	margin-top:-10PX;
+	margin-top:-5PX;
 	border-radius:4px;
 	font-family:Times New Roman ;
 	color:black;
 }
 h1{
-	font-size:40px;
-	margin-bottom:35px;	
+	font-size:45px;
+	margin-bottom:45px;	
 	color: blanchedalmond;
 	font-family:Times New Roman;
 	}
 	
 .form-group{
-	padding:50px;
-	border-radius:6px;
-	margin-bottom:16px;
+	padding:60px;
+	border-radius:4px;
+	margin-bottom:12px;
 	border:1px solid #1f53c5;
 	font-family:Times New Roman ;
-	font-size:18px;
+	font-size:11px;
 	}
 .color-Tabla {
 	background:#ffffff;
@@ -66,7 +66,7 @@ h1{
 	/*border-top-left-radius:100px !important;*/
 	/*border-spacing: 0.5rem;  rem unidad de medida*/
 	font-family:Times New Roman ;
-   	border:solid 10px #346BFB ;
+   	border:solid 3px #346BFB ;
 
 }
 
@@ -109,7 +109,7 @@ color:green;
 
 
 }
-.boton_A?adir{
+.boton_Añadir{
 	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
@@ -148,7 +148,7 @@ color:green;
 
 }
 
-.boton_A?adir:hover{
+.boton_Añadir:hover{
 	margin-left:10%;
 	margin-bottom:1.5%;
 	color: white;
@@ -169,7 +169,7 @@ color:green;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="#" />  
-    <title>Tutorial DataTables</title>
+    <title>Nomina</title>
       
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -196,11 +196,42 @@ $Codigo="";
 if (isset($_POST["Crear"])){
 
 
-include("../conexion.php");
-
- $registros=mysqli_query($conexion,"select Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,FormaPago ,Sueldo_base FROM  empleados ");
-
-
+	include("../conexion.php");
+	
+	 $registros=mysqli_query($conexion,"select Cod_empleados,Identidad,
+	 Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base
+	  FROM  empleados WHERE FormaPago='Quincenal'");
+	
+	
+	while ($registro= mysqli_fetch_array($registros)){
+	$CE=$registro['Cod_empleados'];
+	$ID=$registro['Identidad'];
+	$PN=$registro['Primer_Nombre'];
+	$SN=$registro['Segundo_Nombre'];
+	$PA=$registro['Primer_Apellido'];
+	$SA=$registro['Segundo_Apellido'];
+	$sueldo=$registro['Sueldo_base'];
+	$Codigo=$_POST["CHE"];
+	//$fecha = date("Y-m-d");
+	$FormaP="Quincenal";
+	
+	$sql="insert into 
+	nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base,FormaPago,Fecha_Generada)
+	 VALUES('$Codigo','$CE','$ID','$PN','$SN','$PA','$SA','$sueldo','$FormaP','2020-12-15')";
+	 ///aqui*******************************************************************->
+	 
+	 if (mysqli_query($conexion, $sql)) {
+		   echo "<script> 
+		alert ('Operacion Realizada!!!');
+		  window.location='nomina3.php';
+		  </script>";  
+		  
+	}
+	  
+	
+	}
+	}
+/*
 while ($registro= mysqli_fetch_array($registros)){
 $CE=$registro['Cod_empleados'];
 $ID=$registro['Identidad'];
@@ -214,12 +245,12 @@ $sueldo=$registro['Sueldo_base'];
 $Codigo=$_POST["CHE"];
 $fecha = date("Y-m-d");
 
-if($FormaP=="Quincenal"){
+if($FormaP=="Quincenal";){
 $sueldoQ=$sueldo/2;
 $sql="insert into 
 nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base,FormaPago,SUELDO_NETO_Pagar,Fecha_Generada)
  VALUES('$Codigo','$CE','$ID','$PN','$SN','$PA','$SA','$sueldoQ','$FormaP','$sueldoQ','$fecha')";
- }else{
+ else{
 
 $sql="insert into 
 nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base,FormaPago,Fecha_Generada)
@@ -229,14 +260,12 @@ nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Pr
  if (mysqli_query($conexion, $sql)) {
    	echo "<script> 
 	     alert ('Operacion Realizada!!!');
-	  window.location='nomina.php';
+	  window.location='nomina3.php';
 	  </script>";  
 	  
 }
-  
-
 }
-}
+}*/
 ?>
 
 
@@ -263,7 +292,7 @@ header("location:NominaPDF.php");
   <div class="form-group">
 	 
 	 <center>
-	 <h1>N?mina General</h1>
+	 <h1>Nòmina General</h1>
 	 </center>
 	 <center>
 
@@ -271,7 +300,7 @@ header("location:NominaPDF.php");
 	  <form class="from"  id="form1" action= "" method="POST" >
       <table border="1" class="color-Tabla" align="left">
           <td align="legth"><img src="../../IMG/nominas.jpg" width="150px">
-          </td></table>
+          </td></table><br/><br/><br/><br/><br/><br/>
 
           <table border="1" class="color-Tabla" align="right">
           <tr class="Estilo-tabla" align="">
@@ -296,28 +325,26 @@ header("location:NominaPDF.php");
 
 <table border="1" class="color-Tabla" align="left">
     <tr class="Estilo-tabla">
-       <td>C?digo N?mina</td> 
+       <td>Còdigo Nòmina</td> 
     </tr>
           <tr>
-				<td><input type="text" class="form" name="CHE" value="                           1"  size="20" maxlength="10" readonly="readonly"/><br/></td>
-				</tr>
-				<tr>
-				<td><button name="Crear"  class="boton_A?adir">Crear Nomina Mensual<i class="fas fa-plus"></i></button></td>
-				</tr>
-
-
+<td><input type="text" class="form" name="CHE" value="1"  size="20" maxlength="10" readonly="readonly"/><br/></td>
+</tr>	
+<tr><td><button name="Crear"  class="boton_Añadir">Crear Nomina Mensual<i class="fas fa-plus"></i></button></td>
+</tr>
      </table>
   
-  
-  
-  
   	 <br><br/> <br><br/> 	 <br><br/> <br><br/> 
+  <?php 
   
-  
-                        
-                 <table id="example" class="color-Tabla"  width="100%">
+  ?>
+  <?php
+ echo "<td><a href='../nominas/generarpdf.php'><button name='pdf' class='btn btn-danger'><i class='fas fa-file-pdf'></a></i></button></td>";
+                  ?>
+<table id="example" class="color-Tabla"  width="100%">
 
-<thead class="text-center" border="60" color="black">
+<thead class="text-center" border="10" color="black">
+	<tr>
        <th rowspan="2" >Codigo</th> <br/><br/>
        <th rowspan="2">Nombre Completo</th>
        <th rowspan="2">Sueldo Ordinario</th>
@@ -328,7 +355,7 @@ header("location:NominaPDF.php");
 	   <th rowspan="2">Total Aumento</th>
 	    <th rowspan="2">Sueldo Neto</th>
 	   <th rowspan="2">Calcular</th>
-   
+	</tr>
     <tr>   
         <th>Cant. Hr/Extras</th>
         <th>Valor hora</th>
@@ -338,7 +365,8 @@ header("location:NominaPDF.php");
      <?php
 
 $conexion=mysqli_connect('localhost','root','','nominas')
-?>           <tbody>
+?>         
+  <tbody>
     <?php
 	
 		$fcha = date("Y-m-d");
@@ -351,8 +379,8 @@ $conexion=mysqli_connect('localhost','root','','nominas')
   echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
 		echo "<td>";echo $mostrar['Primer_Nombre']; echo " ";
-		echo $mostrar['Primer_Apellido']; echo " ";
-		echo $mostrar['Segundo_Apellido']; echo"</td>";
+		echo             $mostrar['Primer_Apellido']; echo " ";
+		echo             $mostrar['Segundo_Apellido']; echo"</td>";
 		echo "<td>";echo $mostrar['Sueldo_base']; echo"</td>";
 		echo "<td>";echo $mostrar['Cant_Horas']; echo"</td>";
 		echo "<td>";echo $mostrar['Costo_U']; echo"</td>";
@@ -393,6 +421,13 @@ $conexion=mysqli_connect('localhost','root','','nominas')
      
     <!-- para usar botones en datatables JS -->  
     <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
+	<script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
+	<script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
+    <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
+    <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+ 
+    
 
    
      

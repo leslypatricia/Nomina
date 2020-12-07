@@ -24,7 +24,6 @@ if($resultado->rowCount() >= 1){
     $_SESSION["s_usuario"] = $usuario;    
     $_SESSION["s_idRol"] = $data[0]["idRol"];
     $_SESSION["s_rol_Descripcion"] = $data[0]["rol"];
-$CO= $_SESSION["Cod_empleados"];
 }else{
 
     $_SESSION["s_usuario"] = null;  

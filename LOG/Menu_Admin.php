@@ -294,7 +294,7 @@ nav a:nth-child(4){
 					<ul class="submenu">
 						<li class="title-menu"><span class=" icon-menu"></span>Nóminas</li>
 						<li class="go-back">Atrás</li>
-						<li><a href="../FORMULARIOS/Nominas/nomina.php">Nómina Mensual</a></li>
+						<li><a href="../FORMULARIOS/Nominas/Nomina.php">Nómina Mensual</a></li>
 						<li><a href="../FORMULARIOS/Nominas/NominaQ.php">Nómina Quincenal</a></li>
 					</ul>
 				</li>

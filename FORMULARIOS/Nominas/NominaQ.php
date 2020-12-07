@@ -170,7 +170,26 @@ color:green;
 
 }
 </style>
-  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="#" />  
+    <title>
+
+	</title>
+          <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- CSS personalizado --> 
+	<link rel="stylesheet" href="main.css">  
+      
+	  <!--datables CSS b�sico-->
+	  <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
+	  <!--datables estilo bootstrap 4 CSS-->  
+	  <link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+			  <!--font awesome con CDN-->  
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">  
+		
+	 
 </head>
 
 <body>
@@ -230,7 +249,7 @@ $conexion=mysqli_connect('localhost','root','','nominas')
 
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../../LOG/Menu_Admin.php");
+header("location:../estructura.php");
 }
 ?>
 <?php
@@ -378,6 +397,25 @@ header("location:NominaPDF.php");
          $('#tablaNominaGeneral').DataTable(); 
       });
     </script>
- 
+     <!-- jQuery, Popper.js, Bootstrap JS -->
+	 <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="popper/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+      
+    <!-- datatables JS -->
+    <script type="text/javascript" src="datatables/datatables.min.js"></script>    
+     
+    <!-- para usar botones en datatables JS -->  
+    <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
+	<script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
+    <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
+    <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+   
+     
+    <!-- c�digo JS prop�o-->    
+    <script type="text/javascript" src="main.js"></script>  
+    
+    
     </body>
     </html>

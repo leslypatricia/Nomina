@@ -213,6 +213,7 @@ $SP="";
 <?php
 if (isset($_POST["buscar"])){
 $F=$_POST["ff"];
+include("../../LOG/login.php");
 
 $db_host="localhost";
 $db_usuario="root";
@@ -220,7 +221,8 @@ $db_contra="";
 $db_nombre="nominas";
 
 $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
-$registros=mysqli_query($conexion,"SELECT * FROM empleados WHERE Cod_empleados='2'");
+
+$registros=mysqli_query($conexion,"SELECT * FROM empleados WHERE Cod_empleados='$CE'");
 
 while ($registro= mysqli_fetch_array($registros)){
 $N=$registro['Primer_Nombre'];
@@ -229,7 +231,7 @@ $D=$registro['Departamento'];
 $sueldo=$registro['Sueldo_base'];
 }
 
-$regi=mysqli_query($conexion,"SELECT * FROM nominageneral where Cod_empleados='2' and Fecha_Generada='2020-12-04'");
+$regi=mysqli_query($conexion,"SELECT * FROM nominageneral where Cod_empleados='$CE' and Fecha_Generada='$F'");
 
 while ($registro= mysqli_fetch_array($regi)){
 $HE=$registro['TotalP_HE'];
@@ -258,17 +260,19 @@ header("location:../../LOG/menu.php");
 <header>
 <div id="header">
 <ul class="nav">
+<li><a href="../Informacion/Informacion.php">Informacion Personal</a></li>
+ <li><a href="Detalle.php">Detalle Planilla</a></li>
+ <li><a href="#">Detalle de Pagos</a></li>
  <li><a href="../../index.php">Cerrar sesión</a></li></br></br></br>
 </ul>
 </div>
 </nav>
-
 <form class="from"  id="form1" action="" method="POST">
 <center>
 <div class="form-group">
 <table border="1" class="table table-condensed" style="width: 100%">
 <h1>Informaciòn del Empleado</h1>
-<label>fecha: </label><input type="date" id="Fecha" name="ff"> 
+<label>fecha: </label><input type="date" id="ff" name="ff"> 
 <button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/>
 <tr><td><label>Código Empleado:</label></td>

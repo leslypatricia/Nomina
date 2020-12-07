@@ -1363,7 +1363,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 			styles: {
 				tableHeader: {
 					bold: true,
-					fontSize: 11,
+					fontSize: 8,
 					color: 'white',
 					fillColor: '#2d4154',
 					alignment: 'center'
@@ -1374,13 +1374,13 @@ DataTable.ext.buttons.pdfHtml5 = {
 				},
 				tableFooter: {
 					bold: true,
-					fontSize: 11,
+					fontSize: 8,
 					color: 'white',
 					fillColor: '#2d4154'
 				},
 				title: {
 					alignment: 'center',
-					fontSize: 15
+					fontSize: 8
 				},
 				message: {}
 			},
@@ -1393,7 +1393,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 			doc.content.unshift( {
 				text: info.messageTop,
 				style: 'message',
-				margin: [ 0, 0, 0, 12 ]
+				margin: [ 0, 0, 0, 7 ]
 			} );
 		}
 
@@ -1401,7 +1401,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 			doc.content.push( {
 				text: info.messageBottom,
 				style: 'message',
-				margin: [ 0, 0, 0, 12 ]
+				margin: [ 0, 0, 0, 7 ]
 			} );
 		}
 
@@ -1409,7 +1409,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 			doc.content.unshift( {
 				text: info.title,
 				style: 'title',
-				margin: [ 0, 0, 0, 12 ]
+				margin: [ 0, 0, 0, 7 ]
 			} );
 		}
 
@@ -1451,7 +1451,8 @@ DataTable.ext.buttons.pdfHtml5 = {
 
 	customize: null,
 
-	download: 'download'
+	download: 'download',
+	width:'10'
 };
 
 

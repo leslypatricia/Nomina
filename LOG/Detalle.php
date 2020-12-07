@@ -13,7 +13,7 @@ body{
 	box-sizing:border-box;
     height:100%;
 	width:100%;
-	background-image: url("../../IMG/Fondo10.jpg");
+	background-image: url("../IMG/Fondo10.jpg");
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-attachment: fixed;
@@ -189,7 +189,7 @@ $TI="";
 $PRES="";
 $IHSS="";
 $ingreso="";
-$RAP="";
+$sueldo="";
 $TOTAD="";
 $PAG="";
 $TD="";
@@ -197,156 +197,120 @@ $PC="";
 $SB="";
 $P="";
 $PT="";
-
+$F="";
 $A="";
 $N="";
 $D="";
 $CE="";
-
+$SP="";
 ?>
 <?php
-if (isset($_POST["buscar"])){
 
-$CE=$_POST["CEE"];
-$fcha=$_POST['Fecha'];
-$registros=mysqli_query($conexion,"SELECT * FROM  nominageneral WHERE Cod_empleados='$CE' and Fecha_Generada='$fcha'");
-
-
-while ($registro= mysqli_fetch_array($registros)){
-
-$codigo=$registro['Cod_empleados'];
-$Identidad=$registro['Identidad'];
-$PrimerN=$registro['Primer_Nombre'];
-$SegundoN=$registro['Segundo_Nombre'];
-$PrimerA=$registro['Primer_Apellido'];
-$SegundoA=$registro['Segundo_Apellido'];
-$fechan=$registro['Fecha_nacimiento'];
-$correo=$registro['Correo'];
-$direccion=$registro['Direccion'];
-$tel=$registro['Telefono'];
-$sexo=$registro['Sexo'];
-$Cuenta=$registro['Cuenta_Bancaria'];
-$ingreso=$registro['Fecha_ingreso'];
-$nacionalidad=$registro['Nacionalidad'];
-$fechad=$registro['Fecha_Deduccion'];
-$sueldob=$registro['Sueldo_base'];
-$formapago=$registro['Cod_FormaPago'];
-$CD=$registro['Cod_Depto'];
-
-
+if(!isset($_POST["submit"])){{
+$CO=$_GET["CE"];
 }
-
 }
-
 
 //----------------------finanlización de código botón buscar
  ?>
-
-
-
-
-
 <?php
-
-
-session_start();
+if (isset($_POST["buscar"])){
+$F=$_POST["ff"];
 
 $db_host="localhost";
 $db_usuario="root";
 $db_contra="";
 $db_nombre="nominas";
 
- $conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
- $usuario = (isset($_POST["usuario"])) ? $_POST["usuario"] : ' ';
-$password = (isset($_POST["password"])) ? $_POST["password"] : ' ';
-$registros=mysqli_query($conexion,"SELECT Cod_Usuario, Cod_empleados  WHERE Usuario='$usuario' AND Password='$password'");
+$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+
+$registros=mysqli_query($conexion,"SELECT * FROM empleados WHERE Cod_empleados='$CO'");
 
 while ($registro= mysqli_fetch_array($registros)){
-$CU=$registros['Cod_Usuario'];
-$CE=$registros['Cod_empleados'];
+$N=$registro['Primer_Nombre'];
+$A=$registro['Primer_Apellido'];
+$D=$registro['Departamento'];
+$sueldo=$registro['Sueldo_base'];
 }
- ?>
- 
- 
 
- 
- 
+$regi=mysqli_query($conexion,"SELECT * FROM nominageneral where Cod_empleados='$CO' and Fecha_Generada='$F'");
+
+while ($registro= mysqli_fetch_array($regi)){
+$HE=$registro['TotalP_HE'];
+$PC=$registro['Total_PagosComplementarios'];
+$TD=$registro['Total_Deducciones'];
+$SP=$registro['SUELDO_NETO_Pagar'];
+}
+
+
+
+
+}
+
+?>
+
+
+
+
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../../LOG/menu.php");
+header("location:menu.php");
 }
 ?>
-<td><a href="../../LOG/menu.php"><img src="../../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
+<td><a href="menu.php"><img src="../IMG/nominas.jpg" class="ima"  align="left" width="120px" height="120px"></a></td>
 <h1>NOMINAS $OLUTION</h1>
 <header>
 <div id="header">
 <ul class="nav">
-<li><a href="../Informacion/Informacion.php">Informacion Personal</a></li>
- <li><a href="Detalle.php">Detalle Planilla</a></li>
- <li><a href="#">Detalle de Pagos</a></li>
- <li><a href="../../index.php">Cerrar sesión</a></li></br></br></br>
+<li><button name="crs"><?php echo "<a href='Informacion.php?CE=$CO'>"?>Informacion</a></button> </li>
+<li><button name="crs"><?php echo "<a href='Detalle.php?CE=$CO'>"?>Detalle Planilla</a></button></li>
+ <li><button name="crsCDS"> <a href="../index.php">Cerrar sesión</a></button></li>
 </ul>
 </div>
 </nav>
-
 <form class="from"  id="form1" action="" method="POST">
 <center>
 <div class="form-group">
 <table border="1" class="table table-condensed" style="width: 100%">
 <h1>Informaciòn del Empleado</h1>
-<label>fecha: </label><input type="date" id="Fecha"> 
+<label>fecha: </label><input type="date" id="ff" name="ff"> 
 <button name="buscar"><i class="fas fa-search"></i></button>
 <br/><br/>
 <tr><td><label>Código Empleado:</label></td>
-<td><input type="text" name="CE" size="5" maxlength="5" value="<?php echo $CU?>"></td>
+<td><input type="text" name="CE" size="5" maxlength="5" value="<?php echo $CO?>" readonly="readonly"</td>
 
 <td><label>Departamento:</label></td>
-<td><input type="text" name="D" size="25" maxlength="15" value="<?php echo $D?>"></td></tr>
+<td><input type="text" name="D" size="25" maxlength="15" value="<?php echo $D?>" readonly="readonly"></td></tr>
 
 <tr><td><label>Nombre:</label></td>
-<td><input type="text" name="N" size="25" maxlength="5" value="<?php echo $N?>">
+<td><input type="text" name="N" size="25" maxlength="5" value="<?php echo $N?>" readonly="readonly">
 
 <td><label>Apellido:</label></td>
-<td><input type="text" name="A" size="25" maxlength="15" value="<?php echo $A?>"></td></tr>
+<td><input type="text" name="A" size="25" maxlength="15" value="<?php echo $A?>" readonly="readonly"></td></tr>
 
-<tr><td><label>Puesto:</label></td>
-<td><input type="text" name="P" size="25" maxlength="5" value="<?php echo $P?>">
 
 <td><label>Suledo  base:</label>
-<td><input type="text" name="SB" size="25" maxlength="15" value="<?php echo $SB?>"></td></tr>
+<td><input type="text" name="SB" size="25" maxlength="15" value="<?php echo $sueldo?>" readonly="readonly"></td></tr>
 
 
 
 <tr><td align="center"><label>Ingresos</label></td></tr>
 
 
-<tr><td><label>Hora Extra:</label></td>
-<td><input type="text" name="HE" size="25" maxlength="5" value="<?php echo $HE?>"></td></tr>
+<tr><td><label>Pagos por Horas Extras:</label></td>
+<td><input type="text" name="HE" size="25" maxlength="5" value="<?php echo $HE?>"readonly="readonly"></td></tr>
 
-<tr><td><label>Pagos Complementarios:</label></td>
-<td><input type="text" name="PC" size="25" maxlength="15" value="<?php echo $PC?>"></td></tr>
-
-<tr><td><label>Total Ingreso:</label></td>
-<td><input type="text" name="TI" size="25" maxlength="5" value="<?php echo $TI?>"></td></tr>
-
-
+<tr><td><label>Total Pagos Complementarios:</label></td>
+<td><input type="text" name="PC" size="25" maxlength="15" value="<?php echo $PC?>" readonly="readonly"></td></tr>
 
 <tr><td align="center"><label>Deducciones</label></td></tr>
 
-<tr><td><label>IHSS:</label></td>
-<td><input type="text" name="IHSS" size="25" maxlength="15" value="<?php echo $IHSS?>"></td></tr>
-
-<tr><td><label>RAP:</label></td>
-<td><input type="text" name="RAP" size="25" maxlength="5" value="<?php echo $RAP?>">
-
-<tr><td><label>Prestamos:</label></td>
-<td><input type="text" name="PRES" size="25" maxlength="15" value="<?php echo $PRES?>"></td></tr>
 
 <tr><td><label>Total Deducciones:</label></td>
-<td><input type="text" name="TD" size="25" maxlength="5" value="<?php echo $TD?>">
+<td><input type="text" name="TD" size="25" maxlength="5" value="<?php echo $TD?>" readonly="readonly">
 
-<tr><td><label>Pago Total:</label>
-<td><input type="text" name="PT" size="25" maxlength="15" value="<?php echo $PT?>"></td></tr>
+<tr><td><label>Sueldo Neto:</label>
+<td><input type="text" name="PT" size="25" maxlength="15" value="<?php echo $SP?>"></td></tr>
 </table>
 <br/>
 <center>
