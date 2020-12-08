@@ -197,8 +197,7 @@ include("../conexion.php");
 $CND=$_POST["CHE"];
 $CE=$_POST["CEE"];
 $DE=1;
-$TD=$_POST["IHSS"];
-$TOTALD=$TD/2;
+$TOTALD=$_POST["IHSS"];
 
 
 $consulta="insert into nominadeducciones (Cod_NominaD,Cod_Empleados,Cod_Deducciones,Total_Deducciones)
@@ -221,7 +220,7 @@ where Cod_empleados='$CE' and Fecha_Generada='2020-12-15'")
 or die ("error al actualizar");
      echo "<script> 
 	     alert ('Registro Ingresado Correctamente!!!');
-		 window.location='NominaQ.php';
+		 window.location='Nomina3Q.php';
 
 	  </script>";
 } else {
@@ -235,7 +234,7 @@ or die ("error al actualizar");
 
 <?php
 if (isset($_POST["Regresar"])){
-header("location:NominaQ.php");
+header("location:Nomina3Q.php");
 }
 ?>
 <?php

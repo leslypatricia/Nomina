@@ -70,6 +70,13 @@ h1{
 
 }
 
+.tilulo {
+	font-size:45px;
+	margin-bottom:45px;	
+	color: blanchedalmond;
+	font-family:Times New Roman;
+
+}
 
 /*iconos*/
 .fa-trash-alt{
@@ -195,43 +202,10 @@ $Codigo="";
 <?php
 if (isset($_POST["Crear"])){
 
+include("../conexion.php");
 
-	include("../conexion.php");
-	
-	 $registros=mysqli_query($conexion,"select Cod_empleados,Identidad,
-	 Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base
-	  FROM  empleados WHERE FormaPago='Quincenal'");
-	
-	
-	while ($registro= mysqli_fetch_array($registros)){
-	$CE=$registro['Cod_empleados'];
-	$ID=$registro['Identidad'];
-	$PN=$registro['Primer_Nombre'];
-	$SN=$registro['Segundo_Nombre'];
-	$PA=$registro['Primer_Apellido'];
-	$SA=$registro['Segundo_Apellido'];
-	$sueldo=$registro['Sueldo_base'];
-	$Codigo=$_POST["CHE"];
-	//$fecha = date("Y-m-d");
-	$FormaP="Quincenal";
-	
-	$sql="insert into 
-	nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base,FormaPago,Fecha_Generada)
-	 VALUES('$Codigo','$CE','$ID','$PN','$SN','$PA','$SA','$sueldo','$FormaP','2020-12-15')";
-	 ///aqui*******************************************************************->
-	 
-	 if (mysqli_query($conexion, $sql)) {
-		   echo "<script> 
-		alert ('Operacion Realizada!!!');
-		  window.location='nomina3.php';
-		  </script>";  
-		  
-	}
-	  
-	
-	}
-	}
-/*
+ $registros=mysqli_query($conexion,"select Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,FormaPago ,Sueldo_base FROM  empleados ");
+
 while ($registro= mysqli_fetch_array($registros)){
 $CE=$registro['Cod_empleados'];
 $ID=$registro['Identidad'];
@@ -245,18 +219,11 @@ $sueldo=$registro['Sueldo_base'];
 $Codigo=$_POST["CHE"];
 $fecha = date("Y-m-d");
 
-if($FormaP=="Quincenal";){
-$sueldoQ=$sueldo/2;
-$sql="insert into 
-nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base,FormaPago,SUELDO_NETO_Pagar,Fecha_Generada)
- VALUES('$Codigo','$CE','$ID','$PN','$SN','$PA','$SA','$sueldoQ','$FormaP','$sueldoQ','$fecha')";
- else{
 
 $sql="insert into 
 nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base,FormaPago,Fecha_Generada)
  VALUES('$Codigo','$CE','$ID','$PN','$SN','$PA','$SA','$sueldo','$FormaP','$fecha')";
  
- }
  if (mysqli_query($conexion, $sql)) {
    	echo "<script> 
 	     alert ('Operacion Realizada!!!');
@@ -264,21 +231,20 @@ nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Pr
 	  </script>";  
 	  
 }
-}
-}*/
-?>
+  
 
+}
+}
+?>
 
 <?php
 
 $conexion=mysqli_connect('localhost','root','','nominas')
 ?>
 
-<input type="hidden" id="CE" value="<?php echo $codigo;?>">
-
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../estructura.php");
+header("location:../../LOG/Menu_Admin.php");
 }
 ?>
 <?php
@@ -292,7 +258,9 @@ header("location:NominaPDF.php");
   <div class="form-group">
 	 
 	 <center>
-	 <h1>Nòmina General</h1>
+	   <div class="tilulo">
+	   	 <h1>Nòmina General Mensual</h1>
+		 </div>
 	 </center>
 	 <center>
 
@@ -300,13 +268,11 @@ header("location:NominaPDF.php");
 	  <form class="from"  id="form1" action= "" method="POST" >
       <table border="1" class="color-Tabla" align="left">
           <td align="legth"><img src="../../IMG/nominas.jpg" width="150px">
-          </td></table><br/><br/><br/><br/><br/><br/>
+          </td></table><br/><br/><br/><br/>
 
           <table border="1" class="color-Tabla" align="right">
-          <tr class="Estilo-tabla" align="">
-          <td>Periodo de Pago</td> </tr>
-          <tr><td>Diciembre/30/2020</td></tr>
-          <tr class="Estilo-tabla"align="regth" ><td>Fecha de Liquidacion</td></tr>
+
+          <tr class="Estilo-tabla"align="regth" ><td>Fecha de Elaboración</td></tr>
 		    <?php $fcha = date("Y-m-d");?>
           <tr><td><?php echo $fcha;?></td></tr>
         </tr>
@@ -314,7 +280,6 @@ header("location:NominaPDF.php");
 		</div>
 	</table>
     </center>
-	<br><br/>
 	<br><br/>
 	<br><br/>
 	<br><br/>
@@ -328,7 +293,7 @@ header("location:NominaPDF.php");
        <td>Còdigo Nòmina</td> 
     </tr>
           <tr>
-<td><input type="text" class="form" name="CHE" value="1"  size="20" maxlength="10" readonly="readonly"/><br/></td>
+<td><input type="text" class="form" name="CHE" value="                          1"  size="20" maxlength="10" readonly="readonly"/><br/></td>
 </tr>	
 <tr><td><button name="Crear"  class="boton_Añadir">Crear Nomina Mensual<i class="fas fa-plus"></i></button></td>
 </tr>
@@ -370,7 +335,7 @@ $conexion=mysqli_connect('localhost','root','','nominas')
     <?php
 	
 		$fcha = date("Y-m-d");
-		$sql="SELECT * FROM nominageneral where Fecha_Generada='$fcha' ";
+		$sql="SELECT * FROM nominageneral where FormaPago='Mensual' and Fecha_Generada='$fcha' ";
   
   
   $res=mysqli_query($conexion,$sql);
@@ -405,7 +370,7 @@ $conexion=mysqli_connect('localhost','root','','nominas')
 
  </tbody>
    </table> <br/><br/>
-                
+   <button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
                     </div>
                 </div>
         </div>  

@@ -12,7 +12,7 @@ function Header()
     // Movernos a la derecha
     $this->Cell(20);
     // Título
-    $this->Cell(250,10,'Nomina General Mensual',0,0,'C');
+    $this->Cell(250,10,'Nomina General Quincenal',0,0,'C');
 
     // Salto de línea
     $this->Ln(20);
@@ -47,7 +47,7 @@ function Footer()
 }
 $mysqli= new mysqli("localhost","root", "","nominas");
 
-  $sql="SELECT * FROM nominageneral  where FormaPago='Mensual'";
+  $sql="SELECT * FROM nominageneral where FormaPago='Quincenal'";
   $res= $mysqli->query($sql);
   
   $pdf = new PDF();

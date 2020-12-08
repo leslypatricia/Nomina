@@ -10,7 +10,7 @@ function consulta($CE){
 
 	/*	$sentencia="SELECT * FROM empleados where Cod_empleados='".$cod."'";*/
 		$sentencia="SELECT Cod_empleados,Primer_Nombre,Segundo_Apellido,Telefono,
-        Fecha_ingreso,Sueldo_base,DescripcionFP,DescripcionD
+        Fecha_ingreso,Sueldo_base,FormaPago,Departamento
         FROM empleados WHERE Cod_empleados='".$CE."' " ;
 
 $res=$conexion->query($sentencia)or die ("error al consultar ".mysqli_error($conexion));
@@ -32,8 +32,8 @@ $mostrar=$res->fetch_assoc();
 			/*$mostrar['Nacionalidad'],*/
 			/*$mostrar['Fecha_Deduccion'],*/
 			$mostrar['Sueldo_base'],
-			$mostrar['DescripcionFP'],
-			$mostrar['DescripcionD']
+			$mostrar['FormaPago'],
+			$mostrar['Departamento']
 
 		];
 	}
@@ -224,12 +224,33 @@ header("location:http://localhost:801/phpmyadmin/");
 
 	<tr><td><label>Codigo Empleado<br/></label> </td>
 	<td><input type="text" class="form" name="CE" value="<?php echo $con[0]; echo $codigo?>"><br/></td></tr>
-	<tr><td>Codigo_Depto<br/> </td>
-	<td><select name="CD" value="" class="form" >
-   <option  class="form"value="<?php echo $con[7]; echo $codigod;?>">1</option>
-   <option  class="form" value="<?php echo $con[7]; echo $codigod;?>">2</option>
-   <option  class="form" value="<?php echo $con[7]; echo $codigod;?>">3</option>
-</select> </td></tr>
+	<tr><td>Departamento<br/> </td>
+	<td> <select  name="CD" id="CD"  class="form"   maxlength="20" value="<?php echo $con[7]?>">
+        <?php
+include("../conexion.php");
+$registros=mysqli_query($conexion,"SELECT *  FROM  departamento");
+         ?>
+			<?php
+				echo '<option value="" >Seleccione</option>';
+		 	if( $CD==1){
+			
+			   echo '<option value="1<?php echo $con[7]?>" >Administración</option>';
+			}elseif( $CD==2){
+			 echo '<option value="2<?php echo $con[7]?>" >Contabilidad</option>';
+			
+			}elseif( $CD==3){
+			 echo '<option value="3<?php echo $con[7]?>" >Tecnología</option>';
+			
+			}else{
+		
+			 while ($valores = $registros->fetch_assoc()) {
+			 	 //echo '<option value="0" >nombre</option>';
+				 echo  '<option class="form"  value="'.$valores["Descripcion"].'">'.$valores["Descripcion"].'</option>';
+			 }
+			}
+			
+		?>
+	</select></td></tr>
 <!--<tr><td>Identidad<br/> </td>
 <td> <input type="text" class="form"  name="id" value="<?php /*echo $consulta[1];*/ echo $Identidad?>" size="15" maxlength="15" /><br/></td></tr>-->
 	<tr><td>Primer Nombre<br/> </td>
@@ -273,11 +294,28 @@ header("location:http://localhost:801/phpmyadmin/");
 	<tr><td>Fecha Deducciones<br/> </td>
 	<td> <input id="date" class="form"  type="date" name="FD" value="<?php /*echo $consulta[14];*/ echo $fechad?>" size="20"  maxlength="30"  /><br/>
 </td></tr>-->
-	<tr><td>CodFormaPago<br/> </td>
-	<td><select name="FP" class="form" >
-   <option  class="form" value="1 <?php echo $con[6]; echo $formapago;?>">1</option>
-   <option  class="form"  value="1 <?php echo $con[6]; echo $formapago;?>">2</option>
-</select><br/> </td></tr>
+<tr><td>Forma de Pago<br/> </td>
+	<td><select name="FP" class="form"  maxlength="20" value="<?php echo $con[6]; echo $formapago;?>">
+
+         
+		    <?php
+		 	if( $formapago==1){
+			
+			   echo '<option value="1 " >Mensual</option>';
+			}elseif( $formapago==2){
+			 echo '<option value="2" >Quincenal</option>';
+			
+			}else{
+				echo '<option value="" >Seleccione</option>';
+				echo '	<option  class="form"  value="Mensual" maxlength="20" >Mensual</option>';
+				echo '	<option  class="form"  value="Quincenal" maxlength="20" >Quincenal</option>';
+
+			 }
+			
+			
+		?>
+	</select></td></tr>
+
 </table>
 
 <button name="Regresar"><i class="fas fa-reply"></i></button>

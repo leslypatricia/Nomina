@@ -10,8 +10,8 @@ function Modificar($CE,$PN,$SA,$tele,$FI,$SB,$FP,$CD){
 	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
 
 $sentencia="UPDATE empleados SET Primer_Nombre='".$PN."',Segundo_Apellido='".$SA."',
-Telefono='".$tele."',Fecha_ingreso='".$FI."',Sueldo_base='".$SB."',DescripcionFP='".$FP."',
-DescripcionD='".$CD."' WHERE Cod_empleados='".$CE."'";
+Telefono='".$tele."',Fecha_ingreso='".$FI."',Sueldo_base='".$SB."',FormaPago='".$FP."',
+Departamento='".$CD."' WHERE Cod_empleados='".$CE."'";
 $conexion->query($sentencia) or die ("error ak actualizar". mysqli_error($conexion));
 }
 

@@ -1,31 +1,8 @@
-<!DOCTYPE html >
-<html lang="es">
-<head>
-<meta charset="utf-8" />
-<title>Menu</title>
-<link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-<script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
-    <!-- Required meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="#" />  
- 
-      
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <!-- CSS personalizado --> 
-    <link rel="stylesheet" href="main.css">  
-      
-    <!--datables CSS básico-->
-    <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
-    <!--datables estilo bootstrap 4 CSS-->  
-    <link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-           
-    <!--font awesome con CDN-->  
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">  
-      
-<style>
-/*-----------------------------------c�digo_css-------------------------------------------------------------------------------*/
+<!doctype html>
+<html lang="en">
+  <head>
+  <style>
+/*-----------------------------------c?digo_css-------------------------------------------------------------------------------*/
 body{
     margin:0;
     padding:0;
@@ -42,17 +19,17 @@ body{
 
 th{
 	border:none;
-	padding:10px;
+	padding:5px;
 	text-align:center;
 	color:#FFFFFF;
 	font-family:Times New Roman;
-	font-size:15px;
+	font-size:12px;
 	 background:#346BFB;
  font-family:Times New Roman ;
 }
 td{
 	border:none;
-	padding:10px;
+	padding:4px;
 	text-align:center;
 }
 
@@ -63,25 +40,25 @@ tr:nth-child(even){
  
 .from{
 	margin:auto;
-	margin-top:-10PX;
+	margin-top:-5PX;
 	border-radius:4px;
 	font-family:Times New Roman ;
 	color:black;
 }
 h1{
-	font-size:40px;
-	margin-bottom:35px;	
+	font-size:45px;
+	margin-bottom:45px;	
 	color: blanchedalmond;
 	font-family:Times New Roman;
 	}
 	
 .form-group{
-	padding:50px;
-	border-radius:6px;
-	margin-bottom:16px;
+	padding:60px;
+	border-radius:4px;
+	margin-bottom:12px;
 	border:1px solid #1f53c5;
 	font-family:Times New Roman ;
-	font-size:18px;
+	font-size:11px;
 	}
 .color-Tabla {
 	background:#ffffff;
@@ -89,7 +66,7 @@ h1{
 	/*border-top-left-radius:100px !important;*/
 	/*border-spacing: 0.5rem;  rem unidad de medida*/
 	font-family:Times New Roman ;
-   	border:solid 10px #346BFB ;
+   	border:solid 3px #346BFB ;
 
 }
 
@@ -132,7 +109,7 @@ color:green;
 
 
 }
-.boton_A�adir{
+.boton_Añadir{
 	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
@@ -171,7 +148,7 @@ color:green;
 
 }
 
-.boton_A�adir:hover{
+.boton_Añadir:hover{
 	margin-left:10%;
 	margin-bottom:1.5%;
 	color: white;
@@ -187,12 +164,42 @@ color:green;
 	cursor:pointer;
 
 }
-</style>
-  
-</head>
+.tilulo {
+	font-size:45px;
+	margin-bottom:45px;	
+	color: blanchedalmond;
+	font-family:Times New Roman;
 
-<body>
-<?php 
+}
+</style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="#" />  
+    <title>Nomina</title>
+      
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- CSS personalizado --> 
+    <link rel="stylesheet" href="main.css">  
+      
+    <!--datables CSS b�sico-->
+    <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
+    <!--datables estilo bootstrap 4 CSS-->  
+    <link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+           
+    <!--font awesome con CDN-->  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">  
+      
+  </head>
+    
+  <body> 
+  <?php
+
+$conexion=mysqli_connect('localhost','root','','nominas')
+?>
+  
+  <?php 
 $Codigo="";
  ?>	
 <?php
@@ -201,7 +208,12 @@ if (isset($_POST["Crear"])){
 
 include("../conexion.php");
 
- $registros=mysqli_query($conexion,"select Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,FormaPago ,Sueldo_base FROM  empleados ");
+ $registros=mysqli_query($conexion,"
+ select Cod_empleados,Identidad,
+ Primer_Nombre,Segundo_Nombre,
+ Primer_Apellido,Segundo_Apellido,
+ Sueldo_base FROM  empleados WHERE FormaPago='Quincenal'");
+
 
 while ($registro= mysqli_fetch_array($registros)){
 $CE=$registro['Cod_empleados'];
@@ -210,21 +222,24 @@ $PN=$registro['Primer_Nombre'];
 $SN=$registro['Segundo_Nombre'];
 $PA=$registro['Primer_Apellido'];
 $SA=$registro['Segundo_Apellido'];
-$FormaP=$registro['FormaPago'];
 $sueldo=$registro['Sueldo_base'];
-
 $Codigo=$_POST["CHE"];
-$fecha = date("Y-m-d");
-
+//$fecha = date("Y-m-d");
+$FormaP="Quincenal";
 
 $sql="insert into 
-nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Primer_Apellido,Segundo_Apellido,Sueldo_base,FormaPago,Fecha_Generada)
- VALUES('$Codigo','$CE','$ID','$PN','$SN','$PA','$SA','$sueldo','$FormaP','$fecha')";
+nominageneral(Cod_Nomina,Cod_empleados,
+Identidad,Primer_Nombre,Segundo_Nombre,
+Primer_Apellido,Segundo_Apellido,
+Sueldo_base,FormaPago,Fecha_Generada)
+ VALUES('$Codigo','$CE','$ID','$PN','$SN',
+ '$PA','$SA','$sueldo','$FormaP','2020-12-15')";
+ ///aqui*******************************************************************->
  
  if (mysqli_query($conexion, $sql)) {
    	echo "<script> 
 	     alert ('Operacion Realizada!!!');
-	  window.location='nomina.php';
+	  window.location='nomina3Q.php';
 	  </script>";  
 	  
 }
@@ -233,42 +248,43 @@ nominageneral(Cod_Nomina,Cod_empleados,Identidad,Primer_Nombre,Segundo_Nombre,Pr
 }
 }
 ?>
-<?php
 
-$conexion=mysqli_connect('localhost','root','','nominas')
-?>
-<!--
-<input type="hidden" id="CE" value="<?php /*echo $codigo;*/?>">
 
--->
+
+
+<input type="hidden" id="CE" value="<?php echo $codigo;?>">
+
 <?php
 if (isset($_POST["Regresar"])){
-header("location:../../LOG/Menu_Admin.php");
-}
+	header("location:../../LOG/Menu_Admin.php");
+	}
 ?>
 <?php
 if (isset($_POST["Exportar"])){
 header("location:NominaPDF.php");
 }
 ?>
-
+  
 <div class="Container">
 	
   <div class="form-group">
 	 
 	 <center>
-	 <h1>Nómina General Mensual</h1>
-	 </center>
+	 	   <div class="tilulo">
+	   	 <h1>Nòmina Quincenal</h1>
+		 </div>
+		 </center>
 	 <center>
 
 	  <div class="form">
 	  <form class="from"  id="form1" action= "" method="POST" >
       <table border="1" class="color-Tabla" align="left">
           <td align="legth"><img src="../../IMG/nominas.jpg" width="150px">
-          </td></table>
+          </td></table><br/><br/><br/><br/><br/><br/>
 
           <table border="1" class="color-Tabla" align="right">
-          <tr class="Estilo-tabla"align="regth" ><td>Fecha de Elaboración de Nomina</td></tr>
+
+          <tr class="Estilo-tabla"align="regth" ><td>Fecha de Elaboración</td></tr>
 		    <?php $fcha = date("Y-m-d");?>
           <tr><td><?php echo $fcha;?></td></tr>
         </tr>
@@ -287,28 +303,27 @@ header("location:NominaPDF.php");
 
 <table border="1" class="color-Tabla" align="left">
     <tr class="Estilo-tabla">
-       <td>Código Nómina</td> 
+       <td>Còdigo Nòmina</td> 
     </tr>
           <tr>
-				<td><input type="text" class="form" name="CHE" value="                           1"  size="20" maxlength="10" readonly="readonly"/><br/></td>
-				</tr>
-				<tr>
-				<td><button name="Crear"  class="boton_A�adir">Crear Nómina Mensual<i class="fas fa-plus"></i></button></td>
-				</tr>
-
-
+<td><input type="text" class="form" name="CHE" value="                           2"  size="20" maxlength="10" readonly="readonly"/><br/></td>
+</tr>	
+<tr><td><button name="Crear"  class="boton_Añadir">Crear Nomina Quincenal<i class="fas fa-plus"></i></button></td>
+</tr>
      </table>
-	 <br><br/> <br><br/> 
+  
+  	 <br><br/> <br><br/> 	 <br><br/> <br><br/> 
+  <?php 
+  
+  ?>
+  <?php
+ echo "<td><a href='../nominas/generarpdfQ.php'><button name='pdf' class='btn btn-danger'><i class='fas fa-file-pdf'></a></i></button></td>";
+                  ?>
+<table id="example" class="color-Tabla"  width="100%">
 
- <div class="form-group">    
-    <!-- c�digo JS prop�o-->    
-    <script type="text/javascript" src="main.js"></script>  
-<center>
-
-<table id="tablaNominaGeneral" border="10" class="color-Tabla" style="width:100%"><br/><br/>
-
-<thead class="text-center" border="60" color="black">
-       <th rowspan="2" >Código</th> <br/><br/>
+<thead class="text-center" border="10" color="black">
+	<tr>
+       <th rowspan="2" >Codigo</th> <br/><br/>
        <th rowspan="2">Nombre Completo</th>
        <th rowspan="2">Sueldo Ordinario</th>
        <th colspan="3">Horas Extra</th>
@@ -318,28 +333,31 @@ header("location:NominaPDF.php");
 	   <th rowspan="2">Total Aumento</th>
 	    <th rowspan="2">Sueldo Neto</th>
 	   <th rowspan="2">Calcular</th>
-   
+	</tr>
     <tr>   
         <th>Cant. Hr/Extras</th>
         <th>Valor hora</th>
         <th>Total</th>
     </tr>
 	  </thead>
-                <tbody>
+     <?php
+
+$conexion=mysqli_connect('localhost','root','','nominas')
+?>         
+  <tbody>
     <?php
-		$fcha = date("Y-m-d");
-		$sql="SELECT * FROM nominageneral where Fecha_Generada='$fcha' " ;
- 
-  
+	
+	$fcha = date("Y-m-d");
+	$sql="SELECT * FROM nominageneral Where FormaPago='Quincenal' and Fecha_Generada='2020-12-15'";
+
   $res=mysqli_query($conexion,$sql);
 	while($mostrar=mysqli_fetch_array($res)){
-   $tipoboton;
-
+  
   echo "<tr>";
 		echo "<td>";echo $mostrar['Cod_empleados']; echo"</td>";
 		echo "<td>";echo $mostrar['Primer_Nombre']; echo " ";
-		echo $mostrar['Primer_Apellido']; echo " ";
-		echo $mostrar['Segundo_Apellido']; echo"</td>";
+		echo             $mostrar['Primer_Apellido']; echo " ";
+		echo             $mostrar['Segundo_Apellido']; echo"</td>";
 		echo "<td>";echo $mostrar['Sueldo_base']; echo"</td>";
 		echo "<td>";echo $mostrar['Cant_Horas']; echo"</td>";
 		echo "<td>";echo $mostrar['Costo_U']; echo"</td>";
@@ -348,9 +366,11 @@ header("location:NominaPDF.php");
 		echo "<td>";echo $mostrar['Total_Deducciones']; echo"</td>";
 		echo "<td>";echo $mostrar['Total_PagosComplementarios']; echo"</td>";
 	    echo "<td>";echo $mostrar['Total_aumento']; echo"</td>";	
-	    echo "<td>";echo $mostrar['SUELDO_NETO_Pagar']; echo"</td>";
- 			echo "<td><a href='../HoraExtra/HoraExtra.php?CE=".$mostrar['Cod_empleados']."'><button name='Calcu' class='boton-actualizar'><i class='fas fa-calculator'></a></i></button></td>";
-	echo "</tr>";
+	    echo "<td>";echo $mostrar['SUELDO_NETO_Pagar']; echo"</td>";	
+
+echo "<td><a href='NominaDeduccion.php?CE=".$mostrar['Cod_empleados']."'><button name='Actualizar' class='boton-actualizar'><i class='fas fa-calculator'></a></i></button></td>";
+
+		echo "</tr>";
 		  
 	?>
 
@@ -363,39 +383,35 @@ header("location:NominaPDF.php");
 
  </tbody>
    </table> <br/><br/>
-	</center>
-	<br/>
-	<button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
-    </form>
-
-<br>
-	</div>
-		</div>
-	</div>
-	</div class="color-Tabla">
-	  <!-- para usar botones en datatables JS -->  
+   <button name="Regresar" class="Boton-Regresar" ><i class="fas fa-reply"></i></button>
+                    </div>
+                </div>
+        </div>  
+    </div>    
+     
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="popper/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+      
+    <!-- datatables JS -->
+    <script type="text/javascript" src="datatables/datatables.min.js"></script>    
+     
+    <!-- para usar botones en datatables JS -->  
     <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
-    <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
+	<script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
+	<script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
     <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
     <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
     <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-
- <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-       
-	   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/> 
-      
-<!--    Datatables-->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
-      
-      
-    <script>
-      $(document).ready(function(){
-         $('#tablaNominaGeneral').DataTable(); 
-      });
-    </script>
  
-    </body>
-    </html>
+    
+
+   
+     
+    <!-- c�digo JS prop�o-->    
+    <script type="text/javascript" src="main.js"></script>  
+    
+    
+  </body>
+</html>

@@ -13,6 +13,7 @@
 		<script src="js/bootstrap.min.js"></script>	
 <style>
 /*-----------------------------------código_css-------------------------------------------------------------------------------*/
+
 body{
     margin:0;
     padding:0;
@@ -120,7 +121,7 @@ color:green;
 
 }
 .boton_Añadir{
-	margin-left:%;
+	margin-left:0%;
 	margin-bottom:1.5%;
 	color: white;
 	padding-left:1.5%;
